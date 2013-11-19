@@ -6,7 +6,7 @@ KnodaWeb::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  get 'predictions/:id' => 'predictions#show'
+  get 'predictions/:id/share' => 'predictions#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
