@@ -18,4 +18,5 @@ end
 gem 'paperclip', '3.4.2'
 gem 'aws-sdk'
 gem 'rails_12factor', '0.0.2'
+gem 'unicorn'
 ruby '2.0.0'
