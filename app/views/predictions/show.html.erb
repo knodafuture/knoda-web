@@ -1,0 +1,26 @@
+<div class="container" style="max-width:500px">
+  <div class="row">
+    <div class="col-md-3">
+      <img src="<%= @prediction.user.avatar %>" />
+    </div>
+    <div class="col-md-9">
+      <h1><%= @prediction.body %></h1>
+    </div>
+  </div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs">
+    <li><a href="#challenges" data-toggle="tab">Challenges</a></li>
+    <li><a href="#comments" data-toggle="tab">Ccomments</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane active" id="challenges">...</div>
+    <div class="tab-pane" id="comments">
+      <% @prediction.comments.each do |comment| %>
+        <img src="<%= @prediction.user.avatar %>" />
+        <p><%= comment.text %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
