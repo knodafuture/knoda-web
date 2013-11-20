@@ -1,61 +1,68 @@
-
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <title>Knoda | Predict • Compete • Conquer</title>
+  <%= stylesheet_link_tag    "rotating_tweet", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "chunk", media: "all", "data-turbolinks-track" => true %>
+  <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <%= javascript_include_tag "jquery.cycle.all.min", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "rotating_tweet", "data-turbolinks-track" => true %>
+</head>
+<body class="home page page-id-5 page-template page-template-template-php single-author">
+  <script type="text/javascript">(function(){document.write('<a style="display:block;overflow:hidden;z-index:9999;position:absolute;top:0;left:0;" href="http://siliconprairiebuilt.com/" target="_blank"><img src="http://siliconprairiebuilt.com/build.php?i=corner-green-lg.png&s=' + window.location.host + '" /></a>');})();</script>
+  <div id="container">
+    <div id="header">
+      <a href="http://www.knoda.com/" title="Knoda" rel="home"><img src="http://www.knoda.com/wp-content/themes/chunk/img/knoda_logo_horz.png" /></a>
+    </div>
+    <div id="menu">
+      <div class="menu-main-container">
+        <ul id="menu-main" class="menu">
+          <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-5 current_page_item menu-item-14"><a href="http://www.knoda.com/">Home</a></li>
+          <li id="menu-item-15" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15"><a href="http://www.knoda.com/about/">About</a></li>
+          <li id="menu-item-60" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60"><a href="http://www.knoda.com/blog/">Blog</a></li>
+        </ul>
+      </div> 
+    </div>
+    <div class="twitter">
+      <div class="bird"></div>
+      <div class="twitterfeed">
+        <div class='rotatingtweets rotatingtweets_format_0' id='rotatingtweets_4000_fade_528c09146ed9c'>
+          <% @t.each do |tweet| %>
+            <div class = 'rotatingtweet'>    
+              <span class='rtw_main'><%= tweet.text %></span>
+              <span class='rtw_meta'><a  target="_blank"  href="https://twitter.com/twitterapi/status/<%= tweet.id%>">About <%= time_ago_in_words(tweet.created_at) %> ago</a> from <a href='https://twitter.com/intent/user?user_id=1394859757' title='Knoda'>Knoda's Twitter</a> &middot; 
+                <a href='https://twitter.com/intent/tweet?in_reply_to=<%= tweet.id%>' title='reply' lang='en' target="_blank" >reply</a> &middot; 
+                <a href='https://twitter.com/intent/retweet?tweet_id=<%= tweet.id%>' title='retweet' lang='en' target="_blank" >retweet</a> &middot; 
+                <a href='https://twitter.com/intent/favorite?tweet_id=<%= tweet.id%>' title='favorite' lang='en' target="_blank" >favorite</a></span>
+            </div>
+          <% end %>
         </div>
-        <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control" clickev="true">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control" clickev="true">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
       </div>
     </div>
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" role="button">Learn more »</a></p>
-      </div>
+    <div id="theapp"><img src="http://www.knoda.com/wp-content/themes/chunk/img/knoda_screens4web.png" width="400" /></div>
+    <div id="contents">
+      <div style="height: 50px; width: 300px;"></div>
+        <p style="font-size: 20px;">Do you like making predictions? Like proving your friends wrong about theirs? Like trash talk and competition? You’ll probably like our system.</p>
+        <p style="font-size: 20px;">Sign up to get Knoda updates.</p>
     </div>
-
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div>
-      </div>
-
-      <hr>
-
-      <footer>
-        <p>© Company 2013</p>
-      </footer>
-    </div> 
+  </div>
+  </div>
+    <div id="footer">
+      &copy; Knoda 2013
+      <span class="sep"> | All Rights Reserved.
+    </div>
+  </div>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36401825-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</body>
+</html>

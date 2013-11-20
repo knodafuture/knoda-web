@@ -18,4 +18,6 @@ group :production do
   gem 'unicorn'
 end
 
+gem 'twitter'
+
 ruby '2.0.0'
