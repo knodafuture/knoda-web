@@ -1,5 +1,6 @@
 class PredictionsController < ApplicationController
-  def show
+  def showShared
     @prediction = Prediction.find(params[:id])
+    @prediction
   end
 end

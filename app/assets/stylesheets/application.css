@@ -1,0 +1,10 @@
+/*
+ *= require twitter/bootstrap
+ */
+
+ .navbar-default {
+  background-color: #77BC1F;
+ }
+ .navbar-brand {
+    padding: 5px;
+ }

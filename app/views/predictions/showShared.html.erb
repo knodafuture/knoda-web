@@ -2,28 +2,52 @@
 <html>
   <head>
     <title>KnodaWeb</title>
+    <link href='http://fonts.googleapis.com/css?family=Krona+One' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
+    <style>
+      #shareBody {
+        color: #666666;
+      }
+      .navbar-default .navbar-brand {
+        font-family: 'Krona One', sans-serif;
+        color: #fff;
+        font-size: 2em;
+      }
+    </style>
   </head>
 
   <body style="">
-    <div class="container" style="max-width:500px">
-      <div class="row">
-        <div class="col-md-3">
-          <img src="<%= @prediction.user.avatar %>" />
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/"><img src="/assets/Icon-40.png" /> <span style="vertical-align:middle">Knoda</span></a>
         </div>
-        <div class="col-md-9">
-          <h1><%= @prediction.body %></h1>
+      </div>
+    </div>    
+    <div class="container" id="shareBody" style="max-width:500px; margin-top:60px; border: 1px solid black">
+      <div class="row" style="background-color:#EFEFEF; padding: 5px">
+        <div class="col-md-12">
+          <img src="<%= @prediction.user.avatar_image[:thumb] %>" style="display:inline-block;" />
+          <h3 style="padding:0px;display:inline-block;margin:0px;vertical-align:middle;"><%= @prediction.user.username %></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h1 style="font-size:1.25em"><%= @prediction.body %></h1>
         </div>
       </div>
       <!-- Nav tabs -->
+      <!-- 
       <ul class="nav nav-tabs">
         <li><a href="#challenges" data-toggle="tab">Challenges</a></li>
         <li><a href="#comments" data-toggle="tab">Ccomments</a></li>
       </ul>
+      -->
 
       <!-- Tab panes -->
+      <!--
       <div class="tab-content">
         <div class="tab-pane active" id="challenges">...</div>
         <div class="tab-pane" id="comments">
@@ -33,6 +57,7 @@
           <% end %>
         </div>
       </div>
+      -->
     </div>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
