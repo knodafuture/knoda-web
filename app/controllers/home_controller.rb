@@ -8,4 +8,13 @@ class HomeController < ApplicationController
     end    
     @t = client.user_timeline('knodafuture')
   end
+
+  def about
+  end
+
+  def privacy
+  end
+
+  def terms
+  end
 end

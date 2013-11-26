@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>    
-    <div class="container" id="shareBody" style="max-width:500px; margin-top:60px; border: 1px solid black">
+    <div class="container" id="shareBody" style="max-width:500px; margin-top:60px;">
       <div class="row" style="background-color:#EFEFEF; padding: 5px">
         <div class="col-md-12">
           <img src="<%= @prediction.user.avatar_image[:thumb] %>" style="display:inline-block;" />
@@ -38,26 +38,11 @@
           <h1 style="font-size:1.25em"><%= @prediction.body %></h1>
         </div>
       </div>
-      <!-- Nav tabs -->
-      <!-- 
-      <ul class="nav nav-tabs">
-        <li><a href="#challenges" data-toggle="tab">Challenges</a></li>
-        <li><a href="#comments" data-toggle="tab">Ccomments</a></li>
-      </ul>
-      -->
-
-      <!-- Tab panes -->
-      <!--
-      <div class="tab-content">
-        <div class="tab-pane active" id="challenges">...</div>
-        <div class="tab-pane" id="comments">
-          <% @prediction.comments.each do |comment| %>
-            <img src="<%= @prediction.user.avatar %>" />
-            <p><%= comment.text %></p>
-          <% end %>
-        </div>
-      </div>
-      -->
+    </div>
+    <div class="container">
+      <div class="row" style="text-align:center;margin-top:20px;">
+        <a href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
+      </div>      
     </div>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
