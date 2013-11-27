@@ -25,5 +25,6 @@ module KnodaWeb
       'chunk.css',
       'rotating_tweets.css'
     ]    
+    config.allowRobots = ENV['ALLOW_ROBOTS'] || true
   end
 end
