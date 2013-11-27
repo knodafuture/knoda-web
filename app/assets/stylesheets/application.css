@@ -2,6 +2,9 @@
  *= require twitter/bootstrap
  */
 
+.knodaGreen {
+  color : #77BC1F;;
+}
  .navbar-default {
   background-color: #77BC1F;
  }

@@ -38,6 +38,11 @@
           <h1 style="font-size:1.25em"><%= @prediction.body %></h1>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12 knodaGreen">
+        predicted <%= distance_of_time_in_words_to_now(@prediction.created_at) %> ago | <%= @prediction.agreePercent%>% agree
+        </div>
+      </div>
     </div>
     <div class="container">
       <div class="row" style="text-align:center;margin-top:20px;">
