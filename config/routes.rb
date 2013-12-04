@@ -6,4 +6,6 @@ KnodaWeb::Application.routes.draw do
   get 'robots.txt' => 'robots#robots'
   
   get 'predictions/:id/share' => 'predictions#showShared'
+
+  get '/support', to: redirect('https://knoda.zendesk.com/hc/en-us')
 end
