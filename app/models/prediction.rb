@@ -5,14 +5,16 @@ class Prediction < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
 
   def disagreed_count
-    self.challenges.find_all_by_agree(false).count
+    d = self.challenges.select { |c| c.agree == false}
+    d.length        
   end
 
   def agreed_count
-    self.challenges.find_all_by_agree(true).count
+    d = self.challenges.select { |c| c.agree == true}
+    d.length    
   end
 
   def agreePercent
-    ((self.challenges.find_all_by_agree(true).count / self.challenges.count) * 100).round
+    ((self.agreed_count.to_f / self.challenges.count.to_f) * 100).floor
   end
 end
