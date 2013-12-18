@@ -12,6 +12,8 @@ gem 'less-rails-bootstrap'
 gem 'paperclip', '3.4.2'
 gem 'aws-sdk'
 
+gem 'devise', '3.0.0.rc'
+
 group :production do
   gem 'rails_12factor'
   gem 'unicorn'

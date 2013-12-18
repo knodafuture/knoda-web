@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-KnodaWeb::Application.config.secret_key_base = '4264c3021a16f8548539d4381a6f575fcb2e61b2493d53a4701e23d54e419119c5fd791d08d72b8d14c09af9ba4b225d4d19f29b7adb19da3b563ed164025367'
+KnodaWeb::Application.config.secret_key_base = '7739b3efe94874bb94ceff389effe0c0d5cfaefcb6d599163a5da314b7846cb8b2f153e73ce7fdecbafd9503f9202b0d6524130d86e991aeb17891548cae7781'
