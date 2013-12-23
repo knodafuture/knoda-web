@@ -1,5 +1,5 @@
 KnodaWeb::Application.routes.draw do
-  root 'home#index'
+  root 'home#new'
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'
   get 'terms' => 'home#terms'
@@ -9,24 +9,31 @@ KnodaWeb::Application.routes.draw do
 
   get '/support', to: redirect('https://knoda.zendesk.com/hc/en-us')
 
-  devise_for :users, skip: :registrations
-  devise_scope :user do
-    namespace :api do
-      resource :session,      :only => [:create, :destroy] do
-        member do
-          get 'authentication_failure'
-        end
-      end
-      resource :registration, :only => [:create]
-    end
+  get '/account' => 'users#account'
+  get '/users/password/edit' => 'users#cp'
 
-    resource :registration,
-      only: [:new, :create, :edit, :update],
-      path: 'users',
-      path_names: { new: 'sign_up' },
-      controller: 'devise/registrations',
-      as: :user_registration do
-        get :cancel
-      end
+  get 'feed' => 'predictions#feed'
+
+  devise_for :users, 
+    :path => "auth", 
+    :path_names => 
+      { :sign_in => 'login', 
+        :sign_out => 'logout', 
+        :confirmation => 'verification', 
+        :unlock => 'unblock', 
+        :registration => 'register', 
+        :sign_up => 'cmon_let_me_in' 
+      }
+  devise_scope :user do
+    get "register"  => "devise/registrations#new"
+    get "login"  => "devise/sessions#new"
   end
+
+  resource :user, only: [:edit] do
+    collection do
+      patch 'update_password'
+    end
+  end
+
+
 end

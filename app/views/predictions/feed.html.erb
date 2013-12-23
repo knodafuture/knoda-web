@@ -1,0 +1,6 @@
+<h2>Feed, Yo!</h2>
+<table class="table table-striped table-bordered">
+  <% @predictions.each do |i| %>
+    <tr><td><%= i.body %></td></tr>
+  <% end %>
+</table>

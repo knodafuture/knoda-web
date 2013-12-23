@@ -18,5 +18,15 @@ class User < ActiveRecord::Base
       nil
     end
   end
+
+  attr_accessor :login
+  attr_accessible :login, :email, :username, :password, :password_confirmation
+
+  # Overrides the devise method find_for_authentication
+  # Allow users to Sign In using their username or email address
+  def self.find_for_authentication(conditions)
+    login = conditions.delete(:login)
+    where(conditions).where(["username = :value OR email = :value", { :value => login }]).first
+  end
 end
 

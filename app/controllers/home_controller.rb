@@ -10,11 +10,23 @@ class HomeController < ApplicationController
   end
 
   def about
+    render layout: false
   end
 
   def privacy
+    render layout: false
   end
 
   def terms
+    render layout: false
+  end
+
+  def new
+    if user_signed_in?
+      puts 'signed in'
+      redirect_to :controller => 'predictions', :action => 'feed'
+    else
+      puts 'not signed in'
+    end
   end
 end
