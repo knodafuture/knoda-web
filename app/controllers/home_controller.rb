@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+
   def index
     client = Twitter::REST::Client.new do |config|
       config.consumer_key = 'cudeJl428sK15geAzUZ8Rw'
@@ -23,10 +24,9 @@ class HomeController < ApplicationController
 
   def new
     if user_signed_in?
-      puts 'signed in'
       redirect_to :controller => 'predictions', :action => 'feed'
     else
-      puts 'not signed in'
+      render layout: "prelogin"
     end
   end
 end
