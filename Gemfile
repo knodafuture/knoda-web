@@ -20,5 +20,6 @@ group :production do
 end
 
 gem 'twitter'
+gem 'protected_attributes'
 
 ruby '2.0.0'

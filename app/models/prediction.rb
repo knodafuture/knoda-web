@@ -3,6 +3,7 @@ class Prediction < ActiveRecord::Base
   has_many :challenges, :dependent => :destroy
   has_many :voters, through: :challenges, class_name: "User", source: 'user'
   has_many :comments, :dependent => :destroy
+  attr_accessible :body, :expires_at, :resolution_date
 
   def disagreed_count
     d = self.challenges.select { |c| c.agree == false}

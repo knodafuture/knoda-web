@@ -1,0 +1,31 @@
+<h1>Listing predictions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Body</th>
+      <th>Expire</th>
+      <th>Resolution</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @predictions.each do |prediction| %>
+      <tr>
+        <td><%= prediction.body %></td>
+        <td><%= prediction.expire %></td>
+        <td><%= prediction.resolution %></td>
+        <td><%= link_to 'Show', prediction %></td>
+        <td><%= link_to 'Edit', edit_prediction_path(prediction) %></td>
+        <td><%= link_to 'Destroy', prediction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Prediction', new_prediction_path %>
