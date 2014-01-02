@@ -33,7 +33,7 @@ class PredictionsController < ApplicationController
   # POST /predictions
   # POST /predictions.json
   def create
-    @prediction = Prediction.new(prediction_params)
+    @prediction = current_user.predictions.create(prediction_params)      
 
     respond_to do |format|
       if @prediction.save
