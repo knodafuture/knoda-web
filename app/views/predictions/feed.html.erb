@@ -4,7 +4,7 @@
 <div class="row">
 	<table class="table table-striped table-bordered">
 	  <% @predictions.each do |i| %>
-	    <tr><td><%= i.body %></td></tr>
+	    <tr><td><a href="/predictions/<%= i.id %>"><%= i.body %></a></td></tr>
 	  <% end %>
 	</table>
 </div>

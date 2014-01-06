@@ -13,13 +13,14 @@ gem 'paperclip', '3.4.2'
 gem 'aws-sdk'
 
 gem 'devise', '3.0.0.rc'
-
+gem 'twitter'
+gem 'protected_attributes'
+gem 'bitly', '0.9.0'
+gem 'searchkick'
 group :production do
   gem 'rails_12factor'
   gem 'unicorn'
 end
-
-gem 'twitter'
-gem 'protected_attributes'
+gem 'knoda_core', :git => "https://knoda:knoda2013!@bitbucket.org/knoda/knoda_core.git"
 
 ruby '2.0.0'

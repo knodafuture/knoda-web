@@ -34,7 +34,6 @@ class PredictionsController < ApplicationController
   # POST /predictions.json
   def create
     @prediction = current_user.predictions.create(prediction_params)      
-
     respond_to do |format|
       if @prediction.save
         format.html { redirect_to action: 'feed' }

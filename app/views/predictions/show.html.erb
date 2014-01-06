@@ -15,5 +15,29 @@
   <%= @prediction.resolution_date %>
 </p>
 
-<%= link_to 'Edit', edit_prediction_path(@prediction) %> |
-<%= link_to 'Back', predictions_path %>
+
+
+
+
+<div class="container" id="shareBody" style="max-width:500px; margin-top:60px;">
+  <div class="row">
+    <%= link_to 'Edit', edit_prediction_path(@prediction) %> |
+    <%= link_to 'Back', predictions_path %> 
+  </div>
+  <div class="row" style="background-color:#EFEFEF; padding: 5px; margin-top:5px;">
+    <div class="col-md-12">
+      <img src="<%= @prediction.user.avatar_image[:small] %>" style="display:inline-block; height: 50px; width:50px;" />
+      <h3 style="padding:0px;display:inline-block;margin:0px;vertical-align:middle;"><%= @prediction.user.username %></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h1 style="font-size:1.25em"><%= @prediction.body %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 knodaGreen">
+    predicted <%= distance_of_time_in_words_to_now(@prediction.created_at) %> ago | <%= @prediction.agreePercent%>% agree
+    </div>
+  </div>
+</div>
