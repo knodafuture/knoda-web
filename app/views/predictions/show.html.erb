@@ -1,24 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @prediction.body %>
-</p>
-
-<p>
-  <strong>Expire:</strong>
-  <%= @prediction.expires_at %>
-</p>
-
-<p>
-  <strong>Resolution:</strong>
-  <%= @prediction.resolution_date %>
-</p>
-
-
-
-
-
 <div class="container" id="shareBody" style="max-width:500px; margin-top:60px;">
   <div class="row">
     <%= link_to 'Edit', edit_prediction_path(@prediction) %> |
@@ -39,5 +18,9 @@
     <div class="col-md-12 knodaGreen">
     predicted <%= distance_of_time_in_words_to_now(@prediction.created_at) %> ago
     </div>
+  </div>
+  <div class="row">
+    <a href="/prediction/<%= @prediction.id %>/agree" class="btn btn-success agree">Agree</a>
+    <a href="/prediction/<%= @prediction.id %>/disagree" class="btn btn-danger disagree">Disagree</a>
   </div>
 </div>

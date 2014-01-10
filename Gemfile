@@ -8,6 +8,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'less-rails-bootstrap'
+gem 'jbuilder'
 
 gem 'paperclip', '3.4.2'
 gem 'aws-sdk'
