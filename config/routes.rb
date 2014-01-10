@@ -2,6 +2,8 @@ KnodaWeb::Application.routes.draw do
   root 'home#new'
   resources :predictions
   resources :challenges
+  resources :users
+  resources :comments
   
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'

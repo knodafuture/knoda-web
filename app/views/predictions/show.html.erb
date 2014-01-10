@@ -1,4 +1,4 @@
-<div class="container" id="shareBody" style="max-width:500px; margin-top:60px;">
+<div class="container" id="predictionRoot" data-prediction-id="<%=@prediction.id%>" style="max-width:500px; margin-top:60px;">
   <div class="row">
     <%= link_to 'Edit', edit_prediction_path(@prediction) %> |
     <%= link_to 'Back', predictions_path %> 
@@ -23,4 +23,43 @@
     <a href="/prediction/<%= @prediction.id %>/agree" class="btn btn-success agree">Agree</a>
     <a href="/prediction/<%= @prediction.id %>/disagree" class="btn btn-danger disagree">Disagree</a>
   </div>
+  <div class="row">
+      <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab">Comments</a></li>
+        <li><a class="showTally" href="#tallyTab" data-toggle="tab">Tally</a></li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+          <ul class="commentsList">
+          <% @prediction.comments.each do |i| %>
+            <li><%= i.text %></li>
+          <% end %> 
+          </ul>
+          <div>
+            <form class="addCommentForm">
+              <textarea name="text" placeholder="Add a Comment"></textarea>
+              <a class="addCommentButton btn btn-success">Add</a> 
+            </form>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="tallyTab">
+          <div class="col-md-6">
+            <b>Agree</b>
+            <ul>
+            <% @agreeUsers.each do |i| %>
+              <li><%= i.username %></li>
+            <% end %>                 
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <b>Disagree</b>
+            <ul>
+            <% @disagreeUsers.each do |i| %>
+              <li><%= i.username %></li>
+            <% end %>                 
+            </ul>            
+          </div>          
+        </div>
+      </div> 
+  </div>    
 </div>

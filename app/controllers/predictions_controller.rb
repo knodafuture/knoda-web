@@ -17,7 +17,8 @@ class PredictionsController < ApplicationController
   # GET /predictions/1.json
   def show
     @prediction = Prediction.find(params[:id])
-    @prediction    
+    @agreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: true})
+    @disagreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: false}) 
   end
 
   # GET /predictions/new
