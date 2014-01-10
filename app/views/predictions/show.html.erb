@@ -1,8 +1,4 @@
 <div class="container" id="predictionRoot" data-prediction-id="<%=@prediction.id%>" style="max-width:500px; margin-top:60px;">
-  <div class="row">
-    <%= link_to 'Edit', edit_prediction_path(@prediction) %> |
-    <%= link_to 'Back', predictions_path %> 
-  </div>
   <div class="row" style="background-color:#EFEFEF; padding: 5px; margin-top:5px;">
     <div class="col-md-12">
       <img src="<%= @prediction.user.avatar_image[:small] %>" style="display:inline-block; height: 50px; width:50px;" />
@@ -37,7 +33,9 @@
           </ul>
           <div>
             <form class="addCommentForm">
-              <textarea name="text" placeholder="Add a Comment"></textarea>
+              <div class="form-group">
+                <textarea name="text" class="form-control" placeholder="Add a Comment"></textarea>
+              </div>
               <a class="addCommentButton btn btn-success">Add</a> 
             </form>
           </div>

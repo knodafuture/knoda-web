@@ -4,6 +4,7 @@ KnodaWeb::Application.routes.draw do
   resources :challenges
   resources :users
   resources :comments
+  resources :badges
   
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'
