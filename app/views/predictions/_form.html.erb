@@ -23,6 +23,10 @@
     <%= f.label :resolution_date %><br>
     <%= datetime_select :prediction, :resolution_date %>
   </div>
+  <div class="field">
+    <%= f.label :tag_list %>
+    <%= f.select :tag_list, options_for_select(['SPORTS', 'ENTERTAINMENT']) %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

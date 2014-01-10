@@ -1,3 +1,15 @@
+GIT
+  remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
+  revision: f36ebd7d4311fa9fba47e04c5bab6b9a20837eed
+  specs:
+    knoda_core (0.0.1)
+      authority (= 2.6.0)
+      aws-sdk
+      bitly (= 0.9.0)
+      devise (= 3.0.0.rc)
+      paperclip (= 3.4.2)
+      rails (~> 4.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -25,9 +37,14 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    acts-as-taggable-on (2.4.1)
+      rails (>= 3, < 5)
     ansi (1.4.3)
     arel (4.0.1)
     atomic (1.1.14)
+    authority (2.6.0)
+      activesupport (>= 3.0.0)
+      rake (>= 0.8.7)
     aws-sdk (1.25.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4, < 1.6.0)
@@ -37,7 +54,6 @@ GEM
       httparty (>= 0.7.6)
       multi_json (~> 1.3)
       oauth2 (>= 0.5.0, < 0.9)
-    buftok (0.1)
     builder (3.1.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -51,22 +67,17 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     commonjs (0.2.7)
-    descendants_tracker (0.0.3)
     devise (3.0.0.rc)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.1)
-    equalizer (0.0.7)
     erubis (2.7.0)
     execjs (2.0.2)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     hashr (0.0.22)
     hike (1.2.3)
-    http (0.5.0)
-      http_parser.rb
-    http_parser.rb (0.5.3)
     httparty (0.12.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -90,8 +101,6 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    memoizable (0.2.0)
-      thread_safe (~> 0.1.3)
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.2)
@@ -113,8 +122,6 @@ GEM
       mime-types
     pg (0.15.1)
     polyglot (0.3.3)
-    protected_attributes (1.0.5)
-      activemodel (>= 4.0.1, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -144,7 +151,6 @@ GEM
     searchkick (0.3.5)
       tire
       tire-contrib
-    simple_oauth (0.2.0)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -176,16 +182,6 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (1.3.1)
       coffee-rails
-    twitter (5.0.0)
-      buftok (~> 0.1.0)
-      descendants_tracker (~> 0.0.1)
-      equalizer (~> 0.0.7)
-      faraday (>= 0.8, < 0.10)
-      http (~> 0.5.0)
-      http_parser.rb (~> 0.5.0)
-      json (~> 1.8)
-      memoizable (~> 0.2.0)
-      simple_oauth (~> 0.2.0)
     tzinfo (0.3.38)
     uglifier (2.3.1)
       execjs (>= 0.3.0)
@@ -202,20 +198,21 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on (= 2.4.1)
+  authority (= 2.6.0)
   aws-sdk
   bitly (= 0.9.0)
   coffee-rails (~> 4.0.0)
   devise (= 3.0.0.rc)
   jquery-rails
+  knoda_core!
   less-rails-bootstrap
   paperclip (= 3.4.2)
   pg (= 0.15.1)
-  protected_attributes
   rails (= 4.0.1)
   rails_12factor
   searchkick
   therubyracer
   turbolinks
-  twitter
   uglifier (>= 1.3.0)
   unicorn
