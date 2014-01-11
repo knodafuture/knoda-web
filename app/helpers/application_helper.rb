@@ -14,4 +14,13 @@ module ApplicationHelper
   def resource_class 
     User 
   end
+
+  def avatar_small(user)
+    if user.avatar_image
+      return user.avatar_image[:small]
+    else
+      return 'http://placehold.it/100x100'
+    end
+  end
+
 end

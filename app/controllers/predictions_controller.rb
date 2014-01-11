@@ -9,7 +9,6 @@ class PredictionsController < ApplicationController
 
   def feed
     @predictions = Prediction.all
-    puts @predictions.length
     @predictions
   end  
 
