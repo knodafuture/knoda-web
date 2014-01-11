@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="padding:0px 15px; background-color: #EFEFEF">
+    <div class="row userInfo">
+        <img src="<%= avatar_small(prediction.user) %>" style="display:inline-block; height: 50px; width:50px;" />
+        <span class="username" style="font-size:1.25em"><%= prediction.user.username %></span>
+      <span class="myChallenge pull-right"><%= challenge_icon(prediction) %></span>
+    </div>
+    <div class="row predictionInfo" style="background-color:white; padding: 20px;">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= prediction.id %>"><%= prediction.body %></a>
+    </div>
+    <div class="row predictionInfoLine2" style="background-color:white; padding: 5px 20px; color: #77BC1F">
+      closes 3d | predicted <%= distance_of_time_in_words_to_now(prediction.created_at) %> ago | 75% agree | <%= image_tag("icons/CommentIcon@2x.png") %> 7
+    </div>    
+  </div>
+  <div id="collapse<%= prediction.id %>" class="panel-collapse collapse">
+      <div class="panel-body">  
+        <div class="row" style="text-align: center">
+          What do you think?
+        </div>
+    <% if (current_user.id != prediction.user_id) && !prediction.is_expired? && !prediction.is_closed? %>
+      <div class="row" style="text-align:center">
+        <a href="/prediction/<%= prediction.id %>/agree" class="btn btn-lg btn-success agree">Agree</a>
+        <a href="/prediction/<%= prediction.id %>/disagree" class="btn btn-lg btn-primary disagree" style="background-color:#235c37">Disagree</a>
+      </div>
+    <% end %>
+      </div>
+    </div>
+</div>
+

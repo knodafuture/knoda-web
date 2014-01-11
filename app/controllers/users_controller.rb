@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :crop, :default_avatar]
 
   # GET /users
   # GET /users.json
@@ -17,6 +17,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    if @user != current_user
+      render 'show_public'
+    else
+      render 'show'
+    end
   end
 
   # GET /users/new
@@ -28,19 +33,52 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render action: 'show', status: :ok, location: @user }
+  def avatar
+    @avatar_version = 1 + rand(5)
+  end
+
+  def default_avatar
+    av = params[:avatar_version] || (1 + rand(5))
+    p = Rails.root.join('app', 'assets', 'images', 'avatars', "avatar_#{av}@2x.png")
+    @user.avatar_from_path p
+    @user.save
+    redirect_to @user
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      if params[:user][:avatar].blank?
+        flash[:notice] = "Successfully created user."
+        redirect_to @user
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        render :action => "crop"
       end
+    else
+      render :action => 'new'
     end
   end
+
+  def crop
+  end
+
+  def update
+    puts params
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      if params[:user][:avatar].blank?
+        if @user.cropping?
+          @user.reprocess_avatar
+        end
+        flash[:notice] = "Successfully updated user."
+        redirect_to @user
+      else
+        render :action => "crop"
+      end
+    else
+      render :action => 'edit'
+    end
+  end  
 
   # DELETE /users/1
   # DELETE /users/1.json
@@ -55,11 +93,15 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      if params[:id] == 'me'
+        @user = current_user
+      else
+        @user = User.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.required(:user).permit(:password, :password_confirmation)
+      params.required(:user).permit(:password, :password_confirmation, :avatar,:crop_x, :crop_y, :crop_w, :crop_h)
     end
 end

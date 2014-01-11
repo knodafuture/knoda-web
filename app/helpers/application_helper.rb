@@ -23,4 +23,12 @@ module ApplicationHelper
     end
   end
 
+  def avatar_big(user)
+    if user.avatar_image
+      return user.avatar_image[:big]
+    else
+      return 'http://placehold.it/344x344'
+    end
+  end  
+
 end

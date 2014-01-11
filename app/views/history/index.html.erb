@@ -1,0 +1,7 @@
+<div class="row">
+	<table class="table table-striped table-bordered">
+	  <% @challenges.each do |i| %>
+	    <%= render partial: "predictions/prediction", locals: {prediction: i.prediction} %>
+	  <% end %>
+	</table>
+</div>

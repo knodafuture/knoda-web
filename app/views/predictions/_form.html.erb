@@ -1,33 +1,51 @@
-<%= form_for(@prediction) do |f| %>
-  <% if @prediction.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@prediction.errors.count, "error") %> prohibited this prediction from being saved:</h2>
-
-      <ul>
-      <% @prediction.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= simple_form_for @prediction do |f| %>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title" id="myModalLabel">Make a Prediction</h4>
     </div>
-  <% end %>
+    <div class="modal-body">
+      
+        <% if @prediction.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@prediction.errors.count, "error") %> prohibited this prediction from being saved:</h2>
 
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_field :body %>
-  </div>
-  <div class="field">
-    <%= f.label :expires_at %><br>
-    <%= datetime_select :prediction, :expires_at %>    
-  </div>
-  <div class="field">
-    <%= f.label :resolution_date %><br>
-    <%= datetime_select :prediction, :resolution_date %>
-  </div>
-  <div class="field">
-    <%= f.label :tag_list %>
-    <%= f.select :tag_list, options_for_select(['SPORTS', 'ENTERTAINMENT']) %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+            <ul>
+            <% @prediction.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= f.input :body, input_html: { class: 'form-control' } %>
+        <label for="prediction_expires_at"> Expires At </label>
+        <input type="text" class="datepicker" id="prediction_expires_at_date" />
+        <input type="text" value="15:00" class="timepicker" id="prediction_expires_at_time" />
+        <label for="prediction_expires_at"> Expires At </label>
+        <input type="text" class="datepicker" id="prediction_resolution_date_date" />
+        <input type="text" value="15:00" class="timepicker" id="prediction_resolution_date_time" />        
+        <%= f.input :tag_list, collection: ['SPORTS','ENTERTAINMENT','PERSONAL','BUSINESS','WEATHER', 'POLITICS', 'STOCKS','FUNNY','OTHER'], input_html: { class: 'form-control' } %>
+        
+      
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      <%= f.button :submit , :class => 'btn btn-primary' %>
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+<% end %>            
+<script>
+
+$(function() {
+  console.log($("input.datepicker"));
+  $("input.datepicker").each(function(i) {
+    $(this).datepicker({
+      altFormat: "yy-mm-dd",
+      dateFormat: "mm/dd/yy"
+    });
+  });
+  $('.timepicker').timepicker();
+});
+</script>

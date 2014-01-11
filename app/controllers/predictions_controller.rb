@@ -4,12 +4,15 @@ class PredictionsController < ApplicationController
   
   def showShared
     @prediction = Prediction.find(params[:id])
-    @prediction
   end
 
-  def feed
-    @predictions = Prediction.all
-    @predictions
+  def index
+    @predictions = Prediction.recent.latest.offset(param_offset).limit(param_limit)
+    if param_offset.to_i > 0
+      render :partial => "predictions"
+    else
+      render 'index'
+    end
   end  
 
   # GET /predictions/1
@@ -23,6 +26,7 @@ class PredictionsController < ApplicationController
   # GET /predictions/new
   def new
     @prediction = Prediction.new
+    render layout: false
   end
 
   # GET /predictions/1/edit
@@ -36,7 +40,7 @@ class PredictionsController < ApplicationController
     @prediction = current_user.predictions.create(prediction_params)      
     respond_to do |format|
       if @prediction.save
-        format.html { redirect_to action: 'feed' }
+        format.html { redirect_to action: 'index' }
         format.json { render action: 'show', status: :created, location: @prediction }
       else
         format.html { render action: 'new' }

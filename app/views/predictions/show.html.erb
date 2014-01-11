@@ -15,10 +15,12 @@
     predicted <%= distance_of_time_in_words_to_now(@prediction.created_at) %> ago
     </div>
   </div>
+  <% if (current_user.id != @prediction.user_id) && !@prediction.is_expired? && !@prediction.is_closed? %>
   <div class="row">
     <a href="/prediction/<%= @prediction.id %>/agree" class="btn btn-success agree">Agree</a>
     <a href="/prediction/<%= @prediction.id %>/disagree" class="btn btn-danger disagree">Disagree</a>
   </div>
+  <% end %>
   <div class="row">
       <ul id="myTab" class="nav nav-tabs">
         <li class="active"><a href="#home" data-toggle="tab">Comments</a></li>

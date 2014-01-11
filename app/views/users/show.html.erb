@@ -1,4 +1,36 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="row">
+  <div class="col-xs-4">
+    <img src="<%= avatar_small(@user) %>" style="display:inline-block; height: 100px; width:100px;" />
+  </div>
+  <div class="col-xs-8">
+    <div class="row" style="height:50px">
+      <div class="col-xs-12">
+        Stats
+      </div>
+    </div>
+    <div class="row" style="height:50px;">
+      <div class="col-xs-12">
+        More Stats
+      </div>
+    </div>    
+  </div>    
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    Change Password
+  </div>
+</div>
+<script>
+  $('form.changePassword').submit( function(e) {
+    e.preventDefault();
+    $.ajax({
+        type: 'POST',
+        cache: false,
+        url: $(this).attr('action'),
+        data: $(this).serialize(), 
+        success: function(msg) {
+            console.log(msg)
+        }
+    });
+  });
+</script>

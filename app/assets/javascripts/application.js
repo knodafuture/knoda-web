@@ -14,4 +14,8 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require jquery.Jcrop.min
+//= require jquery.endless-scroll
+//= require bootstrap-datepicker
+//= require jquery.timepicker
 //= require_tree .

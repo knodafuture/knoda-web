@@ -1,9 +1,12 @@
 /*
- *= require twitter/bootstrap
+ *= require main
+ *= require jquery.Jcrop
+ *= require datepicker
+ *= require jquery.timepicker
  */
 
 body {
-  padding-top: 50px;
+  padding-top: 100px;
 }
 
 .knodaGreen {
@@ -15,4 +18,38 @@ body {
  .navbar-brand {
     padding: 5px;
  }
+img.avatar_big {
+	display:inline-block; height: 344px; width:344px;
+}
 
+#avatarSelection {
+	margin-top: 50px;
+}
+
+.navbar-inverse {
+	background-color: #77BC1F;
+	border: 0px;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+	background-color: #77BC1F;
+}
+
+.nav img {
+	height: 50px;
+}
+
+
+.content {
+	font-family: 'Open Sans', sans-serif;
+	color: #666;
+}
+@media (min-width: 768px) {
+  .content {
+	max-width: 730px;
+  }  
+}
+
+.panel-group .panel + .panel {
+	margin-top: 0px;
+}

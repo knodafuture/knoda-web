@@ -1,70 +1,49 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Knoda | Predict • Compete • Conquer</title>
-    <%= stylesheet_link_tag    "rotating_tweet", media: "all", "data-turbolinks-track" => true %>
-    <%= stylesheet_link_tag    "chunk", media: "all", "data-turbolinks-track" => true %>
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <%= javascript_include_tag "jquery.cycle.all.min", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "rotating_tweet", "data-turbolinks-track" => true %>
-  </head>
-  <body class="home page page-id-5 page-template page-template-template-php">
-    <div id="container">
-      <div id="header">
-        <a href="http://www.knoda.com/" title="Knoda" rel="home"><%= image_tag("knoda_logo_horz.png") %></a>
-      </div>
-      <div id="menu">
-        <div class="menu-main-container">
-          <ul id="menu-main" class="menu">
-            <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-5 current_page_item">
-              <a href="/">Home</a>
-            </li>
-            <li class="menu-item menu-item-type-post_type menu-item-object-page">
-              <a href="/about">About</a>
-            </li>
-            <li class="menu-item menu-item-type-post_type menu-item-object-page">
-              <a href="http://blog.knoda.com/">Blog</a>
-            </li>
-          </ul>
-        </div> 
-      </div>
-      <div class="twitter">
-        <div class="bird"></div>
-        <div class="twitterfeed">
-          <div class='rotatingtweets rotatingtweets_format_0' id='rotatingtweets_4000_fade_528c09146ed9c'>
-            <% @t.each do |tweet| %>
-              <div class = 'rotatingtweet'>    
-                <span class='rtw_main'><%= tweet.text %></span>
-                <span class='rtw_meta'><a  target="_blank"  href="https://twitter.com/twitterapi/status/<%= tweet.id%>">About <%= time_ago_in_words(tweet.created_at) %> ago</a> from <a href='https://twitter.com/intent/user?user_id=1394859757' title='Knoda'>Knoda's Twitter</a> &middot; 
-                  <a href='https://twitter.com/intent/tweet?in_reply_to=<%= tweet.id%>' title='reply' lang='en' target="_blank" >reply</a> &middot; 
-                  <a href='https://twitter.com/intent/retweet?tweet_id=<%= tweet.id%>' title='retweet' lang='en' target="_blank" >retweet</a> &middot; 
-                  <a href='https://twitter.com/intent/favorite?tweet_id=<%= tweet.id%>' title='favorite' lang='en' target="_blank" >favorite</a></span>
-              </div>
+<div class="row">
+  <div class="col-md-6">
+    <%= image_tag("screens.png") %>
+  </div>
+  <div class="col-md-6">
+    <div class="bs-example bs-example-tabs" style="margin-top:50px">
+      <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#signup" data-toggle="tab">Create an Account</a></li>
+        <li><a href="#signin" data-toggle="tab">Log in</a></li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="signup">
+              <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+                <%= devise_error_messages! %>
+                <div class="form-group">
+                  <%= f.label :email %><br />
+                  <%= f.email_field :email, :class => 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :username %><br />
+                  <%= f.text_field :username, :class => 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :password %><br />
+                  <%= f.password_field :password, :class => 'form-control' %>
+                </div>
+                <div><%= f.submit "Sign up", class: 'btn btn-success' %></div>
+              <% end %>
+        </div>
+        <div class="tab-pane fade" id="signin">
+          <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+            <div class="form-group">
+              <%= f.label :login %><br />
+              <%= f.text_field :login, :autofocus => true, :class => 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, :class => 'form-control' %>
+            </div>
+            <% if devise_mapping.rememberable? -%>
+              <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
             <% end %>
-          </div>
+            <div><%= f.submit "Sign in" %></div>
+          <% end %>
         </div>
       </div>
-      <div id="theapp"><%= image_tag("screens.png") %></div>
-      <div id="contents">
-        <div style="height: 50px; width: 300px;"></div>
-          <p style="font-size: 2em;">
-            Do you like making predictions? Like proving your friends wrong about theirs? Like trash talk and competition? You’ll probably like our system.
-          </p>
-          <p style="text-align:center">
-            <a href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
-          </p>
-      </div>
     </div>
-    <div id="footer">&copy; Knoda 2013 <span class="sep"> | All Rights Reserved.</div>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-36401825-1');
-      ga('send', 'pageview');
-    </script>  
-  </body>
-</html>
+  </div>
+</div>

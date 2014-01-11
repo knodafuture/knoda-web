@@ -1,38 +1,34 @@
 KnodaWeb::Application.routes.draw do
-  root 'home#new'
+  root 'home#index'
   resources :predictions
   resources :challenges
-  resources :users
+  resources :users do
+    member do
+      get 'avatar'
+      get 'default_avatar'
+      get 'crop'
+    end
+  end
   resources :comments
   resources :badges
+  resources :history
+  resources :activities
+  resources :search
   
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'
   get 'terms' => 'home#terms'
   get 'robots.txt' => 'robots#robots'
-  
   get 'predictions/:id/share' => 'predictions#showShared'
-
   get '/support', to: redirect('https://knoda.zendesk.com/hc/en-us')
 
-  get '/account' => 'users#account'
-  get '/users/password/edit' => 'users#cp'
-
-  get 'feed' => 'predictions#feed'
-
-  devise_for :users, 
-    :path => "auth", 
-    :path_names => 
-      { :sign_in => 'login', 
-        :sign_out => 'logout', 
-        :confirmation => 'verification', 
-        :unlock => 'unblock', 
-        :registration => 'register', 
-        :sign_up => 'cmon_let_me_in' 
-      }
-  devise_scope :user do
-    get "register"  => "devise/registrations#new"
-    get "login"  => "devise/sessions#new"
+ devise_for :users,
+           :controllers => {:sessions => 'devise/sessions'},
+           :skip => [:sessions] do
+    get '/'   => "home#index",       :as => :new_user_session
+    post '/signin'  => 'devise/sessions#create',    :as => :user_session
+    get '/signout'  => 'devise/sessions#destroy',   :as => :destroy_user_session
+    get "/"   => "home#index",   :as => :new_user_registration
   end
 
   resource :user, only: [:edit] do
@@ -40,6 +36,4 @@ KnodaWeb::Application.routes.draw do
       patch 'update_password'
     end
   end
-
-
 end
