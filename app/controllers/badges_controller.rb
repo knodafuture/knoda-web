@@ -1,11 +1,11 @@
 class BadgesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_badge, only: [:show, :edit, :update, :destroy]
 
   # GET /badges
   # GET /badges.json
   def index
-    #@badges = current_user.badges
-    @badges = Badge.all
+    @badges = current_user.badges
   end
 
   # GET /badges/1
