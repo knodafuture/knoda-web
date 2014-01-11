@@ -4,7 +4,8 @@ class BadgesController < ApplicationController
   # GET /badges
   # GET /badges.json
   def index
-    @badges = current_user.badges
+    #@badges = current_user.badges
+    @badges = Badge.all
   end
 
   # GET /badges/1
