@@ -18,6 +18,8 @@
       }
       .navbar-default .navbar-nav > li > a {
         color: #fff;
+        margin: 0px;
+        padding: 0px;
       }
     </style>
     <%= yield :head %>
@@ -40,7 +42,7 @@
             <li><a href="/history"><%= image_tag("icons/SideNavHistoryIcon@2x.png") %></a></li>
             <li><a href="/activities"><%= image_tag("icons/SideNavActivityIcon@2x.png") %></a></li>
             <li><a href="/badges"><%= image_tag("icons/SideNavBadgesIcon@2x.png") %></a></li>
-          </ul>                           
+          </ul>                                    
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:0px">
@@ -53,20 +55,16 @@
               </ul>
             </li>
           </ul>
-          <form class="navbar navbar-form navbar-right" role="search" action="/search" method="GET">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search" name="q">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/predictions/new" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new"><%= image_tag("icons/PredictIcon@2x.png") %></a></li>
+            <li><a href="/predictions/new" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new"><%= image_tag("icons/PredictIcon@2x.png", :style => 'height: 30px;margin-right: 10px;margin-top: 10px;') %></a></li>
             <li></li>              
-          </ul>          
+            <li><a href="/search" ><%= image_tag("icons/SearchIcon@2x.png", :style => 'height: 30px;margin-right: 10px;margin-top: 10px;') %></a></li>
+            <li></li>                          
+          </ul>                    
         </div>
       </div>
     </div>    
-    <div class="content container" id="<%= action_name %>:container">
+    <div class="content container" id="<%= controller_name%>:<%= action_name %>:container">
       <%= yield %>
     </div> 
     <div class="modal fade" id="createPredictionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :crop, :default_avatar]
+  skip_before_action :authenticate_user!, only: [:create]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :crop, :default_avatar, :avatar_upload]
+  skip_before_action :verify_authenticity_token, only: [:avatar_upload]
 
   # GET /users
   # GET /users.json
@@ -37,6 +39,12 @@ class UsersController < ApplicationController
     @avatar_version = 1 + rand(5)
   end
 
+  def avatar_upload
+    @user.avatar = params[:file]
+    @user.save
+    render :json => {success: false}, :status => :ok
+  end
+
   def default_avatar
     av = params[:avatar_version] || (1 + rand(5))
     p = Rails.root.join('app', 'assets', 'images', 'avatars', "avatar_#{av}@2x.png")
@@ -48,9 +56,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      sign_in :user, @user
       if params[:user][:avatar].blank?
-        flash[:notice] = "Successfully created user."
-        redirect_to @user
+        redirect_to '/users/me/avatar'
       else
         render :action => "crop"
       end
@@ -63,15 +71,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    puts params
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       if params[:user][:avatar].blank?
         if @user.cropping?
           @user.reprocess_avatar
+          redirect_to '/'
+        else
+          redirect_to @user
         end
-        flash[:notice] = "Successfully updated user."
-        redirect_to @user
       else
         render :action => "crop"
       end
@@ -102,6 +110,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.required(:user).permit(:password, :password_confirmation, :avatar,:crop_x, :crop_y, :crop_w, :crop_h)
+      params.required(:user).permit(:email, :username, :password, :password_confirmation, :avatar,:crop_x, :crop_y, :crop_w, :crop_h)
     end
 end

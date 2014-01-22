@@ -7,7 +7,12 @@ createChallenge = (prediction_id, agree) ->
     type: "POST"
     dataType: "json"
     success: (json) ->
-      console.log json
+      if agree
+        $(".predictionContainer[data-prediction-id=#{prediction_id}] .agree").removeClass('userNotChosen').addClass('userAgrees')
+        $(".predictionContainer[data-prediction-id=#{prediction_id}] .disagree").removeClass('userDisagress').addClass('userNotChosen')
+      else
+        $(".predictionContainer[data-prediction-id=#{prediction_id}] .agree").removeClass('userAgrees').addClass('userNotChosen')
+        $(".predictionContainer[data-prediction-id=#{prediction_id}] .disagree").removeClass('userNotChosen').addClass('userDisagrees')      
     error: (xhr, status) ->
       console.log "Sorry, there was a problem!"
     complete: (xhr, status) ->
@@ -22,25 +27,31 @@ comment = (prediction_id, text) ->
     type: "POST"
     dataType: "json"
     success: (json) ->
-      $('.commentsList li').first().prepend("<li>#{text}</li>")
-      console.log json
+      el = $(".predictionContainer[data-prediction-id=#{prediction_id}]")
+      el.find("ul.commentsList").append("<li>#{text}</li>");
+      el.find(".addCommentForm textarea").val('')
     error: (xhr, status) ->
       console.log "Sorry, there was a problem!"
     complete: (xhr, status) ->
       console.log "The request is complete!"      
 
 $ ->
-  predictionId = $('#predictionRoot').attr('data-prediction-id')
+
   $('.agree').click (e) ->
-    createChallenge(predictionId, true)
     e.preventDefault()
+    predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
+    createChallenge(predictionId, true)
+    
 
   $('.disagree').click (e) ->
-    createChallenge(predictionId, false)
     e.preventDefault()
+    predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
+    createChallenge(predictionId, false)
+    
 
   $('.addCommentButton').click (e) ->
-    comment(predictionId, $('.addCommentForm textarea').val())
+    el = $(e.target).parents('.predictionContainer')
+    comment(el.attr('data-prediction-id'), el.find('.addCommentForm textarea').val())
     e.preventDefault()
 
   $('.getMorePredictions').click (e) ->
@@ -56,7 +67,7 @@ $ ->
       complete: (xhr, status) ->
         console.log "The request is complete!"   
 
-  if $('#index:container')
+  if $('#predictions:index:container').length > 0 or $('#history:index:container').length > 0
     $('.collapse').collapse(
       toggle: false
     )

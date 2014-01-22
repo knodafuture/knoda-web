@@ -1,12 +1,15 @@
 module PredictionsHelper
-	def challenge_icon(prediction)
+	def display_challenge_icon(prediction)
 		c = my_challenge(prediction)
 		if c
 			if c.agree
-				return image_tag("icons/AgreeMarker@2x.png")
+				render :partial => "predictions/display_challenge", :locals => {:disagreeClass => 'userNotChosen', :agreeClass => 'userAgrees'}
 			else
-				return image_tag("icons/AgreeMarker@2x.png")
+				render :partial => "predictions/display_challenge", :locals => {:disagreeClass => 'userDisagrees', :agreeClass => 'userNotChosen'}
 			end
+		else
+			puts 'render time'
+			render :partial => "predictions/display_challenge", :locals => {:disagreeClass => 'userNotChosen', :agreeClass => 'userNotChosen'}
 		end
 	end
 

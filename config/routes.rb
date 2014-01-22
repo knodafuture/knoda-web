@@ -7,6 +7,7 @@ KnodaWeb::Application.routes.draw do
       get 'avatar'
       get 'default_avatar'
       get 'crop'
+      post 'avatar_upload'
     end
   end
   resources :comments

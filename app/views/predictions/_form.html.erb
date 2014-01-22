@@ -1,4 +1,4 @@
-<%= simple_form_for @prediction do |f| %>
+<%= simple_form_for @prediction, :html=> { class: 'form-horizontal' } do |f| %>
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
@@ -18,16 +18,28 @@
             </ul>
           </div>
         <% end %>
-        <%= f.input :body, input_html: { class: 'form-control' } %>
-        <label for="prediction_expires_at"> Expires At </label>
-        <input type="text" class="datepicker" id="prediction_expires_at_date" />
-        <input type="text" value="15:00" class="timepicker" id="prediction_expires_at_time" />
-        <label for="prediction_expires_at"> Expires At </label>
-        <input type="text" class="datepicker" id="prediction_resolution_date_date" />
-        <input type="text" value="15:00" class="timepicker" id="prediction_resolution_date_time" />        
-        <%= f.input :tag_list, collection: ['SPORTS','ENTERTAINMENT','PERSONAL','BUSINESS','WEATHER', 'POLITICS', 'STOCKS','FUNNY','OTHER'], input_html: { class: 'form-control' } %>
-        
-      
+        <%= f.input_field :body, :class => 'form-control', :placeholder => 'Make a prediction...'  %>
+        <%= f.input_field :tag_list, :collection => ['SPORTS','ENTERTAINMENT','PERSONAL','BUSINESS','WEATHER', 'POLITICS', 'STOCKS','FUNNY','OTHER'], :class =>'form-control', :prompt => 'Select a Category' %>
+        <div class="form-group"
+          <label for="prediction_expires_at">Voting Ends On...</label>
+          <input type="text" name="prediction[expires_at]" id="prediction_expires_at" style="display:none"/>
+          <div class="input-group input-group-xs" style="display:inline-block">
+            <input type="text" class="datepicker form-control" id="prediction_expires_at_date" />
+          </div>
+          <div class="bootstrap-timepicker input-group input-group-xs"  style="display:inline-block">
+            <input id="prediction_expires_at_time" type="text" class="form-control"><i class="icon-time"></i>
+          </div>
+        </div>
+        <div class="form-group"
+          <label for="prediction_resolution_date">I'll Knoda Result On...</label>
+          <input type="text" name="prediction[resolution_date]" id="prediction_resolution_date" style="display:none"/>
+          <div class="input-group input-group-xs" style="display:inline-block">
+            <input type="text" class="datepicker form-control" id="prediction_resolution_date_date" />
+          </div>
+          <div class="bootstrap-timepicker input-group input-group-xs"  style="display:inline-block">
+            <input id="prediction_resolution_date_time" type="text" class="form-control"><i class="icon-time"></i>
+          </div>
+        </div>        
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -37,15 +49,53 @@
 </div><!-- /.modal-dialog -->
 <% end %>            
 <script>
+  var updateDate = function(target,date, time) {
+      m = moment(date)
+      if (time.meridian == 'AM') {
+        m.add('hours', time.hours)
+      } else {
+        m.add('hours', time.hours+12)
+      }
+      m.add('minutes', time.minutes)
+      target.val(m.toISOString());
+  }
 
 $(function() {
-  console.log($("input.datepicker"));
-  $("input.datepicker").each(function(i) {
-    $(this).datepicker({
-      altFormat: "yy-mm-dd",
-      dateFormat: "mm/dd/yy"
-    });
+  // Expires_at
+  $("input#prediction_expires_at_date").datepicker({
+    startDate: moment().format("MM/DD/YYYY"),
+    todayBtn: true,
+    autoclose: true,
+    todayHighlight: true    
+  }).on('changeDate', function(e) {
+    x = moment($('input#prediction_expires_at_time').val(), 'hh:mm A');
+    updateDate($('#prediction_expires_at'), $("input#prediction_expires_at_date").datepicker('getDate'), {hours : x.hours(), minutes: x.minutes(), meridian: 'AM'});
   });
-  $('.timepicker').timepicker();
+  $("input#prediction_expires_at_date").datepicker('update', new Date());
+  $('input#prediction_expires_at_time').timepicker({
+    template: false,
+    showInputs: false,
+    minuteStep: 5
+  }).on('changeTime.timepicker', function(e) {
+    updateDate($('#prediction_expires_at'), $("input#prediction_expires_at_date").datepicker('getDate'), e.time);
+  });
+  // Resolution_date
+  $("input#prediction_resolution_date_date").datepicker({
+    startDate: moment().format("MM/DD/YYYY"),
+    todayBtn: true,
+    autoclose: true,
+    todayHighlight: true    
+  }).on('changeDate', function(e) {
+    x = moment($('input#prediction_resolution_date_time').val(), 'hh:mm A');
+    updateDate($('#prediction_resolution_date'), $("input#prediction_resolution_date_date").datepicker('getDate'), {hours : x.hours(), minutes: x.minutes(), meridian: 'AM'});
+  });
+  $("input#prediction_resolution_date_date").datepicker('update', new Date());
+  $('input#prediction_resolution_date_time').timepicker({
+    template: false,
+    showInputs: false,
+    minuteStep: 5
+  }).on('changeTime.timepicker', function(e) {
+    updateDate($('#prediction_resolution_date'), $("input#prediction_resolution_date_date").datepicker('getDate'), e.time);
+  });  
 });
 </script>

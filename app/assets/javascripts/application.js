@@ -17,5 +17,7 @@
 //= require jquery.Jcrop.min
 //= require jquery.endless-scroll
 //= require bootstrap-datepicker
-//= require jquery.timepicker
+//= require bootstrap-timepicker
+//= require plupload.full.min
+//= require moment-with-langs.min
 //= require_tree .
