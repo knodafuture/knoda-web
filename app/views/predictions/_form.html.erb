@@ -6,22 +6,19 @@
       <h4 class="modal-title" id="myModalLabel">Make a Prediction</h4>
     </div>
     <div class="modal-body">
-      
-        <% if @prediction.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@prediction.errors.count, "error") %> prohibited this prediction from being saved:</h2>
-
-            <ul>
-            <% @prediction.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
+        <div class="alert alert-danger" style="display:none">
+            <p>Hold on, your prediction isn't ready yet.  You'll need to</p>
+            <ul style="padding-left:30px">
             </ul>
-          </div>
-        <% end %>
-        <%= f.input_field :body, :class => 'form-control', :placeholder => 'Make a prediction...'  %>
-        <%= f.input_field :tag_list, :collection => ['SPORTS','ENTERTAINMENT','PERSONAL','BUSINESS','WEATHER', 'POLITICS', 'STOCKS','FUNNY','OTHER'], :class =>'form-control', :prompt => 'Select a Category' %>
-        <div class="form-group"
-          <label for="prediction_expires_at">Voting Ends On...</label>
+        </div>
+        <div class="form-group">
+          <%= f.input_field :body, :class => 'form-control body', :placeholder => 'Make a prediction...'  %>
+        </div>
+        <div class="form-group">
+        <%= f.input_field :tag_list, :collection => ['SPORTS','ENTERTAINMENT','PERSONAL','BUSINESS','WEATHER', 'POLITICS', 'STOCKS','FUNNY','OTHER'], :class =>'form-control category', :prompt => 'Select a Category' %>
+        </div>
+        <label for="prediction_expires_at">Voting Ends On...</label>
+        <div class="form-group">
           <input type="text" name="prediction[expires_at]" id="prediction_expires_at" style="display:none"/>
           <div class="input-group input-group-xs" style="display:inline-block">
             <input type="text" class="datepicker form-control" id="prediction_expires_at_date" />
@@ -30,8 +27,8 @@
             <input id="prediction_expires_at_time" type="text" class="form-control"><i class="icon-time"></i>
           </div>
         </div>
-        <div class="form-group"
-          <label for="prediction_resolution_date">I'll Knoda Result On...</label>
+        <label for="prediction_resolution_date">I'll Knoda Result On...</label>
+        <div class="form-group">
           <input type="text" name="prediction[resolution_date]" id="prediction_resolution_date" style="display:none"/>
           <div class="input-group input-group-xs" style="display:inline-block">
             <input type="text" class="datepicker form-control" id="prediction_resolution_date_date" />
@@ -60,7 +57,53 @@
       target.val(m.toISOString());
   }
 
+  var clearValidation = function() {
+    $('#new_prediction .alert ul').empty()
+    $('#new_prediction .alert').hide()
+  }
+  var validateNewPrediction = function() {
+    clearValidation()
+    var body = $('#new_prediction .body').val().trim()
+    var category = $('#new_prediction .category option:selected').val().trim()
+    var expires_at = moment($('#prediction_expires_at').val())
+    var resolution_date = moment($('#prediction_resolution_date').val())
+    var errors = []
+    if (body == '')
+      errors.push({msg: 'Enter a short prediction.'})
+    if (category == '')
+      errors.push({msg: 'Choose a category.'})
+    if (!expires_at.isValid())
+      errors.push({ msg: 'Choose a date for voting to end.'})
+    if (!resolution_date.isValid())
+      errors.push({ msg: 'Choose a date for to resolve your prediction.'})
+    if (resolution_date.isBefore(expires_at))
+      errors.push({ msg: 'Set a resolution date after the voting ends.'})     
+    if (expires_at.isBefore(moment()))
+      errors.push({ msg: 'Set a voting end date in the future.'})       
+    if (resolution_date.isBefore(moment()))
+      errors.push({ msg: 'Set a resolution date in the future.'})              
+    if (errors.length == 0) {
+      return true
+    }else {
+      $('#new_prediction .alert').show()
+      for (var i in errors) {
+        $('#new_prediction .alert ul').append("<li>" + errors[i].msg + "</li>")
+      }
+      return false
+    }
+  }
+
 $(function() {
+  // Form Submission
+  $('#new_prediction').on('submit', function(e) {
+    if (!validateNewPrediction()) {
+      e.preventDefault()
+    }
+  });
+
+  //Set defaults
+  $('#prediction_expires_at').val(moment().add('minutes', 1).toISOString())
+  $('#prediction_resolution_date').val(moment().add('minutes', 2).toISOString())
   // Expires_at
   $("input#prediction_expires_at_date").datepicker({
     startDate: moment().format("MM/DD/YYYY"),
@@ -75,7 +118,8 @@ $(function() {
   $('input#prediction_expires_at_time').timepicker({
     template: false,
     showInputs: false,
-    minuteStep: 5
+    minuteStep: 5,
+    defaultTime: moment().add('minutes',1).format('hh:mm A')
   }).on('changeTime.timepicker', function(e) {
     updateDate($('#prediction_expires_at'), $("input#prediction_expires_at_date").datepicker('getDate'), e.time);
   });
@@ -93,7 +137,8 @@ $(function() {
   $('input#prediction_resolution_date_time').timepicker({
     template: false,
     showInputs: false,
-    minuteStep: 5
+    minuteStep: 5,
+    defaultTime: moment().add('minutes',2).format('hh:mm A')
   }).on('changeTime.timepicker', function(e) {
     updateDate($('#prediction_resolution_date'), $("input#prediction_resolution_date_date").datepicker('getDate'), e.time);
   });  

@@ -11,6 +11,7 @@ class PredictionsController < ApplicationController
     if param_offset.to_i > 0
       render :partial => "predictions"
     else
+      @badges = current_user.badges.unseen
       render 'index'
     end
   end  
