@@ -1,4 +1,4 @@
-<div class="panel-group" id="accordion">
+<div class="panel-group" id="predictionsList">
     <% @predictions.each do |i| %>
       <%= render partial: "predictions/prediction", locals: {prediction: i} %>
     <% end %>

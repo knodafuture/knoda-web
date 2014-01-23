@@ -3,7 +3,7 @@ $ ->
     currentOffset = 0
     pageSize = 25
     loading = false
-    container = $('table')
+    container = $('#historyList')
     $(window).scroll ->
       if $(window).scrollTop() + $(window).height() is $(document).height() and not loading
         loading = true

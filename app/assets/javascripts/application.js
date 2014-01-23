@@ -19,4 +19,3 @@
 //= require bootstrap-timepicker
 //= require plupload.full.min
 //= require moment-with-langs.min
-//= require_tree .
