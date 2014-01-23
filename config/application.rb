@@ -9,5 +9,20 @@ module KnodaWeb
     config.knoda_web_url = ENV['KNODA_WEB_URL'] || 'http://www.knoda.com'
     ENV['ELASTICSEARCH_URL'] = ENV['SEARCHBOX_URL'] || 'http://localhost:9200'    
     config.allowRobots = ENV['ALLOW_ROBOTS'] || false
+    config.assets.precompile << Proc.new do |path|
+      if path =~ /\.(js)\z/
+        full_path = Rails.application.assets.resolve(path).to_path
+        app_assets_path = Rails.root.join('app', 'assets').to_path
+        if full_path.starts_with? app_assets_path
+          puts "including asset: " + full_path
+          true
+        else
+          puts "excluding asset: " + full_path
+          false
+        end
+      else
+        false
+      end
+    end
   end
 end

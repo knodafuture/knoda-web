@@ -88,4 +88,3 @@ $ ->
           console.log "Sorry, there was a problem!"
         complete: (xhr, status) ->
           console.log "The request is complete!"       
-        
