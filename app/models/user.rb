@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
   validates_format_of     :username, :with => /\A[a-zA-Z0-9_]{1,15}\z/
 
-  has_attached_file :avatar, :styles => { :big => ["344х344", :jpg], :small => ["100x100", :jpg]}, :processors => [:cropper]
+  has_attached_file :avatar, :styles => { :big => ["344х344"], :small => ["100x100"]}, :processors => [:cropper]
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   
