@@ -1,0 +1,20 @@
+<div class="col-xs-12">
+	<% comments.each do |i| %>
+		<div class="row">
+			<img src="<%= avatar_small(i.user) %>" style="display:inline-block; height: 40px; width:40px;" />
+			<span class="username" style="font-size:1.25em"><%= i.user.username %></span>
+	        <div class="col-md-1 myChallenge pull-right">
+	          <%= image_tag('icons/AgreeMarker@2x.png') %>
+	        </div>			
+		</div>
+		<div class="row" style="border-bottom: 1px solid #efefef;padding: 10px">
+			<div style="margin-left:20px"><p><%= i.text %></p></div>
+		</div>
+	<% end %> 
+	<form class="addCommentForm">
+	  <div class="form-group">
+	    <textarea name="text" class="form-control" placeholder="Add a Comment"></textarea>
+	  </div>
+	  <a class="addCommentButton btn btn-success">Add</a> 
+	</form>
+</div>
