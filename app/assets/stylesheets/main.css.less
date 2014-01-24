@@ -116,36 +116,39 @@
 	}
 	.prediction_tabs {
 		background-color: @gray-knoda;
-		height: 75px;
+		height: 60px;
 		text-align: center;
-		padding-top: 5px;
+		padding-top: 10px;
+		p {
+			font-size: .8em;
+		}
 		.comments, .similar, .tally, .share {
 			display: inline-block;
-			height: 44px;
-			width: 68px;
+			height: 22px;
+			width: 70px;
 		}
 		.comments {
-			background: image-url("icons/ActionCommentIcon@2x.png");
+			background: image-url("icons/ActionCommentIcon.png") center no-repeat;
 			&.active, &:active {
-				background: image-url("icons/ActionCommentIconActive@2x.png");
+				background: image-url("icons/ActionCommentIconActive.png") center no-repeat;
 			}			
 		}
 		.tally {
-			background: image-url("icons/ActionOtherUsersIcon@2x.png");
+			background: image-url("icons/ActionOtherUsersIcon.png") center no-repeat;
 			&.active, &:active {
-				background: image-url("icons/ActionOtherUsersIconActive@2x.png");
+				background: image-url("icons/ActionOtherUsersIconActive.png") center no-repeat;
 			}
 		}
 		.similar {
-			background: image-url("icons/ActionViewSimilarIcon@2x.png");
+			background: image-url("icons/ActionViewSimilarIcon.png") center no-repeat;
 			&.active, &:active {
-				background: image-url("icons/ActionViewSimilarIconActive@2x.png");
+				background: image-url("icons/ActionViewSimilarIconActive.png") center no-repeat;
 			}
 		}
 		.share {
-			background: image-url("icons/ActionShareIcon@2x.png");
+			background: image-url("icons/ActionShareIcon.png") center no-repeat;
 			&.active, &:active {
-				background: image-url("icons/ActionShareIconActive@2x.png");
+				background: image-url("icons/ActionShareIconActive.png") center no-repeat;
 			}
 		}						
 	}
