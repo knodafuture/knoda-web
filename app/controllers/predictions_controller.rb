@@ -2,7 +2,7 @@ class PredictionsController < AuthenticatedController
   
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:showShared]
-  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close]
+  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally]
   
   def showShared
     @prediction = Prediction.find(params[:id])
@@ -84,7 +84,14 @@ class PredictionsController < AuthenticatedController
     else
       render json: @prediction.errors, status: 422
     end    
-  end     
+  end  
+
+  # GET /prediction/1/tally.json
+  def tally
+    @agreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: true})
+    @disagreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: false}) 
+    render :partial => "tally"
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

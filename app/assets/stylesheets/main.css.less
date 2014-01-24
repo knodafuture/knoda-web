@@ -49,6 +49,8 @@
 @import "twitter/bootstrap/utilities";
 @import "twitter/bootstrap/responsive-utilities";
 
+@import "loading";
+
 .userInfo {
 	a {
 		text-decoration: none;
@@ -124,15 +126,38 @@
 		}
 		.comments {
 			background: image-url("icons/ActionCommentIcon@2x.png");
+			&.active, &:active {
+				background: image-url("icons/ActionCommentIconActive@2x.png");
+			}			
 		}
 		.tally {
 			background: image-url("icons/ActionOtherUsersIcon@2x.png");
+			&.active, &:active {
+				background: image-url("icons/ActionOtherUsersIconActive@2x.png");
+			}
 		}
 		.similar {
 			background: image-url("icons/ActionViewSimilarIcon@2x.png");
+			&.active, &:active {
+				background: image-url("icons/ActionViewSimilarIconActive@2x.png");
+			}
 		}
 		.share {
 			background: image-url("icons/ActionShareIcon@2x.png");
+			&.active, &:active {
+				background: image-url("icons/ActionShareIconActive@2x.png");
+			}
 		}						
 	}
+	.bs {
+		width: 80%;
+	}
+}
+
+.right {
+	text-align: right;
+}
+.modal-backdrop {
+	background-color: #fff; 
+	&.in { opacity: 0.8}
 }

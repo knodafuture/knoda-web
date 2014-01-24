@@ -3,6 +3,7 @@ KnodaWeb::Application.routes.draw do
   resources :predictions do
     member do
       post 'close'
+      get 'tally'
     end
   end
   resources :challenges

@@ -70,3 +70,33 @@ $ ->
     el = $(e.target).parents('.predictionContainer')
     comment(el.attr('data-prediction-id'), el.find('.addCommentForm textarea').val())
     e.preventDefault()      
+
+  $('a.comments').click (e) ->
+    e.preventDefault()
+    el = $(e.target).parents('.predictionContainer')
+    el.find('.tally-content').hide()
+    el.find('.comments-content').show()
+    el.find('a.comments').addClass('active')
+    el.find('a.tally').removeClass('active')
+
+  $('a.tally').click (e) ->
+    e.preventDefault()
+    el = $(e.target).parents('.predictionContainer')
+    el.find('.tally-content').show()
+    el.find('.comments-content').hide()
+    el.find('a.tally').addClass('active')
+    el.find('a.comments').removeClass('active')    
+    prediction_id = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
+    startLoading();
+    $.ajax
+      url: "/predictions/#{prediction_id}/tally"
+      type: "GET"
+      success: (html) ->
+        el.find('.tally-content').html(html)
+      error: (xhr, status) ->
+        console.log "Sorry, there was a problem!"
+      complete: (xhr, status) ->
+        stopLoading();
+        console.log "The request is complete!"   
+
+

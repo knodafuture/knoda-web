@@ -19,3 +19,12 @@
 //= require bootstrap-timepicker
 //= require plupload.full.min
 //= require moment-with-langs.min
+
+
+startLoading = function() {
+	$('.loading-overlay').show();
+};
+
+stopLoading = function() {
+	$('.loading-overlay').hide();
+};	
