@@ -3,7 +3,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h4 class="modal-title" id="myModalLabel">Make a Prediction</h4>
+      <div class="modal-title" id="myModalLabel">PREDICT</div>
     </div>
     <div class="modal-body">
         <div class="alert alert-danger" style="display:none">
@@ -19,21 +19,21 @@
         </div>
         <label for="prediction_expires_at">Voting Ends On...</label>
         <div class="form-group">
-          <input type="text" name="prediction[expires_at]" id="prediction_expires_at" style="display:none"/>
-          <div class="input-group input-group-xs" style="display:inline-block">
+          <input type="text" name="prediction[expires_at]" id="prediction_expires_at" style="display:none;"/>
+          <div class="input-group input-group-xs" style="display:inline-block;width:49%;">
             <input type="text" class="datepicker form-control" id="prediction_expires_at_date" />
           </div>
-          <div class="bootstrap-timepicker input-group input-group-xs"  style="display:inline-block">
+          <div class="bootstrap-timepicker input-group input-group-xs"  style="display:inline-block;width:49%">
             <input id="prediction_expires_at_time" type="text" class="form-control"><i class="icon-time"></i>
           </div>
         </div>
         <label for="prediction_resolution_date">I'll Knoda Result On...</label>
         <div class="form-group">
-          <input type="text" name="prediction[resolution_date]" id="prediction_resolution_date" style="display:none"/>
-          <div class="input-group input-group-xs" style="display:inline-block">
+          <input type="text" name="prediction[resolution_date]" id="prediction_resolution_date" style="display:none;"/>
+          <div class="input-group input-group-xs" style="display:inline-block;width:49%">
             <input type="text" class="datepicker form-control" id="prediction_resolution_date_date" />
           </div>
-          <div class="bootstrap-timepicker input-group input-group-xs"  style="display:inline-block">
+          <div class="bootstrap-timepicker input-group input-group-xs"  style="display:inline-block;width:49%">
             <input id="prediction_resolution_date_time" type="text" class="form-control"><i class="icon-time"></i>
           </div>
         </div>        
