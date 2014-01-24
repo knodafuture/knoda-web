@@ -95,3 +95,44 @@
 	position: relative;
 	background-color: red;
 }
+
+.predictionContainer {
+	.panel-body {
+		margin-top: 0px;
+		padding-top: 0px;
+	}
+	div.row.prediction_closed {
+	 	text-align: center; 
+	 	border-bottom: 1px solid @gray-knoda;
+	 	height:81px;
+		div.border-right {
+			padding-top: 0px;
+			margin-top: 5px;
+			height: 70px;
+			border-right: 1px solid @gray-knoda;
+		}
+	}
+	.prediction_tabs {
+		background-color: @gray-knoda;
+		height: 75px;
+		text-align: center;
+		padding-top: 5px;
+		.comments, .similar, .tally, .share {
+			display: inline-block;
+			height: 44px;
+			width: 68px;
+		}
+		.comments {
+			background: image-url("icons/ActionCommentIcon@2x.png");
+		}
+		.tally {
+			background: image-url("icons/ActionOtherUsersIcon@2x.png");
+		}
+		.similar {
+			background: image-url("icons/ActionViewSimilarIcon@2x.png");
+		}
+		.share {
+			background: image-url("icons/ActionShareIcon@2x.png");
+		}						
+	}
+}

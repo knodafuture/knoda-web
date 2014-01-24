@@ -35,7 +35,8 @@ Authority.configure do |config|
      :set_seen => 'set_seen',
      :recent => 'recent',
      :bs => 'bs',
-     :comment => 'comment'
+     :comment => 'comment',
+     :close => 'close'
   }
 
   # ABILITIES
@@ -53,8 +54,7 @@ Authority.configure do |config|
      :delete => 'deletable',
      :agree => 'agreeable',
      :disagree => 'disagreeable',
-     :realize => 'realizable',
-     :unrealize => 'unrealizable',
+     :close => 'closeable',
      :set_seen => 'set_seenable',
      :recent => 'recentable',
      :bs => 'bsable',

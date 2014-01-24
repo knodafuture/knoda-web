@@ -2,6 +2,7 @@ class PredictionsController < AuthenticatedController
   
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:showShared]
+  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close]
   
   def showShared
     @prediction = Prediction.find(params[:id])
@@ -21,7 +22,6 @@ class PredictionsController < AuthenticatedController
   # GET /predictions/1
   # GET /predictions/1.json
   def show
-    @prediction = Prediction.find(params[:id])
     @agreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: true})
     @disagreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: false}) 
   end
@@ -76,6 +76,16 @@ class PredictionsController < AuthenticatedController
     end
   end
 
+  def close
+    authorize_action_for(@prediction)
+    close_as = prediction_close_params[:outcome]
+    if @prediction.close_as(close_as)
+      render json: @prediction, status: 201
+    else
+      render json: @prediction.errors, status: 422
+    end    
+  end     
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_prediction
@@ -84,6 +94,10 @@ class PredictionsController < AuthenticatedController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prediction_params
-      params.require(:prediction).permit(:body, :expires_at, :resolution_date, :tag_list )
+      params.require(:prediction).permit(:body, :expires_at, :resolution_date, :tag_list)
     end    
+
+    def prediction_close_params
+      params.require(:prediction).permit(:outcome)
+    end
 end

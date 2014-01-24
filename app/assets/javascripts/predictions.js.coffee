@@ -18,42 +18,7 @@ createChallenge = (prediction_id, agree) ->
     complete: (xhr, status) ->
       console.log "The request is complete!"
 
-comment = (prediction_id, text) ->
-  $.ajax
-    url: "/comments.json"
-    data:
-      prediction_id: prediction_id
-      text : text
-    type: "POST"
-    dataType: "json"
-    success: (json) ->
-      el = $(".predictionContainer[data-prediction-id=#{prediction_id}]")
-      el.find("ul.commentsList").append("<li>#{text}</li>");
-      el.find(".addCommentForm textarea").val('')
-    error: (xhr, status) ->
-      console.log "Sorry, there was a problem!"
-    complete: (xhr, status) ->
-      console.log "The request is complete!"      
-
 $ ->
-
-  $('.agree').click (e) ->
-    e.preventDefault()
-    predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
-    createChallenge(predictionId, true)
-    
-
-  $('.disagree').click (e) ->
-    e.preventDefault()
-    predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
-    createChallenge(predictionId, false)
-    
-
-  $('.addCommentButton').click (e) ->
-    el = $(e.target).parents('.predictionContainer')
-    comment(el.attr('data-prediction-id'), el.find('.addCommentForm textarea').val())
-    e.preventDefault()
-
   $('.getMorePredictions').click (e) ->
     $.ajax
       url: "/predictions?offset=#{currentOffset+pageSize}"

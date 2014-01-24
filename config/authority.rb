@@ -38,29 +38,6 @@ Authority.configure do |config|
      :comment => 'comment'
   }
 
-  # ABILITIES
-  # =========
-  # Teach Authority how to understand the verbs and adjectives in your system. Perhaps you
-  # need {:microwave => 'microwavable'}. I'm not saying you do, of course. Stop looking at
-  # me like that.
-  #
-  # Defaults are as follows:
-  #
-  config.abilities =  {
-     :create => 'creatable',
-     :read   => 'readable',
-     :update => 'updatable',
-     :delete => 'deletable',
-     :agree => 'agreeable',
-     :disagree => 'disagreeable',
-     :realize => 'realizable',
-     :unrealize => 'unrealizable',
-     :set_seen => 'set_seenable',
-     :recent => 'recentable',
-     :bs => 'bsable',
-     :comment => 'commentable'
-  }
-
   # LOGGER
   # ======
   # If a user tries to perform an unauthorized action, where should we log that fact?

@@ -1,6 +1,10 @@
 KnodaWeb::Application.routes.draw do
   root 'home#index'
-  resources :predictions
+  resources :predictions do
+    member do
+      post 'close'
+    end
+  end
   resources :challenges
   resources :users do
     member do
