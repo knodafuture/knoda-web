@@ -40,8 +40,8 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a class="navbar-brand" href="/predictions"><%= image_tag("icons/NoContentLogo@2x.png") %> KNODA</a></li>
-            <li><a href="/history"><%= image_tag("icons/SideNavHistoryIcon@2x.png") %></a></li>
-            <li><a href="/activities"><%= image_tag("icons/SideNavActivityIcon@2x.png") %></a></li>
+            <li><a href="/history"><%= image_tag("icons/SideNavHistoryIcon@2x.png") %><br /></a></li>
+            <li><a style="width:58px;height:50px" href="/activities"><%= image_tag("icons/SideNavActivityIcon@2x.png") %><span class="badge activityBadge"><%= @unseen_activities %></span></a></li>
             <li><a href="/badges"><%= image_tag("icons/SideNavBadgesIcon@2x.png") %></a></li>
           </ul>                                    
           <ul class="nav navbar-nav navbar-right">

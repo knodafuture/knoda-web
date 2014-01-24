@@ -1,4 +1,4 @@
-class HistoryController < ApplicationController
+class HistoryController < AuthenticatedController
   before_filter :authenticate_user!
 
   def index

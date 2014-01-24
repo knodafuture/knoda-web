@@ -1,4 +1,4 @@
-class ActivitiesController < ApplicationController
+class ActivitiesController < AuthenticatedController
 	before_filter :authenticate_user!
 
   def index
@@ -13,11 +13,8 @@ class ActivitiesController < ApplicationController
       else
         @activities = current_user.activities.order('created_at desc')
     end
+    render 'index'
+    puts 'updating activities to seen'
+    current_user.activities.update_all(seen: true)
   end
-
-  def seen
-    current_user.activities.where(id: params[:ids][0].split(',')).update_all(seen: true)
-    head :no_content
-  end  
-
 end  

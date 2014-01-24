@@ -1,4 +1,5 @@
-class PredictionsController < ApplicationController
+class PredictionsController < AuthenticatedController
+  
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:showShared]
   
