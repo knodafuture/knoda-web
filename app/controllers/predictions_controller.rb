@@ -1,11 +1,13 @@
 class PredictionsController < AuthenticatedController
   
   before_filter :authenticate_user!
-  skip_before_action :authenticate_user!, only: [:showShared]
-  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally]
+  skip_before_action :authenticate_user!, only: [:share]
+  skip_before_action :unseen_activities, only: [:share]
+  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog]
   
-  def showShared
+  def share
     @prediction = Prediction.find(params[:id])
+    render 'share', :layout => false
   end
 
   def index
@@ -91,6 +93,11 @@ class PredictionsController < AuthenticatedController
     @agreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: true})
     @disagreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: false}) 
     render :partial => "tally"
+  end
+
+  # GET /prediction/1/share
+  def share_dialog
+    render :partial => "share", :locals => {:prediction => @prediction}
   end
 
   private

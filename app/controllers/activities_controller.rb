@@ -14,7 +14,6 @@ class ActivitiesController < AuthenticatedController
         @activities = current_user.activities.order('created_at desc')
     end
     render 'index'
-    puts 'updating activities to seen'
     current_user.activities.update_all(seen: true)
   end
 end  
