@@ -1,11 +1,35 @@
-<form class="form-inline" role="form" action="/search" method="GET" style="margin-top:20px">
-  <div class="form-group" style="width:75%">
-    <input type="text" class="form-control" placeholder="Search for users, predictions, #hashtags" name="q"  />
-  </div>
-  <button type="submit" class="btn btn-default">Search</button>
-</form>
+<div class="row" style="text-align:center">
+	<form class="form-inline" role="form" action="/search" method="GET" style="margin-top:20px">
+	  <div class="form-group" style="width:75%">
+	    <input type="text" class="form-control" placeholder="Search for users, predictions, #hashtags" name="q"  />
+	  </div>
+	  <button type="submit" class="btn btn-default">Search</button>
+	</form>
+</div>
+<% if params[:q] and @predictions.size == 0 %>
+	<div class="row" style="text-align: center; padding-top:20px">
+		<p>No results found</p>
+	</div>
+<% end %> 
+<% if not params[:q] %>
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<hr />
+			<p style="width:100%;text-align:center">or select a topic</p>
+			<p><a href="/predictions?tag=SPORTS">Sports</a></p>
+			<p><a href="/predictions?tag=ENTERTAINMENT">Entertainment</a></p>
+			<p><a href="/predictions?tag=PERSONAL">Personal</a></p>
+			<p><a href="/predictions?tag=BUSINESS">Business</a></p>
+			<p><a href="/predictions?tag=WEATHER">Weather</a></p>
+			<p><a href="/predictions?tag=POLITICS">Politics</a></p>
+			<p><a href="/predictions?tag=STOCKS">Stocks</a></p>
+			<p><a href="/predictions?tag=FUNNY">Funny</a></p>
+			<p><a href="/predictions?tag=OTHER">Other</a></p>
+		</div>
+	</div>
+<% end %> 
 <% if @users and @users.size > 0 %>
-	<h2>Users</h2>
+	<!--<h2>Users</h2>
 	<div class="panel-group">
 		<% @users.each do |i| %>
 		<div class="panel panel-default userContainer" data-user-id="<%= i.id%>">
@@ -17,7 +41,7 @@
 	        </div>
 	    </div>		
 	    <% end %>
-	</div>
+	</div>-->
 <% end %>
 <% if @predictions and @predictions.size > 0 %>
 	<h2>Predictions</h2>

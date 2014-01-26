@@ -11,7 +11,11 @@ class PredictionsController < AuthenticatedController
   end
 
   def index
-    @predictions = Prediction.recent.latest.offset(param_offset).limit(param_limit)
+    if params[:tag]
+      @predictions = Prediction.recent.latest.tagged_with(params[:tag]).offset(param_offset).limit(param_limit)
+    else
+      @predictions = Prediction.recent.latest.offset(param_offset).limit(param_limit)
+    end
     if param_offset.to_i > 0
       render :partial => "predictions"
     else
