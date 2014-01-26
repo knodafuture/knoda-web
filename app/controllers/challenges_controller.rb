@@ -7,19 +7,6 @@ class ChallengesController < ApplicationController
     @challenges = Challenge.all
   end
 
-  # GET /challenges/1
-  def show
-  end
-
-  # GET /challenges/new
-  def new
-    @challenge = Challenge.new
-  end
-
-  # GET /challenges/1/edit
-  def edit
-  end
-
   # POST /challenges
   def create
     c = challenge_params

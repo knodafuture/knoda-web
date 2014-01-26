@@ -1,0 +1,39 @@
+<div class="row" style="border-bottom: 2px solid #efefef">
+  <div class="col-xs-2">
+    <img src="<%= avatar_small(user) %>" class="avatar_small" /> 
+  </div>
+  <div class="col-xs-10">
+    <div class="row" style="height:50px;text-align:center">
+      <div class="col-xs-12">
+        <div class="row stat-values">
+          <div class="col-xs-3">
+            <%= user.points %>
+          </div>
+          <div class="col-xs-3">
+            52.63%
+          </div>
+          <div class="col-xs-3">
+            <%= user.streak_as_text %>
+          </div>
+          <div class="col-xs-3">
+            20-18
+          </div>            
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            points
+          </div>
+          <div class="col-xs-3">
+            win%          
+          </div>
+          <div class="col-xs-3">
+            streak
+          </div>
+          <div class="col-xs-3">
+            W/L
+          </div>            
+        </div>
+      </div>                
+    </div>
+  </div>    
+</div>    

@@ -2,7 +2,7 @@ KnodaWeb::Application.configure do
   config.assets.initialize_on_precompile = false
   config.cache_classes = true
   config.eager_load = true
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application

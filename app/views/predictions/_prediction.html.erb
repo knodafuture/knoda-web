@@ -1,10 +1,12 @@
 <div class="panel panel-default predictionContainer" data-prediction-id="<%= prediction.id%>">
     <div class="panel-heading" style="padding:0px 15px; background-color: #EFEFEF">
     <div class="row userInfo" style="height:40px">
-        <img src="<%= avatar_small(prediction.user) %>" style="display:inline-block; height: 40px; width:40px;" />
-        <span class="username" style="font-size:1.25em"><%= prediction.user.username %></span>
+        <a href="/users/<%= prediction.user.username%>">
+          <img src="<%= avatar_small(prediction.user) %>" style="display:inline-block; height: 40px; width:40px;" />
+          <span class="username" style="font-size:1.25em"><%= prediction.user.username %></span>
+        </a>
         <div class="col-md-3 myChallenge pull-right">
-          <%= display_challenge_icon(prediction) %>
+            <%= display_challenge_icon(prediction) %>
         </div>
     </div>
     <div class="row predictionInfo" style="background-color:white; padding: 8px 20px;">
@@ -20,9 +22,9 @@
         <div class="row" style="text-align: center">
           What do you think?
         </div>      
-        <div class="row" style="text-align:center">
-          <a href="/prediction/<%= prediction.id %>/agree" class="btn btn-lg btn-success agree">Agree</a>
-          <a href="/prediction/<%= prediction.id %>/disagree" class="btn btn-lg btn-primary disagree" style="background-color:#235c37">Disagree</a>
+        <div class="row challenge-buttons" style="text-align:center">
+          <a href="/prediction/<%= prediction.id %>/agree" class="btn btn-lg btn-success agree <%= active_challenge(prediction, 'agree') %>">Agree</a>
+          <a href="/prediction/<%= prediction.id %>/disagree" class="btn btn-lg btn-success disagree <%= active_challenge(prediction, 'disagree') %>">Disagree</a>
         </div>
       <% end %>
       <% if (current_user.id == prediction.user.id) && prediction.is_expired? && !prediction.is_closed? %>
@@ -37,16 +39,13 @@
       <% end %>
       <% if prediction.is_closed? %>  
         <div class="row prediction_closed"> 
-          <div class="col-xs-2 border-right">
+          <div class="col-xs-3 border-right">
             <div style="padding-top:5px;"><%= display_result_outcome_icon(prediction) %></div>
             <div style="padding-top:5px;font-weight:700"><%= display_result_outcome_text(prediction) %></div>
           </div>
-          <div class="col-xs-2 border-right">
+          <div class="col-xs-3 border-right">
             <div style="padding-top:5px;font-weight:700;font-size:2.0em"><%= total_points(prediction) %></div>
             <div style="padding-top:0px;margin-top:-5px">points</div>
-          </div>
-          <div class="col-xs-2 border-right">
-            Detail
           </div>
           <div class="col-xs-6">
             <div style="padding-top:5px;">Is this right?</div>

@@ -1,3 +1,23 @@
+createChallenge = (prediction_id, agree) ->
+  $.ajax
+    url: "/challenges.json"
+    data:
+      prediction_id: prediction_id
+      agree: agree
+    type: "POST"
+    dataType: "json"
+    success: (json) ->
+      if agree
+        $(".predictionContainer[data-prediction-id=#{prediction_id}] .agree").removeClass('userNotChosen').addClass('userAgrees')
+        $(".predictionContainer[data-prediction-id=#{prediction_id}] .disagree").removeClass('userDisagrees').addClass('userNotChosen')
+      else
+        $(".predictionContainer[data-prediction-id=#{prediction_id}] .agree").removeClass('userAgrees').addClass('userNotChosen')
+        $(".predictionContainer[data-prediction-id=#{prediction_id}] .disagree").removeClass('userNotChosen').addClass('userDisagrees')      
+    error: (xhr, status) ->
+      console.log "Sorry, there was a problem!"
+    complete: (xhr, status) ->
+      console.log "The request is complete!"
+
 comment = (prediction_id, text) ->
   $.ajax
     url: "/comments.json"

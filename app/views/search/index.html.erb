@@ -29,19 +29,21 @@
 	</div>
 <% end %> 
 <% if @users and @users.size > 0 %>
-	<!--<h2>Users</h2>
+	<h2>Users</h2>
 	<div class="panel-group">
 		<% @users.each do |i| %>
 		<div class="panel panel-default userContainer" data-user-id="<%= i.id%>">
     		<div class="panel-heading" style="padding:0px 15px; background-color: white">
 	    		<div class="row userInfo" style="height:40px">
-	        		<img src="<%= avatar_small(i) %>" style="display:inline-block; height: 40px; width:40px;" />
-	        		<span class="username" style="font-size:1.25em"><%= i.username %></span>
+	    			<a href="/users/<%= i.username%>">
+	        			<img src="<%= avatar_small(i) %>" style="display:inline-block; height: 40px; width:40px;" />
+	        			<span class="username" style="font-size:1.25em"><%= i.username %></span>
+	        		</a>
 	        	</div>
 	        </div>
 	    </div>		
 	    <% end %>
-	</div>-->
+	</div>
 <% end %>
 <% if @predictions and @predictions.size > 0 %>
 	<h2>Predictions</h2>

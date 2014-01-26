@@ -15,6 +15,20 @@ module PredictionsHelper
 		end
 	end
 
+	def active_challenge(prediction, challengeType)
+		c = my_challenge(prediction)
+		if c
+			puts c.agree
+			puts challengeType
+			if c.agree and challengeType == 'agree'
+				return 'userAgrees'
+			end
+			if !c.agree and challengeType == 'disagree'
+				return 'userDisagrees'
+			end
+		end
+	end
+
 	def display_close_status(prediction)
 		if prediction.expires_at > Time.now
 			return "closes #{distance_of_time_in_words_to_now(prediction.created_at)} from now"

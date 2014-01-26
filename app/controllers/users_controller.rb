@@ -26,15 +26,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
-  end
-
   def avatar
     @avatar_version = 1 + rand(5)
   end
@@ -104,7 +95,10 @@ class UsersController < ApplicationController
       if params[:id] == 'me'
         @user = current_user
       else
-        @user = User.find(params[:id])
+        @user = User.where(["lower(username) = :username", {:username => params[:id].downcase }]).first
+      end
+      if not @user
+        raise ActionController::RoutingError.new('Not Found')
       end
     end
 

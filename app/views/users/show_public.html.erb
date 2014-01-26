@@ -1,17 +1,11 @@
-<div class="row">
-  <div class="col-xs-4">
-    <img src="<%= avatar_big(@user) %>" class="avatar_big" /> 
-  </div>
-  <div class="col-xs-8">
-    <div class="row" style="height:50px">
-      <div class="col-xs-12">
-        Stats
-      </div>
-    </div>
-    <div class="row" style="height:50px;">
-      <div class="col-xs-12">
-        More Stats
-      </div>
-    </div>    
-  </div>    
+<% content_for :head do %>
+	<%= javascript_include_tag 'prediction_actions' %>
+<% end %>
+
+<%= render partial: "users/stats", locals: {user: @user} %>
+
+<div class="panel-group" id="predictionsList">
+    <% @user.predictions.each do |i| %>
+      <%= render partial: "predictions/prediction", locals: {prediction: i} %>
+    <% end %>
 </div>
