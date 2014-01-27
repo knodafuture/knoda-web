@@ -18,22 +18,24 @@ createChallenge = (prediction_id, agree) ->
     complete: (xhr, status) ->
       console.log "The request is complete!"
 
+
 comment = (prediction_id, text) ->
-  $.ajax
-    url: "/comments.json"
-    data:
-      prediction_id: prediction_id
-      text : text
-    type: "POST"
-    dataType: "json"
-    success: (json) ->
-      el = $(".predictionContainer[data-prediction-id=#{prediction_id}]")
-      el.find("ul.commentsList").append("<li>#{text}</li>");
-      el.find(".addCommentForm textarea").val('')
-    error: (xhr, status) ->
-      console.log "Sorry, there was a problem!"
-    complete: (xhr, status) ->
-      console.log "The request is complete!"      
+  if text.trim().length > 0
+    startLoading()
+    $.ajax
+      url: "/comments"
+      data:
+        prediction_id: prediction_id
+        text : text
+      type: "POST"
+      success: (comments) ->
+        el = $(".predictionContainer[data-prediction-id=#{prediction_id}]")
+        el.find(".comments-content").html(comments);
+        stopLoading()
+      error: (xhr, status) ->
+        console.log "Sorry, there was a problem!"
+      complete: (xhr, status) ->
+        console.log "The request is complete!"      
 
 close = (prediction_id, outcome) ->
   $.ajax
@@ -119,4 +121,6 @@ $ ->
         stopLoading();
         console.log "The request is complete!"   
 
-
+$ ->
+ $('textarea').maxlength 
+    alwaysShow: true

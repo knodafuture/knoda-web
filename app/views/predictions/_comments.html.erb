@@ -16,8 +16,15 @@
 	<% end %> 
 	<form class="addCommentForm">
 	  <div class="form-group">
-	    <textarea name="text" class="form-control" placeholder="Add a Comment"></textarea>
+	  	<div class="row">
+	  		<div class="col-xs-10">
+	    		<textarea name="text" class="form-control" placeholder="Add a Comment" maxlength="300"></textarea>
+	    	</div>
+	    	<div class="col-xs-2">
+	    		<a class="addCommentButton btn btn-lg btn-success" style="margin-top:5px;">POST</a> 
+	    	</div>
+		</div>
 	  </div>
-	  <a class="addCommentButton btn btn-success">Add</a> 
+	  
 	</form>
 </div>

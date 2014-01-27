@@ -22,6 +22,7 @@ $ ->
   $(window).scroll ->
     if $(window).scrollTop() + $(window).height() is $(document).height() and not loading
       loading = true
+      startLoading()
       $.ajax
         url: "/predictions?offset=#{currentOffset+pageSize}&limit=#{pageSize}"
         type: "GET"
@@ -29,6 +30,7 @@ $ ->
           currentOffset = currentOffset + pageSize
           container.append($(x))
           loading = false
+          stopLoading()
         error: (xhr, status) ->
           console.log "Sorry, there was a problem!"
         complete: (xhr, status) ->

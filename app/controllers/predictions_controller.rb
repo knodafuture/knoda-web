@@ -3,7 +3,7 @@ class PredictionsController < AuthenticatedController
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:share]
   skip_before_action :unseen_activities, only: [:share]
-  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog]
+  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments]
   
   def share
     @prediction = Prediction.find(params[:id])
@@ -102,6 +102,11 @@ class PredictionsController < AuthenticatedController
   # GET /prediction/1/share
   def share_dialog
     render :partial => "share", :locals => {:prediction => @prediction}
+  end
+
+  # GET /predictions/1/comments
+  def comments
+    render :partial => 'comments', :locals => {:comments => @prediction.comments}
   end
 
   private

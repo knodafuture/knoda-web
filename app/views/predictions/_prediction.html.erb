@@ -3,7 +3,7 @@
     <div class="row userInfo" style="height:40px">
         <a href="/users/<%= prediction.user.username%>">
           <img src="<%= avatar_small(prediction.user) %>" style="display:inline-block; height: 40px; width:40px;" />
-          <span class="username" style="font-size:1.25em"><%= prediction.user.username %></span>
+          <span class="username"><%= prediction.user.username %></span>
           <% if prediction.user.verified_account %>
             <%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
           <% end %>
@@ -12,10 +12,10 @@
             <%= display_challenge_icon(prediction) %>
         </div>
     </div>
-    <div class="row predictionInfo" style="background-color:white; padding: 8px 20px;">
-      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= prediction.id %>"><%= prediction.body %></a>
+    <div class="row predictionInfo" style="background-color:white; padding: 8px 20px;" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= prediction.id %>">
+      <a><%= prediction.body %></a>
     </div>
-    <div class="row predictionInfoLine2" style="background-color:white; padding: 5px 20px; color: #77BC1F">
+    <div class="row predictionInfoLine2" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= prediction.id %>"style="background-color:white; padding: 5px 20px; color: #77BC1F">
       <%= display_close_status(prediction) %> | predicted <%= distance_of_time_in_words_to_now(prediction.created_at) %> ago | <%= prediction.agree_percentage %>% agree | <%= image_tag("icons/CommentIcon@2x.png") %> <%= prediction.comments.size %>
     </div>    
   </div>
@@ -79,7 +79,6 @@
           <%= render partial: "predictions/comments", locals: {comments: prediction.comments} %>         
         </div>
         <div class="tally-content" style="display:none">
-          Tally ho!
         </div>
       </div>        
     </div>

@@ -19,6 +19,7 @@
 //= require bootstrap-timepicker
 //= require plupload.full.min
 //= require moment-with-langs.min
+//= require bootstrap-maxlength.min
 
 
 startLoading = function() {

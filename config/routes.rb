@@ -6,6 +6,7 @@ KnodaWeb::Application.routes.draw do
       get 'tally'
       get 'share'
       get 'share_dialog'
+      get 'comments'
     end
   end
   resources :challenges

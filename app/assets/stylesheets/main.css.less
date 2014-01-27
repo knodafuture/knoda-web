@@ -51,6 +51,11 @@
 
 @import "loading";
 
+.sansLight {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
+
 .userInfo {
 	a {
 		text-decoration: none;
@@ -99,12 +104,34 @@
 }
 
 .predictionContainer {
+	.username {
+		padding: 0.5em;
+		font-size: 16px;
+		color: #666666;
+		text-decoration: none;		
+	}
+	.predictionInfo {
+		.sansLight;
+		font-size: 14px;
+		color: #666666;
+		a {
+			color: #666666;
+			text-decoration: none;
+		}
+	}
 	.panel-body {
-		margin-top: 0px;
+		margin-top: 5px;
 		padding-top: 0px;
 	}
 	div.row.challenge-buttons {
 		text-align: center;
+		margin: 5px;
+		
+		.btn-lg {
+			width: 33%;
+			.sansLight;	
+			font-size: 18px;
+		}
 		.userAgrees, .userDisagrees {
 		 	background-color: @green-knoda-dark;
 		 	border-color: @green-knoda-dark;
@@ -164,6 +191,9 @@
 	}
 	.bs {
 		width: 80%;
+	}
+	.addCommentForm {
+		margin-top: 10px;
 	}
 }
 
