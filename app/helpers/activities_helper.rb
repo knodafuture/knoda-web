@@ -2,13 +2,13 @@ module ActivitiesHelper
   def activity_icon(activity)
 	case (activity.activity_type)
       when 'LOST'
-        "icons/ActivityLostIcon@2x.png"
+        "icons/ActivityLostIcon.png"
       when 'WON'
-        "icons/ActivityWonIcon@2x.png"
+        "icons/ActivityWonIcon.png"
       when 'COMMENT'
-        "icons/ActivityCommentIcon@2x.png"
+        "icons/ActivityCommentIcon.png"
       when 'EXPIRED'
-        "icons/ActivityExpiredIcon@2x.png"
+        "icons/ActivityExpiredIcon.png"
     end  	
   end
 
