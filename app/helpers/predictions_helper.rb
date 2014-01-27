@@ -1,19 +1,4 @@
 module PredictionsHelper
-	def display_challenge_icon(prediction)
-		if (current_user.id != prediction.user_id)
-			c = my_challenge(prediction)
-			if c
-				if c.agree
-					render :partial => "predictions/display_challenge", :locals => {:disagreeClass => 'userNotChosen', :agreeClass => 'userAgrees'}
-				else
-					render :partial => "predictions/display_challenge", :locals => {:disagreeClass => 'userDisagrees', :agreeClass => 'userNotChosen'}
-				end
-			else
-				puts 'render time'
-				render :partial => "predictions/display_challenge", :locals => {:disagreeClass => 'userNotChosen', :agreeClass => 'userNotChosen'}
-			end
-		end
-	end
 
 	def active_challenge(prediction, challengeType)
 		c = my_challenge(prediction)

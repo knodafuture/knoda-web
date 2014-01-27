@@ -2,7 +2,6 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      puts current_user
       if current_user.avatar?
         redirect_to :controller => 'predictions', :action => 'index'
       else

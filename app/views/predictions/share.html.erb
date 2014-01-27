@@ -1,56 +1,32 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
-  <head>
-    <title>Knoda | Prediction by <%= @prediction.user.username %></title>
-    <link href='http://fonts.googleapis.com/css?family=Krona+One' rel='stylesheet' type='text/css'>
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <%= csrf_meta_tags %>
+<% content_for :head do %>
     <meta property="og:image" content="<%= avatar_small(@prediction.user) %>" />
     <meta property="og:description" content="<%= @prediction.body%>" />
     <meta property="og:site_name" content="Knoda" />
-    <style>
-      #shareBody {
-        color: #666666;
-      }
-      .navbar-default .navbar-brand {
-        font-family: 'Krona One', sans-serif;
-        color: #fff;
-        font-size: 2em;
-      }
-    </style>
-  </head>
-
-  <body style="">
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container" style="max-width: 960px;">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/"><%= image_tag("logo-small.png") %></a>
+<% end %>
+<% title "#{@prediction.user.username}'s prediction" %>
+<div class="content container" style="margin-top: 10px;">
+<div class="panel panel-default predictionContainer" data-prediction-id="<%= @prediction.id%>" style="">
+    <div class="panel-heading" style="padding:0px 15px; background-color: #EFEFEF">
+    <div class="row userInfo" style="height:40px">
+        <a href="/users/<%=@prediction.user.username%>">
+          <img src="<%= avatar_small(@prediction.user) %>" style="display:inline-block; height: 40px; width:40px;" />
+          <span class="username"><%=@prediction.user.username %></span>
+          <% if @prediction.user.verified_account %>
+            <%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
+          <% end %>
+        </a>
+        <div class="col-md-3 myChallenge pull-right">
         </div>
-      </div>
+    </div>
+    <div class="row predictionInfo" style="background-color:white; padding: 8px 20px;" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=@prediction.id %>">
+      <a><%=@prediction.body %></a>
+    </div>
+    <div class="row predictionInfoLine2" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=@prediction.id %>"style="background-color:white; padding: 5px 20px; color: #77BC1F">
+      <%= display_close_status(@prediction) %> | predicted <%= distance_of_time_in_words_to_now(@prediction.created_at) %> ago | <%=@prediction.agree_percentage %>% agree | <%= image_tag("icons/CommentIcon@2x.png") %> <%=@prediction.comments.size %>
     </div>    
-    <div class="container" id="shareBody" style="max-width:500px; margin-top:60px;">
-      <div class="row" style="background-color:#EFEFEF; padding: 5px; margin-top:5px;">
-        <div class="col-md-12">
-          <img src="<%= avatar_small(@prediction.user) %>" style="display:inline-block; height: 50px; width:50px;" />
-          <h3 style="padding:0px;display:inline-block;margin:0px;vertical-align:middle;"><%= @prediction.user.username %></h3>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <h1 style="font-size:1.25em"><%= @prediction.body %></h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 knodaGreen">
-        predicted <%= distance_of_time_in_words_to_now(@prediction.created_at) %> ago | <%= @prediction.agree_percentage%>% agree
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row" style="text-align:center;margin-top:20px;">
-        <a href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
-      </div>      
-    </div>
-  </body>
-</html>
+  </div>
+</div>
+<div class="row" style="text-align:center;margin-top:20px;">
+  <a href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
+</div> 
+</div>

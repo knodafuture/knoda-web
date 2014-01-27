@@ -6,8 +6,13 @@ class PredictionsController < AuthenticatedController
   before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments]
   
   def share
-    @prediction = Prediction.find(params[:id])
-    render 'share', :layout => false
+    if user_signed_in?
+      puts 'logged in fool'
+      redirect_to  action: 'show', id: @prediction.id
+    else
+      @prediction = Prediction.find(params[:id])
+      render 'share', :layout => 'prelogin'
+    end
   end
 
   def index
