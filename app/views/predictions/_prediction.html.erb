@@ -4,6 +4,9 @@
         <a href="/users/<%= prediction.user.username%>">
           <img src="<%= avatar_small(prediction.user) %>" style="display:inline-block; height: 40px; width:40px;" />
           <span class="username" style="font-size:1.25em"><%= prediction.user.username %></span>
+          <% if prediction.user.verified_account %>
+            <%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
+          <% end %>
         </a>
         <div class="col-md-3 myChallenge pull-right">
             <%= display_challenge_icon(prediction) %>

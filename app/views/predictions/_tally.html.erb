@@ -10,12 +10,20 @@
 <div class="row">
 	<div class="col-xs-6">
 		<% @agreeUsers.each do |i| %>
-				<p><%= i.username %></p>
+				<p><%= i.username %>
+					 <% if i.verified_account %>
+	            		<%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
+	          		<% end %>
+          		</p>
 		<% end %>
 	</div>
 	<div class="col-xs-6 right">
 		<% @disagreeUsers.each do |i| %>
-				<p><%= i.username %></p>
+				<p><%= i.username %>
+					 <% if i.verified_account %>
+	            		<%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
+	          		<% end %>
+          		</p>
 		<% end %>			
 	</div>
 </div>

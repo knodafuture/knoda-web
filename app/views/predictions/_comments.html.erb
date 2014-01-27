@@ -3,6 +3,9 @@
 		<div class="row">
 			<img src="<%= avatar_small(i.user) %>" style="display:inline-block; height: 40px; width:40px;" />
 			<span class="username" style="font-size:1.25em"><%= i.user.username %></span>
+			<% if i.user.verified_account %>
+        		<%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
+      		<% end %>
 	        <div class="col-md-1 myChallenge pull-right">
 	          <%= image_tag('icons/AgreeMarker@2x.png') %>
 	        </div>			
