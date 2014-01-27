@@ -1,6 +1,7 @@
-<div class="row" style="background-color: white; padding: 0px 40px;min-height: 300px;">       
+<% title "Knoda | Predict • Compete • Conquer" %>
+<div class="row" style="background-color: white; padding: 0px 40px;">       
   <div class="col-md-5 col-md-offset-1 hidden-xs hidden-sm" style="padding-top:0px">
-    <div style="position:relative; top: 50px">
+    <div style="position:relative; top: 50px; height: 200px">
     <%= image_tag("screens.png") %>
   </div>
   </div>
@@ -23,7 +24,23 @@
             <a class="login" data-toggle="modal" data-target="#loginModal">Already a Knoda user? Login</a>
           <% end %>       
   </div>
+  <div class="col-md-3" style="padding-bottom: 10px;">
+    <div style="margin-top: 150px"></div>
+    <a href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
+  </div>
 </div> 
+<div class="row home-bullets">
+  <div class="col-md-6 pull-right">
+    <div class="row">
+      <div class="col-md-6 pull-right"><%= image_tag("icons/HomePredictIcon.png") %>Talk some trash</div>
+      <div class="col-md-6 pull-right"><%= image_tag("icons/HomePredictIcon.png")  %>Predict the future</div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 pull-right"><%= image_tag("icons/SideNavBadgesIcon.png") %>Settle the score</div>
+      <div class="col-md-6 pull-right"><%= image_tag("icons/SideNavActivityIcon.png") %>Challenge your friends</div>
+    </div>    
+  </div>
+</div>  
 
 <% content_for :bodyClose do %>
   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
