@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     p = Rails.root.join('app', 'assets', 'images', 'avatars', "avatar_#{av}@2x.png")
     @user.avatar_from_path p
     @user.save
-    redirect_to @user
+    redirect_to '/predictions'
   end
 
   def create

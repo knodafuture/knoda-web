@@ -1,36 +1,36 @@
 <% title "Knoda | Predict • Compete • Conquer" %>
 <div class="row" style="background-color: white; padding: 0px 40px;">       
-  <div class="col-md-5 col-md-offset-1 hidden-xs hidden-sm" style="padding-top:0px">
+  <div class="col-xs-0 col-sm-0 col-md-5 col-md-offset-1 hidden-xs hidden-sm" style="padding-top:0px">
     <div style="position:relative; top: 50px; height: 200px">
     <%= image_tag("screens.png") %>
   </div>
   </div>
-  <div class="col-md-3 col-sm-6 col-xs-9" style="padding-top:30px;padding-bottom: 40px">
+  <div class="col-xs-9 col-sm-6 col-md-3 " style="padding-top:30px;padding-bottom: 40px">
       <div class="hidden-xs" style="padding-top: 70px;"></div>
       <p style="font-size: 1.5em"><span style="font-weight:700">Howdy,</span> new to Knoda?</p>
           <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
             <%= devise_error_messages! %>
             <div class="form-group">
-              <%= f.email_field :email, :class => 'form-control', :placeholder => 'email' %>
+              <%= f.email_field :email, :class => 'form-control input-lg', :placeholder => 'email' %>
             </div>
             <div class="form-group">
-              <%= f.text_field :username, :class => 'form-control', :placeholder => 'username' %>
+              <%= f.text_field :username, :class => 'form-control input-lg', :placeholder => 'username' %>
             </div>
             <div class="form-group">
-              <%= f.password_field :password, :class => 'form-control', :placeholder => 'password' %>
+              <%= f.password_field :password, :class => 'form-control input-lg', :placeholder => 'password' %>
             </div>
             <div><a class="signup">Sign Up <span class="glyphicon glyphicon-chevron-right" style="font-weight:300"></span></a></div>
             <br />
             <a class="login" data-toggle="modal" data-target="#loginModal">Already a Knoda user? Login</a>
           <% end %>       
   </div>
-  <div class="col-md-3" style="padding-bottom: 10px;">
-    <div style="margin-top: 150px"></div>
+  <div class="col-sm-3 col-xs-6" style="padding-bottom: 10px;">
+    <div class="hidden-xs" style="margin-top: 200px"></div>
     <a href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
-  </div>
+  </div>  
 </div> 
 <div class="row home-bullets">
-  <div class="col-md-6 pull-right">
+  <div class="col-md-6 col-sm-12 col-xs-12 pull-right">
     <div class="row">
       <div class="col-md-6 pull-right"><%= image_tag("icons/HomePredictIcon.png") %>Talk some trash</div>
       <div class="col-md-6 pull-right"><%= image_tag("icons/HomePredictIcon.png")  %>Predict the future</div>
