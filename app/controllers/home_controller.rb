@@ -24,4 +24,12 @@ class HomeController < ApplicationController
   def terms
     render :layout => 'prelogin'
   end
+
+  def start
+    if browser_is?("ios")
+      redirect_to "https://itunes.apple.com/us/app/knoda/id764642995"
+    else
+      index()
+    end
+  end
 end

@@ -26,6 +26,7 @@ group :production do
 end
 
 gem 'simple_form'
+gem "browser_detect"
 
 gem 'knoda_core', :git => "https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git"
 # Use this to test local core engine changes
