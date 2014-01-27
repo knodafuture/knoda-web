@@ -7,7 +7,11 @@ Bundler.require(:default, Rails.env)
 module KnodaWeb
   class Application < Rails::Application
     config.knoda_web_url = ENV['KNODA_WEB_URL'] || 'http://www.knoda.com'
+    
+    config.action_mailer.default_url_options = { :host => config.knoda_web_url }
+
     ENV['ELASTICSEARCH_URL'] = ENV['SEARCHBOX_URL'] || 'http://localhost:9200'    
+    
     config.allowRobots = ENV['ALLOW_ROBOTS'] || false
     config.assets.precompile << Proc.new do |path|
       if path =~ /\.(js)\z/

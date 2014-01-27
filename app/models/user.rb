@@ -208,4 +208,12 @@ class User < ActiveRecord::Base
   def avatar_from_path(path)
     self.avatar = File.open(path)
   end  
+
+  def to_param
+    username
+  end  
+
+  def remember_me
+    true
+  end  
 end

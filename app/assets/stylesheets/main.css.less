@@ -56,6 +56,13 @@
 	font-weight: 300;
 }
 
+.right {
+	text-align: right;
+}
+.center {
+	text-align: center;
+}
+
 .userInfo {
 	a {
 		text-decoration: none;
@@ -92,7 +99,8 @@
 }
 
 .modal-header {
-	background-color:#77BC1F; text-align:center; color: #ffffff;font-family: 'Krona One', sans-serif; font-size: 1.25em
+	.center;
+	background-color:#77BC1F; color: #ffffff;font-family: 'Krona One', sans-serif; font-size: 1.25em
 }
 
 .activityBadge {
@@ -124,7 +132,7 @@
 		padding-top: 0px;
 	}
 	div.row.challenge-buttons {
-		text-align: center;
+		.center;
 		margin: 5px;
 		
 		.btn-lg {
@@ -141,7 +149,7 @@
 		padding-bottom: .4em;
 	}
 	div.row.prediction_closed {
-	 	text-align: center; 
+	 	.center;
 	 	border-bottom: 1px solid @gray-knoda;
 	 	height:81px;
 		div.border-right {
@@ -154,7 +162,7 @@
 	.prediction_tabs {
 		background-color: @gray-knoda;
 		height: 60px;
-		text-align: center;
+		.center;
 		padding-top: 10px;
 		p {
 			font-size: .8em;
@@ -197,9 +205,6 @@
 	}
 }
 
-.right {
-	text-align: right;
-}
 .modal-backdrop {
 	background-color: #fff; 
 	&.in { opacity: 0.8}
@@ -208,4 +213,49 @@
 .stat-values {
 	font-size:2em;
 	margin-top: 15px;
+}
+
+
+#footer {
+    height: 60px;
+    background-color: #1a4b2b;
+    color: @green-knoda-light;
+    padding-top: 20px;	
+    .sansLight;
+    a {
+    	color: @green-knoda-light;
+    	text-decoration: none;
+    	padding: 3px;
+    }
+}
+
+
+.home {
+	.navbar {
+		margin-bottom: 0px;
+	}
+	.form-group {
+		margin-bottom: 5px;
+	}
+	.form-control {
+		border: 0px;
+		background-color: @gray-knoda;
+		.box-shadow(0px 0px 0px);
+	}
+	.signup {
+		text-decoration: none;
+		color: @green-knoda-light;
+		font-size: 1.5em;
+		padding-left: .5em;
+		cursor: pointer;
+		.sansLight;
+	}
+	.login {
+		text-decoration: none;
+		color: @green-knoda-light;
+		font-size: 1.0em;
+		padding-left: .5em;
+		cursor: pointer;
+		.sansLight;	
+	}
 }

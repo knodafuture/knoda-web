@@ -9,19 +9,19 @@ class HomeController < ApplicationController
         redirect_to "/users/#{current_user.id}/avatar"
       end
     else
-      render layout: "prelogin"
+      render :layout => 'prelogin'
     end
   end
 
   def about
-    render layout: false
+    render :layout => 'prelogin'
   end
 
   def privacy
-    render layout: false
+    render :layout => 'prelogin'
   end
 
   def terms
-    render layout: false
+    render :layout => 'prelogin'
   end
 end

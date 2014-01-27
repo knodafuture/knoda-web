@@ -1,52 +1,14 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Knoda | Predict • Compete • Conquer</title>
-    <%= stylesheet_link_tag    "rotating_tweet", media: "all", "data-turbolinks-track" => true %>
-    <%= stylesheet_link_tag    "chunk", media: "all", "data-turbolinks-track" => true %>
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  </head>
-  <body class="home page page-id-5 page-template page-template-template-php">
-    <div id="container">
-      <div id="header">
-        <a href="http://www.knoda.com/" title="Knoda" rel="home"><%= image_tag("knoda_logo_horz.png") %></a>
-      </div>
-      <div id="menu">
-        <div class="menu-main-container">
-          <ul id="menu-main" class="menu">
-            <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-5 current_page_item">
-              <a href="/">Home</a>
-            </li>
-            <li class="menu-item menu-item-type-post_type menu-item-object-page">
-              <a href="/about">About</a>
-            </li>
-            <li class="menu-item menu-item-type-post_type menu-item-object-page">
-              <a href="http://blog.knoda.com/">Blog</a>
-            </li>
-          </ul>
-        </div> 
-      </div>
-      <div id="contents">
-        <p dir="ltr">Our concept is simple: Take predictions. Allow social interaction. Score predictions. Rate &amp; rank predictors.</p>
-        <p dir="ltr">The vision is grand: We want to become the official record book for all human predictions.</p>
-        <p dir="ltr">We are Knoda, and we are on a mission to create a stellar company right here in Kansas City. We were recently accepted into the Spark Lab KC accelerator program. We’re pretty pumped about that. Pitch/demo day is August 23, so we’ll be furiously working all summer on getting something awesome up and going by then.</p>
-        <p dir="ltr">Do you like making predictions? Like proving your friends wrong about theirs? Like trash talk and competition? You’ll probably like our system. We’ll launch on iOS and the web. Android will follow shortly thereafter. We’ll release it fast and then iterate even faster.</p>
-        <p dir="ltr">We believe in the power of aggregating human predictions, in moving fast and in being excellent at everything that we do. I’m sure we’ll make some mistakes along the way, but it won’t be from lack of effort or passion.</p>
-        <p style="text-align:center">
-          <a href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
-        </p>
-      </div>      
-    </div>
-    <div id="footer">&copy; Knoda 2013 <span class="sep"> | All Rights Reserved.</div>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-36401825-1');
-      ga('send', 'pageview');
-    </script>  
-  </body>
-</html>
+<% title "About Us" %>
+
+<div class="row" style="background-color: white; padding: 0px 40px;min-height: 300px;padding-top: 50px">
+  <div class="col-xs-12">
+    <p dir="ltr">Our concept is simple: Take predictions. Allow social interaction. Score predictions. Rate &amp; rank predictors.</p>
+    <p dir="ltr">The vision is grand: We want to become the official record book for all human predictions.</p>
+    <p dir="ltr">We are Knoda, and we are on a mission to create a stellar company right here in Kansas City. We were recently accepted into the Spark Lab KC accelerator program. We’re pretty pumped about that. Pitch/demo day is August 23, so we’ll be furiously working all summer on getting something awesome up and going by then.</p>
+    <p dir="ltr">Do you like making predictions? Like proving your friends wrong about theirs? Like trash talk and competition? You’ll probably like our system. We’ll launch on iOS and the web. Android will follow shortly thereafter. We’ll release it fast and then iterate even faster.</p>
+    <p dir="ltr">We believe in the power of aggregating human predictions, in moving fast and in being excellent at everything that we do. I’m sure we’ll make some mistakes along the way, but it won’t be from lack of effort or passion.</p>
+    <p style="text-align:center">
+    <a href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
+    </p>
+  </div>
+</div>

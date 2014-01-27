@@ -1,49 +1,67 @@
-<div class="row">
-  <div class="col-md-6">
+<div class="row" style="background-color: white; padding: 0px 40px;min-height: 300px;">       
+  <div class="col-md-5 col-md-offset-1 hidden-xs hidden-sm" style="padding-top:0px">
+    <div style="position:relative; top: 50px">
     <%= image_tag("screens.png") %>
   </div>
-  <div class="col-md-6">
-    <div class="bs-example bs-example-tabs" style="margin-top:50px">
-      <ul id="myTab" class="nav nav-tabs">
-        <li class="active"><a href="#signup" data-toggle="tab">Create an Account</a></li>
-        <li><a href="#signin" data-toggle="tab">Log in</a></li>
-      </ul>
-      <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="signup">
-              <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-                <%= devise_error_messages! %>
-                <div class="form-group">
-                  <%= f.label :email %><br />
-                  <%= f.email_field :email, :class => 'form-control' %>
-                </div>
-                <div class="form-group">
-                  <%= f.label :username %><br />
-                  <%= f.text_field :username, :class => 'form-control' %>
-                </div>
-                <div class="form-group">
-                  <%= f.label :password %><br />
-                  <%= f.password_field :password, :class => 'form-control' %>
-                </div>
-                <div><%= f.submit "Sign up", class: 'btn btn-success' %></div>
-              <% end %>
-        </div>
-        <div class="tab-pane fade" id="signin">
-          <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-            <div class="form-group">
-              <%= f.label :login %><br />
-              <%= f.text_field :login, :autofocus => true, :class => 'form-control' %>
-            </div>
-            <div class="form-group">
-              <%= f.label :password %><br />
-              <%= f.password_field :password, :class => 'form-control' %>
-            </div>
-            <% if devise_mapping.rememberable? -%>
-              <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-            <% end %>
-            <div><%= f.submit "Sign in" %></div>
-          <% end %>
-        </div>
-      </div>
-    </div>
   </div>
-</div>
+  <div class="col-md-3 col-sm-6 col-xs-9" style="padding-top:30px;padding-bottom: 40px">
+      <div class="hidden-xs" style="padding-top: 70px;"></div>
+      <p style="font-size: 1.5em"><span style="font-weight:700">Howdy,</span> new to Knoda?</p>
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="form-group">
+              <%= f.email_field :email, :class => 'form-control', :placeholder => 'email' %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :username, :class => 'form-control', :placeholder => 'username' %>
+            </div>
+            <div class="form-group">
+              <%= f.password_field :password, :class => 'form-control', :placeholder => 'password' %>
+            </div>
+            <div><a class="signup">Sign Up <span class="glyphicon glyphicon-chevron-right" style="font-weight:300"></span></a></div>
+            <br />
+            <a class="login" data-toggle="modal" data-target="#loginModal">Already a Knoda user? Login</a>
+          <% end %>       
+  </div>
+</div> 
+
+<% content_for :bodyClose do %>
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+  <div class="modal-dialog">
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div class="modal-title" id="myModalLabel">LOGIN TO KNODA</div>
+      </div>
+      <div class="modal-body">
+          <div class="alert alert-danger" style="display:none">
+              <p>Hold on, your prediction isn't ready yet.  You'll need to</p>
+              <ul style="padding-left:30px">
+              </ul>
+          </div>
+              <div class="form-group">
+                <%= f.text_field :login, :autofocus => true, :class => 'form-control', :placeholder => 'email address or username' %>
+              </div>
+              <div class="form-group">
+                <%= f.password_field :password, :class => 'form-control', :placeholder => 'password'%>
+              </div>
+              <%= link_to 'forgot password?', new_password_path(:user) %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <%= f.submit :value => "Sign In", :class => 'btn btn-success' %>
+      </div>
+    </div><!-- /.modal-content -->
+    <% end %>         
+  </div><!-- /.modal-dialog -->     
+  </div>
+
+  <script>
+  $(function() {
+    $('.signup').on('click', function(e) {
+      $('#new_user').submit();
+    });
+  });
+  </script>
+<% end %>
