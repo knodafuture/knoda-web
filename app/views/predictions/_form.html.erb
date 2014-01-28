@@ -99,9 +99,10 @@ $(function() {
   }); 
   // Form Submission
   $('#new_prediction').on('submit', function(e) {
-    if (!validateNewPrediction()) {
-      e.preventDefault()
-    }
+    e.preventDefault()
+    if (validateNewPrediction()) {
+      createPrediction()
+    } 
   });
 
   //Set defaults

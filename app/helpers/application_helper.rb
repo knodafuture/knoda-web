@@ -110,4 +110,11 @@ module ApplicationHelper
         my_challenge(prediction).total_points
       end     
     end    
+
+    def local_stylesheet_path(source)
+      p = stylesheet_path("application")
+      tokens = p.split("/")
+      t = tokens[tokens.length-1]
+      return "/assets/#{t}"
+    end
 end

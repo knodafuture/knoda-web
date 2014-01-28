@@ -19,7 +19,7 @@
       <%= display_close_status(prediction) %> | predicted <%= distance_of_time_in_words_to_now(prediction.created_at) %> ago | <%= prediction.agree_percentage %>% agree | <%= image_tag("icons/CommentIcon@2x.png") %> <%= prediction.comments.size %>
     </div>    
   </div>
-  <div id="collapse<%= prediction.id %>" class="panel-collapse collapse">
+  <div id="collapse<%= prediction.id %>" class="panel-collapse collapse <%= collapseState %>">
     <div class="panel-body">  
       <% if (current_user.id != prediction.user_id) && !prediction.is_expired? && !prediction.is_closed? %>
         <div class="row" style="text-align: center">

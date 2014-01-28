@@ -3,6 +3,6 @@
 <% end %>
 <div class="panel-group" id="historyList">
 	  <% @challenges.each do |i| %>
-	    <%= render partial: "predictions/prediction", locals: {prediction: i.prediction} %>
+	    <%= render partial: "predictions/prediction", locals: {prediction: i.prediction, collapseState: ''} %>
 	  <% end %>
 </div>

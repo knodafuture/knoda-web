@@ -3,7 +3,7 @@
 <% end %>
 <div class="panel-group" id="predictionsList">
     <% @predictions.each do |i| %>
-      <%= render partial: "predictions/prediction", locals: {prediction: i} %>
+      <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
     <% end %>
 </div>
 <% if (@unseen_badges.size > 0) %>

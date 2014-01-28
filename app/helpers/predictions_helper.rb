@@ -16,9 +16,9 @@ module PredictionsHelper
 
 	def display_close_status(prediction)
 		if prediction.expires_at > Time.now
-			return "closes #{distance_of_time_in_words_to_now(prediction.created_at)} from now"
+			return "closes #{distance_of_time_in_words_to_now(prediction.expires_at)} from now"
 		else
-			return "closed #{distance_of_time_in_words_to_now(prediction.created_at)} ago"
+			return "closed #{distance_of_time_in_words_to_now(prediction.expires_at)} ago"
 		end
 	end
 

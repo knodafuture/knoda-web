@@ -1,4 +1,4 @@
 <% content_for :head do %>
 	<%= javascript_include_tag 'prediction_actions' %>
 <% end %>
-<%= render partial: "predictions/prediction", locals: {prediction: @prediction} %>
+<%= render partial: "predictions/prediction", locals: {prediction: @prediction, collapseState: 'in'} %>

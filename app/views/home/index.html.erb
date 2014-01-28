@@ -18,7 +18,7 @@
             <div class="form-group">
               <%= f.password_field :password, :class => 'form-control input-lg', :placeholder => 'password' %>
             </div>
-            <div><a class="signup">Sign Up <span class="glyphicon glyphicon-chevron-right" style="font-weight:300"></span></a></div>
+            <div><a class="signup">Sign Up <%= image_tag('icons/sd/login_arrow.png') %></a></div>
             <br />
             <a class="login" data-toggle="modal" data-target="#loginModal">Already a Knoda user? Login</a>
           <% end %>       
@@ -31,12 +31,12 @@
 <div class="row home-bullets">
   <div class="col-md-6 col-sm-12 col-xs-12 pull-right">
     <div class="row">
-      <div class="col-md-6 pull-right"><%= image_tag("icons/HomePredictIcon.png") %>Talk some trash</div>
-      <div class="col-md-6 pull-right"><%= image_tag("icons/HomePredictIcon.png")  %>Predict the future</div>
+      <div class="col-md-6 pull-right"><%= image_tag("icons/sd/talktrash_icon.png") %>Talk some trash</div>
+      <div class="col-md-6 pull-right"><%= image_tag("icons/sd/predictfuture_icon.png")  %>Predict the future</div>
     </div>
     <div class="row">
-      <div class="col-md-6 pull-right"><%= image_tag("icons/SideNavBadgesIcon.png") %>Settle the score</div>
-      <div class="col-md-6 pull-right"><%= image_tag("icons/SideNavActivityIcon.png") %>Challenge your friends</div>
+      <div class="col-md-6 pull-right"><%= image_tag("icons/sd/settlescore_icon.png") %>Settle the score</div>
+      <div class="col-md-6 pull-right"><%= image_tag("icons/sd/challenge_icon.png") %>Challenge your friends</div>
     </div>    
   </div>
 </div>  

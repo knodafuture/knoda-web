@@ -1,1 +1,1 @@
-json.extract! @prediction, :id, :body, :expire, :resolution, :created_at, :updated_at
+json.extract! @prediction, :id, :body, :expires_at, :resolution_date

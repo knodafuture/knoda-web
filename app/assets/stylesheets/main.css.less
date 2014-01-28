@@ -68,6 +68,44 @@ a {
 	text-align: center;
 }
 
+#topNav {
+	height: 50px;
+	.logo {
+		height: 50px;
+		width: 170px;
+	}
+	li a {
+		padding: 0px;
+		margin: 0px;
+
+	}
+	.history, .activity, .badges {
+		width: 50px;
+		height: 50px;
+	}
+	.history {
+		background: image-url("icons/sd/nav_history.png") center no-repeat;
+		&.active, &:active {
+			background: image-url("icons/sd/nav_history_active.png") center no-repeat;
+		}
+	}
+
+	.activity {
+		background: image-url("icons/sd/nav_activity.png") center no-repeat;
+		&.active, &:active {
+			background: image-url("icons/sd/nav_activity_active.png") center no-repeat;
+		}		
+	}
+
+	.badges {
+		background: image-url("icons/sd/nav_badges.png") center no-repeat;
+		&.active, &:active {
+			background: image-url("icons/sd/nav_badges_active.png") center no-repeat;
+		}		
+	}		
+
+}
+
 .userInfo {
 	a {
 		text-decoration: none;
@@ -110,7 +148,7 @@ a {
 
 .activityBadge {
 	display: inline-block;
-	top: -25px;
+	top: 25px;
 	left: 25px;
 	position: relative;
 	background-color: red;
@@ -174,31 +212,31 @@ a {
 		}
 		.comments, .similar, .tally, .share {
 			display: inline-block;
-			height: 22px;
+			height: 27px;
 			width: 70px;
 		}
 		.comments {
-			background: image-url("icons/ActionCommentIcon.png") center no-repeat;
+			background: image-url("icons/sd/action_comment.png") center no-repeat;
 			&.active, &:active {
-				background: image-url("icons/ActionCommentIconActive.png") center no-repeat;
+				background: image-url("icons/sd/action_comment_active.png") center no-repeat;
 			}			
 		}
 		.tally {
-			background: image-url("icons/ActionOtherUsersIcon.png") center no-repeat;
+			background: image-url("icons/sd/action_tally.png") center no-repeat;
 			&.active, &:active {
-				background: image-url("icons/ActionOtherUsersIconActive.png") center no-repeat;
+				background: image-url("icons/sd/action_tally_active.png") center no-repeat;
 			}
 		}
 		.similar {
-			background: image-url("icons/ActionViewSimilarIcon.png") center no-repeat;
+			background: image-url("icons/sd/action_similar.png") center no-repeat;
 			&.active, &:active {
-				background: image-url("icons/ActionViewSimilarIconActive.png") center no-repeat;
+				background: image-url("icons/sd/action_similar_active.png") center no-repeat;
 			}
 		}
 		.share {
-			background: image-url("icons/ActionShareIcon.png") center no-repeat;
+			background: image-url("icons/sd/action_share.png") center no-repeat;
 			&.active, &:active {
-				background: image-url("icons/ActionShareIconActive.png") center no-repeat;
+				background: image-url("iicons/sd/action_share_active.png") center no-repeat;
 			}
 		}						
 	}
@@ -273,10 +311,19 @@ a {
 		.sansLight;	
 	}
 	.home-bullets {
+		img {
+		padding-right: 5px;
+		}
 		margin-top:10px;
 		padding-right: 20px;
 		font-size: 1.5em;
 		color: white;
 		.sansLight;
+	}
+}
+
+#activities:index:container {
+	tr.unseen {
+		background-color: @gray-knoda;
 	}
 }

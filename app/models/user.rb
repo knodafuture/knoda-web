@@ -178,7 +178,7 @@ class User < ActiveRecord::Base
 
   def streak_as_text
     if self.streak == 0
-      return ""
+      return "W#{0}"
     end
     
     if self.streak > 0
@@ -188,7 +188,7 @@ class User < ActiveRecord::Base
     if self.streak < 0
       return "L#{self.streak.abs}"
     end
-  end 
+  end   
 
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?

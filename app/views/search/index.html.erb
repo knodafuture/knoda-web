@@ -49,7 +49,7 @@
 	<h2>Predictions</h2>
 		<div class="panel-group" id="accordion">
 	    <% @predictions.each do |i| %>
-	      <%= render partial: "predictions/prediction", locals: {prediction: i} %>
+	      <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
 	    <% end %>
 	  	</div>
 	</div>
