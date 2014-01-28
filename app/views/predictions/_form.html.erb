@@ -12,7 +12,7 @@
             </ul>
         </div>
         <div class="form-group">
-          <%= f.input_field :body, :class => 'form-control body', :placeholder => 'Make a prediction...'  %>
+          <%= f.input_field :body, :class => 'form-control body', :placeholder => 'Make a prediction...', :maxlength => '300'  %>
         </div>
         <div class="form-group">
         <%= f.input_field :tag_list, :collection => ['SPORTS','ENTERTAINMENT','PERSONAL','BUSINESS','WEATHER', 'POLITICS', 'STOCKS','FUNNY','OTHER'], :class =>'form-control category', :prompt => 'Select a Category' %>
@@ -94,6 +94,9 @@
   }
 
 $(function() {
+ $('textarea').maxlength({
+    alwaysShow: true 
+  }); 
   // Form Submission
   $('#new_prediction').on('submit', function(e) {
     if (!validateNewPrediction()) {
