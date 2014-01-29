@@ -11,7 +11,7 @@
           </div>
           <div class="col-xs-3">
             <% if (user.won + user.lost) > 0 %>
-              <%=user.won.fdiv(user.won + user.lost) * 100%>%
+              <%= (user.won.fdiv(user.won + user.lost) * 100).round(2) %>%
             <% else %>
               0%
             <% end %>
