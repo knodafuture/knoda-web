@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.touch-punch.min
 //= require bootstrap.min
 //= require jquery.Jcrop.min
 //= require jquery.endless-scroll

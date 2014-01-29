@@ -64,21 +64,21 @@
         </div>
       <% end %>
       <div class="row prediction_tabs">
-        <div class="col-xs-2 col-xs-offset-2">
+        <div class="col-xs-3 col-sm-3 col-md-2 col-md-offset-2">
           <a class="comments active"></a>
-          <a class="commentsText"><p>COMMENTS</p></a>
+          <a class="commentsText"><p class="hidden-xs">COMMENTS</p></a>
         </div>
-        <div class="col-xs-2">
+        <div class="col-xs-3 col-sm-3 col-md-2">
           <a class="tally"></a>
-          <a class="tallyText"><p>THE TALLY</p></a>
+          <a class="tallyText"><p class="hidden-xs">THE TALLY</p></a>
         </div>
-        <div class="col-xs-2">
+        <div class="col-xs-3 col-sm-3 col-md-2">
           <a href="/predictions?tag=<%=prediction.tags[0]%>" class="similar"></a>
-          <a href="/predictions?tag=<%=prediction.tags[0]%>"><p>SIMILAR</p></a>
+          <a href="/predictions?tag=<%=prediction.tags[0]%>"><p class="hidden-xs">SIMILAR</p></a>
         </div>
-        <div class="col-xs-2">
+        <div class="col-xs-3 col-sm-3 col-md-2">
           <a class="share" data-toggle="modal" data-target="#sharePrediction" data-remote="/predictions/<%=prediction.id%>/share_dialog"></a>
-          <a data-toggle="modal" data-target="#sharePrediction" data-remote="/predictions/<%=prediction.id%>/share_dialog"><p>SHARE</p></a>
+          <a data-toggle="modal" data-target="#sharePrediction" data-remote="/predictions/<%=prediction.id%>/share_dialog"><p class="hidden-xs">SHARE</p></a>
         </div>                        
       </div>
       <div class="row">
