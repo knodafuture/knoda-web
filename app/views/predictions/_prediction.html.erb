@@ -9,8 +9,14 @@
           <% end %>
         </a>
         <div class="col-md-3 myChallenge pull-right">
+            <% if (current_user.id == prediction.user_id && prediction.is_expired? && !prediction.is_closed?) %>
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= prediction.id %>">
+              <%= image_tag('icons/sd/prediction_alert.png', :class => 'pull-right', :style => "margin-top: 12px") %>
+              </a>
+            <% else %>
             <%= display_challenge_icon(prediction) %>
             <%= display_won_lost(prediction) %>
+            <% end %>
         </div>
     </div>
     <div class="row predictionInfo" style="background-color:white; padding: 8px 20px;" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= prediction.id %>">
@@ -60,19 +66,19 @@
       <div class="row prediction_tabs">
         <div class="col-xs-2 col-xs-offset-2">
           <a class="comments active"></a>
-          <p>COMMENTS</p>
+          <a class="commentsText"><p>COMMENTS</p></a>
         </div>
         <div class="col-xs-2">
           <a class="tally"></a>
-          <p>THE TALLY</p>
+          <a class="tallyText"><p>THE TALLY</p></a>
         </div>
         <div class="col-xs-2">
           <a href="/predictions?tag=<%=prediction.tags[0]%>" class="similar"></a>
-          <p>SIMILAR</p>
+          <a href="/predictions?tag=<%=prediction.tags[0]%>"><p>SIMILAR</p></a>
         </div>
         <div class="col-xs-2">
           <a class="share" data-toggle="modal" data-target="#sharePrediction" data-remote="/predictions/<%=prediction.id%>/share_dialog"></a>
-          <p>SHARE</p>
+          <a data-toggle="modal" data-target="#sharePrediction" data-remote="/predictions/<%=prediction.id%>/share_dialog"><p>SHARE</p></a>
         </div>                        
       </div>
       <div class="row">

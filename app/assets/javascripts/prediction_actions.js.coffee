@@ -114,7 +114,7 @@ window.bindAll = () ->
     comment(el.attr('data-prediction-id'), el.find('.addCommentForm textarea').val())
     e.preventDefault()      
 
-  $('a.comments').click (e) ->
+  $('a.comments, .commentsText').click (e) ->
     e.preventDefault()
     el = $(e.target).parents('.predictionContainer')
     el.find('.tally-content').hide()
@@ -122,7 +122,7 @@ window.bindAll = () ->
     el.find('a.comments').addClass('active')
     el.find('a.tally').removeClass('active')
 
-  $('a.tally').click (e) ->
+  $('a.tally, .tallyText').click (e) ->
     e.preventDefault()
     el = $(e.target).parents('.predictionContainer')
     el.find('.tally-content').show()
