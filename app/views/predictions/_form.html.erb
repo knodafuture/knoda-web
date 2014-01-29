@@ -47,7 +47,7 @@
 <% end %>            
 <script>
   var updateDate = function(target,date, time) {
-      m = moment().local(date)
+      m = moment(date)
       if (time.meridian == 'AM') {
         m.add('hours', time.hours)
       } else {
