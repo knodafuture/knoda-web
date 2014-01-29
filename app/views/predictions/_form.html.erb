@@ -47,7 +47,7 @@
 <% end %>            
 <script>
   var updateDate = function(target,date, time) {
-      m = moment(date)
+      m = moment.local(date)
       if (time.meridian == 'AM') {
         m.add('hours', time.hours)
       } else {
@@ -83,6 +83,7 @@
     if (resolution_date.isBefore(moment()))
       errors.push({ msg: 'Set a resolution date in the future.'})              
     if (errors.length == 0) {
+      console.log($('#new_prediction').serialize());
       return true
     }else {
       $('#new_prediction .alert').show()

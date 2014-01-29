@@ -49,12 +49,12 @@ class UsersController < ApplicationController
     if @user.save
       sign_in :user, @user
       if params[:user][:avatar].blank?
-        redirect_to '/users/me/avatar'
+        return render :json => {:success => true, :location => '/users/me/avatar'}
       else
-        render :action => "crop"
+        return render :json => {:success => true, :location => '/users/me/crop'} 
       end
     else
-      redirect_to '/predictions'
+      return render :json => {:success => false, :errors => @user.errors}, :status => 400
     end
   end
 
