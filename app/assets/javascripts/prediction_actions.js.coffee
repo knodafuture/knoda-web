@@ -51,12 +51,13 @@ close = (prediction_id, outcome) ->
       window.location.reload()
 
 callBS = (prediction_id) ->
-  $.ajax
-    type: 'POST'
-    url: "/predictions/#{prediction_id}/bs.json"
-    dataType: "json"
-    success: (json) ->
-      window.location.reload()
+  if confirm("Don't be lame. Tell the truth. It's more fun this way. Is this really the wrong outcome?")
+    $.ajax
+      type: 'POST'
+      url: "/predictions/#{prediction_id}/bs.json"
+      dataType: "json"
+      success: (json) ->
+        window.location.reload()
 
 window.updatePrediction = (prediction_id, body) ->
   $.ajax
