@@ -373,14 +373,25 @@ a {
 	}
 }
 
-.navbar-collapse {
-	.navlinkText {
-		font-size: 1.5em;
+.collapseText {
+	display: none;
+}
+.navbar-collapse.in{
+	.collapseText {
+		display: inline-block;
+		font-size: 1.25em;
 		color: white;
 		margin-left: 50px;
 		margin-top: 15px;
 		display: inline-block;
+		text-transform: uppercase;
 	}
 	background-color: @green-knoda-light;
-	opacity: 1;
+	.dropdown {
+		display:none;
+	}
+	.activityBadge {
+		display: none;
+	}	
 }
+

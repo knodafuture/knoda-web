@@ -43,40 +43,24 @@
             <span class="icon-bar"></span>
           </button>
           <a class="logo" href="/predictions" style="margin-top:3px;display:inline-block;"><%= image_tag("icons/sd/knoda_header_logo.png") %></a>
-        </div>       
-        <div class="navbar hidden-sm hidden-xs"> 
-          <ul class="nav navbar-nav">
-            <li ><a class="history <% if params[:controller] == 'history' %> active <% end %>" href="/history" title="History"></a></li>
-            <li ><a class="activity <% if params[:controller] == 'activities' %> active <% end %>" href="/activities" title="Activity"><span class="badge activityBadge"><%= @unseen_activities %></span></a></li>
-            <li><a class="badges <% if params[:controller] == 'badges' %> active <% end %>"href="/badges" title="Badges"></a></li>
-          </ul>                                    
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:0px">
-                 <img src="<%= avatar_small(current_user) %>" style="display:inline-block; height: 49px; width:49px;" />
-               </a>
-              <ul class="dropdown-menu">
-                <li><a href="/users/me"><%= current_user.username %></a></li>
-                <li class="divider"></li>
-                <li><a href="/signout">Log Out</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a class="predict" href="/predictions/new" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new" title="Make a prediction"></a></li>
-            <li><a class="search <% if params[:controller] == 'search' %> active <% end %>" href="/search" title="Search"></a></li>
-            <li></li>                          
-          </ul> 
-        </div>          
-        <div class="collapse navbar-collapse hidden-md hidden-lg">
+        </div>        
+        <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li >
-              <a class="history <% if params[:controller] == 'history' %> active <% end %>" href="/history" title="History"><span class="navlinkText">History</span></a>
+              <a class="history <% if params[:controller] == 'history' %> active <% end %>" href="/history" title="History">
+                <span class="collapseText">History</span>
+              </a>
             </li>
-            <li ><a class="activity <% if params[:controller] == 'activities' %> active <% end %>" href="/activities" title="Activity">
-              <span class="navlinkText"><span class="badge activityBadge"><%= @unseen_activities %></span>Activity</span></a>
+            <li>
+              <a class="activity <% if params[:controller] == 'activities' %> active <% end %>" href="/activities" title="Activity"><span class="badge activityBadge"><%= @unseen_activities %></span>
+                <span class="collapseText">Activity</span>
+              </a>
             </li>
-            <li><a class="badges <% if params[:controller] == 'badges' %> active <% end %>"href="/badges" title="Badges"></a></li>
+            <li>
+              <a class="badges <% if params[:controller] == 'badges' %> active <% end %>"href="/badges" title="Badges">
+                <span class="collapseText">Badges</span>
+              </a>
+            </li>
           </ul>                                    
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -91,8 +75,16 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a class="predict" href="/predictions/new" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new" title="Make a prediction"></a></li>
-            <li><a class="search <% if params[:controller] == 'search' %> active <% end %>" href="/search" title="Search"></a></li>
+            <li>
+              <a class="predict" href="/predictions/new" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new" title="Make a prediction">
+                <span class="collapseText">Predict</span>
+              </a>
+            </li>
+            <li>
+              <a class="search <% if params[:controller] == 'search' %> active <% end %>" href="/search" title="Search">
+                <span class="collapseText">Search</span>
+              </a>
+            </li>
             <li></li>                          
           </ul>                    
         </div>
