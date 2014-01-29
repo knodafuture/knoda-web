@@ -50,6 +50,14 @@ close = (prediction_id, outcome) ->
     success: (json) ->
       window.location.reload()
 
+callBS = (prediction_id) ->
+  $.ajax
+    type: 'POST'
+    url: "/predictions/#{prediction_id}/bs.json"
+    dataType: "json"
+    success: (json) ->
+      window.location.reload()
+
 window.updatePrediction = (prediction_id, body) ->
   $.ajax
     type: 'PUT'
@@ -68,6 +76,7 @@ window.unbindAll = () ->
   $('.addCommentButton').unbind()
   $('a.comments').unbind()
   $('a.tally').unbind()
+  $('a.bs').unbind()
 
 
 window.bindAll = () ->
@@ -131,6 +140,13 @@ window.bindAll = () ->
       complete: (xhr, status) ->
         stopLoading();
         console.log "The request is complete!" 
+
+  $('a.bs').click (e) ->
+    e.preventDefault()
+    el = $(e.target).parents('.predictionContainer')
+    prediction_id = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
+    callBS(prediction_id)
+
 
 $ ->
   bindAll()

@@ -3,7 +3,7 @@ class PredictionsController < AuthenticatedController
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:share]
   skip_before_action :unseen_activities, only: [:share]
-  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments]
+  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments, :bs]
   
   def share
     if user_signed_in?
@@ -113,6 +113,18 @@ class PredictionsController < AuthenticatedController
   def comments
     render :partial => 'comments', :locals => {:comments => @prediction.comments}
   end
+
+  def bs
+    authorize_action_for(@prediction)
+    @challenge = current_user.challenges.where(prediction: @prediction).first
+    @challenge.update(bs: true)
+    if not @challenge.is_own
+      @challenge.prediction.request_for_bs
+    else
+      @challenge.prediction.revert
+    end
+    head :no_content
+  end  
 
   private
     # Use callbacks to share common setup or constraints between actions.

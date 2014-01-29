@@ -64,7 +64,7 @@ module ApplicationHelper
   def display_won_lost(prediction)
     c = my_challenge(prediction)
     if prediction.is_closed? and c
-      if prediction.outcome == true and c.agree 
+      if (c.agree and prediction.outcome == true) or (!c.agree and prediction.outcome == false)
         content_tag(:span, :class=>'pull-right won-lost-indicator won') do
           'W'
         end
@@ -92,9 +92,9 @@ module ApplicationHelper
 
   def display_close_status(prediction)
     if prediction.expires_at > Time.now
-      return "closes #{distance_of_time_in_words_to_now(prediction.created_at)} from now"
+      return "closes #{distance_of_time_in_words_to_now(prediction.expires_at)} from now"
     else
-      return "closed #{distance_of_time_in_words_to_now(prediction.created_at)} ago"
+      return "closed #{distance_of_time_in_words_to_now(prediction.expires_at)} ago"
     end
   end
 
@@ -102,7 +102,7 @@ module ApplicationHelper
   def display_result_outcome_icon(prediction)
     c = my_challenge(prediction)
     if c
-      if c.agree
+      if (c.agree and prediction.outcome == true) or (!c.agree and prediction.outcome == false)
         image_tag("icons/ResultsWinIcon@2x.png")
       else
         image_tag("icons/ResultsLoseIcon@2x.png")
@@ -113,7 +113,7 @@ module ApplicationHelper
   def display_result_outcome_text(prediction)
     c = my_challenge(prediction)
     if c
-      if c.agree
+      if (c.agree and prediction.outcome == true) or (!c.agree and prediction.outcome == false)
         return "YOU WON!"
       else
         return "YOU LOST!"
