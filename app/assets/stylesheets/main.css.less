@@ -79,7 +79,7 @@ a {
 		margin: 0px;
 
 	}
-	.history, .activity, .badges {
+	.history, .activity, .badges, .search, .predict {
 		width: 50px;
 		height: 50px;
 	}
@@ -102,8 +102,25 @@ a {
 		&.active, &:active {
 			background: image-url("icons/sd/nav_badges_active.png") center no-repeat;
 		}		
+	}	
+	.search {
+		margin-right: 20px;
+		background: image-url("icons/sd/nav_search.png") center no-repeat;
+		&.active, &:active {
+			background: image-url("icons/sd/nav_search_active.png") center no-repeat;
+		}			
+	}	
+	.predict {
+		background: image-url("icons/sd/nav_predict.png") center no-repeat;
+		&.active, &:active {
+			background: image-url("icons/sd/nav_predict_active.png") center no-repeat;
+		}			
 	}		
-
+	.dropdown-menu {
+		li {
+			padding-left: 10px;
+		}
+	}
 }
 
 .userInfo {

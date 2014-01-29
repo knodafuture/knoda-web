@@ -31,6 +31,8 @@ comment = (prediction_id, text) ->
       success: (comments) ->
         el = $(".predictionContainer[data-prediction-id=#{prediction_id}]")
         el.find(".comments-content").html(comments);
+        unbindAll()
+        bindAll()
         stopLoading()
       error: (xhr, status) ->
         console.log "Sorry, there was a problem!"
@@ -60,7 +62,21 @@ update = (prediction_id) ->
       console.log json
       window.location.reload()
 
-$ ->
+window.unbindAll = () ->
+  $('.yes').unbind()
+  $('.no').unbind()
+  $('.remind').unbind()
+  $('.agree').unbind()
+  $('.disagree').unbind()
+  $('.addCommentButton').unbind()
+  $('a.comments').unbind()
+  $('a.tally').unbind()
+
+
+window.bindAll = () ->
+ $('textarea').maxlength 
+    alwaysShow: true
+
   $('.yes').click (e) ->
     e.preventDefault()
     predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
@@ -119,8 +135,7 @@ $ ->
         console.log "Sorry, there was a problem!"
       complete: (xhr, status) ->
         stopLoading();
-        console.log "The request is complete!"   
+        console.log "The request is complete!" 
 
 $ ->
- $('textarea').maxlength 
-    alwaysShow: true
+  bindAll()

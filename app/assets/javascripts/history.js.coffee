@@ -14,6 +14,8 @@ $ ->
           currentOffset = currentOffset + pageSize
           container.append($(x))
           loading = false
+          unbindAll()
+          bindAll()          
           stopLoading()
         error: (xhr, status) ->
           console.log "Sorry, there was a problem!"
