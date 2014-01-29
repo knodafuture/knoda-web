@@ -159,8 +159,13 @@ a {
 	}	
 }
 .predictionInfoLine2, .commentInfoLine2 {
-	font-size: 0.75em;
-	background-color:white; padding: 5px 20px; color: #77BC1F	
+	
+	background-color:white; padding: 5px 20px; 	
+	a {
+		text-decoration:none;
+		color: #77BC1F;
+		font-size: 0.75em;
+	}
 }
 
 #new_prediction {
@@ -236,7 +241,9 @@ a {
 		.center;
 		padding-top: 10px;
 		p {
+			width: 70px;
 			font-size: .8em;
+			text-align: center;
 		}
 		.comments, .similar, .tally, .share {
 			display: inline-block;
