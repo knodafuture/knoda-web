@@ -10,13 +10,17 @@
             <%= user.points %>
           </div>
           <div class="col-xs-3">
-            52.63%
+            <% if (user.won + user.lost) > 0 %>
+              <%=user.won.fdiv(user.won + user.lost) * 100%>%
+            <% else %>
+              0%
+            <% end %>
           </div>
           <div class="col-xs-3">
             <%= user.streak_as_text %>
           </div>
           <div class="col-xs-3">
-            20-18
+            <%= user.won %>-<%= user.lost %>
           </div>            
         </div>
         <div class="row">
