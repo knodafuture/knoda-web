@@ -50,16 +50,13 @@ close = (prediction_id, outcome) ->
     success: (json) ->
       window.location.reload()
 
-update = (prediction_id) ->
+window.updatePrediction = (prediction_id, body) ->
   $.ajax
     type: 'PUT'
     url: "/predictions/#{prediction_id}.json"
     dataType: "json"
-    data:
-      prediction : 
-        resolution_date : moment().add('days', 7).toISOString()
+    data: body
     success: (json) ->
-      console.log json
       window.location.reload()
 
 window.unbindAll = () ->
@@ -89,8 +86,6 @@ window.bindAll = () ->
 
   $('.remind').click (e) ->
     e.preventDefault()
-    predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
-    update(predictionId)   
 
   $('.agree').click (e) ->
     e.preventDefault()

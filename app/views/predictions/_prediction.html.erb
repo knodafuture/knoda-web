@@ -35,10 +35,10 @@
         <div class="row" style="text-align: center">
           Was your prediction correct?
         </div>
-        <div class="row" style="text-align:center">
-          <a class="btn btn-lg btn-success yes">Yes</a>
-          <a class="btn btn-lg btn-success no">No</a>
-          <a class="btn btn-lg btn-success remind">Remind Me</a>
+        <div class="row" style="text-align:center;margin-bottom:10px">
+          <a class="btn btn-lg btn-success yes" style="width:25%;">Yes</a>
+          <a class="btn btn-lg btn-success no" style="width:25%;">No</a>
+          <a class="btn btn-lg btn-success remind" style="width:25%;" data-toggle="modal" data-target="#editPrediction_<%= prediction.id %>" data-remote="/predictions/<%= prediction.id %>/edit">IDK Yet</a>
         </div>              
       <% end %>
       <% if prediction.is_closed? %>  
@@ -85,4 +85,4 @@
     </div>
   </div>
 </div>
-
+<div class="modal fade" id="editPrediction_<%= prediction.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
