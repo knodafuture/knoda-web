@@ -8,11 +8,11 @@ createChallenge = (prediction_id, agree) ->
     dataType: "json"
     success: (json) ->
       if agree
-        $(".predictionContainer[data-prediction-id=#{prediction_id}] .agree").removeClass('userNotChosen').addClass('userAgrees')
-        $(".predictionContainer[data-prediction-id=#{prediction_id}] .disagree").removeClass('userDisagrees').addClass('userNotChosen')
+        $(".predictionContainer[data-prediction-id=#{prediction_id}] .agree").addClass('active')
+        $(".predictionContainer[data-prediction-id=#{prediction_id}] .disagree").removeClass('active')
       else
-        $(".predictionContainer[data-prediction-id=#{prediction_id}] .agree").removeClass('userAgrees').addClass('userNotChosen')
-        $(".predictionContainer[data-prediction-id=#{prediction_id}] .disagree").removeClass('userNotChosen').addClass('userDisagrees')      
+        $(".predictionContainer[data-prediction-id=#{prediction_id}] .agree").removeClass('active')
+        $(".predictionContainer[data-prediction-id=#{prediction_id}] .disagree").addClass('active')      
     error: (xhr, status) ->
       console.log "Sorry, there was a problem!"
     complete: (xhr, status) ->

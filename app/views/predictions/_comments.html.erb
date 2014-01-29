@@ -7,12 +7,15 @@
         		<%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
       		<% end %>
 	        <div class="col-md-1 myChallenge pull-right">
-	          <%= image_tag('icons/AgreeMarker@2x.png') %>
+	          <%= display_challenge_icon_for_comment(i.prediction) %>
 	        </div>			
 		</div>
-		<div class="row" style="border-bottom: 1px solid #efefef;padding: 10px">
+		<div class="row" style="padding: 10px;padding-bottom:0px">
 			<div style="margin-left:20px"><p><%= i.text %></p></div>
 		</div>
+		<div class="row commentInfoLine2" style="border-bottom: 1px solid #efefef;padding:10px;padding-top:0px;">
+			<div style="margin-left:20px"><p>made <%= distance_of_time_in_words_to_now(i.created_at) %> ago</p></div>
+		</div>		
 	<% end %> 
 	<form class="addCommentForm">
 	  <div class="form-group">
@@ -25,6 +28,5 @@
 	    	</div>
 		</div>
 	  </div>
-	  
 	</form>
 </div>

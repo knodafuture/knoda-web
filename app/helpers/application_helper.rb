@@ -40,13 +40,38 @@ module ApplicationHelper
       c = my_challenge(prediction)
       if c
         if c.agree
-          render :partial => "predictions/display_challenge", :locals => {:disagreeClass => 'userNotChosen', :agreeClass => 'userAgrees'}
+          render :partial => "predictions/display_challenge", :locals => {:disagreeClass => '', :agreeClass => 'active'}
         else
-          render :partial => "predictions/display_challenge", :locals => {:disagreeClass => 'userDisagrees', :agreeClass => 'userNotChosen'}
+          render :partial => "predictions/display_challenge", :locals => {:disagreeClass => 'active', :agreeClass => ''}
         end
       else
-        puts 'render time'
-        render :partial => "predictions/display_challenge", :locals => {:disagreeClass => 'userNotChosen', :agreeClass => 'userNotChosen'}
+        render :partial => "predictions/display_challenge", :locals => {:disagreeClass => '', :agreeClass => ''}
+      end
+    end
+  end
+
+  def display_challenge_icon_for_comment(prediction)
+      c = my_challenge(prediction)
+      if c
+        if c.agree
+          image_tag('icons/sd/agree_active.png')
+        else
+          image_tag('icons/sd/disagree_active.png')
+        end
+      end
+  end  
+
+  def display_won_lost(prediction)
+    c = my_challenge(prediction)
+    if prediction.is_closed? and c
+      if prediction.outcome == true and c.agree 
+        content_tag(:span, :class=>'pull-right won-lost-indicator won') do
+          'W'
+        end
+      else
+        content_tag(:span, :class=>'pull-right won-lost-indicator lost') do
+          'L'
+        end        
       end
     end
   end

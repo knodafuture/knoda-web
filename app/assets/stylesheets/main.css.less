@@ -60,6 +60,14 @@ a {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 }
+.sansRegular {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
+.sansBold {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+}
 
 .right {
 	text-align: right;
@@ -72,7 +80,6 @@ a {
 	height: 50px;
 	.logo {
 		height: 50px;
-		width: 170px;
 	}
 	li a {
 		padding: 0px;
@@ -124,32 +131,36 @@ a {
 }
 
 .userInfo {
+	height: 47px;
 	a {
 		text-decoration: none;
-	}
-	.agreeButton, .disagreeButton {
-		font-size: 1.5em;
-	}
-	.agreeButton {
-
 	}
 	.disagreeButton {
 		padding-top: 0.75em;		
 	}
+	.userAgrees, .userDisagrees {
+		display:inline-block;
+		height: 22px;
+		width: 24px;
+		padding: 2px;
+		margin-top: 10px;
+	}
 	.userDisagrees {
-		color: red;
+		background: image-url("icons/sd/disagree.png") center no-repeat;
+		&.active {
+			background: image-url("icons/sd/disagree_active.png") center no-repeat;
+		}
 	}
-
-	.userNotChosen {
-		color: gray;
-	}
-
 	.userAgrees {
-		color: green;
+		background: image-url("icons/sd/agree.png") center no-repeat;
+		&.active {
+			background: image-url("icons/sd/agree_active.png") center no-repeat;
+		}
 	}	
 }
-.predictionInfoLine2 {
+.predictionInfoLine2, .commentInfoLine2 {
 	font-size: 0.75em;
+	background-color:white; padding: 5px 20px; color: #77BC1F	
 }
 
 #new_prediction {
@@ -270,6 +281,18 @@ a {
 			color: @text-color;
 		}
 	}
+	.won-lost-indicator {
+		padding-right: 10px;
+		margin-top: 10px;
+		font-size: 14px;
+		.sansBold;
+		&.won {
+			color: @green-knoda-light;
+		}
+		&.lost {
+			color: @red-knoda
+		}
+	}
 }
 
 .modal-backdrop {
@@ -284,7 +307,7 @@ a {
 
 
 #footer {
-    height: 60px;
+    height: 98px;
     background-color: #1a4b2b;
     color: @green-knoda-light;
     padding-top: 20px;	
@@ -329,7 +352,7 @@ a {
 	}
 	.home-bullets {
 		img {
-		padding-right: 5px;
+		padding: 10px;
 		}
 		margin-top:10px;
 		padding-right: 20px;
