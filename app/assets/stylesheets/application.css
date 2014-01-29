@@ -48,3 +48,5 @@ img.avatar_big {
 .panel-group .panel + .panel {
 	margin-top: 0px;
 }
+
+/* Force recompile */

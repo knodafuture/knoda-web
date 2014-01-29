@@ -68,3 +68,5 @@ function getUrlVars()
     }
     return vars;
 };
+console.log('launch');
+// Force recompile

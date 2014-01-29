@@ -45,7 +45,9 @@ module ApplicationHelper
           render :partial => "predictions/display_challenge", :locals => {:disagreeClass => 'active', :agreeClass => ''}
         end
       else
-        render :partial => "predictions/display_challenge", :locals => {:disagreeClass => '', :agreeClass => ''}
+        if (!prediction.is_expired?)
+          render :partial => "predictions/display_challenge", :locals => {:disagreeClass => '', :agreeClass => ''}
+        end
       end
     end
   end
