@@ -25,10 +25,14 @@ class HomeController < ApplicationController
   end
 
   def start
-    if browser_is?("ios")
-      redirect_to "https://itunes.apple.com/us/app/knoda/id764642995"
-    else
-      index()
+    begin
+      if browser_is?("ios")
+        redirect_to "https://itunes.apple.com/us/app/knoda/id764642995"
+      else
+        redirect_to '/'
+      end
+    rescue
+      redirect_to '/'
     end
   end
 end
