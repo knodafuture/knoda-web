@@ -47,14 +47,14 @@
 <% end %>            
 <script>
   var updateDate = function(target,date, time) {
-      m = moment(date)
+      m = moment(date).startOf('day')
       if (time.meridian == 'AM') {
         m.add('hours', time.hours)
       } else {
         m.add('hours', time.hours+12)
       }
       m.add('minutes', time.minutes)
-      target.val(m.toISOString());
+      target.val(m.toDate());
   }
 
   var clearValidation = function() {
