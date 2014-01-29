@@ -1,10 +1,12 @@
 <% content_for :head do %>
 	<%= javascript_include_tag 'prediction_actions' %>
 <% end %>
-<div class="panel-group" id="predictionsList">
-    <% @predictions.each do |i| %>
-      <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
-    <% end %>
+<div class="row">
+	<div class="panel-group col-lg-12 col-md-12 col-sm-12 col-xs-12" id="predictionsList">
+	    <% @predictions.each do |i| %>
+	      <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
+	    <% end %>
+	</div>
 </div>
 <% if (@unseen_badges.size > 0) %>
 	<%= render partial: "badges/unseen_modal", locals: {unseen_badges: @unseen_badges} %>

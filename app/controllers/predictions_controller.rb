@@ -124,7 +124,7 @@ class PredictionsController < AuthenticatedController
       @challenge.prediction.revert
     end
     head :no_content
-  end  
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.

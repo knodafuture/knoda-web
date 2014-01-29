@@ -7,7 +7,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem "less-rails", "~> 2.4.2"
-gem 'less-rails-bootstrap', "~> 3.0.6"
 gem 'jbuilder'
 
 gem 'paperclip', '3.4.2'

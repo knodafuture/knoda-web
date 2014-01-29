@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require bootstrap.min
 //= require jquery.Jcrop.min
 //= require jquery.endless-scroll
 //= require bootstrap-datepicker
