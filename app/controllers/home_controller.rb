@@ -5,7 +5,7 @@ class HomeController < ApplicationController
       if current_user.avatar?
         redirect_to :controller => 'predictions', :action => 'index'
       else
-        redirect_to "/users/#{current_user.id}/avatar"
+        redirect_to "/users/me/avatar"
       end
     else
       render :layout => 'prelogin'
