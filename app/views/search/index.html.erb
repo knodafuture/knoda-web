@@ -1,9 +1,12 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'prediction_actions' %>
+<% end %>
 <div class="row" style="text-align:center">
 	<form class="form-inline" role="form" action="/search" method="GET" style="margin-top:20px">
 	  <div class="form-group" style="width:75%">
-	    <input type="text" class="form-control" placeholder="Search for users, predictions, #hashtags" name="q"  />
+	    <input type="text" class="form-control" placeholder="Search for users, predictions, #hashtags" name="q" style="width:50%" />
+	    <button type="submit" class="btn btn-default">Search</button>
 	  </div>
-	  <button type="submit" class="btn btn-default">Search</button>
 	</form>
 </div>
 <% if params[:q] and @predictions.size == 0 %>
