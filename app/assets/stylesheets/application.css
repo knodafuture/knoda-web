@@ -1,13 +1,27 @@
 /*
- *= require twitter/bootstrap
+ *= require main
+ *= require jquery.Jcrop
+ *= require datepicker
+ *= require jquery.timepicker
  */
 
-.knodaGreen {
-  color : #77BC1F;;
+body {
+  padding-top: 50px;
 }
- .navbar-default {
-  background-color: #77BC1F;
- }
- .navbar-brand {
-    padding: 5px;
- }
+
+img.avatar_big {
+	display:inline-block; height: 344px; width:344px;
+}
+
+#avatarSelection {
+	margin-top: 50px;
+}
+
+.content {
+	font-family: 'Open Sans', sans-serif;
+	color: #666;
+}
+
+.panel-group .panel + .panel {
+	margin-top: 0px;
+}

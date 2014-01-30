@@ -10,8 +10,62 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require console-polyfill
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
-//= require turbolinks
-//= require_tree .
+//= require bootstrap.min
+//= require jquery.Jcrop.min
+//= require jquery.endless-scroll
+//= require bootstrap-datepicker
+//= require bootstrap-timepicker
+//= require plupload.full.min
+//= require moment-with-langs.min
+//= require bootstrap-maxlength.min
+//= require main
+
+
+startLoading = function() {
+	$('.loading-overlay').show();
+};
+
+stopLoading = function() {
+	$('.loading-overlay').hide();
+};	
+
+
+var createPrediction;
+
+createPrediction = function() {
+  startLoading()
+  return $.ajax({
+    url: "/predictions.json",
+    data: $('#new_prediction').serialize(),
+    type: "POST",
+    dataType: "json",
+    success: function(json) {
+      startLoading()
+      return window.location.reload();
+    },
+    error: function(xhr, status) {
+      return console.log("Sorry, there was a problem!");
+    },
+    complete: function(xhr, status) {
+      return console.log("The request is complete!");
+    }
+  });
+};
+
+
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+};
+// Force recompile

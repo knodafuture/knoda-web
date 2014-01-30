@@ -1,20 +1,38 @@
 class HomeController < ApplicationController
+
   def index
-    client = Twitter::REST::Client.new do |config|
-      config.consumer_key = 'cudeJl428sK15geAzUZ8Rw'
-      config.consumer_secret = 'YWr0FFuRmhSqdk66Fs1rVV0kQIyrW7DxHoERP4LWws'
-      config.oauth_token = '1394859757-dNKz3QuO1R5iiEaf8oR8RDpVzbCRWUKAlzp5Uw0'
-      config.oauth_token_secret = 'bVbL3Y0fEJzvpHkh6kyW3AHRbBNraf1lS9xbQQghk'
-    end    
-    @t = client.user_timeline('knodafuture')
+    if user_signed_in?
+      if current_user.avatar?
+        redirect_to :controller => 'predictions', :action => 'index'
+      else
+        redirect_to "/users/#{current_user.id}/avatar"
+      end
+    else
+      render :layout => 'prelogin'
+    end
   end
 
   def about
+    render :layout => 'prelogin'
   end
 
   def privacy
+    render :layout => 'prelogin'
   end
 
   def terms
+    render :layout => 'prelogin'
+  end
+
+  def start
+    begin
+      if browser_is?("ios")
+        redirect_to "https://itunes.apple.com/us/app/knoda/id764642995"
+      else
+        redirect_to '/'
+      end
+    rescue
+      redirect_to '/'
+    end
   end
 end

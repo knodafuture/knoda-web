@@ -90,4 +90,5 @@ KnodaWeb::Application.configure do
   }  
   Paperclip::Attachment.default_options[:url] = ':s3_domain_url'
   Paperclip::Attachment.default_options[:path] = '/:class/:attachment/:id_partition/:style/:filename'  
+  config.action_controller.asset_host = ENV['AWS_CLOUDFRONT_DOMAIN']
 end

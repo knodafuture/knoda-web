@@ -1,0 +1,59 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'prediction_actions' %>
+<% end %>
+<div class="row" style="text-align:center">
+	<form class="form-inline" role="form" action="/search" method="GET" style="margin-top:20px">
+	  <div class="form-group" style="width:75%">
+	    <input type="text" class="form-control" placeholder="Search for users, predictions, #hashtags" name="q" style="width:50%" />
+	    <button type="submit" class="btn btn-default">Search</button>
+	  </div>
+	</form>
+</div>
+<% if params[:q] and @predictions.size == 0 %>
+	<div class="row" style="text-align: center; padding-top:20px">
+		<p>No results found</p>
+	</div>
+<% end %> 
+<% if not params[:q] %>
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<hr />
+			<p style="width:100%;text-align:center">or select a topic</p>
+			<p><a href="/predictions?tag=SPORTS">Sports</a></p>
+			<p><a href="/predictions?tag=ENTERTAINMENT">Entertainment</a></p>
+			<p><a href="/predictions?tag=PERSONAL">Personal</a></p>
+			<p><a href="/predictions?tag=BUSINESS">Business</a></p>
+			<p><a href="/predictions?tag=WEATHER">Weather</a></p>
+			<p><a href="/predictions?tag=POLITICS">Politics</a></p>
+			<p><a href="/predictions?tag=STOCKS">Stocks</a></p>
+			<p><a href="/predictions?tag=FUNNY">Funny</a></p>
+			<p><a href="/predictions?tag=OTHER">Other</a></p>
+		</div>
+	</div>
+<% end %> 
+<% if @users and @users.size > 0 %>
+	<h2>Users</h2>
+	<div class="panel-group">
+		<% @users.each do |i| %>
+		<div class="panel panel-default userContainer" data-user-id="<%= i.id%>">
+    		<div class="panel-heading" style="padding:0px 15px; background-color: white">
+	    		<div class="row userInfo" style="height:40px">
+	    			<a href="/users/<%= i.username%>">
+	        			<img src="<%= avatar_small(i) %>" style="display:inline-block; height: 40px; width:40px;" />
+	        			<span class="username" style="font-size:1.25em"><%= i.username %></span>
+	        		</a>
+	        	</div>
+	        </div>
+	    </div>		
+	    <% end %>
+	</div>
+<% end %>
+<% if @predictions and @predictions.size > 0 %>
+	<h2>Predictions</h2>
+		<div class="panel-group" id="accordion">
+	    <% @predictions.each do |i| %>
+	      <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
+	    <% end %>
+	  	</div>
+	</div>
+<% end %>

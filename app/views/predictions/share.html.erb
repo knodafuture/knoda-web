@@ -1,0 +1,32 @@
+<% content_for :head do %>
+    <meta property="og:image" content="<%= avatar_small(@prediction.user) %>" />
+    <meta property="og:description" content="<%= @prediction.body%>" />
+    <meta property="og:site_name" content="Knoda" />
+<% end %>
+<% title "#{@prediction.user.username}'s prediction" %>
+<div class="content container" style="margin-top: 10px;">
+<div class="panel panel-default predictionContainer" data-prediction-id="<%= @prediction.id%>" style="">
+    <div class="panel-heading" style="padding:0px 15px; background-color: #EFEFEF">
+    <div class="row userInfo" style="height:40px">
+        <a href="/users/<%=@prediction.user.username%>">
+          <img src="<%= avatar_small(@prediction.user) %>" style="display:inline-block; height: 40px; width:40px;" />
+          <span class="username"><%=@prediction.user.username %></span>
+          <% if @prediction.user.verified_account %>
+            <%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
+          <% end %>
+        </a>
+        <div class="col-md-3 myChallenge pull-right">
+        </div>
+    </div>
+    <div class="row predictionInfo" style="background-color:white; padding: 8px 20px;" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=@prediction.id %>">
+      <a><%=@prediction.body %></a>
+    </div>
+    <div class="row predictionInfoLine2" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=@prediction.id %>"style="background-color:white; padding: 5px 20px; color: #77BC1F">
+      <%= display_close_status(@prediction) %> | predicted <%= distance_of_time_in_words_to_now(@prediction.created_at) %> ago | <%=@prediction.agree_percentage %>% agree | <%= image_tag("icons/CommentIcon@2x.png") %> <%=@prediction.comments.size %>
+    </div>    
+  </div>
+</div>
+<div class="row" style="text-align:center;margin-top:20px;">
+  <a href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
+</div> 
+</div>

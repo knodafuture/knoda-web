@@ -1,0 +1,406 @@
+// Core variables and mixins
+@import "twitter/bootstrap/variables";
+@import "variables";
+@import "twitter/bootstrap/mixins";
+
+// Reset
+@import "twitter/bootstrap/normalize";
+@import "twitter/bootstrap/print";
+
+// Core CSS
+@import "twitter/bootstrap/scaffolding";
+@import "twitter/bootstrap/type";
+@import "twitter/bootstrap/code";
+@import "twitter/bootstrap/grid";
+@import "twitter/bootstrap/tables";
+@import "twitter/bootstrap/forms";
+@import "twitter/bootstrap/buttons";
+
+// Components
+@import "twitter/bootstrap/component-animations";
+@import "twitter/bootstrap/glyphicons";
+@import "twitter/bootstrap/dropdowns";
+@import "twitter/bootstrap/button-groups";
+@import "twitter/bootstrap/input-groups";
+@import "twitter/bootstrap/navs";
+@import "twitter/bootstrap/navbar";
+@import "twitter/bootstrap/breadcrumbs";
+@import "twitter/bootstrap/pagination";
+@import "twitter/bootstrap/pager";
+@import "twitter/bootstrap/labels";
+@import "twitter/bootstrap/badges";
+@import "twitter/bootstrap/jumbotron";
+@import "twitter/bootstrap/thumbnails";
+@import "twitter/bootstrap/alerts";
+@import "twitter/bootstrap/progress-bars";
+@import "twitter/bootstrap/media";
+@import "twitter/bootstrap/list-group";
+@import "twitter/bootstrap/panels";
+@import "twitter/bootstrap/wells";
+@import "twitter/bootstrap/close";
+
+// Components w/ JavaScript
+@import "twitter/bootstrap/modals";
+@import "twitter/bootstrap/tooltip";
+@import "twitter/bootstrap/popovers";
+@import "twitter/bootstrap/carousel";
+
+// Utility classes
+@import "twitter/bootstrap/utilities";
+@import "twitter/bootstrap/responsive-utilities";
+
+@import "loading";
+
+a {
+	text-decoration: none;
+	cursor: pointer
+}
+
+.sansLight {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
+.sansRegular {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
+.sansBold {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+}
+
+.right {
+	text-align: right;
+}
+.center {
+	text-align: center;
+}
+
+#topNav {
+	.logo {
+		height: 50px;
+	}
+	li a {
+		padding: 0px;
+		margin: 0px;
+
+	}
+	.history, .activity, .badges, .search, .predict {
+		width: 50px;
+		height: 50px;
+	}
+	.history {
+		background: image-url("icons/sd/nav_history.png") center no-repeat;
+		&.active, &:active {
+			background: image-url("icons/sd/nav_history_active.png") center no-repeat;
+		}
+	}
+
+	.activity {
+		background: image-url("icons/sd/nav_activity.png") center no-repeat;
+		&.active, &:active {
+			background: image-url("icons/sd/nav_activity_active.png") center no-repeat;
+		}		
+	}
+
+	.badges {
+		background: image-url("icons/sd/nav_badges.png") center no-repeat;
+		&.active, &:active {
+			background: image-url("icons/sd/nav_badges_active.png") center no-repeat;
+		}		
+	}	
+	.search {
+		margin-right: 20px;
+		background: image-url("icons/sd/nav_search.png") center no-repeat;
+		&.active, &:active {
+			background: image-url("icons/sd/nav_search_active.png") center no-repeat;
+		}			
+	}	
+	.predict {
+		background: image-url("icons/sd/nav_predict.png") center no-repeat;
+		&.active, &:active {
+			background: image-url("icons/sd/nav_predict_active.png") center no-repeat;
+		}			
+	}		
+	.dropdown-menu {
+		li {
+			padding-left: 10px;
+		}
+	}
+}
+
+.userInfo {
+	height: 47px;
+	a {
+		text-decoration: none;
+	}
+	.disagreeButton {
+		padding-top: 0.75em;		
+	}
+	.userAgrees, .userDisagrees {
+		display:inline-block;
+		height: 22px;
+		width: 24px;
+		padding: 2px;
+		margin-top: 10px;
+	}
+	.userDisagrees {
+		background: image-url("icons/sd/disagree.png") center no-repeat;
+		&.active {
+			background: image-url("icons/sd/disagree_active.png") center no-repeat;
+		}
+	}
+	.userAgrees {
+		background: image-url("icons/sd/agree.png") center no-repeat;
+		&.active {
+			background: image-url("icons/sd/agree_active.png") center no-repeat;
+		}
+	}	
+}
+.predictionInfoLine2, .commentInfoLine2 {
+	
+	background-color:white; padding: 5px 20px; 	
+	a {
+		text-decoration:none;
+		color: #77BC1F;
+		font-size: 0.75em;
+	}
+}
+
+#new_prediction {
+	.body {
+		height: 100px;
+	}
+}
+
+.modal-header {
+	.center;
+	background-color:#77BC1F; color: #ffffff;font-family: 'Krona One', sans-serif; font-size: 1.25em
+}
+
+.activityBadge {
+	display: inline-block;
+	top: 25px;
+	left: 25px;
+	position: relative;
+	background-color: red;
+}
+
+.predictionContainer {
+	.username {
+		padding: 0.5em;
+		font-size: 16px;
+		color: #666666;
+		text-decoration: none;		
+	}
+	.predictionInfo {
+		.sansLight;
+		font-size: 14px;
+		color: #666666;
+		a {
+			color: #666666;
+			text-decoration: none;
+		}
+	}
+	.panel-body {
+		margin-top: 5px;
+		padding-top: 0px;
+	}
+	div.row.challenge-buttons {
+		.center;
+		margin: 5px;
+		
+		.btn-lg {
+			width: 33%;
+			.sansLight;	
+			font-size: 18px;
+		}
+		.userAgrees, .userDisagrees {
+		 	background-color: @green-knoda-dark;
+		 	border-color: @green-knoda-dark;
+		}
+	}
+	img.verified-account {
+		padding-bottom: .4em;
+	}
+	div.row.prediction_closed {
+	 	.center;
+	 	border-bottom: 1px solid @gray-knoda;
+	 	height:81px;
+		div.border-right {
+			padding-top: 0px;
+			margin-top: 5px;
+			height: 70px;
+			border-right: 1px solid @gray-knoda;
+		}
+	}
+	.prediction_tabs {
+		background-color: @gray-knoda;
+		height: 60px;
+		.center;
+		padding-top: 10px;
+		p {
+			font-size: .8em;
+			text-align: center;
+		}
+		.comments, .similar, .tally, .share {
+			display: inline-block;
+			height: 27px;
+			width: 70px;
+		}
+		.comments {
+			background: image-url("icons/sd/action_comment.png") center no-repeat;
+			&.active, &:active {
+				background: image-url("icons/sd/action_comment_active.png") center no-repeat;
+			}			
+		}
+		.tally {
+			background: image-url("icons/sd/action_tally.png") center no-repeat;
+			&.active, &:active {
+				background: image-url("icons/sd/action_tally_active.png") center no-repeat;
+			}
+		}
+		.similar {
+			background: image-url("icons/sd/action_similar.png") center no-repeat;
+			&.active, &:active {
+				background: image-url("icons/sd/action_similar_active.png") center no-repeat;
+			}
+		}
+		.share {
+			background: image-url("icons/sd/action_share.png") center no-repeat;
+			&.active, &:active {
+				background: image-url("iicons/sd/action_share_active.png") center no-repeat;
+			}
+		}
+		a {
+			text-decoration: none;
+			cursor: pointer;
+			color: @text-color;
+		}								
+	}
+	.bs {
+		width: 80%;
+	}
+	.addCommentForm {
+		margin-top: 10px;
+	}
+	.tally-content {
+		a {
+			text-decoration: none;
+			cursor: pointer;
+			color: @text-color;
+		}
+	}
+	.won-lost-indicator {
+		padding-right: 10px;
+		margin-top: 10px;
+		font-size: 14px;
+		.sansBold;
+		&.won {
+			color: @green-knoda-light;
+		}
+		&.lost {
+			color: @red-knoda
+		}
+	}
+}
+
+.modal-backdrop {
+	background-color: #fff; 
+	&.in { opacity: 0.8}
+}
+
+.stat-values {
+	font-size:2em;
+	margin-top: 15px;
+}
+
+
+#footer {
+    height: 50px;
+    background-color: #1a4b2b;
+    color: @green-knoda-light;
+    padding-top: 20px;	
+    .sansLight;
+    a {
+    	color: @green-knoda-light;
+    	text-decoration: none;
+    	padding: 3px;
+    }
+}
+
+
+.home {
+	.navbar {
+		margin-bottom: 0px;
+	}
+	.form-group {
+		margin-bottom: 5px;
+	}
+	.form-control {
+		margin: 10px 0px;
+		border: 0px;
+		background-color: @gray-knoda;
+		.box-shadow(0px 0px 0px);
+		font-size: 1.5em;
+	}
+	.signup {
+		text-decoration: none;
+		color: @green-knoda-light;
+		font-size: 1.5em;
+		padding-left: .5em;
+		cursor: pointer;
+		.sansLight;
+	}
+	.login {
+		text-decoration: none;
+		color: @green-knoda-dark;
+		font-size: 1.0em;
+		padding-left: .5em;
+		cursor: pointer;
+		.sansLight;	
+	}
+	.home-bullets {
+		img {
+		padding: 10px;
+		}
+		margin-top:10px;
+		padding-right: 20px;
+		font-size: 1.5em;
+		color: white;
+		.sansLight;
+	}
+}
+
+#activities:index:container {
+	tr.unseen {
+		background-color: @gray-knoda;
+	}
+}
+
+.collapseText {
+	display: none;
+}
+.navbar-collapse.in{
+	.collapseText {
+		display: inline-block;
+		font-size: 1.25em;
+		color: white;
+		margin-left: 50px;
+		margin-top: 15px;
+		display: inline-block;
+		text-transform: uppercase;
+	}
+	background-color: @green-knoda-light;
+	.dropdown {
+		display:none;
+	}
+	.activityBadge {
+		display: none;
+	}	
+	.navbar-nav {
+		margin: 0px;
+		padding: 0px;
+	}
+}
+

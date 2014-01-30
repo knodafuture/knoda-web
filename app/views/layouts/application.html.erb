@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Knoda | Predict • Compete • Conquer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='http://fonts.googleapis.com/css?family=Krona+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="<%= local_stylesheet_path('application')%>" media="all" rel="stylesheet">
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag params[:controller] %>
+    <%= csrf_meta_tags %>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>  
+    <![endif]-->    
+    <%= yield :head %>
+  </head>
+
+  <body>
+    <div class="loading-overlay" style="display:none">
+      <div style="margin: 100px auto;width:128px">
+        <div id="circularG">
+          <div id="circularG_1" class="circularG"></div>
+          <div id="circularG_2" class="circularG"></div>
+          <div id="circularG_3" class="circularG"></div>
+          <div id="circularG_4" class="circularG"></div>
+          <div id="circularG_5" class="circularG"></div>
+          <div id="circularG_6" class="circularG"></div>
+          <div id="circularG_7" class="circularG"></div>
+          <div id="circularG_8" class="circularG"></div>
+        </div>
+      </div>
+    </div>
+    <header class="navbar navbar-default navbar-fixed-top" id="topNav" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="logo" href="/predictions" style="margin-top:3px;display:inline-block;height: 47px;"><%= image_tag("icons/sd/knoda_header_logo.png") %></a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>          
+        </div>        
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li >
+              <a class="history <% if params[:controller] == 'history' %> active <% end %>" href="/history" title="History">
+                <span class="collapseText">History</span>
+              </a>
+            </li>
+            <li>
+              <a class="activity <% if params[:controller] == 'activities' %> active <% end %>" href="/activities" title="Activity"><span class="badge activityBadge"><%= @unseen_activities %></span>
+                <span class="collapseText">Activity</span>
+              </a>
+            </li>
+            <li>
+              <a class="badges <% if params[:controller] == 'badges' %> active <% end %>"href="/badges" title="Badges">
+                <span class="collapseText">Badges</span>
+              </a>
+            </li>
+          </ul>                            
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:0px">
+                 <img src="<%= avatar_small(current_user) %>" style="display:inline-block; height: 49px; width:49px;" />
+               </a>
+              <ul class="dropdown-menu">
+                <li><a href="/users/me"><%= current_user.username %></a></li>
+                <li class="divider"></li>
+                <li><a href="/signout">Log Out</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a class="predict" href="/predictions/new" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new" title="Make a prediction">
+                <span class="collapseText">Predict</span>
+              </a>
+            </li>
+            <li>
+              <a class="search <% if params[:controller] == 'search' %> active <% end %>" href="/search" title="Search">
+                <span class="collapseText">Search</span>
+              </a>
+            </li>
+          </ul>  
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/users/me"><span class="collapseText">My Account</span></a></li>
+            <li><a href="/signout"><span class="collapseText">Log Out</span></a></li>
+          </ul>                                    
+        </div>
+      </div>
+    </header>    
+    <div class="content container" id="<%= controller_name%>:<%= action_name %>:container">
+      <%= yield %>
+    </div> 
+    <div class="modal fade" id="createPredictionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>
+    <div class="modal fade" id="sharePrediction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-47440970-1', 'knoda.com');
+      ga('send', 'pageview');
+    </script>        
+  </body>
+</html>

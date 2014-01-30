@@ -1,0 +1,31 @@
+<div class="modal fade" id="badge-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <% if (unseen_badges.size > 1) %>
+        <h4 class="modal-title">You won some new badges!</h4>
+        <% else %>
+        <h4 class="modal-title">You won a new badge!</h4>
+        <% end %>
+      </div>        
+      <div class="modal-body">
+    <div class="row" style="margin-top:20px">
+      <% unseen_badges.each do |i| %>
+      <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+          <%= image_tag("badges/#{i.name}.png") %>
+        </a>
+      </div>
+      <%end%>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Thanks!</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+  $('#badge-modal').modal()
+</script>

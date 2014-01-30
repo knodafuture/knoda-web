@@ -1,0 +1,12 @@
+<div class="row">
+	<table class="table table-bordered">
+	  <% @activities.each do |i| %>	  	
+	    <tr <% if not i.seen %> style="background-color:#efefef" <% end%>>
+	    	<td><%= image_tag(activity_icon(i)) %></td>
+	    	<td>
+	    		<a href="/predictions/<%= i.prediction_id %>"><%= i.title %> "<%= i.prediction_body %>"</a>
+	    	</td>
+	    </tr>
+	  <% end %>
+	</table>
+</div>

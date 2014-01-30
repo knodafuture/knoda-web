@@ -1,0 +1,24 @@
+<%= render partial: "users/stats", locals: {user: @user} %>
+
+<% if false %>
+<div class="row">
+  <div class="col-xs-12">
+    <a href="/users/me/avatar" class="btn btn-primary">Change Avatar</a>
+    Change Password
+  </div>
+</div>
+<script>
+  $('form.changePassword').submit( function(e) {
+    e.preventDefault();
+    $.ajax({
+        type: 'POST',
+        cache: false,
+        url: $(this).attr('action'),
+        data: $(this).serialize(), 
+        success: function(msg) {
+            console.log(msg)
+        }
+    });
+  });
+</script>
+<% end%>

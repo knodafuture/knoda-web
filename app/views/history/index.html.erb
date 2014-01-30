@@ -1,0 +1,8 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'prediction_actions' %>
+<% end %>
+<div class="panel-group" id="historyList">
+	  <% @challenges.each do |i| %>
+	    <%= render partial: "predictions/prediction", locals: {prediction: i.prediction, collapseState: ''} %>
+	  <% end %>
+</div>

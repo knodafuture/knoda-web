@@ -1,0 +1,3 @@
+<% @predictions.each do |i| %>
+  <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
+<% end %>

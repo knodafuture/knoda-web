@@ -1,3 +1,44 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  $('.getMorePredictions').click (e) ->
+    $.ajax
+      url: "/predictions?offset=#{currentOffset+pageSize}"
+      type: "GET"
+      success: (x) ->
+        currentOffset = currentOffset + pageSize
+        $('table').append($(x))
+        console.log $(x) 
+      error: (xhr, status) ->
+        console.log "Sorry, there was a problem!"
+      complete: (xhr, status) ->
+        console.log "The request is complete!"   
+
+  $('.collapse').collapse(
+    toggle: false
+  )
+  currentOffset = 0
+  pageSize = 25
+  loading = false
+  container = $('#predictionsList')
+  $(window).scroll ->
+    if $(window).scrollTop() + $(window).height() is $(document).height() and not loading
+      loading = true
+      startLoading()
+      tag = getUrlVars()["tag"]
+      if tag
+        url = "/predictions?tag=#{tag}&offset=#{currentOffset+pageSize}&limit=#{pageSize}" 
+      else
+        url = "/predictions?offset=#{currentOffset+pageSize}&limit=#{pageSize}"
+      $.ajax
+        url: url
+        type: "GET"
+        success: (x) ->
+          currentOffset = currentOffset + pageSize
+          container.append($(x))
+          loading = false
+          unbindAll();
+          bindAll();
+          stopLoading()
+        error: (xhr, status) ->
+          console.log "Sorry, there was a problem!"
+        complete: (xhr, status) ->
+          console.log "The request is complete!"       

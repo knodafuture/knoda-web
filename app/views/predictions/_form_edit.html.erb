@@ -1,0 +1,98 @@
+<%= simple_form_for @prediction, :html=> { class: 'form-horizontal' } do |f| %>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <div class="modal-title" id="myModalLabel">CHANGE PREDICTION</div>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-danger" style="display:none">
+            <p>Hold on, your prediction isn't ready yet.  You'll need to</p>
+            <ul style="padding-left:30px">
+            </ul>
+        </div>
+        <label for="prediction_resolution_date">I'll Knoda Result On...</label>
+        <div class="form-group">
+          <input type="text" name="prediction[resolution_date]" id="prediction_resolution_date" style="display:none;"/>
+          <div class="input-group input-group-xs" style="display:inline-block;width:49%">
+            <input type="text" class="datepicker form-control" id="prediction_resolution_date_date" autocomplete="false"/>
+          </div>
+          <div class="bootstrap-timepicker input-group input-group-xs"  style="display:inline-block;width:49%">
+            <input id="prediction_resolution_date_time" type="text" class="form-control" autocomplete="false" /><i class="icon-time"></i>
+          </div>
+        </div>        
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      <%= f.button :submit , :class => 'btn btn-success' %>
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+<% end %>            
+<script>
+  var updateDate = function(target,date, time) {
+      m = moment(date).startOf('day')
+      if (time.meridian == 'AM') {
+        m.add('hours', time.hours)
+      } else {
+        m.add('hours', time.hours+12)
+      }
+      m.add('minutes', time.minutes)
+      target.val(m.toISOString());
+  }
+
+  var clearValidation = function() {
+    $('#new_prediction .alert ul').empty()
+    $('#new_prediction .alert').hide()
+  }
+  var validateUpdatePrediction = function() {
+    clearValidation()
+    var resolution_date = moment($('#prediction_resolution_date').val())
+    var errors = []
+    if (resolution_date.isBefore(moment()))
+      errors.push({ msg: 'Set a resolution date in the future.'})              
+    if (errors.length == 0) {
+      return true
+    }else {
+      $('#edit_prediction_<%= @prediction.id%> .alert').show()
+      for (var i in errors) {
+        $('#edit_prediction_<%= @prediction.id%> .alert ul').append("<li>" + errors[i].msg + "</li>")
+      }
+      return false
+    }
+  }
+
+$(function() {
+ $('textarea').maxlength({
+    alwaysShow: true 
+  }); 
+  // Form Submission
+  $('#edit_prediction_<%= @prediction.id%>').on('submit', function(e) {
+    e.preventDefault()
+    if (validateUpdatePrediction()) {
+      updatePrediction(<%= @prediction.id%>, $('#edit_prediction_<%= @prediction.id%>').serialize())
+    } 
+  });
+  //Set defaults
+  $('#prediction_resolution_date').val(moment().add('minutes', 2).toISOString())
+  // Resolution_date
+  $("input#prediction_resolution_date_date").datepicker({
+    startDate: moment().format("MM/DD/YYYY"),
+    todayBtn: true,
+    autoclose: true,
+    todayHighlight: true    
+  }).on('changeDate', function(e) {
+    x = moment($('input#prediction_resolution_date_time').val(), 'hh:mm A');
+    updateDate($('#prediction_resolution_date'), $("input#prediction_resolution_date_date").datepicker('getDate'), {hours : x.hours(), minutes: x.minutes(), meridian: 'AM'});
+  });
+  $("input#prediction_resolution_date_date").datepicker('update', new Date());
+  $('input#prediction_resolution_date_time').timepicker({
+    template: false,
+    showInputs: false,
+    minuteStep: 5,
+    defaultTime: moment().add('minutes',2).format('hh:mm A')
+  }).on('changeTime.timepicker', function(e) {
+    updateDate($('#prediction_resolution_date'), $("input#prediction_resolution_date_date").datepicker('getDate'), e.time);
+  });  
+});
+</script>

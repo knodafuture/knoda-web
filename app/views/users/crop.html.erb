@@ -1,0 +1,50 @@
+<% content_for :head do %>
+  <script language="Javascript">
+  function showPreview(coords)
+  {
+    var rx = 100 / coords.w;
+    var ry = 100 / coords.h;
+    console.log($('.jcrop-holder img').first().width());
+    var ratio = <%= @user.avatar_geometry(:original).width %> / $('.jcrop-holder img').first().width(); 
+
+    $('#preview').css({
+      width: Math.round(rx * <%= @user.avatar_geometry(:big).width.to_i %>) + 'px',
+      height: Math.round(ry * <%= @user.avatar_geometry(:big).height.to_i %>) + 'px',
+      marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+      marginTop: '-' + Math.round(ry * coords.y) + 'px'
+    });
+    $('#crop_x').val(Math.round(coords.x * ratio));
+    $('#crop_y').val(Math.round(coords.y * ratio));
+    $('#crop_w').val(Math.round(coords.w * ratio));
+    $('#crop_h').val(Math.round(coords.h * ratio));
+  }
+
+  $(function() {
+    $('#cropbox').Jcrop({
+        onSelect: showPreview,
+        onChange: showPreview,
+        setSelect:   [ 20, 20, 324, 324 ],
+        aspectRatio: 1/1
+      });
+  });
+  </script>
+<% end %>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <%= image_tag @user.avatar.url(:big), :id => 'cropbox', :height => 344 %>
+    <%= form_for(@user) do |f| %>
+    <div style="display:none">
+      <%= f.text_field :crop_x, :id => 'crop_x' %><br />
+      <%= f.text_field :crop_y, :id => 'crop_y' %><br />
+      <%= f.text_field :crop_w, :id => 'crop_w' %><br />
+      <%= f.text_field :crop_h, :id => 'crop_h' %><br />
+    </div>
+    <br />
+    <div class="form-group">
+      <%= f.submit "Use this image", class: 'btn btn-success' %>
+      <a href="/users/me/avatar" class="btn btn-info">Choose a different image</a>
+    </div>
+  </div>
+<% end %>
+</div>
