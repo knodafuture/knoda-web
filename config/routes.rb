@@ -1,6 +1,8 @@
 KnodaWeb::Application.routes.draw do
   root 'home#index'
   get 'start' => 'home#start'
+  get 'thebuzz' => 'home#start'
+  get '1mc' => 'home#start'
   
  devise_for :users, :controllers => {:sessions => 'sessions'}, :skip => [:sessions] do
     get '/'   => "home#index",       :as => :new_user_session
