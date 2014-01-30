@@ -33,8 +33,10 @@
           What do you think?
         </div>      
         <div class="row challenge-buttons" style="text-align:center">
-          <a href="/prediction/<%= prediction.id %>/agree" class="btn btn-lg btn-success agree <%= active_challenge(prediction, 'agree') %>">Agree</a>
-          <a href="/prediction/<%= prediction.id %>/disagree" class="btn btn-lg btn-success disagree <%= active_challenge(prediction, 'disagree') %>">Disagree</a>
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2">
+            <a href="/prediction/<%= prediction.id %>/agree" class="btn btn-lg btn-success agree <%= active_challenge(prediction, 'agree') %>">Agree</a>
+            <a href="/prediction/<%= prediction.id %>/disagree" class="btn btn-lg btn-success disagree <%= active_challenge(prediction, 'disagree') %>">Disagree</a>
+          </div>
         </div>
       <% end %>
       <% if (current_user.id == prediction.user.id) && prediction.is_expired? && !prediction.is_closed? %>

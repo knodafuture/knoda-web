@@ -49,9 +49,15 @@
   var updateDate = function(target,date, time) {
       m = moment(date).startOf('day')
       if (time.meridian == 'AM') {
-        m.add('hours', time.hours)
+        if (time.hours < 12) {
+          m.add('hours', time.hours)
+        }
       } else {
-        m.add('hours', time.hours+12)
+        if (time.hours < 12) {
+          m.add('hours', time.hours+12)
+        } else {
+          m.add('hours', time.hours)
+        }
       }
       m.add('minutes', time.minutes)
       target.val(m.toDate());
@@ -68,6 +74,7 @@
     var expires_at = moment($('#prediction_expires_at').val())
     var resolution_date = moment($('#prediction_resolution_date').val())
     console.log(expires_at);
+    console.log(resolution_date);
     var errors = []
     if (body == '')
       errors.push({msg: 'Enter a short prediction.'})
@@ -84,7 +91,6 @@
     if (resolution_date.isBefore(moment()))
       errors.push({ msg: 'Set a resolution date in the future.'})              
     if (errors.length == 0) {
-      console.log($('#new_prediction').serialize());
       return true
     }else {
       $('#new_prediction .alert').show()

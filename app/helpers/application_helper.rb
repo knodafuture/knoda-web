@@ -19,7 +19,7 @@ module ApplicationHelper
     if user.avatar_image
       return user.avatar_image[:small]
     else
-      return 'http://placehold.it/100x100'
+      return image_path('avatars/avatar_1@2x.png')
     end
   end
 
@@ -27,7 +27,7 @@ module ApplicationHelper
     if user.avatar_image
       return user.avatar_image[:big]
     else
-      return 'http://placehold.it/344x344'
+      return image_path('avatars/avatar_1@2x.png')
     end
   end  
 
@@ -81,8 +81,6 @@ module ApplicationHelper
   def active_challenge(prediction, challengeType)
     c = my_challenge(prediction)
     if c
-      puts c.agree
-      puts challengeType
       if c.agree and challengeType == 'agree'
         return 'userAgrees'
       end
