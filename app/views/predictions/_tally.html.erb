@@ -8,7 +8,7 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-xs-6">
+	<div class="col-xs-6 agreeeUsersList">
 		<% @agreeUsers.each do |i| %>
 				<p><a href="/users/<%= i.username %>"><%= i.username %></a>
 					 <% if i.verified_account %>
@@ -17,7 +17,7 @@
           		</p>
 		<% end %>
 	</div>
-	<div class="col-xs-6 right">
+	<div class="col-xs-6 right disagreeUsersList">
 		<% @disagreeUsers.each do |i| %>
 				<p><a href="/users/<%= i.username %>"><%= i.username %></a>
 					 <% if i.verified_account %>

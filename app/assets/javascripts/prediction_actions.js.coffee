@@ -7,12 +7,17 @@ createChallenge = (prediction_id, agree) ->
     type: "POST"
     dataType: "json"
     success: (json) ->
+      el = $(".predictionContainer[data-prediction-id=#{prediction_id}]")
       if agree
-        $(".predictionContainer[data-prediction-id=#{prediction_id}] .agree").addClass('active')
-        $(".predictionContainer[data-prediction-id=#{prediction_id}] .disagree").removeClass('active')
+        el.find(".agree").addClass('active')
+        el.find(".disagree").removeClass('active')
       else
-        $(".predictionContainer[data-prediction-id=#{prediction_id}] .agree").removeClass('active')
-        $(".predictionContainer[data-prediction-id=#{prediction_id}] .disagree").addClass('active')      
+        el.find(".agree").removeClass('active')
+        el.find(".disagree").addClass('active')   
+      el.find(".agree-percentage").text(json.prediction_agree_percent)
+      if el.find('.disagreeUsersList').length > 0
+        loadTally(el, prediction_id)
+
     error: (xhr, status) ->
       console.log "Sorry, there was a problem!"
     complete: (xhr, status) ->
@@ -58,6 +63,27 @@ callBS = (prediction_id) ->
       dataType: "json"
       success: (json) ->
         window.location.reload()
+
+loadTally = (el, prediction_id) ->
+    $.ajax
+      url: "/predictions/#{prediction_id}/tally"
+      type: "GET"
+      success: (html) ->
+        el.find('.tally-content').html(html)
+      error: (xhr, status) ->
+        console.log "Sorry, there was a problem!"
+      complete: (xhr, status) ->
+        stopLoading();
+        console.log "The request is complete!" 
+
+loadComments = (el, prediction_id) ->
+    $.ajax
+      url: "/predictions/#{prediction_id}/comments"
+      type: "GET"
+      success: (html) ->
+        el.find('.comments-content').html(html)
+      complete: (xhr, status) ->
+        stopLoading();
 
 window.updatePrediction = (prediction_id, body) ->
   $.ajax
@@ -121,6 +147,9 @@ window.bindAll = () ->
     el.find('.comments-content').show()
     el.find('a.comments').addClass('active')
     el.find('a.tally').removeClass('active')
+    #prediction_id = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
+    #startLoading();
+    #loadComments(el, prediction_id);    
 
   $('a.tally, .tallyText').click (e) ->
     e.preventDefault()
@@ -131,16 +160,7 @@ window.bindAll = () ->
     el.find('a.comments').removeClass('active')    
     prediction_id = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
     startLoading();
-    $.ajax
-      url: "/predictions/#{prediction_id}/tally"
-      type: "GET"
-      success: (html) ->
-        el.find('.tally-content').html(html)
-      error: (xhr, status) ->
-        console.log "Sorry, there was a problem!"
-      complete: (xhr, status) ->
-        stopLoading();
-        console.log "The request is complete!" 
+    loadTally(el, prediction_id);
 
   $('a.bs').click (e) ->
     e.preventDefault()

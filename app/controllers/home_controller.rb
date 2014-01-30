@@ -27,6 +27,7 @@ class HomeController < ApplicationController
   def start
     begin
       if browser_is?("ios")
+        server_side('redirect', 'app_store')
         redirect_to "https://itunes.apple.com/us/app/knoda/id764642995"
       else
         redirect_to '/'
@@ -35,4 +36,26 @@ class HomeController < ApplicationController
       redirect_to '/'
     end
   end
+
+  private
+    def server_side(category, action, client_id = '555')
+      puts 'code?'
+      params = {
+        v: 1,
+        tid: "UA-47440970-1",
+        cid: client_id,
+        t: "event",
+        ec: category,
+        ea: action
+      }
+
+      begin
+        puts params
+        RestClient.get("http://www.google-analytics.com/collect", params: params, timeout: 4, open_timeout: 4)
+        return true
+      rescue  RestClient::Exception => rex
+        puts rex
+        return false
+      end
+    end
 end
