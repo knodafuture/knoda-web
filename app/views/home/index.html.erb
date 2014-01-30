@@ -86,7 +86,6 @@
         type: "POST",
         dataType: "json",
         success: function(json, status) {
-          console.log(json);
           window.location = json.location;
         },
         error: function(xhr, status) {
@@ -95,9 +94,6 @@
           for (var x in xhr.responseJSON.errors) {
             $('#new_user .alert ul').append('<li>' + x + ' ' + xhr.responseJSON.errors[x][0]);
           }
-        },
-        complete: function(xhr, status) {
-          return console.log("The request is complete!");
         }
       });      
     });
@@ -113,9 +109,6 @@
         },
         error: function(xhr, status) {
           $('#login_form .alert').show()
-        },
-        complete: function(xhr, status) {
-          return console.log("The request is complete!");
         }
       });      
     });
