@@ -49,9 +49,15 @@
   var updateDate = function(target,date, time) {
       m = moment(date).startOf('day')
       if (time.meridian == 'AM') {
-        m.add('hours', time.hours)
+        if (time.hours < 12) {
+          m.add('hours', time.hours)
+        }
       } else {
-        m.add('hours', time.hours+12)
+        if (time.hours < 12) {
+          m.add('hours', time.hours+12)
+        } else {
+          m.add('hours', time.hours)
+        }
       }
       m.add('minutes', time.minutes)
       target.val(m.toDate());
@@ -67,6 +73,8 @@
     var category = $('#new_prediction .category option:selected').val().trim()
     var expires_at = moment($('#prediction_expires_at').val())
     var resolution_date = moment($('#prediction_resolution_date').val())
+    console.log(expires_at);
+    console.log(resolution_date);
     var errors = []
     if (body == '')
       errors.push({msg: 'Enter a short prediction.'})
