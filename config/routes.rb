@@ -2,10 +2,10 @@ KnodaWeb::Application.routes.draw do
   root 'home#index'
   get 'start' => 'home#start'
   
- devise_for :users, :controllers => {:sessions => 'devise/sessions'}, :skip => [:sessions] do
+ devise_for :users, :controllers => {:sessions => 'sessions'}, :skip => [:sessions] do
     get '/'   => "home#index",       :as => :new_user_session
-    post '/signin'  => 'devise/sessions#create',    :as => :user_session
-    get '/signout'  => 'devise/sessions#destroy',   :as => :destroy_user_session
+    post '/signin'  => 'sessions#create',    :as => :user_session
+    get '/signout'  => 'sessions#destroy',   :as => :destroy_user_session
     get "/"   => "home#index",   :as => :new_user_registration
 
   resources :predictions do
