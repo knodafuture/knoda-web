@@ -10,9 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require console-polyfill
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.touch-punch.min
 //= require bootstrap.min
 //= require jquery.Jcrop.min
 //= require jquery.endless-scroll
@@ -68,5 +68,4 @@ function getUrlVars()
     }
     return vars;
 };
-console.log('launch');
 // Force recompile
