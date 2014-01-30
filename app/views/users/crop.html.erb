@@ -4,7 +4,6 @@
   {
     var rx = 100 / coords.w;
     var ry = 100 / coords.h;
-    console.log($('.jcrop-holder img').first().width());
     var ratio = <%= @user.avatar_geometry(:original).width %> / $('.jcrop-holder img').first().width(); 
 
     $('#preview').css({

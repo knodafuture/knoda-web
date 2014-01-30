@@ -67,7 +67,6 @@
     var category = $('#new_prediction .category option:selected').val().trim()
     var expires_at = moment($('#prediction_expires_at').val())
     var resolution_date = moment($('#prediction_resolution_date').val())
-    console.log(expires_at);
     var errors = []
     if (body == '')
       errors.push({msg: 'Enter a short prediction.'})
@@ -84,7 +83,6 @@
     if (resolution_date.isBefore(moment()))
       errors.push({ msg: 'Set a resolution date in the future.'})              
     if (errors.length == 0) {
-      console.log($('#new_prediction').serialize());
       return true
     }else {
       $('#new_prediction .alert').show()

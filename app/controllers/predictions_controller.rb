@@ -7,7 +7,6 @@ class PredictionsController < AuthenticatedController
   
   def share
     if user_signed_in?
-      puts 'logged in fool'
       redirect_to  action: 'show', id: @prediction.id
     else
       @prediction = Prediction.find(params[:id])
