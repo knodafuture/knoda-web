@@ -18,7 +18,7 @@ class ChallengesController < ApplicationController
       else
         @challenge = current_user.challenges.create(c)
       end
-      render :json => @challenge, :status => :created
+      render :status => :created
     else
       render :json => {success: false}, :status => :ok
     end
@@ -40,12 +40,10 @@ class ChallengesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_challenge
       @challenge = Challenge.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def challenge_params
       params.permit(:prediction_id, :agree)
     end
