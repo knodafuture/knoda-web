@@ -8,7 +8,7 @@ class HomeController < ApplicationController
         redirect_to "/users/me/avatar"
       end
     else
-      render :layout => 'prelogin'
+      render :layout => 'home'
     end
   end
 
