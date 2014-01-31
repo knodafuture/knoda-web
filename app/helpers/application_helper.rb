@@ -82,10 +82,10 @@ module ApplicationHelper
     c = my_challenge(prediction)
     if c
       if c.agree and challengeType == 'agree'
-        return 'userAgrees'
+        return 'active'
       end
       if !c.agree and challengeType == 'disagree'
-        return 'userDisagrees'
+        return 'active'
       end
     end
   end
