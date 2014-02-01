@@ -1,8 +1,8 @@
 class PredictionsController < AuthenticatedController
   
   before_filter :authenticate_user!
-  skip_before_action :authenticate_user!, only: [:share]
-  skip_before_action :unseen_activities, only: [:share]
+  skip_before_action :authenticate_user!, only: [:share, :show]
+  skip_before_action :unseen_activities, only: [:share, :show]
   before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments, :bs]
   
   def share
@@ -32,8 +32,15 @@ class PredictionsController < AuthenticatedController
   # GET /predictions/1
   # GET /predictions/1.json
   def show
-    @agreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: true})
-    @disagreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: false}) 
+    if not user_signed_in?
+      redirect_to action: 'share', id: @prediction.id
+    else
+      authenticate_user!
+      unseen_activities()
+      @agreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: true})
+      @disagreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: false}) 
+      render 'show'
+    end
   end
 
   # GET /predictions/new
