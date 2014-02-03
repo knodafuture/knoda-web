@@ -68,13 +68,19 @@ class UsersController < ApplicationController
           @user.reprocess_avatar
           redirect_to '/'
         else
-          redirect_to @user
+          respond_to do |format|
+            format.json { render json: @user, :status => 200 }
+            format.html { redirect_to @user }
+          end
         end
       else
         render :action => "crop"
       end
     else
-      render :action => 'edit'
+      respond_to do |format|
+        format.json { render json: @user.errors, :status => 400 }
+        format.html { render :action => 'edit'}
+      end
     end
   end  
 
@@ -87,6 +93,16 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def update_password
+    @user = User.find(current_user.id)
+    if @user.update(user_params)
+      sign_in @user, :bypass => true
+      render status: 200, json: {}
+    else
+      render :json => @user.errors, :status => :bad_request
+    end
+  end  
 
   private
     # Use callbacks to share common setup or constraints between actions.

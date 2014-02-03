@@ -2,42 +2,48 @@
   <div class="col-xs-2">
     <img src="<%= avatar_small(user) %>" class="avatar_small" /> 
   </div>
-  <div class="col-xs-10">
+  <div class="col-xs-10" >
     <div class="row" style="height:50px;text-align:center">
-      <div class="col-xs-12">
+      <div class="col-xs-12 col-sm-6">
         <div class="row stat-values">
-          <div class="col-xs-3">
+          <div class="col-xs-6">
             <%= user.points %>
           </div>
-          <div class="col-xs-3">
+          <div class="col-xs-6">
             <% if (user.won + user.lost) > 0 %>
               <%= (user.won.fdiv(user.won + user.lost) * 100).round(2) %>%
             <% else %>
               0%
             <% end %>
+          </div>           
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            points
           </div>
-          <div class="col-xs-3">
+          <div class="col-xs-6">
+            win%          
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <div class="row stat-values">
+          <div class="col-xs-6">
             <%= user.streak_as_text %>
           </div>
-          <div class="col-xs-3">
+          <div class="col-xs-6">
             <%= user.won %>-<%= user.lost %>
           </div>            
         </div>
         <div class="row">
-          <div class="col-xs-3">
-            points
-          </div>
-          <div class="col-xs-3">
-            win%          
-          </div>
-          <div class="col-xs-3">
+          <div class="col-xs-6">
             streak
           </div>
-          <div class="col-xs-3">
+          <div class="col-xs-6">
             W/L
           </div>            
         </div>
-      </div>                
+      </div>                      
     </div>
   </div>    
 </div>    

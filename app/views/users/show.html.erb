@@ -1,24 +1,55 @@
-<%= render partial: "users/stats", locals: {user: @user} %>
+<% content_for :head do %>
+  <%= javascript_include_tag 'users/show' %>
+<% end %>
+<div class="userContainer" data-user-id="<%= @user.id%>">
+  <%= render partial: "users/stats", locals: {user: @user} %>
 
-<% if false %>
-<div class="row">
-  <div class="col-xs-12">
-    <a href="/users/me/avatar" class="btn btn-primary">Change Avatar</a>
-    Change Password
+  <div class="row">
+    <% @user.errors.each do |e| %>
+      <%= e %>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-1">
+      <%= simple_form_for @user, :html=> { :class => 'form-horizontal', :id => 'edit_user' } do |f| %>
+        <h3>Your Username and Email </h3>
+        <div class="alert alert-danger" style="display:none">
+            <p>Hold on, we've got a problem.</p>
+            <ul style="padding-left:30px">
+            </ul>
+        </div>        
+        <div class="form-group">
+            <label for="username">Username</label>
+            <%= f.input_field :username, :class => 'form-control username', :maxlength => '20'  %>
+            <label for="email">Email Address</label>  
+            <%= f.input_field :email, :class => 'form-control email', :maxlength => '255'  %>
+        </div>
+          <%= f.button :submit , :class => 'btn btn-success btn-lg', :value => 'Save' %>
+      <% end %>
+
+      <br />      
+      <%= simple_form_for @user, :url => { :action => "update_password" }, :html=> { :class => 'form-horizontal', :id => "edit_user_password" } do |f| %>
+        <h3>Your Password</h3>
+        <div class="alert alert-danger" style="display:none">
+            <p>Hold on, we've got a problem.</p>
+            <ul style="padding-left:30px">
+            </ul>
+        </div>         
+        <div class="form-group">
+          <label for="password">Password</label>
+          <%= f.password_field :password, :class => 'form-control email', :maxlength => '50', :autocomplete => "off"  %>
+          <label for="password_confirmation">Confirm Password</label>
+          <%= f.password_field :password_confirmation, :class => 'form-control email', :maxlength => '50', :autocomplete => "off"  %>
+        </div>
+        <%= f.button :submit , :class => 'btn btn-success btn-lg', :value => 'Change Password' %>
+      <% end %>    
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-1">
+      <h3>Your Avatar</h3>
+      <div style="margin: 35px 0px;">
+        <img src="<%= avatar_big(@user) %>" class="avatar_big" /> 
+      </div>
+      <a href="/users/me/avatar" class="btn btn-success btn-lg">Change Avatar</a>
   </div>
 </div>
-<script>
-  $('form.changePassword').submit( function(e) {
-    e.preventDefault();
-    $.ajax({
-        type: 'POST',
-        cache: false,
-        url: $(this).attr('action'),
-        data: $(this).serialize(), 
-        success: function(msg) {
-            console.log(msg)
-        }
-    });
-  });
-</script>
-<% end%>

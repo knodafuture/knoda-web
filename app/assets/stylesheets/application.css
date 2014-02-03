@@ -9,10 +9,6 @@ body {
   padding-top: 50px;
 }
 
-img.avatar_big {
-	display:inline-block; height: 344px; width:344px;
-}
-
 #avatarSelection {
 	margin-top: 50px;
 }
