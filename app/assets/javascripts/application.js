@@ -10,15 +10,14 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require modernizr.custom
 //= require console-polyfill
-//= require jquery
-//= require jquery_ujs
+//= require date-polyfill
+//= require time-polyfill
 //= require lodash.min
 //= require bootstrap.min
 //= require jquery.Jcrop.min
 //= require jquery.endless-scroll
-//= require bootstrap-datepicker
-//= require bootstrap-timepicker
 //= require plupload.full.min
 //= require moment-with-langs.min
 //= require bootstrap-maxlength.min

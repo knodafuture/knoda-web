@@ -463,9 +463,6 @@ h3 {
 	width: 344px;
 }
 
-.datepicker.dropdown-menu {
-	z-index: 9999;
-}
 .jcrop-holder {
 	margin: auto
 }
@@ -477,4 +474,24 @@ h3 {
 			font-size: 14px;
 		}
 	}
+}
+
+.hasDatepicker{z-index:1151;}
+
+input[type="date"], input[type="time"] {
+  line-height: 34px;
+  height: 34px;
+  width:100%; text-align:center;
+}
+
+.time-picker-wrapper {
+	input {
+		height: 34px;
+		width: 75%;
+	}
+}
+
+.date-datepicker-button {
+	height: 34px;
+	width: 100%;
 }

@@ -98,13 +98,16 @@ class PredictionsController < AuthenticatedController
   end
 
   def close
-    authorize_action_for(@prediction)
-    close_as = prediction_close_params[:outcome]
-    if @prediction.close_as(close_as)
-      render json: @prediction, status: 201
-    else
-      render json: @prediction.errors, status: 422
-    end    
+    respond_to do |format|
+      authorize_action_for(@prediction)
+      close_as = prediction_close_params[:outcome]
+      if @prediction.close_as(close_as)
+        format.json { render json: @prediction, status: 201 }
+        format.html { render :partial => 'section2', :locals => { prediction: @prediction} }
+      else
+        render json: @prediction.errors, status: 422
+      end 
+    end
   end  
 
   # GET /prediction/1/tally.json

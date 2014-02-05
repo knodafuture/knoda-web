@@ -47,13 +47,17 @@ comment = (prediction_id, text) ->
 close = (prediction_id, outcome) ->
   $.ajax
     type: 'POST'
-    url: "/predictions/#{prediction_id}/close.json"
-    dataType: "json"
+    url: "/predictions/#{prediction_id}/close.html"
     data:
       prediction : 
         outcome: outcome
-    success: (json) ->
-      window.location.reload()
+      authenticity_token : $('meta[name=csrf-token').attr('content')
+    success: (section2) ->
+      el = $(".predictionContainer[data-prediction-id=#{prediction_id}]")
+      console.log 'success'
+      console.log el.find(".section-2")
+      console.log section2
+      el.find(".section-2").html(section2);    
 
 callBS = (prediction_id) ->
   if confirm("Don't be lame. Tell the truth. It's more fun this way. Is this really the wrong outcome?")
