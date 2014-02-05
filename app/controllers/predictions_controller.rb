@@ -73,7 +73,11 @@ class PredictionsController < AuthenticatedController
   # PATCH/PUT /predictions/1.json
   def update
     respond_to do |format|
-      if @prediction.update(prediction_params)
+      authorize_action_for(@prediction)
+      p = prediction_params
+      p[:activity_sent_at] = nil
+      Activity.where(user_id: @prediction.user.id, prediction_id: @prediction.id, activity_type: 'EXPIRED').delete_all
+      if @prediction.update(p)
         format.html { redirect_to @prediction, notice: 'Prediction was successfully updated.' }
         format.json { head :no_content }
       else

@@ -9,7 +9,7 @@
           <% end %>
         </a>
         <div class="col-md-3 myChallenge pull-right">
-            <% if (current_user.id == prediction.user_id && prediction.is_expired? && !prediction.is_closed?) %>
+            <% if (current_user.id == prediction.user_id && prediction.is_ready_for_resolution? && !prediction.is_closed?) %>
               <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= prediction.id %>">
               <%= image_tag('icons/sd/prediction_alert.png', :class => 'pull-right', :style => "margin-top: 12px") %>
               </a>

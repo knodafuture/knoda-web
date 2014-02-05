@@ -13,6 +13,7 @@
 //= require console-polyfill
 //= require jquery
 //= require jquery_ujs
+//= require lodash.min
 //= require bootstrap.min
 //= require jquery.Jcrop.min
 //= require jquery.endless-scroll

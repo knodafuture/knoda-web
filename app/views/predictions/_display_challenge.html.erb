@@ -1,2 +1,10 @@
-<a class="pull-right agree agreeButton userAgrees <%= agreeClass %>"></a>
-<a class="pull-right disagree disagreeButton userDisagrees <%= disagreeClass %>"></a>
+<% if canVote %>
+  <a class="pull-right agree userAgrees <%= agreeClass %>"></a>
+  <a class="pull-right disagree userDisagrees <%= disagreeClass %>"></a>
+<% else %>
+  <% if agreeClass == 'active' %>
+    <span class="pull-right userAgrees <%= agreeClass %>"></span>
+  <% else %>
+    <span class="pull-right userDisagrees <%= disagreeClass %>"></span>
+  <% end %>
+<% end %>

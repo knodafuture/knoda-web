@@ -22,7 +22,7 @@
     $('#cropbox').Jcrop({
         onSelect: showPreview,
         onChange: showPreview,
-        setSelect:   [ 20, 20, 324, 324 ],
+        setSelect:   [ 20, 20, 180, 180 ],
         aspectRatio: 1/1
       });
   });
@@ -30,8 +30,8 @@
 <% end %>
 
 <div class="row">
-  <div class="col-md-4 col-md-offset-4">
-    <%= image_tag @user.avatar.url(:big), :id => 'cropbox', :height => 344 %>
+  <div class="col-xs-12 col-sm-9 col-sm-offset-1 col-md-6 col-md-offset-2" style="text-align:center">
+    <%= image_tag @user.avatar.url(:big), :id => 'cropbox', :width => 300 %>
     <%= form_for(@user) do |f| %>
     <div style="display:none">
       <%= f.text_field :crop_x, :id => 'crop_x' %><br />
@@ -41,8 +41,10 @@
     </div>
     <br />
     <div class="form-group">
-      <%= f.submit "Use this image", class: 'btn btn-success' %>
-      <a href="/users/me/avatar" class="btn btn-info">Choose a different image</a>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6"><%= f.submit "Use this image", :class =>'btn btn-success', :style=>"width: 100%" %></div>
+        <div class="col-xs-12 col-sm-6"><a href="/users/me/avatar" class="btn btn-info" style="display:inline-block;width: 100%" >Choose a different image</a></div>
+      </div>
     </div>
   </div>
 <% end %>

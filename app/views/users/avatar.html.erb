@@ -29,9 +29,11 @@
         },
 
         FilesAdded: function(up, files) {
+          startLoading();
           uploader.start();
         },
         UploadComplete: function(up, files) {
+          stopLoading();
           window.location = '/users/me/crop'
         }
       }
