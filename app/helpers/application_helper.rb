@@ -40,13 +40,13 @@ module ApplicationHelper
       c = my_challenge(prediction)
       if c
         if c.agree
-          render :partial => "predictions/display_challenge", :locals => {:disagreeClass => '', :agreeClass => 'active'}
+          render :partial => "predictions/display_challenge", :locals => {:disagreeClass => '', :agreeClass => 'active', :canVote => !prediction.is_expired?}
         else
-          render :partial => "predictions/display_challenge", :locals => {:disagreeClass => 'active', :agreeClass => ''}
+          render :partial => "predictions/display_challenge", :locals => {:disagreeClass => 'active', :agreeClass => '', :canVote => !prediction.is_expired?}
         end
       else
         if (!prediction.is_expired?)
-          render :partial => "predictions/display_challenge", :locals => {:disagreeClass => '', :agreeClass => ''}
+          render :partial => "predictions/display_challenge", :locals => {:disagreeClass => '', :agreeClass => '', :canVote => true}
         end
       end
     end
