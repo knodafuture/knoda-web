@@ -45,6 +45,7 @@ comment = (prediction_id, text) ->
         console.log "The request is complete!"      
 
 close = (prediction_id, outcome) ->
+  startLoading()
   $.ajax
     type: 'POST'
     url: "/predictions/#{prediction_id}/close.html"
@@ -54,10 +55,12 @@ close = (prediction_id, outcome) ->
       authenticity_token : $('meta[name=csrf-token').attr('content')
     success: (section2) ->
       el = $(".predictionContainer[data-prediction-id=#{prediction_id}]")
-      console.log 'success'
-      console.log el.find(".section-2")
-      console.log section2
       el.find(".section-2").html(section2);    
+      if outcome
+        el.find('.myChallenge').html("<span class='pull-right won-lost-indicator won'>W</span>")
+      else
+        el.find('.myChallenge').html("<span class='pull-right won-lost-indicator lost'>L</span>")
+      stopLoading();
 
 callBS = (prediction_id) ->
   if confirm("Don't be lame. Tell the truth. It's more fun this way. Is this really the wrong outcome?")
