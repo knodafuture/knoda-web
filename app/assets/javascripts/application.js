@@ -22,6 +22,7 @@
 //= require moment-with-langs.min
 //= require bootstrap-maxlength.min
 //= require main
+//= require badge_notifier
 
 
 startLoading = function() {

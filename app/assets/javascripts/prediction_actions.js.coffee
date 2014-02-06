@@ -2,6 +2,7 @@ createChallenge = (prediction_id, agree) ->
   $.ajax
     url: "/challenges.json"
     data:
+      authenticity_token : $('meta[name=csrf-token').attr('content')
       prediction_id: prediction_id
       agree: agree
     type: "POST"
@@ -17,7 +18,7 @@ createChallenge = (prediction_id, agree) ->
       el.find(".agree-percentage").text(json.prediction_agree_percent)
       if el.find('.disagreeUsersList').length > 0
         loadTally(el, prediction_id)
-
+      window.badges.checkAndShow() 
     error: (xhr, status) ->
       console.log "Sorry, there was a problem!"
     complete: (xhr, status) ->
@@ -30,6 +31,7 @@ comment = (prediction_id, text) ->
     $.ajax
       url: "/comments"
       data:
+        authenticity_token : $('meta[name=csrf-token').attr('content')
         prediction_id: prediction_id
         text : text
       type: "POST"
@@ -61,6 +63,7 @@ close = (prediction_id, outcome) ->
       else
         el.find('.myChallenge').html("<span class='pull-right won-lost-indicator lost'>L</span>")
       stopLoading();
+      window.badges.checkAndShow()
 
 callBS = (prediction_id) ->
   if confirm("Don't be lame. Tell the truth. It's more fun this way. Is this really the wrong outcome?")

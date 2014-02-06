@@ -1,5 +1,4 @@
-class PredictionsController < AuthenticatedController
-  
+class PredictionsController < AuthenticatedController  
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:share, :show]
   skip_before_action :unseen_activities, only: [:share, :show]
@@ -23,9 +22,7 @@ class PredictionsController < AuthenticatedController
     if param_offset.to_i > 0
       render :partial => "predictions"
     else
-      @unseen_badges = current_user.badges.unseen
       render 'index'
-      @unseen_badges.update_all(seen: true)
     end
   end  
 

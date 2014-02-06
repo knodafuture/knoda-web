@@ -1,6 +1,7 @@
 class AuthenticatedController < ApplicationController
 
   before_filter :unseen_activities
+  skip_before_filter :verify_authenticity_token
 
   def unseen_activities
     current_user.predictions.readyForResolution.notAlerted.each do |p|
