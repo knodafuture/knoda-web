@@ -56,8 +56,8 @@
   }
   var validateNewPrediction = function() {
     clearValidation()
-    var body = $('#new_prediction .body').val().trim()
-    var category = $('#new_prediction .category option:selected').val().trim()
+    var body = $.trim($('#new_prediction .body').val())
+    var category = $.trim($('#new_prediction .category option:selected').val())
     var expires_at = moment($('#prediction_expires_at').val())
     var resolution_date = moment($('#prediction_resolution_date').val())
     var errors = []
@@ -115,7 +115,7 @@
       e.preventDefault()
       if (validateNewPrediction()) {
         createPrediction()
-      } 
+      }
     });  
   });
 </script>

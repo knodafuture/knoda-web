@@ -2,7 +2,7 @@ createChallenge = (prediction_id, agree) ->
   $.ajax
     url: "/challenges.json"
     data:
-      authenticity_token : $('meta[name=csrf-token').attr('content')
+      authenticity_token : $('meta[name=csrf-token]').attr('content')
       prediction_id: prediction_id
       agree: agree
     type: "POST"
@@ -26,12 +26,12 @@ createChallenge = (prediction_id, agree) ->
 
 
 comment = (prediction_id, text) ->
-  if text.trim().length > 0
+  if $.trim(text).length > 0
     startLoading()
     $.ajax
       url: "/comments"
       data:
-        authenticity_token : $('meta[name=csrf-token').attr('content')
+        authenticity_token : $('meta[name=csrf-token]').attr('content')
         prediction_id: prediction_id
         text : text
       type: "POST"
@@ -54,7 +54,7 @@ close = (prediction_id, outcome) ->
     data:
       prediction : 
         outcome: outcome
-      authenticity_token : $('meta[name=csrf-token').attr('content')
+      authenticity_token : $('meta[name=csrf-token]').attr('content')
     success: (section2) ->
       el = $(".predictionContainer[data-prediction-id=#{prediction_id}]")
       el.find(".section-2").html(section2);    

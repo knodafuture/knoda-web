@@ -51,6 +51,22 @@
 
 @import "loading";
 
+
+.img-retina(@file-1x; @file-2x; @width-1x; @height-1x) {
+  background-image: image-url("@{file-1x}");
+
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+    background-image: image-url("@{file-2x}");
+    background-size: @width-1x @height-1x;
+  }
+}
+
 a {
 	text-decoration: none;
 	cursor: pointer
@@ -90,49 +106,49 @@ h3 {
 
 	}
 	.home, .history, .activity, .badges, .search, .predict {
+		background-size: 25px 25px;
 		width: 50px;
 		height: 50px;
 		background-repeat: no-repeat;
 		background-position: center;
-		background-size: 25px 25px;		
 	}
 	.home {
-		background-image: image-url("icons/hd/nav_home.png");
+		.img-retina("icons/sd/nav_home.png", "icons/hd/nav_home.png", 25px, 25px);
 		&.active, &:active {
-			background-image: image-url("icons/hd/nav_home_active.png");
+			.img-retina("icons/sd/nav_home_active.png", "icons/hd/nav_home_active.png", 25px, 25px);
 		}	
 	}
 	.history {
-		background-image: image-url("icons/hd/nav_history.png");
+		.img-retina("icons/sd/nav_history.png", "icons/hd/nav_history.png", 25px, 25px);
 		&.active, &:active {
-			background-image: image-url("icons/hd/nav_history_active.png");
+			.img-retina("icons/sd/nav_history_active.png", "icons/hd/nav_history_active.png", 25px, 25px);
 		}
 	}
 
 	.activity {
-		background-image: image-url("icons/hd/nav_activity.png");
+		.img-retina("icons/sd/nav_activity.png", "icons/hd/nav_activity.png", 25px, 25px);
 		&.active, &:active {
-			background-image: image-url("icons/hd/nav_activity_active.png");
+			.img-retina("icons/sd/nav_activity_active.png", "icons/hd/nav_activity_active.png", 25px, 25px);
 		}		
 	}
 
 	.badges {
-		background-image: image-url("icons/hd/nav_badges.png");
+		.img-retina("icons/sd/nav_badges.png", "icons/hd/nav_badges.png", 25px, 25px);
 		&.active, &:active {
-			background-image: image-url("icons/hd/nav_badges_active.png");
+			.img-retina("icons/sd/nav_badges_active.png", "icons/hd/nav_badges_active.png", 25px, 25px);
 		}		
 	}	
 	.search {
 		margin-right: 20px;
-		background-image: image-url("icons/hd/nav_search.png");
+		.img-retina("icons/sd/nav_search.png", "icons/hd/nav_search.png", 25px, 25px);
 		&.active, &:active {
-			background-image: image-url("icons/hd/nav_search_active.png");
+			.img-retina("icons/sd/nav_search_active.png", "icons/hd/nav_search_active.png", 25px, 25px);
 		}			
 	}	
 	.predict {
-		background-image: image-url("icons/hd/nav_predict.png");
+		.img-retina("icons/sd/nav_predict.png", "icons/hd/nav_predict.png", 25px, 25px);
 		&.active, &:active {
-			background-image: image-url("icons/hd/nav_predict_active.png");
+			.img-retina("icons/sd/nav_predict.png", "icons/hd/nav_predict_active.png", 25px, 25px);
 		}			
 	}		
 	.dropdown-menu {
