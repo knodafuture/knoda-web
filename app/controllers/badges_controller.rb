@@ -5,7 +5,29 @@ class BadgesController < AuthenticatedController
   # GET /badges
   # GET /badges.json
   def index
-    @badges = current_user.badges
+    if params[:unseen]
+      @badges = current_user.badges.unseen
+    else
+      @badges = current_user.badges
+    end
+    respond_to do |format|
+      if params[:modal]
+        format.html { 
+          render :partial => 'unseen_modal', :locals => {unseen_badges: @badges} 
+          @badges.update_all(seen: true)
+        }
+        format.json { 
+          render :json => @badges
+        }
+      else
+        format.html { 
+          render 'index' 
+        }
+        format.json { 
+          render :json => @badges
+        }
+      end
+    end
   end
 
   private

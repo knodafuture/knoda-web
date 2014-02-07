@@ -2,6 +2,7 @@ createChallenge = (prediction_id, agree) ->
   $.ajax
     url: "/challenges.json"
     data:
+      authenticity_token : $('meta[name=csrf-token]').attr('content')
       prediction_id: prediction_id
       agree: agree
     type: "POST"
@@ -17,7 +18,7 @@ createChallenge = (prediction_id, agree) ->
       el.find(".agree-percentage").text(json.prediction_agree_percent)
       if el.find('.disagreeUsersList').length > 0
         loadTally(el, prediction_id)
-
+      window.badges.checkAndShow() 
     error: (xhr, status) ->
       console.log "Sorry, there was a problem!"
     complete: (xhr, status) ->
@@ -25,11 +26,12 @@ createChallenge = (prediction_id, agree) ->
 
 
 comment = (prediction_id, text) ->
-  if text.trim().length > 0
+  if $.trim(text).length > 0
     startLoading()
     $.ajax
       url: "/comments"
       data:
+        authenticity_token : $('meta[name=csrf-token]').attr('content')
         prediction_id: prediction_id
         text : text
       type: "POST"
@@ -45,15 +47,23 @@ comment = (prediction_id, text) ->
         console.log "The request is complete!"      
 
 close = (prediction_id, outcome) ->
+  startLoading()
   $.ajax
     type: 'POST'
-    url: "/predictions/#{prediction_id}/close.json"
-    dataType: "json"
+    url: "/predictions/#{prediction_id}/close.html"
     data:
       prediction : 
         outcome: outcome
-    success: (json) ->
-      window.location.reload()
+      authenticity_token : $('meta[name=csrf-token]').attr('content')
+    success: (section2) ->
+      el = $(".predictionContainer[data-prediction-id=#{prediction_id}]")
+      el.find(".section-2").html(section2);    
+      if outcome
+        el.find('.myChallenge').html("<span class='pull-right won-lost-indicator won'>W</span>")
+      else
+        el.find('.myChallenge').html("<span class='pull-right won-lost-indicator lost'>L</span>")
+      stopLoading();
+      window.badges.checkAndShow()
 
 callBS = (prediction_id) ->
   if confirm("Don't be lame. Tell the truth. It's more fun this way. Is this really the wrong outcome?")

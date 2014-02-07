@@ -8,6 +8,9 @@
     <link rel="shortcut icon" type="image/png" href="<%= image_path('favicon.png') %>" />        
     <link href='http://fonts.googleapis.com/css?family=Krona+One' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery.ui.all.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
     <link href="<%= local_stylesheet_path('application')%>" media="all" rel="stylesheet">
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag params[:controller] %>
@@ -100,13 +103,15 @@
         </div>
       </div>
     </header>    
-    <div class="content container" id="<%= controller_name%>:<%= action_name %>:container">
+    <div class="content container" id="<%= controller_name%>-<%= action_name %>-container">
       <%= yield %>
     </div> 
     <div class="modal fade" id="createPredictionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     </div>
     <div class="modal fade" id="sharePrediction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     </div>    
+    <div id="badge-modal-container">
+    </div>
     <%= render partial: "shared/google_analytics" %>
   </body>
 </html>

@@ -5,7 +5,6 @@ gem 'pg', '0.15.1'
 gem 'therubyracer'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
 gem "less-rails", "~> 2.4.2"
 gem 'jbuilder'
 

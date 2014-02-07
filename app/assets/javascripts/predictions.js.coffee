@@ -1,17 +1,4 @@
 $ ->
-  $('.getMorePredictions').click (e) ->
-    $.ajax
-      url: "/predictions?offset=#{currentOffset+pageSize}"
-      type: "GET"
-      success: (x) ->
-        currentOffset = currentOffset + pageSize
-        $('table').append($(x))
-        console.log $(x) 
-      error: (xhr, status) ->
-        console.log "Sorry, there was a problem!"
-      complete: (xhr, status) ->
-        console.log "The request is complete!"   
-
   $('.collapse').collapse(
     toggle: false
   )
@@ -38,7 +25,3 @@ $ ->
           unbindAll();
           bindAll();
           stopLoading()
-        error: (xhr, status) ->
-          console.log "Sorry, there was a problem!"
-        complete: (xhr, status) ->
-          console.log "The request is complete!"       

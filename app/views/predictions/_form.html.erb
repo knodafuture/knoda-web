@@ -20,23 +20,27 @@
         <label for="prediction_expires_at">Voting Ends On...</label>
         <div class="form-group">
           <input type="text" name="prediction[expires_at]" id="prediction_expires_at" style="display:none;"/>
-          <div class="input-group input-group-xs" style="display:inline-block;width:49%;">
-            <input type="text" class="datepicker form-control" id="prediction_expires_at_date"  autocomplete="false"/>
-          </div>
-          <div class="bootstrap-timepicker input-group input-group-xs"  style="display:inline-block;width:49%">
-            <input id="prediction_expires_at_time" type="text" class="form-control"  autocomplete="false"><i class="icon-time"></i>
+          <div class="row">
+            <div class="col-xs-6">
+              <input type="date" min="2014-01-01" value="2014-01-01"  name="prediction_expires_at_date"  autocomplete="false" />
+            </div>
+            <div class="col-xs-6 time-picker-wrapper">
+              <input name="prediction_expires_at_time" type="time" value="12:00" step="300" autocomplete="false" />
+            </div>
           </div>
         </div>
         <label for="prediction_resolution_date">I'll Knoda Result On...</label>
         <div class="form-group">
           <input type="text" name="prediction[resolution_date]" id="prediction_resolution_date" style="display:none;"/>
-          <div class="input-group input-group-xs" style="display:inline-block;width:49%">
-            <input type="text" class="datepicker form-control" id="prediction_resolution_date_date"  autocomplete="false"/>
+          <div class="row">
+            <div class="col-xs-6">
+              <input type="date" min="2014-01-01" value="2014-01-01" name="prediction_resolution_date_date"  autocomplete="false"/>
+            </div>
+            <div class="col-xs-6 time-picker-wrapper">
+                <input name="prediction_resolution_date_time" type="time" value="12:00" step="300" autocomplete="false" />
+            </div>
           </div>
-          <div class="bootstrap-timepicker input-group input-group-xs"  style="display:inline-block;width:49%">
-            <input id="prediction_resolution_date_time" type="text" class="form-control" autocomplete="false"><i class="icon-time"></i>
-          </div>
-        </div>        
+        </div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -44,37 +48,18 @@
     </div>
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
-<% end %>            
+<% end %>  
 <script>
-  var updateDate = function(target,date, time) {
-      m = moment(date).startOf('day')
-      if (time.meridian == 'AM') {
-        if (time.hours < 12) {
-          m.add('hours', time.hours)
-        }
-      } else {
-        if (time.hours < 12) {
-          m.add('hours', time.hours+12)
-        } else {
-          m.add('hours', time.hours)
-        }
-      }
-      m.add('minutes', time.minutes)
-      target.val(m.toDate());
-  }
-
   var clearValidation = function() {
     $('#new_prediction .alert ul').empty()
     $('#new_prediction .alert').hide()
   }
   var validateNewPrediction = function() {
     clearValidation()
-    var body = $('#new_prediction .body').val().trim()
-    var category = $('#new_prediction .category option:selected').val().trim()
+    var body = $.trim($('#new_prediction .body').val())
+    var category = $.trim($('#new_prediction .category option:selected').val())
     var expires_at = moment($('#prediction_expires_at').val())
     var resolution_date = moment($('#prediction_resolution_date').val())
-    console.log(expires_at);
-    console.log(resolution_date);
     var errors = []
     if (body == '')
       errors.push({msg: 'Enter a short prediction.'})
@@ -100,59 +85,37 @@
       return false
     }
   }
+  $(function() {    
+    oneMinuteInFuture = moment().add('minutes', 1)
+    twoMinutesInFuture = moment().add('minutes', 2)
+    $('input[name=prediction_expires_at_date]').attr('min', oneMinuteInFuture.format('YYYY-MM-DD')).val(oneMinuteInFuture.format('YYYY-MM-DD'))
+    $('input[name=prediction_expires_at_time]').val(oneMinuteInFuture.format('HH:mm:ss'))
+    $('input[name=prediction_resolution_date_date]').attr('min', twoMinutesInFuture.format('YYYY-MM-DD')).val(twoMinutesInFuture.format('YYYY-MM-DD'))
+    $('input[name=prediction_resolution_date_time]').val(twoMinutesInFuture.format('HH:mm:ss'))  
 
-$(function() {
- $('textarea').maxlength({
-    alwaysShow: true 
-  }); 
-  // Form Submission
-  $('#new_prediction').on('submit', function(e) {
-    e.preventDefault()
-    if (validateNewPrediction()) {
-      createPrediction()
-    } 
-  });
+    if (!Modernizr.inputtypes.date) {
+      $('input[type="date"]').inputDate();
+    }
+    if (!Modernizr.inputtypes.time) {
+      $('input[type="time"]').inputTime()
+    }  
 
-  //Set defaults
-  $('#prediction_expires_at').val(moment().add('minutes', 1).toISOString())
-  $('#prediction_resolution_date').val(moment().add('minutes', 2).toISOString())
-  // Expires_at
-  $("input#prediction_expires_at_date").datepicker({
-    startDate: moment().format("MM/DD/YYYY"),
-    todayBtn: true,
-    autoclose: true,
-    todayHighlight: true    
-  }).on('changeDate', function(e) {
-    x = moment($('input#prediction_expires_at_time').val(), 'hh:mm A');
-    updateDate($('#prediction_expires_at'), $("input#prediction_expires_at_date").datepicker('getDate'), {hours : x.hours(), minutes: x.minutes(), meridian: 'AM'});
+    $('input[name=prediction_resolution_date_time], input[name=prediction_resolution_date_date], input[name=prediction_expires_at_time], input[name=prediction_expires_at_date]').on('change', function(e) {
+      pe = moment($('input[name=prediction_expires_at_date]').val() + ' ' + $('input[name=prediction_expires_at_time]').val(), "YYYY-MM-DD HH:mm")
+      $('#prediction_expires_at').val(pe.toDate())
+      rd = moment($('input[name=prediction_resolution_date_date]').val() + ' ' + $('input[name=prediction_resolution_date_time]').val(), "YYYY-MM-DD HH:mm")
+      $('#prediction_resolution_date').val(rd.toDate())    
+    })
+
+    $('textarea').maxlength({
+      alwaysShow: true 
+    }); 
+    // Form Submission
+    $('#new_prediction').on('submit', function(e) {
+      e.preventDefault()
+      if (validateNewPrediction()) {
+        createPrediction()
+      }
+    });  
   });
-  $("input#prediction_expires_at_date").datepicker('update', new Date());
-  $('input#prediction_expires_at_time').timepicker({
-    template: false,
-    showInputs: false,
-    minuteStep: 5,
-    defaultTime: moment().add('minutes',1).format('hh:mm A')
-  }).on('changeTime.timepicker', function(e) {
-    updateDate($('#prediction_expires_at'), $("input#prediction_expires_at_date").datepicker('getDate'), e.time);
-  });
-  // Resolution_date
-  $("input#prediction_resolution_date_date").datepicker({
-    startDate: moment().format("MM/DD/YYYY"),
-    todayBtn: true,
-    autoclose: true,
-    todayHighlight: true    
-  }).on('changeDate', function(e) {
-    x = moment($('input#prediction_resolution_date_time').val(), 'hh:mm A');
-    updateDate($('#prediction_resolution_date'), $("input#prediction_resolution_date_date").datepicker('getDate'), {hours : x.hours(), minutes: x.minutes(), meridian: 'AM'});
-  });
-  $("input#prediction_resolution_date_date").datepicker('update', new Date());
-  $('input#prediction_resolution_date_time').timepicker({
-    template: false,
-    showInputs: false,
-    minuteStep: 5,
-    defaultTime: moment().add('minutes',2).format('hh:mm A')
-  }).on('changeTime.timepicker', function(e) {
-    updateDate($('#prediction_resolution_date'), $("input#prediction_resolution_date_date").datepicker('getDate'), e.time);
-  });  
-});
 </script>

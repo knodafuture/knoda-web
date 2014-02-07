@@ -1,5 +1,4 @@
-class PredictionsController < AuthenticatedController
-  
+class PredictionsController < AuthenticatedController  
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:share, :show]
   skip_before_action :unseen_activities, only: [:share, :show]
@@ -23,9 +22,7 @@ class PredictionsController < AuthenticatedController
     if param_offset.to_i > 0
       render :partial => "predictions"
     else
-      @unseen_badges = current_user.badges.unseen
       render 'index'
-      @unseen_badges.update_all(seen: true)
     end
   end  
 
@@ -98,13 +95,16 @@ class PredictionsController < AuthenticatedController
   end
 
   def close
-    authorize_action_for(@prediction)
-    close_as = prediction_close_params[:outcome]
-    if @prediction.close_as(close_as)
-      render json: @prediction, status: 201
-    else
-      render json: @prediction.errors, status: 422
-    end    
+    respond_to do |format|
+      authorize_action_for(@prediction)
+      close_as = prediction_close_params[:outcome]
+      if @prediction.close_as(close_as)
+        format.json { render json: @prediction, status: 201 }
+        format.html { render :partial => 'section2', :locals => { prediction: @prediction} }
+      else
+        render json: @prediction.errors, status: 422
+      end 
+    end
   end  
 
   # GET /prediction/1/tally.json
