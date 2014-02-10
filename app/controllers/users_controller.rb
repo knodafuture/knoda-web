@@ -49,9 +49,9 @@ class UsersController < ApplicationController
     if @user.save
       sign_in :user, @user
       if params[:user][:avatar].blank?
-        return render :json => {:success => true, :location => '/users/me/avatar'}
+        return render :json => {:success => true, :location => '/users/me/avatar?new_user=true'}
       else
-        return render :json => {:success => true, :location => '/users/me/crop'} 
+        return render :json => {:success => true, :location => '/users/me/crop?new_user=true'} 
       end
     else
       return render :json => {:success => false, :errors => @user.errors}, :status => 400
