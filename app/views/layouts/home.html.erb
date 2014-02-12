@@ -40,22 +40,20 @@
  <body>
     <div id="wrap" class="home">
         <div class="container" style="margin: 0px; padding: 0px 0px; width: 100%">
-        	<div class="row">
-        		<div class="col-xs-12" style="text-align:center;background-color:#ffffff">
-        			<div style="margin-top: 10px;">
-        				<%= image_tag('knoda_logo.png', :style => 'vertical-align:middle') %>
-        				<p style="display:inline-block;font-family: 'Krona One', sans-serif; font-size: 48px;margin-bottom:0px;vertical-align:middle;color:#255b38">KNODA</p>
-        			</div>
-        		</div>
-        	</div>
           <%= yield %>
       </div>        
     </div>
-
     <div id="footer">
-      <div class="row center">
-        <a href="/about">About</a> | <a href="http://blog.knoda.com">Blog</a> | <a href="/terms">Terms</a> | <a href="/privacy">Privacy</a> | <a href="/support">Support</a>
-      </div>
+      <ul class="nav nav-pills">
+        <li class="disabled"><span style="padding-right:20px;">Knoda, LLC &copy; 2014</span></li>
+        <li class="disabled"><a href="/about">About</a></li>
+        <li class="disabled"><a href="http://blog.knoda.com">Blog</a></li>
+        <li class="disabled"><a href="/terms">Terms</a></li>
+        <li class="disabled"><a href="/privacy">Privacy</a></li>
+        <li class="disabled"><a href="/support">Support</a></li>
+        <li class="disabled"><a href="http://twitter.com/KNODAfuture" target="_blank"><%= image_tag("home/sd/twitter_icon.png") %></a></li>
+        <li class="disabled"><a href="http://facebook.com/KNODAfuture" target="_blank"><%= image_tag("home/sd/facebook_icon.png") %></a></li>
+      </ul>
     </div>
     <%= yield :bodyClose %>
   </body>

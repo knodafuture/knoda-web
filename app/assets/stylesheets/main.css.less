@@ -353,31 +353,45 @@ h3 {
 
 
 #footer {
-    height: 50px;
-    background-color: #1a4b2b;
-    color: @green-knoda-light;
-    padding-top: 20px;	
+    min-height: 50px;
+    background-color: darken(@green-knoda-dark, 10%);
+    color: lighten(@green-knoda-dark, 10%);
+    padding: 10px;	
     .sansLight;
+  	.disabled {
+  		padding-right: 10px;
+  		display:inline-block;
+  		cursor: pointer;
+  		a {
+  			cursor: pointer;
+  		}    		
+  	}
     a {
-    	color: @green-knoda-light;
+    	color: lighten(@green-knoda-dark, 10%);
     	text-decoration: none;
     	padding: 3px;
+    	img {
+    		padding-left: 10px;
+    	}
     }
 }
 
 
 .home {
+	.row {
+		margin:0px;
+	}
 	h1 {
 		color: @green-knoda-dark;
 		font-size: 1.5em;
-		.sansRegular;
+		.sansBold;
 		margin-top: 0px;
 	}
 	h3 {
 		color: @green-knoda-dark;
-		.sansLight;
+		.sansRegular;
 		margin: 2px;
-		font-size: 1.15em;
+		font-size: 1.0em;
 	}
 	.navbar {
 		margin-bottom: 0px;
@@ -394,7 +408,7 @@ h3 {
 	}
 	.signup {
 		text-decoration: none;
-		color: @green-knoda-light;
+		color: @green-knoda-dark;
 		font-size: 1.5em;
 		padding-left: .5em;
 		cursor: pointer;
@@ -418,16 +432,15 @@ h3 {
 		padding-right: 20px;
 		color: white;
 		h2 {
-
-			font-size: 1.1em;
-			.sansBold;
+			font-size: 1.5em;
+			.sansLight;
 			display: inline-block;
 		}
 		p {
-			.sansLight;
+			.sansRegular;
 			font-size:1em;
 			padding-left: 60px;
-			margin-bottom: 2px;
+			margin-bottom: 1.5em;
 		}
 	}
 }
@@ -510,4 +523,26 @@ input[type="date"], input[type="time"] {
 .date-datepicker-button {
 	height: 34px;
 	width: 100%;
+}
+
+.home-top {
+	.img-retina("home/sd/home_hero_left.jpg", "home/hd/home_hero_left.jpg", '12px', '425px');
+	background-repeat: repeat-x;
+	.right {
+		.img-retina("home/sd/home_hero_right.jpg", "home/hd/home_hero_right.jpg", '722px', '425px');
+		background-repeat: no-repeat;
+	}
+	
+}
+
+
+.nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+     zoom:1; /* hasLayout ie7 trigger */
+}
+
+.nav-tabs, .nav-pills {
+    text-align:center;
 }
