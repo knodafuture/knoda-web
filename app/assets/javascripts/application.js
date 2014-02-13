@@ -18,6 +18,7 @@
 //= require bootstrap.min
 //= require jquery.Jcrop.min
 //= require jquery.endless-scroll
+//= require placeholders.jquery.min
 //= require plupload.full.min
 //= require moment-with-langs.min
 //= require bootstrap-maxlength.min
