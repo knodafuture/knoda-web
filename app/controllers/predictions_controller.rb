@@ -15,7 +15,7 @@ class PredictionsController < AuthenticatedController
 
   def index
     if params[:tag]
-      @predictions = Prediction.recent.latest.tagged_with(params[:tag]).offset(param_offset).limit(param_limit)
+      @predictions = Prediction.recent.latest.where("'#{params[:tag]}' = ANY (tags)").offset(param_offset).limit(param_limit)
     else
       @predictions = Prediction.includes(:user,:comments).recent.latest.offset(param_offset).limit(param_limit)
     end
@@ -54,7 +54,10 @@ class PredictionsController < AuthenticatedController
   # POST /predictions
   # POST /predictions.json
   def create
-    @prediction = current_user.predictions.create(prediction_params)      
+    p = prediction_params
+    p[:tags] = [p[:tags]]
+    puts p
+    @prediction = current_user.predictions.create(p)      
     respond_to do |format|
       if @prediction.save
         format.html { redirect_to action: 'index' }
@@ -144,7 +147,7 @@ class PredictionsController < AuthenticatedController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prediction_params
-      params.require(:prediction).permit(:body, :expires_at, :resolution_date, :tag_list)
+      params.require(:prediction).permit(:body, :expires_at, :resolution_date, :tags)
     end    
 
     def prediction_close_params
