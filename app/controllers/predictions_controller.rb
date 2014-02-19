@@ -15,7 +15,7 @@ class PredictionsController < AuthenticatedController
 
   def index
     if params[:tag]
-      @predictions = Prediction.recent.latest.where("'#{params[:tag].ucase}' = ANY (tags)").offset(param_offset).limit(param_limit)
+      @predictions = Prediction.recent.latest.where("'#{params[:tag].upcase}' = ANY (tags)").offset(param_offset).limit(param_limit)
     else
       @predictions = Prediction.includes(:user,:comments).recent.latest.offset(param_offset).limit(param_limit)
     end
