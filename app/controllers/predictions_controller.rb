@@ -54,7 +54,10 @@ class PredictionsController < AuthenticatedController
   # POST /predictions
   # POST /predictions.json
   def create
-    @prediction = current_user.predictions.create(prediction_params)      
+    p = prediction_params
+    p[:tags] = [p[:tags]]
+    puts p
+    @prediction = current_user.predictions.create(p)      
     respond_to do |format|
       if @prediction.save
         format.html { redirect_to action: 'index' }
