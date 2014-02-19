@@ -15,7 +15,7 @@
           <%= f.input_field :body, :class => 'form-control body', :placeholder => 'Make a prediction...', :maxlength => '300'  %>
         </div>
         <div class="form-group">
-        <%= f.input_field :tag_list, :collection => ['SPORTS','ENTERTAINMENT','PERSONAL','BUSINESS','WEATHER', 'POLITICS', 'STOCKS','FUNNY','OTHER'], :class =>'form-control category', :prompt => 'Select a Category' %>
+        <%= f.input_field :tags, :collection => ['SPORTS','ENTERTAINMENT','PERSONAL','BUSINESS','WEATHER', 'POLITICS', 'STOCKS','FUNNY','OTHER'], :class =>'form-control category', :prompt => 'Select a Category' %>
         </div>
         <label for="prediction_expires_at">Voting Ends On...</label>
         <div class="form-group">
