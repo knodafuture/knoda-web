@@ -52,8 +52,8 @@ module ApplicationHelper
     end
   end
 
-  def display_challenge_icon_for_comment(prediction)
-      c = my_challenge(prediction)
+  def display_challenge_icon_for_comment(comment)
+      c = Challenge.where(:prediction_id => comment.prediction_id, :user_id => comment.user_id).first
       if c
         if c.agree
           image_tag('icons/sd/agree_active.png')
@@ -128,18 +128,27 @@ module ApplicationHelper
       else
         return nil
       end
-    end
+  end
 
-    def total_points(prediction)
-      if my_challenge(prediction)
-        my_challenge(prediction).total_points
-      end     
+  def total_points(prediction)
+    if my_challenge(prediction)
+      my_challenge(prediction).total_points
+    end     
+  end    
+
+  def local_stylesheet_path(source)
+    p = stylesheet_path("application")
+    tokens = p.split("/")
+    t = tokens[tokens.length-1]
+    return "/assets/#{t}"
+  end
+
+  def is_challenged_by_me(prediction)
+    l = prediction.challenges.select { |c| c.user_id == current_user.id}
+    if l.length > 0
+      return true
+    else
+      return false
     end    
-
-    def local_stylesheet_path(source)
-      p = stylesheet_path("application")
-      tokens = p.split("/")
-      t = tokens[tokens.length-1]
-      return "/assets/#{t}"
-    end
+  end
 end
