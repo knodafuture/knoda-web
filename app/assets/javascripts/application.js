@@ -22,7 +22,6 @@
 //= require plupload.full.min
 //= require moment-with-langs.min
 //= require bootstrap-maxlength.min
-//= require main
 
 
 startLoading = function() {

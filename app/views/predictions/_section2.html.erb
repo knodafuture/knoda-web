@@ -19,7 +19,7 @@
     <a class="btn btn-lg btn-success remind" style="width:25%;" data-toggle="modal" data-target="#editPrediction_<%= prediction.id %>" data-remote="/predictions/<%= prediction.id %>/edit">IDK Yet</a>
   </div>              
 <% end %>
-<% if prediction.is_closed? %>  
+<% if prediction.is_closed? && is_challenged_by_me(prediction)%>  
   <div class="row prediction_closed"> 
     <div class="col-xs-3 border-right">
       <div style="padding-top:5px;"><%= display_result_outcome_icon(prediction) %></div>
