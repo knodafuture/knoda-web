@@ -25,17 +25,19 @@ class HomeController < ApplicationController
   end
 
   def start
-    #begin
-    #  if browser_is?("ios")
-    #    server_side('redirect', 'app_store')
-    #    redirect_to "https://itunes.apple.com/us/app/knoda/id764642995"
-    #  else
-    #    redirect_to '/'
-    #  end
-    #rescue
-    #  redirect_to '/'
-    #end
-    redirect_to '/'
+    begin
+      if browser_is?("ios")
+        server_side('redirect', 'app_store')
+        redirect_to "https://itunes.apple.com/us/app/knoda/id764642995"
+      elsif browser_is?("android")
+        server_side('redirect', 'play_store')
+        redirect_to "https://play.google.com/store/apps/details?id=com.knoda.knoda"
+      else
+        redirect_to '/'
+      end
+    rescue
+      redirect_to '/'
+    end
   end
 
   private
