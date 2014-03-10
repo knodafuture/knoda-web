@@ -36,6 +36,12 @@ KnodaWeb::Application.routes.draw do
   resources :history
   resources :activities
   resources :search
+  resources :groups do
+    member do
+      get 'leaderboard'
+      get 'settings'
+    end
+  end
   
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'

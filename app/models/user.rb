@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
   has_many :apple_device_tokens, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :activities, :dependent => :destroy
+  has_many :memberships
+  has_many :groups, through: :memberships  
+  has_many :invitations
+  has_many :referrals  
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -216,4 +220,15 @@ class User < ActiveRecord::Base
   def remember_me
     true
   end  
+
+  def group_won(group_id, max_time)
+    r = self.challenges.includes(:prediction).select { |c| c.prediction.group_id == group_id and c.is_finished == true and c.is_right == true and c.updated_at < max_time}
+    r.length        
+  end
+
+  #31.days.ago
+  def group_lost(group_id, max_time)
+    r = self.challenges.includes(:prediction).select { |c| c.prediction.group_id == group_id and c.is_finished == true and c.is_right == false and c.updated_at < max_time}
+    r.length        
+  end   
 end

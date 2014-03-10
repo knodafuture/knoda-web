@@ -1,0 +1,16 @@
+<% @leaders.each do |l| %>
+  <div class="row">
+    <div class="col-xs-1 col-xs-offset-1">
+      <%= l[:rank] %>
+    </div>
+    <div class="col-xs-3">
+      <%= l[:username] %>
+    </div>
+    <div class="col-xs-3">
+      <%= l[:won] %>
+    </div>        
+    <div class="col-xs-3">
+      <%= winning_percentage(l[:won], l[:lost]) %>%
+    </div>            
+  </div>
+<% end %>

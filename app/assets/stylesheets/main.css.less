@@ -105,7 +105,7 @@ h3 {
 		margin: 0px;
 
 	}
-	.home, .history, .activity, .badges, .search, .predict {
+	.home, .history, .activity, .badges, .groups, .search, .predict {
 		background-size: 25px 25px;
 		width: 50px;
 		height: 50px;
@@ -138,6 +138,12 @@ h3 {
 			.img-retina("icons/sd/nav_badges_active.png", "icons/hd/nav_badges_active.png", 25px, 25px);
 		}		
 	}	
+	.groups {
+		.img-retina("icons/sd/nav_badges.png", "icons/hd/nav_badges.png", 25px, 25px);
+		&.active, &:active {
+			.img-retina("icons/sd/nav_badges_active.png", "icons/hd/nav_badges_active.png", 25px, 25px);
+		}			
+	}
 	.search {
 		margin-right: 20px;
 		.img-retina("icons/sd/nav_search.png", "icons/hd/nav_search.png", 25px, 25px);

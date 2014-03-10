@@ -23,7 +23,6 @@
 //= require moment-with-langs.min
 //= require bootstrap-maxlength.min
 
-
 startLoading = function() {
 	$('.loading-overlay').show();
 };

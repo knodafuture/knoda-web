@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.1'
-gem 'pg', '0.15.1'
+gem 'pg', '0.17.1'
 gem 'therubyracer'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -28,7 +28,7 @@ gem "browser_detect"
 gem 'rest-client', '1.6.7'
 gem 'mandrill_mailer'
 
-gem 'knoda_core', :git => "https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git", :branch => 'master'
+gem 'knoda_core', :git => "https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git", :branch => 'groups'
 # Use this to test local core engine changes
 #gem 'knoda_core', :path => "../knoda_core"
 
