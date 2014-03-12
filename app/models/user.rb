@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
-  # Adds `can_create?(resource)`, etc
-  searchkick
+  searchkick text_start: [:username]
   include Authority::UserAbilities
   
   after_create :registration_badges

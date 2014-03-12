@@ -42,7 +42,9 @@
     $('#new_group').on('submit', function(e) {
       e.preventDefault()
       if (validateNewGroup()) {
-        window.groups.create()
+        groupsView = new window.GroupsView()
+        groupsView.initializeSearch();        
+        groupsView.create()
       }
     });  
   });

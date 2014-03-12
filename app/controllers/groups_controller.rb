@@ -1,6 +1,6 @@
 class GroupsController < AuthenticatedController
   before_filter :authenticate_user!
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :settings, :leaderboard]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :settings, :leaderboard, :invite]
 
   # GET /groups
   # GET /groups.json
@@ -29,6 +29,18 @@ class GroupsController < AuthenticatedController
 
   def leaderboard
     @leaders = Group.weeklyLeaderboard(@group)
+  end
+
+  def settings
+    if @group.owned_by?(current_user)
+      render 'settings'
+    else
+      redirect_to("/groups/#{@group.id}")
+    end
+  end
+
+  def invite
+    render :partial => "invite", :locals => {:group => @group}
   end
 
   private

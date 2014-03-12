@@ -30,6 +30,9 @@ KnodaWeb::Application.routes.draw do
       get 'crop'
       post 'avatar_upload'
     end
+    collection do
+      get 'autocomplete'
+    end
   end
   resources :comments
   resources :badges
@@ -40,8 +43,10 @@ KnodaWeb::Application.routes.draw do
     member do
       get 'leaderboard'
       get 'settings'
+      get 'invite'
     end
   end
+  resources :invitations
   
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'

@@ -1,0 +1,44 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <div class="modal-title">INVITE USERS</div>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-12">
+          <form>
+            <div class="invitees"></div>
+            <input type="text" autocomplete="off" id="query" name="query" class="form-control" />
+          </form>
+          <ul class="matches">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+    </div>
+  </div>
+</div>
+<script>
+  groupsView = new window.GroupsView()
+  groupsView.group_id = <%= @group.id %>
+  groupsView.initializeSearch();
+  $('button').click(function(e) {
+    groupsView.inviteUsers()
+  });
+/*
+var users = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace('username'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  remote: "/users/autocomplete?query=%QUERY"
+});
+users.initialize();
+$('#query').typeahead(null, {
+  name: 'query',
+  displayKey: 'username',
+  source: users.ttAdapter()
+});
+*/
+</script>

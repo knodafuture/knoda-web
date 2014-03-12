@@ -14,7 +14,7 @@ gem 'aws-sdk'
 gem 'devise', '3.0.0.rc'
 gem 'authority', '2.6.0'
 gem 'bitly', '0.9.0'
-gem 'searchkick'
+gem 'searchkick', '0.5.3'
 gem 'acts-as-taggable-on', '2.4.1'
 gem 'jcrop-rails-v2', '~> 0.9.12.3'
 

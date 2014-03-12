@@ -1,6 +1,6 @@
 module GroupsHelper
   def user_rank(user, leaderboard)
-    match = leaderboard.index{|li|li[:user].id==user.id}
+    match = leaderboard.index{|li|li[:user_id]==user.id}
     return leaderboard[match][:rankText]
   end
 

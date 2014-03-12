@@ -1,0 +1,8 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "groups" %>
+<% end %>
+
+<a class="btn btn-primary" href="/groups/<%=@group.id%>/invite" data-toggle="modal" data-target="#groups-inviteUsers">Invite Users</a>
+
+<div class="modal fade" id="groups-inviteUsers" tabindex="-1" role="dialog" aria-hidden="true">
+</div>    
