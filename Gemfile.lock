@@ -1,13 +1,12 @@
-GIT
-  remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: 4d5af1d9789daf28b63d52df46d70e919c9c0a0c
-  branch: master
+PATH
+  remote: ../knoda_core
   specs:
     knoda_core (0.0.1)
       authority (= 2.6.0)
       aws-sdk
       bitly (= 0.9.0)
       devise (= 3.0.0.rc)
+      mandrill_mailer
       paperclip (= 3.4.2)
       rails (~> 4.0.0)
 
@@ -75,6 +74,7 @@ GEM
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.1)
     erubis (2.7.0)
+    excon (0.32.1)
     execjs (2.0.2)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
@@ -102,6 +102,13 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mandrill-api (1.0.51)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
+    mandrill_mailer (0.4.3)
+      actionpack
+      activesupport
+      mandrill-api (~> 1.0.9)
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.2)
@@ -211,6 +218,7 @@ DEPENDENCIES
   jcrop-rails-v2 (~> 0.9.12.3)
   knoda_core!
   less-rails (~> 2.4.2)
+  mandrill_mailer
   paperclip (= 3.4.2)
   pg (= 0.15.1)
   rails (= 4.0.1)
