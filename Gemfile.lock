@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: afed5ce2f98061a59cf5d4afc617dc72a78299c8
+  revision: 3316ba90d5b99265ea5ad8010267db1dda461226
   branch: groups
   specs:
     knoda_core (0.0.1)
@@ -170,7 +170,7 @@ GEM
     simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
-    sprockets (2.11.1)
+    sprockets (2.12.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)

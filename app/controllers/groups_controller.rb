@@ -1,5 +1,7 @@
 class GroupsController < AuthenticatedController
   before_filter :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:join]
+  skip_before_action :unseen_activities, only: [:join]
   before_action :set_group, only: [:show, :edit, :update, :destroy, :settings, :leaderboard, :invite]
 
   # GET /groups
@@ -37,6 +39,19 @@ class GroupsController < AuthenticatedController
     else
       redirect_to("/groups/#{@group.id}")
     end
+  end
+
+  def join
+    @invitation = Invitation.where(:code => params[:code]).first
+    if user_signed_in?
+      if current_user.memberships.where(:group_id => @invitation.group_id).size > 0
+        redirect_to("/groups/#{@invitation.group_id}")
+      else
+        render 'join'
+      end
+    else
+      render 'join_login', :layout => 'invitation'
+    end    
   end
 
   def invite

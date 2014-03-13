@@ -45,8 +45,12 @@ KnodaWeb::Application.routes.draw do
       get 'settings'
       get 'invite'
     end
+    collection do
+      get 'join'
+    end
   end
   resources :invitations
+  resources :memberships
   
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'

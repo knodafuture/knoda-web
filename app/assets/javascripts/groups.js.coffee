@@ -63,3 +63,23 @@ window.GroupsView = class GroupsView
       @search(e)
   isEmail: (email) ->
     /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test email  
+
+window.JoinGroupView = class JoinGroupView 
+  constructor: (group_id, code) ->
+    @group_id = group_id
+    @code = code
+    $('.joinButton').click @submitMembership
+  submitMembership: (e) =>
+    e.preventDefault()
+    console.log 'join group'
+    $.ajax
+      url: "/memberships.json"
+      type: "POST"
+      data: 
+        membership : 
+          group_id : @group_id
+          code: @code        
+        authenticity_token : $('meta[name=csrf-token]').attr('content')      
+      dataType: "json"
+      success: (x) =>
+        window.location = "/groups/#{@group_id}"

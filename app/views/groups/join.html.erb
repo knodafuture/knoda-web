@@ -1,0 +1,12 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "groups" %>
+<% end %>
+<% if @invitation != nil and @invitation.accepted == false %>
+  <h2><%= @invitation.user.username %> has invited you to join the group <%= @invitation.group.name %> on KNODA.</h2>
+  <a class="btn btn-primary joinButton">Click here to join </a>
+<% else %>
+  Your invitation is invalid
+<% end %>
+<script>
+  var joinGroupsView = new window.JoinGroupView(<%= @invitation.group_id %>, '<%= @invitation.code %>')
+</script>
