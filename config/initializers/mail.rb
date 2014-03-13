@@ -3,8 +3,8 @@ ActionMailer::Base.smtp_settings = {
     :port      => 587,
     :enable_starttls_auto => true,
     :user_name => "support@knoda.com",
-    :password  => "6wWeALaWdKbLcWZMYYESCg"
-    :authentication => 'login'
+    :password  => "6wWeALaWdKbLcWZMYYESCg",
+    :authentication => 'login',
     :domain => 'knoda.com'
   }
 ActionMailer::Base.delivery_method = :smtp
