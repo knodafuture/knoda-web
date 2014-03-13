@@ -1,5 +1,7 @@
-PATH
-  remote: ../knoda_core
+GIT
+  remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
+  revision: a215fdc554ab68eac7632f3757f46881884d53ec
+  branch: master
   specs:
     knoda_core (0.0.1)
       authority (= 2.6.0)
