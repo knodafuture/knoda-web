@@ -18,7 +18,7 @@
 
 // Components
 @import "twitter/bootstrap/component-animations";
-@import "twitter/bootstrap/glyphicons";
+@import "glyphicons";
 @import "twitter/bootstrap/dropdowns";
 @import "twitter/bootstrap/button-groups";
 @import "twitter/bootstrap/input-groups";
@@ -50,7 +50,6 @@
 @import "twitter/bootstrap/responsive-utilities";
 
 @import "loading";
-
 
 .img-retina(@file-1x; @file-2x; @width-1x; @height-1x) {
   background-image: image-url("@{file-1x}");
@@ -564,5 +563,33 @@ input[type="date"], input[type="time"] {
 		display:inline-block;
 		margin: 0.3em;
 		font-size: 1.0em;
+	}
+}
+
+#groups-index {
+	.group-thumb {
+		border: 1px solid @gray-lighter;
+		padding: 5px;
+		margin: 5px;
+		h3 {
+			margin: 5px;
+		}
+	}
+}
+
+#groups-leaderboard {
+	
+}
+
+#groups-settings {
+	.group-invite-buttons {
+		a.btn {
+			padding-top:10px;
+			padding-bottom: 10px;
+			width: 44%;
+			max-width: 250px;
+			margin-left:2px;
+			margin-right:2px;
+		}
 	}
 }

@@ -20,6 +20,7 @@ window.GroupsView = class GroupsView
     @invitees.splice 0, 0, user
     console.log @invitees
   search: _.throttle( ->
+      newMatchElement = (m) ->
       q = $('#query').val()
       if (q.length > 2)
         $.ajax
@@ -28,9 +29,19 @@ window.GroupsView = class GroupsView
           success: (x) =>
             $('.matches').empty()
             for m in x
-              l = $(document.createElement('li')).html(m.username).data('d', m)
+              imageUrl = m.avatar_image?.small || 'http://placehold.it/100x100'
+              l = $(document.createElement('div'))
+              l.addClass('col-sm-4 col-md-3')
+              l.html "<div class=\"thumbnail\">
+                <img src=\"#{imageUrl}\">
+                <div class=\"caption\">
+                  <p>#{m.username}</p>
+                </div>
+              </div>"
+              l.data('d', m)
               $(l).click (e) =>
                 @addInvitee($(e.currentTarget).data('d'))
+                $(e.currentTarget).remove()
               $('.matches').append(l)
             if @isEmail($.trim(q))
               l = $(document.createElement('li')).html(q).data('d', {email: q})

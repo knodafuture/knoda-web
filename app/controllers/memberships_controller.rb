@@ -1,5 +1,6 @@
 class MembershipsController < ApplicationController
   before_filter :authenticate_user!
+  before_action :set_membership, only: [:destroy]
 
   def create
     p = membership_params
@@ -18,8 +19,15 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def destroy
+    @membership.destroy
+  end  
+
   private
     def membership_params
       params.require(:membership).permit(:group_id, :code)
+    end    
+    def set_membership
+      @membership = Membership.find(params[:id])
     end    
 end  

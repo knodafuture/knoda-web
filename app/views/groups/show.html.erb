@@ -3,17 +3,18 @@
 <% end %>
 
 <div class="row" style="border-bottom: 2px solid #efefef;">
-  <div class="col-xs-6 col-sm-2" style="text-align:center;">
+  <div class="pull-left visible-lg visible-md" style="height:50px;">
     <img src="<%= avatar_small(@group) %>" class="avatar_small" /> 
   </div>
-  <div class="col-xs-6 col-sm-10" >
-    <h2><%= @group.name %></h2>
-    <p><%= user_rank(@user, @leaders) %></p>
-    <a class="btn btn-primary" href="/groups/<%= @group.id %>/leaderboard">Leaderboard</a>
+  <div class="pull-left">
+    <h2>Leader Name</h2>
+  </div>
+  <div class="pull-right" style="height: 50px; padding: 10px;">
+    <a class="btn btn-primary glyphicon glyphicon-align-justify" href="/groups/<%= @group.id %>/leaderboard"></a>
     <% if @group.owned_by?(@user) %>
-      <a class="btn btn-primary" href="/groups/<%= @group.id %>/settings">Settings</a>
-    <% end %>
-  </div>    
+      <a class="btn btn-primary glyphicon glyphicon-cog" href="/groups/<%= @group.id %>/settings"></a>
+    <% end %>    
+  </div>  
 </div>    
 
 <div class="panel-group" id="predictionsList">

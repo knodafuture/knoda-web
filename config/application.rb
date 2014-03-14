@@ -18,6 +18,9 @@ module KnodaWeb
 
     config.analytics_enabled = ENV['ANALYTICS_ENABLED'] || false
     config.lucky_orange_enabled = ENV['LUCKY_ORANGE_ENABLED'] || false
+
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
+
     config.assets.precompile << Proc.new do |path|
       if path =~ /\.(js)\z/
         full_path = Rails.application.assets.resolve(path).to_path

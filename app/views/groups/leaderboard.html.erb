@@ -1,16 +1,20 @@
-<% @leaders.each do |l| %>
-  <div class="row">
-    <div class="col-xs-1 col-xs-offset-1">
-      <%= l[:rank] %>
-    </div>
-    <div class="col-xs-3">
-      <%= l[:username] %>
-    </div>
-    <div class="col-xs-3">
-      <%= l[:won] %>
-    </div>        
-    <div class="col-xs-3">
-      <%= winning_percentage(l[:won], l[:lost]) %>%
-    </div>            
+<div id="groups-leaderboard">
+  <div class="row" style="margin: 10px 0px">
+      <ul class="nav nav-pills col-xs-12" style="text-align:left;">
+        <li><a href="#">Last 7 Days</a></li>
+        <li><a href="#">Last 30 Days</a></li>
+        <li><a href="#">All Time</a></li>
+      </ul>
   </div>
-<% end %>
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr><th>Rank</th><th>Username</th><th>Wins</th><th>Win %</th></tr>
+      </thead>
+      <tbody>
+      <% @leaders.each do |l| %>
+        <tr><td><%= l[:rank] %></td><td><%= l[:username] %></td><td><%= l[:won] %></td><td><%= winning_percentage(l[:won], l[:lost]) %>%</td></tr>
+      <% end %>
+      </tbody>
+    </table>
+</div>

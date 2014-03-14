@@ -105,7 +105,7 @@ class UsersController < ApplicationController
   end  
 
   def autocomplete
-    render json: User.search(params[:query], fields: [{:username => :text_start}], limit: 10)
+    @users = User.search(params[:query], fields: [{:username => :text_start}], limit: 10)
   end
 
   private

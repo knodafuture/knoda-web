@@ -1,7 +1,7 @@
 <% content_for :head do %>
   <%= javascript_include_tag "groups" %>
 <% end %>
-<% if @invitation != nil and @invitation.accepted == false %>
+<% if @invitation != nil and @invitation.accepted != true %>
   <h2><%= @invitation.user.username %> has invited you to join the group <%= @invitation.group.name %> on KNODA.</h2>
   <a class="btn btn-primary joinButton">Click here to join </a>
 <% else %>

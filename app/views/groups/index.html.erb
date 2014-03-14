@@ -1,24 +1,48 @@
 <% content_for :head do %>
   <%= javascript_include_tag "groups" %>
 <% end %>
-<div class="row" style="margin-top:20px">
-  <div class="col-xs-6 col-md-3">
-    <a class="new-group thumbnail" href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/groups/new" title="Create a new group">
-      <img src="http://placehold.it/100x100&text=new" />
-      <h3>Create a group</h3>
-      <p>Create a group, invite your friends</p>
-    </a>
-  </div>
-<% @groups.each do |i| %>
-  <div class="col-xs-6 col-md-3">
-    <a href="/groups/<%= i.id %>" class="thumbnail">
-      <img src="<%= i.avatar_image[:small] %>" />
-      <h3><%= i.name %></h3>
-      <p><%= i.description %></p>
-    </a>
-  </div>
-<% end %>
-</div>
+<div id="groups-index">
+  <div class="row" style="margin-top:20px">
+    <div class="col-xs-12 col-md-4 col-lg-3 group-thumb">
+      <div class="row">
+        <div class="col-xs-4">
+          <a class="new-group thumbnail" href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/groups/new" title="Create a new group">
+            <img src="http://placehold.it/100x100&text=new" />
+          </a>
+        </div>
+        <div class="col-xs-8">
+          <div class="row">
+            <h3>
+              <a class="new-group" href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/groups/new" title="Create a new group">
+                Create a group
+                </a>
+              </h3>
+          </div>
+          <div class="row">
+          </div>
+        </div>
+    </div>
+  </div>    
+  <% @groups.each do |i| %>
+    <div class="col-xs-12 col-md-4 col-lg-3 group-thumb">
+      <div class="row">
+        <div class="col-xs-4">
+          <a href="/groups/<%= i.id %>" class="thumbnail">
+            <img src="<%= i.avatar_image[:small] %>" />
+          </a>
+        </div>
+        <div class="col-xs-8">
+          <div class="row">
 
+            <h3><a href="/groups/<%= i.id %>"><%= i.name %></a></h3>
+          </div>
+          <div class="row">
+            Stats go here
+          </div>
+        </div>
+    </div>
+  <% end %>
+  </div>
+</div>
 <div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-hidden="true">
 </div>
