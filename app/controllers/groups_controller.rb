@@ -29,6 +29,18 @@ class GroupsController < AuthenticatedController
     render :json => @group
   end  
 
+  def update
+    respond_to do |format|
+      authorize_action_for(@group)
+      puts group_params
+      if @group.update(group_params)
+        format.json { render json: @group }
+      else
+        format.json { render json: @group.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def leaderboard
     @leaders = Group.weeklyLeaderboard(@group)
   end

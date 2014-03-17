@@ -18,7 +18,6 @@ window.GroupsView = class GroupsView
       labelText = user.email
     $('.invitees').append("<div class='label label-default'>#{labelText}</div>")
     @invitees.splice 0, 0, user
-    console.log @invitees
   search: _.throttle( ->
       newMatchElement = (m) ->
       q = $('#query').val()
@@ -82,7 +81,6 @@ window.JoinGroupView = class JoinGroupView
     $('.joinButton').click @submitMembership
   submitMembership: (e) =>
     e.preventDefault()
-    console.log 'join group'
     $.ajax
       url: "/memberships.json"
       type: "POST"
@@ -96,8 +94,10 @@ window.JoinGroupView = class JoinGroupView
         window.location = "/groups/#{@group_id}"
 
 window.GroupSettingsView = class GroupSettingsView
-  constructor: ->
-    $('#groups-settings .remove-member').click (e) ->
+  constructor: (options) ->
+    @group_id = options.group_id
+    @el = $('#groups-settings')
+    @el.find('.remove-member').click (e) ->
       $.ajax
         url: "/memberships/#{$(e.currentTarget).attr('data-membership-id')}.json"
         type: "DELETE"
@@ -105,3 +105,31 @@ window.GroupSettingsView = class GroupSettingsView
           authenticity_token : $('meta[name=csrf-token]').attr('content')              
         success: (x) =>
           $(e.currentTarget).parents('tr').remove()
+    $('body')
+      .on 'focus', '[contenteditable]', ->
+          $this = $(this)
+          $this.data 'before', $this.html()
+          return $this
+      .on 'blur paste', '[contenteditable]', ->
+          $this = $(this)
+          if $this.data('before') isnt $this.html()
+              $this.data 'before', $this.html()
+              $this.trigger('change')
+          return $this   
+      .on 'keydown', '[contenteditable]', (e) ->
+        $this = $(this)
+        if(e.which == 13)
+          $this.blur()
+          $this.trigger('change')
+          return false
+        else
+          return true
+    $('#groups-settings .group-editable').change (e) =>
+      $.ajax
+        url: "/groups/#{@group_id}.json"
+        type: "PUT"
+        data:
+          authenticity_token : $('meta[name=csrf-token]').attr('content')    
+          group:
+            name : @el.find('.name').text()
+            description: @el.find('.description').text()
