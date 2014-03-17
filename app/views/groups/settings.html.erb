@@ -28,8 +28,8 @@
   </div>
   <div class="row">
     <table class="table table-striped">
-      <% @group.users.order("username asc").each do |u| %>
-      <tr><td><%= u.username %><a class="pull-right" style="font-size:1.2em;">&times;</a></td></tr>
+      <% @group.memberships.each do |u| %>
+      <tr><td><%= u.user.username %><a class="pull-right remove-member" data-membership-id="<%= u.id %>" style="font-size:1.2em;">&times;</a></td></tr>
       <% end %>
     </table>    
   </div>
@@ -39,3 +39,7 @@
 
 <div class="modal fade" id="groups-inviteUsers" tabindex="-1" role="dialog" aria-hidden="true">
 </div>    
+
+<script>
+  view = new window.GroupSettingsView()
+</script>

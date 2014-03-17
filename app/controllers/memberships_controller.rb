@@ -20,7 +20,9 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
+    authorize_action_for(@membership)
     @membership.destroy
+    head :no_content
   end  
 
   private

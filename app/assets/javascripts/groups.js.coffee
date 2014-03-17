@@ -94,3 +94,14 @@ window.JoinGroupView = class JoinGroupView
       dataType: "json"
       success: (x) =>
         window.location = "/groups/#{@group_id}"
+
+window.GroupSettingsView = class GroupSettingsView
+  constructor: ->
+    $('#groups-settings .remove-member').click (e) ->
+      $.ajax
+        url: "/memberships/#{$(e.currentTarget).attr('data-membership-id')}.json"
+        type: "DELETE"
+        data: 
+          authenticity_token : $('meta[name=csrf-token]').attr('content')              
+        success: (x) =>
+          $(e.currentTarget).parents('tr').remove()
