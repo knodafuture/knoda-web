@@ -3,43 +3,70 @@
 <% end %>
 <div id="groups-index">
   <div class="row" style="margin-top:20px">
-    <div class="col-xs-12 col-md-4 col-lg-3 group-thumb">
-      <div class="row">
-        <div class="col-xs-4">
-          <a class="new-group thumbnail" href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/groups/new" title="Create a new group">
-            <img src="http://placehold.it/100x100&text=new" />
-          </a>
-        </div>
-        <div class="col-xs-8">
-          <div class="row">
-            <h3>
-              <a class="new-group" href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/groups/new" title="Create a new group">
-                Create a group
-                </a>
-              </h3>
+    <div class="col-xs-12 col-md-6 group-thumb">
+      <div class="thumbnail">
+        <div class="row">
+          <div class="pull-left">
+            <a class="new-group" href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/groups/new" title="Create a new group">
+              <img src="http://placehold.it/100x100&text=new" />
+            </a>
           </div>
-          <div class="row">
+          <div class="pull-left">
+            <div class="row">
+              <h3>
+                <a class="new-group" href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/groups/new" title="Create a new group">
+                  Create a group
+                  </a>
+                </h3>
+            </div>
+            <div class="row">
+            </div>
           </div>
-        </div>
+      </div>
     </div>
   </div>    
   <% @groups.each do |i| %>
-    <div class="col-xs-12 col-md-4 col-lg-3 group-thumb">
-      <div class="row">
-        <div class="col-xs-4">
-          <a href="/groups/<%= i.id %>" class="thumbnail">
-            <img src="<%= i.avatar_image[:small] %>" />
-          </a>
-        </div>
-        <div class="col-xs-8">
-          <div class="row">
-
-            <h3><a href="/groups/<%= i.id %>"><%= i.name %></a></h3>
+    <div class="col-xs-12 col-md-6 group-thumb">
+      <div class="thumbnail">
+        <div class="row">
+          <div class="pull-left">
+            <a href="/groups/<%= i.id %>">
+              <img src="<%= i.avatar_image[:small] %>" />
+            </a>
           </div>
-          <div class="row">
-            Stats go here
+          <div class="pull-left">
+            <div class="row row1">
+              <h3><a href="/groups/<%= i.id %>"><%= i.name %></a></h3>
+            </div>
+            <div class="row row2">
+              <div class="col-xs-6">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <%= my_rank(i) %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 statLabel">
+                    <p>rank (<%= group_size(i) %>)</p>
+                  </div>
+                </div>                
+              </div>
+              <div class="col-xs-6">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <%= leader_username(i) %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 statLabel">
+                    <p>current 7 day leader</p>
+                  </div>
+                </div>
+              </div>  
+            </div>
           </div>
         </div>
+      </div>
     </div>
   <% end %>
   </div>

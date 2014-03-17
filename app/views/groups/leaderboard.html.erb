@@ -1,19 +1,23 @@
 <div id="groups-leaderboard">
   <div class="row" style="margin: 10px 0px">
       <ul class="nav nav-pills col-xs-12" style="text-align:left;">
-        <li><a href="#">Last 7 Days</a></li>
-        <li><a href="#">Last 30 Days</a></li>
-        <li><a href="#">All Time</a></li>
+        <li <% if !params[:board] %>class="active"<%end %>><a href="/groups/<%= @group.id %>/leaderboard">Last 7 Days</a></li>
+        <li <% if params[:board] == 'monthly' %>class="active"<%end %>><a href="/groups/<%= @group.id %>/leaderboard?board=monthly">Last 30 Days</a></li>
+        <li <% if params[:board] == 'alltime' %>class="active"<%end %>><a href="/groups/<%= @group.id %>/leaderboard?board=alltime">All Time</a></li>
       </ul>
   </div>
   <div class="row">
     <table class="table table-striped">
-      <thead>
-        <tr><th>Rank</th><th>Username</th><th>Wins</th><th>Win %</th></tr>
-      </thead>
       <tbody>
       <% @leaders.each do |l| %>
-        <tr><td><%= l[:rank] %></td><td><%= l[:username] %></td><td><%= l[:won] %></td><td><%= winning_percentage(l[:won], l[:lost]) %>%</td></tr>
+        <tr class="row">
+          <td>
+            <div class="col-xs-1"><%= l[:rank] %></div>
+            <div class="col-xs-5"><span><%= l[:username] %></span><% if l[:verified_account] %><%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %><% end %></div>
+            <div class="col-xs-3"><%= l[:won] %></div>
+            <div class="col-xs-3"><%= winning_percentage(l[:won], l[:lost]) %>%</div>
+          </td>
+        </tr>
       <% end %>
       </tbody>
     </table>

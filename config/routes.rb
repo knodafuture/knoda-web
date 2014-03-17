@@ -44,6 +44,10 @@ KnodaWeb::Application.routes.draw do
       get 'leaderboard'
       get 'settings'
       get 'invite'
+      get 'avatar'
+      get 'default_avatar'
+      get 'crop'
+      post 'avatar_upload'
     end
     collection do
       get 'join'

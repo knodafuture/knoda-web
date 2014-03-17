@@ -2,19 +2,21 @@
   <%= javascript_include_tag 'prediction_actions' %>
 <% end %>
 
-<div class="row" style="border-bottom: 2px solid #efefef;">
-  <div class="pull-left visible-lg visible-md" style="height:50px;">
-    <img src="<%= avatar_small(@group) %>" class="avatar_small" /> 
+<div class="row">
+  <div class="col-xs-12" style="height:100px">
+    <div class="pull-left visible-lg visible-md" style="height:50px;">
+      <img src="<%= avatar_small(@group) %>" class="avatar_small" /> 
+    </div>
+    <div class="pull-left">
+      <h2><%= Group.weeklyLeaderboard(@group)[0][:username] %></h2>
+    </div>
+    <div class="pull-right" style="height: 50px; padding: 10px;">
+      <a class="btn btn-primary glyphicon glyphicon-align-justify" href="/groups/<%= @group.id %>/leaderboard"></a>
+      <% if @group.owned_by?(@user) %>
+        <a class="btn btn-primary glyphicon glyphicon-cog" href="/groups/<%= @group.id %>/settings"></a>
+      <% end %>    
+    </div>  
   </div>
-  <div class="pull-left">
-    <h2>Leader Name</h2>
-  </div>
-  <div class="pull-right" style="height: 50px; padding: 10px;">
-    <a class="btn btn-primary glyphicon glyphicon-align-justify" href="/groups/<%= @group.id %>/leaderboard"></a>
-    <% if @group.owned_by?(@user) %>
-      <a class="btn btn-primary glyphicon glyphicon-cog" href="/groups/<%= @group.id %>/settings"></a>
-    <% end %>    
-  </div>  
 </div>    
 
 <div class="panel-group" id="predictionsList">

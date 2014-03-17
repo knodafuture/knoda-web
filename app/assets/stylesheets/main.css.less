@@ -568,17 +568,34 @@ input[type="date"], input[type="time"] {
 
 #groups-index {
 	.group-thumb {
-		border: 1px solid @gray-lighter;
-		padding: 5px;
-		margin: 5px;
-		h3 {
-			margin: 5px;
+		.thumbnail {
+			img {
+				height: 100px;
+				width: 100px;
+				margin-left:20px;
+				margin-right: 10px;
+			}
+			h3 {
+				margin: 5px;
+			}
+			.statLabel {
+				font-size: .6em;
+			}
+			.row1, .row2 {
+				height: 50px;
+				margin: 0px;
+				padding: 0px;
+			}
 		}
 	}
 }
 
 #groups-leaderboard {
-	
+	img.verified-account {
+		padding-left: 0.5em;
+		padding-bottom: 0.2em;
+		vertical-align:middle;
+	}
 }
 
 #groups-settings {
