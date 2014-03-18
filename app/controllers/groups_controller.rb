@@ -34,11 +34,17 @@ class GroupsController < AuthenticatedController
     respond_to do |format|
       authorize_action_for(@group)
       if @group.update(group_params)
-        format.html { render :action => 'settings'}
+        format.html { 
+          @memberships = @group.memberships.where('user_id != ?', current_user.id)
+          render :action => 'settings'
+        }
         format.json { render json: @group }
       else
         format.json { render json: @group.errors, status: :unprocessable_entity }
-        format.html { render :action => 'settings'}
+        format.html { 
+          @memberships = @group.memberships.where('user_id != ?', current_user.id)
+          render :action => 'settings'
+        }
       end
     end
   end
@@ -58,6 +64,7 @@ class GroupsController < AuthenticatedController
 
   def settings
     if @group.owned_by?(current_user)
+      @memberships = @group.memberships.where('user_id != ?', current_user.id)
       render 'settings'
     else
       redirect_to("/groups/#{@group.id}")

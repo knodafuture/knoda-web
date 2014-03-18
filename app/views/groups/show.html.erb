@@ -4,30 +4,33 @@
 
 <div class="row">
   <div class="col-xs-12" style="height:100px">
-    <div class="pull-left visible-lg visible-md" style="height:50px;">
+    <div class="pull-left visible-sm" style="height:50px;">
       <img src="<%= avatar_small(@group) %>" class="avatar_small" /> 
     </div>
     <div class="pull-left">
       <h2><%= Group.weeklyLeaderboard(@group)[0][:username] %></h2>
+      <p style="font-size:0.75em;">current 7 day leader</p>
     </div>
     <div class="pull-right" style="height: 50px; padding: 10px;">
-      <a class="btn btn-primary glyphicon glyphicon-align-justify" href="/groups/<%= @group.id %>/leaderboard"></a>
+      <a class="btn-rankings" href="/groups/<%= @group.id %>/leaderboard">Rankings</a>
       <% if @group.owned_by?(@user) %>
-        <a class="btn btn-primary glyphicon glyphicon-cog" href="/groups/<%= @group.id %>/settings"></a>
+        <a class="btn-settings" href="/groups/<%= @group.id %>/settings">Settings</a>
       <% end %>    
     </div>  
   </div>
 </div>    
-
-<div class="panel-group" id="predictionsList">
-    <% @predictions.each do |i| %>
-      <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
-    <% end %>
-</div>
 <%if @predictions.size == 0 %>
 <div class="row empty-state">
   <div class="col-xs-12">
-    Empty State goes here.
+    <p>A group without predictions is lame-o.<br/>
+       Get things started and <a href="/predictions/new" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new" title="Make a prediction">make a prediction</a>.
+    </p>
   </div>
 </div>
+<% else %>
+  <div class="panel-group" id="predictionsList">
+      <% @predictions.each do |i| %>
+        <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
+      <% end %>
+  </div>
 <% end %>

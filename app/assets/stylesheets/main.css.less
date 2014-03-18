@@ -138,9 +138,9 @@ h3 {
 		}		
 	}	
 	.groups {
-		.img-retina("icons/sd/nav_badges.png", "icons/hd/nav_badges.png", 25px, 25px);
+		.img-retina("icons/nav/nav_groups.png", "icons/nav/nav_groups@2x.png", 25px, 25px);
 		&.active, &:active {
-			.img-retina("icons/sd/nav_badges_active.png", "icons/hd/nav_badges_active.png", 25px, 25px);
+			.img-retina("icons/nav/nav_groups_active.png", "icons/nav/nav_groups_active@2x.png", 25px, 25px);
 		}			
 	}
 	.search {
@@ -200,10 +200,14 @@ h3 {
 	padding-bottom: 0px;	
 }
 .predictionInfoLine3 {
-	background-color:white; padding: 0px 0px 5px 20px; 	
+	.img-retina("icons/group_prediction_badge.png", "icons/group_prediction_badge@2x.png", '13px', '12px');
+	background-color:white; padding: 0px 0px 5px 0px; 	
+	background-repeat: no-repeat;
+	background-position: 20px 2px;
+	padding-left: 40px;
 	color: @green-knoda-dark;
 	.sansBold;
-	font-size: 0.75em;	
+	font-size: 0.75em;
 }
 .commentInfoLine2 {
 	padding-bottom: 0px;
@@ -573,6 +577,12 @@ input[type="date"], input[type="time"] {
 		margin: 0.3em;
 		font-size: 1.0em;
 	}
+	form {
+		margin-bottom: 5px;
+	}
+	.thumbnail .caption {
+		padding: 2px;
+	}
 }
 
 #groups-index {
@@ -599,6 +609,33 @@ input[type="date"], input[type="time"] {
 	}
 }
 
+#groups-show-container {
+		.btn-settings, .btn-rankings {
+		height: 50px;
+		width: 60px;
+		display: inline-block;
+		margin: 10px 5px;
+		padding-top: 40px;
+		background-repeat: no-repeat;
+		background-position: center 10px;
+		text-decoration: none;
+		font-size: 0.75em;
+		text-align: center;
+	}
+	.btn-settings {
+		.img-retina("icons/settings_icon.png", "icons/settings_icon@2x.png", 24px, 24px);
+		&.active, &:active {
+			.img-retina("icons/settings_icon_active.png", "icons/settings_icon_active@2x.png", 24px, 24px);
+		}
+	}
+	.btn-rankings {
+		.img-retina("icons/rankings_icon.png", "icons/rankings_icon@2x.png", 24px, 24px);
+		&.active, &:active {
+			.img-retina("icons/rankings_icon_active.png", "icons/rankings_icon_active@2x.png", 24px, 24px);
+		}
+	}
+}
+
 #groups-leaderboard {
 	img.verified-account {
 		padding-left: 0.5em;
@@ -612,15 +649,41 @@ input[type="date"], input[type="time"] {
 		a.btn {
 			padding-top:10px;
 			padding-bottom: 10px;
-			width: 44%;
-			max-width: 250px;
+			width: 100%;
 			margin-left:2px;
 			margin-right:2px;
+			background-color: @green-knoda-dark;
+		 	border-color: @green-knoda-dark;
 		}
+		span.invite, span.share_link {
+			padding-left: 25px;
+			background-repeat: no-repeat;
+		}
+		span.invite {
+			.img-retina("icons/invite_icon.png", "icons/invite_icon@2x.png", 19px, 19px);
+		}
+		span.share_link {
+			.img-retina("icons/share_link_icon.png", "icons/share_link_icon@2x.png", 19px, 19px);
+		}
+	}
+	.name {
+		.sansBold;
+		font-size: 1.5em;
+		margin-bottom: 2px;
+	}
+	.description {
+		.sansLight;
 	}
 }
 
 .empty-state {
+	.img-retina("no_content_image.png", "no_content_image@2x.png", 150px, 150px);
 	text-align:center;
 	height:300px;
+	background-position: center top;
+	background-repeat: no-repeat;
+	padding-top: 155px;
+}
+.limit-size-small {
+	max-width:480px;margin: auto;
 }

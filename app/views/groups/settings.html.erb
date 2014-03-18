@@ -5,15 +5,14 @@
 <div id="groups-settings">
   <div class="row">
     <div class="col-xs-12">
-      <img src="<%= avatar_small(@group) %>" class="avatar_small pull-left" style="padding-right:10px;"/> 
       <div class="pull-left" style="padding:10px;">
         <div class="row">
           <div class="col-xs-12">
+            <span style="position:relative;">
+              <img src="<%= avatar_small(@group) %>" class="avatar_small pull-left" style="padding-right:10px;"/> 
+              <a class="glyphicon glyphicon-pencil" style="position: absolute;top: 4px;right: 12px;" href="/groups/<%= @group.id%>/avatar"></a>
+            </span>
             <p class="group-editable name" contenteditable="true"><%= @group.name %></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
             <p class="group-editable description" contenteditable="true"><%= @group.description %></p>
           </div>
         </div>
@@ -21,25 +20,29 @@
     </div>
   </div>
   <div class="row group-invite-buttons">
-    <div class="col-xs-12">
-      <a class="btn btn-primary" href="/groups/<%=@group.id%>/invite" data-toggle="modal" data-target="#groups-inviteUsers">Invite Users</a> 
-      <a class="btn btn-primary" href="/groups/<%=@group.id%>/share" data-toggle="modal" data-target="#groups-shareLink">Share Link</a>            
+    <div class="col-xs-12 col-sm-4" style="margin-top: 10px;">
+      <div><a class="btn btn-primary" href="/groups/<%=@group.id%>/invite" data-toggle="modal" data-target="#groups-inviteUsers"><span class="invite">Invite Users</span></a> </div><br />
+      <div><a class="btn btn-primary" href="/groups/<%=@group.id%>/share" data-toggle="modal" data-target="#groups-shareLink"><span class="share_link">Share Link</span></a>            </div>
+    </div>
+    <div class="col-xs-12 col-sm-8">
+      <%if @memberships.size == 0 %>
+        <div class="row empty-state">
+          <div class="col-xs-12">
+            <p>A group without members is lame-o.<br/>
+             Invite your friends or share the group link.
+            </p>
+          </div>
+        </div>
+      <% else %>
+        <table class="table table-striped">
+          <% @memberships.each do |u| %>
+          <thead><tr><th>Group Members</th></tr></thead>
+          <tr><td><%= u.user.username %><a class="pull-right remove-member" data-membership-id="<%= u.id %>" style="font-size:1.2em;">&times;</a></td></tr>
+          <% end %>
+        </table>     
+      <% end %>  
     </div>
   </div>
-  <div class="row">
-    <table class="table table-striped">
-      <% @group.memberships.each do |u| %>
-      <tr><td><%= u.user.username %><a class="pull-right remove-member" data-membership-id="<%= u.id %>" style="font-size:1.2em;">&times;</a></td></tr>
-      <% end %>
-    </table>    
-  </div>
-  <%if @group.memberships.size == 0 %>
-  <div class="row empty-state">
-    <div class="col-xs-12">
-      Empty State goes here.
-    </div>
-  </div>
-  <% end %>  
 </div>
 
 
