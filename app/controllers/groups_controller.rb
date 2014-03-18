@@ -50,24 +50,25 @@ class GroupsController < AuthenticatedController
   end
 
   def leaderboard
-    if params[:board] == 'monthly'
-      @leaders = Group.weeklyLeaderboard(@group)
-    elsif params[:board] == 'alltime'
-      @leaders = Group.monthlyLeaderboard(@group)
+    if current_user.can_read?(@group)
+      if params[:board] == 'monthly'
+        @leaders = Group.weeklyLeaderboard(@group)
+      elsif params[:board] == 'alltime'
+        @leaders = Group.monthlyLeaderboard(@group)
+      else
+        @leaders = Group.allTimeLeaderboard(@group)
+      end
     else
-      @leaders = Group.allTimeLeaderboard(@group)
-    end
-    @leaders.each do |l|
-      puts l
-    end
+      render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
+    end    
   end
 
   def settings
-    if @group.owned_by?(current_user)
+    if current_user.can_read?(@group)
       @memberships = @group.memberships.where('user_id != ?', current_user.id)
       render 'settings'
     else
-      redirect_to("/groups/#{@group.id}")
+      render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
     end
   end
 

@@ -127,7 +127,7 @@ window.GroupSettingsView = class GroupSettingsView
           return false
         else
           return true
-    $('#groups-settings .group-editable').change (e) =>
+    @el.find('.group-editable').change (e) =>
       $.ajax
         url: "/groups/#{@group_id}.json"
         type: "PUT"
@@ -136,3 +136,13 @@ window.GroupSettingsView = class GroupSettingsView
           group:
             name : @el.find('.name').text()
             description: @el.find('.description').text()
+
+    @el.find('.leave-group').click (e) =>
+      if confirm("Knoda is even more fun with friends. Do you really want to leave this group?")
+        $.ajax
+          url: "/memberships/#{$(e.currentTarget).attr('data-membership-id')}.json"
+          type: "DELETE"
+          data: 
+            authenticity_token : $('meta[name=csrf-token]').attr('content')              
+          success: (x) =>
+            window.location = "/groups"

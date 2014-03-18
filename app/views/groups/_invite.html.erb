@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+      <button type="button" class="btn btn-default btn-invite" data-dismiss="modal">Done</button>
     </div>
   </div>
 </div>
@@ -25,7 +25,7 @@
   groupsView = new window.GroupsView()
   groupsView.group_id = <%= @group.id %>
   groupsView.initializeSearch();
-  $('button').click(function(e) {
+  $('.btn-invite').click(function(e) {
     groupsView.inviteUsers()
   });
 </script>

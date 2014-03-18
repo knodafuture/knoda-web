@@ -25,4 +25,8 @@ module GroupsHelper
   def group_size(group)
     return group.users.size
   end
+
+  def my_membership(group)
+    return current_user.memberships.where(:group => group).first
+  end
 end

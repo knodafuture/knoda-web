@@ -27,7 +27,7 @@
     </div>  
     <% if prediction.group %>
     <div class="row predictionInfoLine3">
-      <%= prediction.group.name %>
+      <a href="/groups/<%= prediction.group_id %>"><%= prediction.group.name %></a>
     </div>
     <% end %>
   </div>

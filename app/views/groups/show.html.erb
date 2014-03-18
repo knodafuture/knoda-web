@@ -13,9 +13,7 @@
     </div>
     <div class="pull-right" style="height: 50px; padding: 10px;">
       <a class="btn-rankings" href="/groups/<%= @group.id %>/leaderboard">Rankings</a>
-      <% if @group.owned_by?(@user) %>
-        <a class="btn-settings" href="/groups/<%= @group.id %>/settings">Settings</a>
-      <% end %>    
+      <a class="btn-settings" href="/groups/<%= @group.id %>/settings">Settings</a>
     </div>  
   </div>
 </div>    
