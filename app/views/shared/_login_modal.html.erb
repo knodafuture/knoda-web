@@ -40,7 +40,7 @@
         dataType: "json",
         success: function(json, status) {
           ga('send', 'event', 'users', 'signup');
-          window.location = json.location;
+          window.location = json.location + '&destination=<%= destination %>';
         },
         error: function(xhr, status) {
           $('#new_user .alert').show()
@@ -62,7 +62,7 @@
         type: "POST",
         success: function(json, status) {
           ga('send', 'event', 'users', 'login');
-          window.location = '/predictions'
+          window.location = '<%= destination %>'
         },
         error: function(xhr, status) {
           $('#login_form .alert').show()

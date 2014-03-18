@@ -32,7 +32,7 @@
 <div class="row">
   <div class="col-xs-12 col-sm-9 col-sm-offset-1 col-md-6 col-md-offset-2" style="text-align:center">
     <%= image_tag @user.avatar.url(:big), :id => 'cropbox', :width => 300 %>
-    <%= form_for(@user) do |f| %>
+    <%= form_for @user, url: user_path(@user, :destination => params[:destination]) do |f| %>
     <div style="display:none">
       <%= f.text_field :crop_x, :id => 'crop_x' %><br />
       <%= f.text_field :crop_y, :id => 'crop_y' %><br />
@@ -43,7 +43,7 @@
     <div class="form-group">
       <div class="row">
         <div class="col-xs-12 col-sm-6"><%= f.submit "Use this image", :class =>'btn btn-success', :style=>"width: 100%" %></div>
-        <div class="col-xs-12 col-sm-6"><a href="/users/me/avatar" class="btn btn-info" style="display:inline-block;width: 100%" >Choose a different image</a></div>
+        <div class="col-xs-12 col-sm-6"><a href="/users/me/avatar?destination=<%=params[:destination]%>" class="btn btn-info" style="display:inline-block;width: 100%" >Choose a different image</a></div>
       </div>
     </div>
   </div>

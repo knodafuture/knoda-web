@@ -95,6 +95,11 @@ h3 {
 	text-align: center;
 }
 
+.smallCaption {
+	.sansRegular;
+	font-size: 0.75em;
+}
+
 #topNav {
 	.logo {
 		height: 50px;
@@ -605,7 +610,23 @@ input[type="date"], input[type="time"] {
 				margin: 0px;
 				padding: 0px;
 			}
+			a {
+				text-decoration: none;
+				cursor: pointer;
+			}
 		}
+	}
+	.new-group {
+		display: inline-block;
+		height: 95px;
+		width: 95px;
+		margin-left: 20px;
+		margin-right: 20px;
+		margin-bottom: 0px;
+		background-color: @green-knoda-light;
+		.img-retina("icons/new_group_icon.png", "icons/new_group_icon@2x.png", 19px, 19px);
+		background-position: center center;
+		background-repeat: no-repeat;
 	}
 }
 

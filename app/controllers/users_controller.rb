@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     p = Rails.root.join('app', 'assets', 'images', 'avatars', "avatar_#{av}@2x.png")
     @user.avatar_from_path p
     @user.save
-    redirect_to '/predictions'
+    redirect_to params[:destination]
   end
 
   def create
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
       if params[:user][:avatar].blank?
         if @user.cropping?
           @user.reprocess_avatar
-          redirect_to '/'
+          redirect_to params[:destination] || '/'
         else
           respond_to do |format|
             format.json { render json: @user, :status => 200 }

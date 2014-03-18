@@ -73,9 +73,11 @@ class GroupsController < AuthenticatedController
 
   def join
     if params[:code]
+      @destination = "/groups/join?code=#{params[:code]}"
       @invitation = Invitation.where(:code => params[:code]).first
       @group = @invitation.group
     elsif params[:id]
+      @destination = "/groups/join?id=#{params[:id]}"
       @group = Group.find(params[:id])
     end
     @owner = @group.owner
