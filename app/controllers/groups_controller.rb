@@ -2,7 +2,7 @@ class GroupsController < AuthenticatedController
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:join]
   skip_before_action :unseen_activities, only: [:join]
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :settings, :leaderboard, :invite, :avatar, :crop, :default_avatar, :avatar_upload]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :settings, :leaderboard, :invite, :avatar, :crop, :default_avatar, :avatar_upload, :share]
 
   # GET /groups
   # GET /groups.json
@@ -12,6 +12,7 @@ class GroupsController < AuthenticatedController
   end
 
   def show
+    authorize_action_for @group
     @predictions = Prediction.recent.latest.for_group(@group.id).offset(param_offset).limit(param_limit)
     @user = current_user
     @leaders = Group.weeklyLeaderboard(@group)
@@ -32,7 +33,6 @@ class GroupsController < AuthenticatedController
   def update
     respond_to do |format|
       authorize_action_for(@group)
-      puts group_params
       if @group.update(group_params)
         format.html { render :action => 'settings'}
         format.json { render json: @group }
@@ -65,10 +65,17 @@ class GroupsController < AuthenticatedController
   end
 
   def join
-    @invitation = Invitation.where(:code => params[:code]).first
+    if params[:code]
+      @invitation = Invitation.where(:code => params[:code]).first
+      @group = @invitation.group
+    elsif params[:id]
+      @group = Group.find(params[:id])
+    end
+    @owner = @group.owner
+
     if user_signed_in?
-      if current_user.memberships.where(:group_id => @invitation.group_id).size > 0
-        redirect_to("/groups/#{@invitation.group_id}")
+      if current_user.memberships.where(:group_id => @group.id).size > 0
+        redirect_to("/groups/#{@group.id}")
       else
         render 'join'
       end
@@ -79,6 +86,13 @@ class GroupsController < AuthenticatedController
 
   def invite
     render :partial => "invite", :locals => {:group => @group}
+  end
+
+  def share
+    if !@group.share_url
+      @group.shortenUrl
+    end
+    render :partial => "share", :locals => {:group => @group}
   end
 
   def avatar

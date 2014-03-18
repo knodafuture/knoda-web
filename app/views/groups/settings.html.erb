@@ -22,8 +22,8 @@
   </div>
   <div class="row group-invite-buttons">
     <div class="col-xs-12">
-      <a class="btn btn-primary" href="/groups/<%=@group.id%>/invite" data-toggle="modal" data-target="#groups-inviteUsers">Invite Users</a>      
-      <a class="btn btn-primary">Share Link</a>
+      <a class="btn btn-primary" href="/groups/<%=@group.id%>/invite" data-toggle="modal" data-target="#groups-inviteUsers">Invite Users</a> 
+      <a class="btn btn-primary" href="/groups/<%=@group.id%>/share" data-toggle="modal" data-target="#groups-shareLink">Share Link</a>            
     </div>
   </div>
   <div class="row">
@@ -33,12 +33,21 @@
       <% end %>
     </table>    
   </div>
-
+  <%if @group.memberships.size == 0 %>
+  <div class="row empty-state">
+    <div class="col-xs-12">
+      Empty State goes here.
+    </div>
+  </div>
+  <% end %>  
 </div>
 
 
 <div class="modal fade" id="groups-inviteUsers" tabindex="-1" role="dialog" aria-hidden="true">
-</div>    
+</div>   
+
+<div class="modal fade" id="groups-shareLink" tabindex="-1" role="dialog" aria-hidden="true">
+</div> 
 
 <script>
   view = new window.GroupSettingsView({group_id : <%= @group.id %> })

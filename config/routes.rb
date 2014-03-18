@@ -48,6 +48,7 @@ KnodaWeb::Application.routes.draw do
       get 'default_avatar'
       get 'crop'
       post 'avatar_upload'
+      get 'share'
     end
     collection do
       get 'join'

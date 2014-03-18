@@ -8,14 +8,20 @@ class MembershipsController < ApplicationController
       invitation = Invitation.where(:code => p[:code]).first
       if invitation != nil and invitation.group_id == p[:group_id].to_i
         p.delete :code
-        @membership = current_user.memberships.create(p)
+        membership = current_user.memberships.create(p)
         invitation.update(:accepted => true)
-        render :json => @membership
+        render :json => membership
       else
         head :forbidden
       end
-    else
-      head :forbidden
+    else  
+      group = Group.find(p[:group_id].to_i)
+      if group.share_url
+          membership = current_user.memberships.create(p)
+          render :json => membership
+      else
+        head :forbidden
+      end
     end
   end
 

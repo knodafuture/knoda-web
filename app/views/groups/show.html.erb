@@ -20,7 +20,14 @@
 </div>    
 
 <div class="panel-group" id="predictionsList">
-    <% @predictions.order(created_at: :desc).limit(50).each do |i| %>
+    <% @predictions.each do |i| %>
       <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
     <% end %>
 </div>
+<%if @predictions.size == 0 %>
+<div class="row empty-state">
+  <div class="col-xs-12">
+    Empty State goes here.
+  </div>
+</div>
+<% end %>
