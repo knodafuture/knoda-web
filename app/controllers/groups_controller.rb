@@ -79,7 +79,7 @@ class GroupsController < AuthenticatedController
       @group = @invitation.group
     elsif params[:id]
       @destination = "/groups/join?id=#{params[:id]}"
-      @group = Group.find(params[:id])
+      @group = Group.where(:share_url => "#{Rails.application.config.knoda_web_url}/groups/join?id=#{params[:id]}").first
     end
     @owner = @group.owner
 
