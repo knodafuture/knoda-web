@@ -44,6 +44,9 @@ class PredictionsController < AuthenticatedController
   def new
     @prediction = Prediction.new
     @groups = current_user.groups
+    if params[:group_id]
+      @default_group = Group.find(params[:group_id])
+    end
     render layout: false
   end
 

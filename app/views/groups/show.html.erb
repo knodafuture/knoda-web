@@ -8,7 +8,7 @@
 <div class="row empty-state">
   <div class="col-xs-12">
     <p>A group without predictions is lame-o.<br/>
-       Get things started and <a href="/predictions/new" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new" title="Make a prediction">make a prediction</a>.
+       Get things started and <a data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new<% if @group %>?group_id=<%=@group.id%><% end %>" title="Make a prediction">make a prediction</a>.
     </p>
   </div>
 </div>

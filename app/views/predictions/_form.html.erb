@@ -43,7 +43,7 @@
         </div>
         <div class="form-group">
         <% if @groups.size > 0 %>
-        <%= f.input_field :group_id, :collection => @groups, :label_method => :name, :value_method => :id, :class =>'form-control category', :prompt => 'Private to a group?' %>
+        <%= f.input_field :group_id, :collection => @groups, :label_method => :name, :value_method => :id, :class =>'form-control group_id', :prompt => 'Private to a group?'%>
         </div>        
         <% end %>
     </div>
@@ -91,6 +91,9 @@
     }
   }
   $(function() {    
+    <% if @default_group %>
+      $('#new_prediction .group_id > option[value=<%=@default_group.id%>]').prop('selected', 'selected')
+    <% end %>
     oneMinuteInFuture = moment().add('minutes', 1)
     twoMinutesInFuture = moment().add('minutes', 2)
     $('input[name=prediction_expires_at_date]').attr('min', oneMinuteInFuture.format('YYYY-MM-DD')).val(oneMinuteInFuture.format('YYYY-MM-DD'))
