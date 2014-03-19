@@ -1,5 +1,7 @@
-<div id="groups-leaderboard" class="limit-size-small">
-  <div class="row" style="margin: 10px 0px;">
+<div id="groups-leaderboard">
+  <%= render partial: "groups/header", locals: {group: @group} %> 
+  <div  class="limit-size-small">
+  <div class="row" style="margin: 5px 0px;">
       <ul class="nav nav-pills col-xs-12" style="text-align:left;">
         <li <% if !params[:board] %>class="active"<%end %>><a href="/groups/<%= @group.id %>/leaderboard">Last 7 Days</a></li>
         <li <% if params[:board] == 'monthly' %>class="active"<%end %>><a href="/groups/<%= @group.id %>/leaderboard?board=monthly">Last 30 Days</a></li>
@@ -21,4 +23,6 @@
       <% end %>
       </tbody>
     </table>
+  </div>
+  </div>
 </div>

@@ -3,30 +3,7 @@
 <% end %>
 
 <div id="groups-settings">
-  <div class="row">
-    <div class="col-xs-12">
-      <div style="padding:10px 0px;">
-        <div class="row">
-          <div class="col-xs-12">
-            <span style="position:relative;">
-              <img src="<%= avatar_small(@group) %>" class="avatar_small pull-left" style="padding-right:10px;"/> 
-              <% if @group.owned_by?(current_user) %>
-                <a class="glyphicon glyphicon-pencil" style="position: absolute;top: 4px;right: 12px;" href="/groups/<%= @group.id%>/avatar"></a>
-              <% end %>
-            </span>
-            <% if @group.owned_by?(current_user) %>
-              <p class="group-editable name" contenteditable="true"><%= @group.name %></p>
-              <p class="group-editable description" contenteditable="true"><%= @group.description %></p>
-            <% else %>
-              <p class="name"><%= @group.name %></p>
-              <p class="description"><%= @group.description %></p>
-            <% end %>
-          </div>
-        </div>
-      </div>        
-    </div>
-  </div>
-
+  <%= render partial: "groups/header", locals: {group: @group} %>
   <div class="row group-invite-buttons">
     <div class="col-xs-12 col-sm-4" style="margin-top: 10px;">
       <% if @group.owned_by?(current_user) %>

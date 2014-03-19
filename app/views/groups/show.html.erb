@@ -2,21 +2,8 @@
   <%= javascript_include_tag 'prediction_actions' %>
 <% end %>
 
-<div class="row">
-  <div class="col-xs-12" style="height:100px">
-    <div class="pull-left visible-sm" style="height:50px;">
-      <img src="<%= avatar_small(@group) %>" class="avatar_small" /> 
-    </div>
-    <div class="pull-left">
-      <h2><%= Group.weeklyLeaderboard(@group)[0][:username] %></h2>
-      <p style="font-size:0.75em;">current 7 day leader</p>
-    </div>
-    <div class="pull-right" style="height: 50px; padding: 10px;">
-      <a class="btn-rankings" href="/groups/<%= @group.id %>/leaderboard">Rankings</a>
-      <a class="btn-settings" href="/groups/<%= @group.id %>/settings">Settings</a>
-    </div>  
-  </div>
-</div>    
+<%= render partial: "groups/header", locals: {group: @group} %> 
+
 <%if @predictions.size == 0 %>
 <div class="row empty-state">
   <div class="col-xs-12">
