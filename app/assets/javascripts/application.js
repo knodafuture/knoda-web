@@ -22,6 +22,7 @@
 //= require plupload.full.min
 //= require moment-with-langs.min
 //= require bootstrap-maxlength.min
+// Force recompile
 
 startLoading = function() {
 	$('.loading-overlay').show();
@@ -67,4 +68,7 @@ function getUrlVars()
     }
     return vars;
 };
-// Force recompile
+
+$(function() {
+  $('.full-height-content').height($(window).height() - 50)
+});

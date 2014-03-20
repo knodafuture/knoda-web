@@ -23,5 +23,16 @@ module CroppableAvatar extend ActiveSupport::Concern
 
   def reprocess_avatar
     avatar.reprocess!
-  end      
+  end
+  
+  def avatar_image
+    if self.avatar.exists?
+      {
+        big: self.avatar(:big),
+        small: self.avatar(:small)
+      }
+    else
+      nil
+    end
+  end        
 end  

@@ -18,7 +18,7 @@
 
 // Components
 @import "twitter/bootstrap/component-animations";
-@import "glyphicons";
+//@import "glyphicons";
 @import "twitter/bootstrap/dropdowns";
 @import "twitter/bootstrap/button-groups";
 @import "twitter/bootstrap/input-groups";
@@ -64,6 +64,10 @@
     background-image: image-url("@{file-2x}");
     background-size: @width-1x @height-1x;
   }
+}
+
+.btn {
+	.sansLight;
 }
 
 a {
@@ -205,10 +209,10 @@ h3 {
 	padding-bottom: 0px;	
 }
 .predictionInfoLine3 {
-	.img-retina("icons/group_prediction_badge.png", "icons/group_prediction_badge@2x.png", '13px', '12px');
+	.img-retina("icons/group_prediction_badge.png", "icons/group_prediction_badge@2x.png", 13px, 12px);
 	background-color:white; padding: 0px 0px 5px 0px; 	
 	background-repeat: no-repeat;
-	background-position: 20px 2px;
+	background-position: 20px 4px;
 	padding-left: 40px;
 	a {
 		color: @green-knoda-dark;
@@ -566,11 +570,25 @@ input[type="date"], input[type="time"] {
 }
 
 .home-top {
-	.img-retina("home/sd/home_hero_left.jpg", "home/hd/home_hero_left.jpg", '12px', '475px');
+	.img-retina("home/sd/home_hero_left.jpg", "home/hd/home_hero_left.jpg", 12px, 475px);
 	background-repeat: repeat-x;
 	.right {
-		.img-retina("home/sd/home_hero_right.jpg", "home/hd/home_hero_right.jpg", '722px', '425px');
+		.img-retina("home/sd/home_hero_right.jpg", "home/hd/home_hero_right.jpg", 722px, 425px);
 		background-repeat: no-repeat;
+	}
+	&.join_login {
+		.group-name {
+			color: @green-knoda-dark;
+			.sansBold;
+		}
+		.invitation-text {
+			color:#fff;
+			font-size:1.5em;
+			.sansRegular;
+		}
+		form {
+			max-width: 400px;
+		}
 	}
 	
 }
@@ -635,7 +653,7 @@ input[type="date"], input[type="time"] {
 		margin-right: 20px;
 		margin-bottom: 0px;
 		background-color: @green-knoda-light;
-		.img-retina("icons/new_group_icon.png", "icons/new_group_icon@2x.png", 19px, 19px);
+		.img-retina("icons/invite_icon.png", "icons/invite_icon@2x.png", 19px, 19px);
 		background-position: center center;
 		background-repeat: no-repeat;
 	}
@@ -742,4 +760,8 @@ input[type="date"], input[type="time"] {
 }
 .limit-size-small {
 	max-width:480px;margin: auto;
+}
+
+.knoda-green-light {
+	color: @green-knoda-light;
 }

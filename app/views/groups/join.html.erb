@@ -1,17 +1,23 @@
 <% content_for :head do %>
   <%= javascript_include_tag "groups" %>
 <% end %>
-
-<% if (@invitation != nil and @invitation.accepted != true) or (!@group.share_url.blank?)%>
-  <h2><%= @owner.username %> has invited you to join the group <%= @group.name %> on KNODA.</h2>
-  <a class="btn btn-primary joinButton">Click here to join </a>
-<% else %>
-  Your invitation is invalid
-<% end %>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2 full-height-content" style="background-color:#fff">
+    <% if (@invitation != nil and @invitation.accepted != true) or (!@group.share_url.blank?)%>
+      <h3><%= @owner.username %> has invited you to join the <span class="knoda-green-light"><%= @group.name %></span> group. Join the conversation and start predicting.</h3>
+      <a class="btn btn-primary joinButton btn-lg">Join the Group</a>
+    <% else %>
+      Your invitation is invalid
+    <% end %>
+  </div>
+</div>
 <script>
   <% if @invitation %>
     var joinGroupsView = new window.JoinGroupView(<%= @group.id %>, '<%= @invitation.code %>')
   <% else %>
     var joinGroupsView = new window.JoinGroupView(<%= @group.id %>)
   <% end %>
+  $(function() {
+    $('.full-height-content').height($(window).height() - 50)
+  });
 </script>
