@@ -230,4 +230,9 @@ class User < ActiveRecord::Base
     r = self.challenges.includes(:prediction).select { |c| c.prediction.group_id == group_id and c.is_finished == true and c.is_right == false and c.updated_at > max_time}
     r.length        
   end   
+
+  def member_of(group)
+    self.memberships.where(:group => group).size > 0
+    return true
+  end
 end

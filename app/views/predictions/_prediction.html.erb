@@ -46,8 +46,13 @@
           <a class="tallyText"><p>THE TALLY</p></a>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-2">
-          <a href="/predictions?tag=<%=prediction.tags[0]%>" class="similar"></a>
-          <a href="/predictions?tag=<%=prediction.tags[0]%>"><p>SIMILAR</p></a>
+          <%if prediction.group_id and current_user.member_of(prediction.group) %>
+            <a href="/groups/<%= prediction.group_id%>" class="group"></a>
+            <a href="/groups/<%= prediction.group_id%>"><p>GROUP</p></a>
+          <% else %>
+            <a href="/predictions?tag=<%=prediction.tags[0]%>" class="similar"></a>
+            <a href="/predictions?tag=<%=prediction.tags[0]%>"><p>SIMILAR</p></a>          
+          <% end %>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-2">
           <a class="share" data-toggle="modal" data-target="#sharePrediction" data-remote="/predictions/<%=prediction.id%>/share_dialog"></a>

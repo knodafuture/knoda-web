@@ -305,33 +305,41 @@ h3 {
 			width: 70px;
 			margin: 0 auto;
 		}
-		.comments, .similar, .tally, .share {
+		.comments, .similar, .tally, .share, .group {
 			display: inline-block;
 			height: 27px;
 			width: 70px;
+			background-repeat: no-repeat;
+			background-position: center;
 		}
 		.comments {
-			background: image-url("icons/sd/action_comment.png") center no-repeat;
+			background-image: image-url("icons/sd/action_comment.png");
 			&.active, &:active {
-				background: image-url("icons/sd/action_comment_active.png") center no-repeat;
+				background-image: image-url("icons/sd/action_comment_active.png");
 			}			
 		}
 		.tally {
-			background: image-url("icons/sd/action_tally.png") center no-repeat;
+			background-image: image-url("icons/sd/action_tally.png");
 			&.active, &:active {
-				background: image-url("icons/sd/action_tally_active.png") center no-repeat;
+				background-image: image-url("icons/sd/action_tally_active.png");
 			}
 		}
 		.similar {
-			background: image-url("icons/sd/action_similar.png") center no-repeat;
+			background-image: image-url("icons/sd/action_similar.png");
 			&.active, &:active {
-				background: image-url("icons/sd/action_similar_active.png") center no-repeat;
+				background-image: image-url("icons/sd/action_similar_active.png");
 			}
 		}
+		.group {
+		.img-retina("icons/action_group.png", "icons/action_group@2x.png", 38px, 27px);
+		&.active, &:active {
+			.img-retina("icons/action_group_active.png", "icons/action_group_active@2x.png", 38px, 27px);
+		}
+		}
 		.share {
-			background: image-url("icons/sd/action_share.png") center no-repeat;
+			background-image: image-url("icons/sd/action_share.png");
 			&.active, &:active {
-				background: image-url("iicons/sd/action_share_active.png") center no-repeat;
+				background-image: image-url("iicons/sd/action_share_active.png");
 			}
 		}
 		a {
