@@ -15,7 +15,7 @@ class PredictionsController < AuthenticatedController
 
   def index
     if params[:tag]
-      @predictions = Prediction.recent.latest.where("'#{params[:tag]}' = ANY (tags)").offset(param_offset).limit(param_limit)
+      @predictions = Prediction.recent.latest.visible_to_user(current_user.id).where("'#{params[:tag]}' = ANY (tags)").offset(param_offset).limit(param_limit)
     else
       @predictions = Prediction.includes(:user,:comments).visible_to_user(current_user.id).recent.latest.offset(param_offset).limit(param_limit)
     end

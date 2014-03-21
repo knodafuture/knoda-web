@@ -75,7 +75,7 @@ window.GroupsView = class GroupsView
     $('#query').keyup (e) =>
       @search(e)
   isEmail: (email) ->
-    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test email  
+    /.+@.+\..+/i.test email  
 
 window.JoinGroupView = class JoinGroupView 
   constructor: (group_id, code) ->

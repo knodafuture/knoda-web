@@ -14,7 +14,10 @@ class SearchController < ApplicationController
       @predictions = []
       @searchResults = Prediction.search params[:q], page: param_offset.to_i.fdiv(limit.to_i), per_page: limit, misspellings: {distance:2}, partial: true
       @searchResults.each do |p|
-        @predictions << p.to_model
+        m = p.to_model
+        if !m.group_id or current_user.memberships.pluck(:group_id).include?(m.group_id)
+          @predictions << m
+        end
       end    
     end
   end

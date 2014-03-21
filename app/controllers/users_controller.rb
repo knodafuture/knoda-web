@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     if @user != current_user
+      @predictions = @user.predictions.visible_to_user(current_user).latest.offset(param_offset).limit(param_limit).id_lt(param_id_lt)
       render 'show_public'
     else
       render 'show'
