@@ -33,17 +33,18 @@ class GroupsController < AuthenticatedController
   def update
     respond_to do |format|
       authorize_action_for(@group)
-      if @group.update(group_params)
+      if @group.update_attributes(group_params)
+        if params[:group][:avatar].blank? and @group.cropping?
+          @group.reprocess_avatar
+        end
         format.html { 
-          @memberships = @group.memberships.where('user_id != ?', current_user.id)
-          render :action => 'settings'
+          redirect_to "/groups/#{@group.id}/settings"
         }
         format.json { render json: @group }
       else
         format.json { render json: @group.errors, status: :unprocessable_entity }
         format.html { 
-          @memberships = @group.memberships.where('user_id != ?', current_user.id)
-          render :action => 'settings'
+          redirect_to "/groups/#{@group.id}/settings"
         }
       end
     end
@@ -133,6 +134,6 @@ class GroupsController < AuthenticatedController
     end
 
     def group_params
-      params.require(:group).permit(:name, :description, :avatar)
+      params.require(:group).permit(:name, :description, :avatar,:crop_x, :crop_y, :crop_w, :crop_h)
     end        
 end

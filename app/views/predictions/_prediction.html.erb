@@ -1,4 +1,4 @@
-<div class="panel panel-default predictionContainer" data-prediction-id="<%= prediction.id%>">
+<div class="panel panel-default predictionContainer" data-prediction-id="<%= prediction.id%>" data-group-id="<%= prediction.group_id%>">
     <div class="panel-heading" style="padding:0px 15px; background-color: #EFEFEF">
     <div class="row userInfo">
         <a href="/users/<%= prediction.user.username%>">
@@ -55,8 +55,8 @@
           <% end %>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-2">
-          <a class="share" data-toggle="modal" data-target="#sharePrediction" data-remote="/predictions/<%=prediction.id%>/share_dialog"></a>
-          <a data-toggle="modal" data-target="#sharePrediction" data-remote="/predictions/<%=prediction.id%>/share_dialog"><p>SHARE</p></a>
+          <a class="share share-prediction"></a>
+          <a class="share-prediction"><p>SHARE</p></a>
         </div>                        
       </div>
       <div class="row">

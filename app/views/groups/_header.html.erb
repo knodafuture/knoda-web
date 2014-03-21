@@ -5,10 +5,7 @@
           <div class="col-xs-12 col-sm-7">
             <span style="position:relative;">
               <img src="<%= avatar_small(@group) %>" class="avatar_small pull-left" style="padding-right:10px;"/> 
-              <% if group.owned_by?(current_user) %>
-                <a class="glyphicon glyphicon-pencil" style="position: absolute;top: 4px;right: 12px;" href="/groups/<%= @group.id%>/avatar"></a>
-              <% end %>
-            </span>
+            </span>            
             <% if group.owned_by?(current_user) %>
               <p class="group-editable name" contenteditable="true"><%= group.name %></p>
               <p class="group-editable description" contenteditable="true"><%= group.description %></p>
@@ -16,6 +13,9 @@
               <p class="name"><%= group.name %></p>
               <p class="description"><%= group.description %></p>
             <% end %>
+            <% if group.owned_by?(current_user) %>
+              <a href="/groups/<%= @group.id%>/avatar" style="font-size:0.75em">Change Avatar</a>
+            <% end %>            
           </div>
           <div class="col-xs-12 visible-xs" style="text-align:center;">
             <div style="height: 60px; padding: 10px; margin-bottom: 10px;">
