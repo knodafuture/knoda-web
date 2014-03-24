@@ -108,6 +108,9 @@ class PredictionsController < AuthenticatedController
       if @prediction.close_as(close_as)
         format.json { render json: @prediction, status: 201 }
         format.html { render :partial => 'section2', :locals => { prediction: @prediction} }
+        if @prediction.group
+          Group.weeklyLeaderboard(@prediction.group)
+        end
       else
         render json: @prediction.errors, status: 422
       end 
