@@ -21,6 +21,8 @@ gem 'jcrop-rails-v2', '~> 0.9.12.3'
 group :production do
   gem 'rails_12factor'
   gem 'unicorn'
+  gem 'memcachier'
+  gem 'dalli'    
 end
 
 gem 'simple_form'
