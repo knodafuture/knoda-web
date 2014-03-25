@@ -1,6 +1,6 @@
 module CroppableAvatar extend ActiveSupport::Concern
   included do
-    has_attached_file :avatar, :styles => { :big => ["344х344"], :small => ["100x100"]}, :processors => [:cropper]
+    has_attached_file :avatar, :styles => { :big => ["344х344"], :small => ["100x100"]}, :processors => [:cropper], :default_url => ""
     attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   end
 

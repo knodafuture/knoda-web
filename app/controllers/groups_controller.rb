@@ -26,6 +26,14 @@ class GroupsController < AuthenticatedController
 
   def create
     @group = current_user.groups.create(group_params)
+    puts group_params
+    puts @group.avatar
+    if @group.avatar.blank?
+      av = (1 + rand(5))
+      p = Rails.root.join('app', 'assets', 'images', 'avatars', "groups_avatar_#{av}@2x.png")
+      @group.avatar_from_path p          
+      @group.save
+    end
     current_user.memberships.where(:group_id => @group.id).first.update(role: 'OWNER')    
     render :json => @group
   end  
@@ -118,7 +126,7 @@ class GroupsController < AuthenticatedController
 
   def default_avatar
     av = params[:avatar_version] || (1 + rand(5))
-    p = Rails.root.join('app', 'assets', 'images', 'avatars', "avatar_#{av}@2x.png")
+    p = Rails.root.join('app', 'assets', 'images', 'avatars', "groups_avatar_#{av}@2x.png")
     @group.avatar_from_path p
     @group.save
     redirect_to "/groups/#{params[:id]}"
