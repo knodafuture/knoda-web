@@ -16,7 +16,7 @@
           <td>
             <div class="col-xs-1"><%= l[:rank] %></div>
             <div class="col-xs-5"><span><%= l[:username] %></span><% if l[:verified_account] %><%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %><% end %></div>
-            <div class="col-xs-3"><%= l[:won] %></div>
+            <div class="col-xs-3"><%= l[:won] %>-<%= l[:lost]%></div>
             <div class="col-xs-3"><%= winning_percentage(l[:won], l[:lost]) %>%</div>
           </td>
         </tr>

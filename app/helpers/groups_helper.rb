@@ -19,7 +19,11 @@ module GroupsHelper
 
   def my_rank(group)
     me = Group.weeklyLeaderboard(group).select { |u| u[:user_id] == current_user.id}
-    return me[0][:rank]
+    if me and me[0]
+      return me[0][:rank]
+    else
+      return '?'
+    end
   end  
 
   def group_size(group)

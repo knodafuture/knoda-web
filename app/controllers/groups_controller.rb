@@ -26,8 +26,6 @@ class GroupsController < AuthenticatedController
 
   def create
     @group = current_user.groups.create(group_params)
-    puts group_params
-    puts @group.avatar
     if @group.avatar.blank?
       av = (1 + rand(5))
       p = Rails.root.join('app', 'assets', 'images', 'avatars', "groups_avatar_#{av}@2x.png")
@@ -61,11 +59,11 @@ class GroupsController < AuthenticatedController
   def leaderboard
     if current_user.can_read?(@group)
       if params[:board] == 'monthly'
-        @leaders = Group.weeklyLeaderboard(@group)
-      elsif params[:board] == 'alltime'
         @leaders = Group.monthlyLeaderboard(@group)
-      else
+      elsif params[:board] == 'alltime'
         @leaders = Group.allTimeLeaderboard(@group)
+      else
+        @leaders = Group.weeklyLeaderboard(@group)
       end
     else
       render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)

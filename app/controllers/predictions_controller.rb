@@ -109,7 +109,7 @@ class PredictionsController < AuthenticatedController
         format.json { render json: @prediction, status: 201 }
         format.html { render :partial => 'section2', :locals => { prediction: @prediction} }
         if @prediction.group
-          Group.weeklyLeaderboard(@prediction.group)
+          Group.rebuildLeaderboards(@prediction.group)
         end
       else
         render json: @prediction.errors, status: 422
