@@ -72,7 +72,7 @@ class GroupsController < AuthenticatedController
 
   def settings
     if current_user.can_read?(@group)
-      @memberships = @group.memberships.where('user_id != ?', current_user.id)
+      @memberships = @group.memberships.joins(:user).where('user_id != ?', current_user.id).order("users.username ASC")
       render 'settings'
     else
       render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
