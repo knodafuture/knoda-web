@@ -127,7 +127,17 @@ window.GroupSettingsView = class GroupSettingsView
           return false
         else
           return true
+      .on 'keydown', '[contenteditable]', (e) =>
+        if (e.which == 13 or e.which == 8 or e.which == 46)
+          return true
+        if $(e.currentTarget).hasClass('name') and @el.find('.name').text().length > 30
+          return false
+        if $(e.currentTarget).hasClass('description') and @el.find('.description').text().length > 140        
+          return false
+        return true
     @el.find('.group-editable').change (e) =>
+      @el.find('.name').text(@el.find('.name').text().substr(0,30))
+      @el.find('.description').text(@el.find('.description').text().substr(0,140))
       $.ajax
         url: "/groups/#{@group_id}.json"
         type: "PUT"
