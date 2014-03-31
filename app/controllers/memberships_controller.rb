@@ -11,7 +11,7 @@ class MembershipsController < ApplicationController
         membership = current_user.memberships.create(p)
         invitation.update(:accepted => true)
         render :json => membership
-        Group.rebuildLeaderboards(@membership.group)
+        Group.rebuildLeaderboards(membership.group)
       else
         head :forbidden
       end
@@ -20,7 +20,7 @@ class MembershipsController < ApplicationController
       if group.share_url
           membership = current_user.memberships.create(p)
           render :json => membership
-          Group.rebuildLeaderboards(@membership.group)
+          Group.rebuildLeaderboards(group)
       else
         head :forbidden
       end
