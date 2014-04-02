@@ -5,12 +5,14 @@ class MembershipsController < ApplicationController
   def create
     p = membership_params
     if p[:code]
-      invitation = Invitation.where(:code => p[:code]).first
-      if invitation != nil and invitation.group_id == p[:group_id].to_i
+      code = p[:code]
+      invitation = Invitation.where(:code => code, :group_id => p[:group_id].to_i).first
+      if invitation != nil and not invitation.accepted
         p.delete :code
         membership = current_user.memberships.create(p)
         invitation.update(:accepted => true)
         render :json => membership
+        Activity.where(:invitation_code => code, :activity_type => 'INVITATION').delete_all
         Group.rebuildLeaderboards(membership.group)
       else
         head :forbidden
