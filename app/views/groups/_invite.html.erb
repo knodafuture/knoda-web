@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default btn-invite" data-dismiss="modal">Done</button>
+      <button type="button" class="btn btn-success btn-invite" data-dismiss="modal">Send Invitations</button>
     </div>
   </div>
 </div>
@@ -27,5 +27,6 @@
   groupsView.initializeSearch();
   $('.btn-invite').click(function(e) {
     groupsView.inviteUsers()
+    $('.alert').show()
   });
 </script>
