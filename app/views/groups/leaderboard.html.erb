@@ -9,15 +9,17 @@
       </ul>
   </div>
   <div class="row">
-    <table class="table table-striped">
+    <table class="table table-striped"
       <tbody>
       <% @leaders.each do |l| %>
-        <tr class="row">
+        <tr>
           <td>
-            <div class="col-xs-1 greenLight sansBold"><%= l[:rank] %></div>
-            <div class="col-xs-5"><span><%= l[:username] %></span><% if l[:verified_account] %><%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %><% end %></div>
-            <div class="col-xs-3"><%= l[:won] %>-<%= l[:lost]%></div>
-            <div class="col-xs-3"><%= winning_percentage(l[:won], l[:lost]) %></div>
+            <div class="row">
+              <div class="col-xs-1 greenLight sansBold"><%= l[:rank] %></div>
+              <div class="col-xs-5"><span><%= l[:username] %></span><% if l[:verified_account] %><%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %><% end %></div>
+              <div class="col-xs-3"><%= l[:won] %>-<%= l[:lost]%></div>
+              <div class="col-xs-3"><%= winning_percentage(l[:won], l[:lost]) %></div>
+            </div>
           </td>
         </tr>
       <% end %>
