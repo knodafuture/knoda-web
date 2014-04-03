@@ -3,7 +3,7 @@ class PredictionsController < AuthenticatedController
   skip_before_action :authenticate_user!, only: [:share, :show]
   skip_before_action :unseen_activities, only: [:share, :show]
   before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments, :bs]
-  
+  after_action :rebuild_leaderboard, only: :close
   def share
     if user_signed_in?
       redirect_to  action: 'show', id: @prediction.id
@@ -103,14 +103,11 @@ class PredictionsController < AuthenticatedController
 
   def close
     respond_to do |format|
-      authorize_action_for(@prediction)
+      #authorize_action_for(@prediction)
       close_as = prediction_close_params[:outcome]
       if @prediction.close_as(close_as)
         format.json { render json: @prediction, status: 201 }
         format.html { render :partial => 'section2', :locals => { prediction: @prediction} }
-        if @prediction.group
-          Group.rebuildLeaderboards(@prediction.group)
-        end
       else
         render json: @prediction.errors, status: 422
       end 
@@ -159,5 +156,11 @@ class PredictionsController < AuthenticatedController
 
     def prediction_close_params
       params.require(:prediction).permit(:outcome)
+    end
+
+    def rebuild_leaderboard
+      if @prediction.group
+        Group.rebuildLeaderboards(@prediction.group)
+      end
     end
 end

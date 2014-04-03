@@ -1,6 +1,7 @@
 class MembershipsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_membership, only: [:destroy]
+  after_action :rebuild_leaderboard, only: [:destroy, :create]
 
   def create
     p = membership_params
@@ -13,7 +14,6 @@ class MembershipsController < ApplicationController
         invitation.update(:accepted => true)
         render :json => membership
         Activity.where(:invitation_code => code, :activity_type => 'INVITATION').delete_all
-        Group.rebuildLeaderboards(membership.group)
       else
         head :forbidden
       end
@@ -22,7 +22,6 @@ class MembershipsController < ApplicationController
       if group.share_url
           membership = current_user.memberships.create(p)
           render :json => membership
-          Group.rebuildLeaderboards(group)
       else
         head :forbidden
       end
@@ -43,4 +42,7 @@ class MembershipsController < ApplicationController
     def set_membership
       @membership = Membership.find(params[:id])
     end    
+    def rebuild_leaderboard
+      Group.rebuildLeaderboards(@group)
+    end
 end  

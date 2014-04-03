@@ -160,7 +160,7 @@ window.GroupSettingsView = class GroupSettingsView
 
 window.GroupPredictionListView = class GroupPredictionListView
   currentOffset : 0
-  pageSize : 5
+  pageSize : 25
   loading : false
   constructor: (options) ->
     @group_id = options.group_id

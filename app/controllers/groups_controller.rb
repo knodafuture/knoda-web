@@ -13,7 +13,7 @@ class GroupsController < AuthenticatedController
 
   def show
     authorize_action_for @group
-    @predictions = Prediction.recent.latest.for_group(@group.id).offset(param_offset).limit(5)
+    @predictions = Prediction.recent.latest.for_group(@group.id).offset(param_offset).limit(param_limit)
     @user = current_user
     @leaders = Group.weeklyLeaderboard(@group)
     render 'show'
