@@ -10,7 +10,7 @@ window.GroupsView = class GroupsView
       dataType: "json"
       success: (json) ->
         startLoading()
-        window.location = "/groups/#{json.id}"
+        window.location = "/groups/#{json.id}/settings"
   addInvitee: (user) ->     
     if user.username
       labelText = user.username
