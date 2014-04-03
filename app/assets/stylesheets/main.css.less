@@ -79,6 +79,10 @@ h3 {
 	font-size: 18px;
 }
 
+.greenLight {
+	color: @green-knoda-light;
+}
+
 .sansLight {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
@@ -499,6 +503,8 @@ h3 {
 	display: none;
 }
 .navbar-collapse.in{
+	background-color: @green-knoda-light;
+	margin-bottom: 20px;
 	.collapseText {
 		display: inline-block;
 		font-size: 1.25em;
@@ -508,7 +514,6 @@ h3 {
 		display: inline-block;
 		text-transform: uppercase;
 	}
-	background-color: @green-knoda-light;
 	.dropdown {
 		display:none;
 	}
@@ -778,4 +783,17 @@ input[type="date"], input[type="time"] {
 
 .knoda-green-light {
 	color: @green-knoda-light;
+}
+
+#badges-index-container {
+	.thumbnail > img, .thumbnail a > img {
+		max-width: 100px;
+	}
+	a.thumbnail {
+		cursor: default;
+		border: none;
+		&:hover, &:focus, &.active {
+			border:none;
+		}
+	}
 }

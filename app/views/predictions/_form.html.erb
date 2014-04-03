@@ -13,7 +13,7 @@
         </div>
         <% if @groups.size > 0 %>
           <div class="form-group">
-          <%= f.input_field :group_id, :collection => @groups, :label_method => :name, :value_method => :id, :class =>'form-control group_id', :prompt => 'Private to a group?'%>
+          <%= f.input_field :group_id, :collection => @groups, :label_method => :name, :value_method => :id, :class =>'form-control group_id', :prompt => 'Public'%>
           </div>        
         <% end %>          
         <div class="form-group">

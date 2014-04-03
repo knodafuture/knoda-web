@@ -6,9 +6,13 @@ module GroupsHelper
 
   def winning_percentage(won, lost)
     if won > 0
-      (won.to_f / (won + lost) * 100.0).round(2)
+      return "#{(won.to_f / (won + lost) * 100.0).round(2)}%"
     else
-      0.00
+      if lost > 0
+        return "0%"
+      else
+        return "-"
+      end
     end
   end  
 
