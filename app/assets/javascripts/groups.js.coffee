@@ -84,6 +84,7 @@ window.JoinGroupView = class JoinGroupView
     $('.joinButton').click @submitMembership
   submitMembership: (e) =>
     e.preventDefault()
+    startLoading()
     $.ajax
       url: "/memberships.json"
       type: "POST"

@@ -10,9 +10,9 @@ class MembershipsController < ApplicationController
       invitation = Invitation.where(:code => code, :group_id => p[:group_id].to_i).first
       if invitation != nil and not invitation.accepted
         p.delete :code
-        membership = current_user.memberships.create(p)
+        @membership = current_user.memberships.create(p)
         invitation.update(:accepted => true)
-        render :json => membership
+        render :json => @membership
         Activity.where(:invitation_code => code, :activity_type => 'INVITATION').delete_all
       else
         head :forbidden
@@ -20,8 +20,8 @@ class MembershipsController < ApplicationController
     else  
       group = Group.find(p[:group_id].to_i)
       if group.share_url
-          membership = current_user.memberships.create(p)
-          render :json => membership
+          @membership = current_user.memberships.create(p)
+          render :json => @membership
       else
         head :forbidden
       end
@@ -43,6 +43,6 @@ class MembershipsController < ApplicationController
       @membership = Membership.find(params[:id])
     end    
     def rebuild_leaderboard
-      Group.rebuildLeaderboards(@group)
+      Group.rebuildLeaderboards(@membership.group)
     end
 end  
