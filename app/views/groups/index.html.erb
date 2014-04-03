@@ -8,10 +8,10 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="pull-left">
-              <a class="new-group" href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/groups/new" title="Create a new group">
-              </a>
+            <a class="new-group" href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/groups/new" title="Create a new group" class="pull-left">
+            </a>
             </div>
-            <div class="pull-left" style="width:230px">
+            <div class="pull-left" style="max-width:240px;">
               <div class="row row1">
                 <h3><a href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/groups/new" title="Create a new group">Create a group</a></h3>
               </div>
@@ -30,19 +30,17 @@
       <div class="thumbnail">
         <div class="row">
           <div class="col-xs-12">
+            <a href="/groups/<%= i.id %>" class="pull-left ">
+              <img src="<%= avatar_small(i) %>" class="avatar_small" />
+            </a>
             <div class="pull-left">
-              <a href="/groups/<%= i.id %>">
-                <img src="<%= avatar_small(i) %>" class="avatar_small" />
-              </a>
-            </div>
-            <div class="pull-left" style="width:230px">
               <div class="row row1">
                 <h3><a href="/groups/<%= i.id %>"><%= i.name %></a></h3>
               </div>
               <div class="row row2">
-                <div class="col-xs-6">
+                <div class="col-xs-4">
                   <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 statValue">
                       <%= my_rank(i) %>
                     </div>
                   </div>
@@ -52,9 +50,9 @@
                     </div>
                   </div>                
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-8">
                   <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 statValue">
                       <%= leader_username(i) %>
                     </div>
                   </div>

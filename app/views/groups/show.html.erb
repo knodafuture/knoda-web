@@ -1,5 +1,6 @@
 <% content_for :head do %>
   <%= javascript_include_tag 'prediction_actions' %>
+  <%= javascript_include_tag "groups" %>
 <% end %>
 
 <%= render partial: "groups/header", locals: {group: @group} %> 
@@ -19,3 +20,10 @@
       <% end %>
   </div>
 <% end %>
+
+<script>
+  $(function() {
+    console.log($('#predictionsList'))
+    new window.GroupPredictionListView({group_id : <%= @group.id %> })
+  });
+</script>

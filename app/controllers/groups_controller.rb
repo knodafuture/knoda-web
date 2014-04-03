@@ -2,7 +2,7 @@ class GroupsController < AuthenticatedController
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:join]
   skip_before_action :unseen_activities, only: [:join]
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :settings, :leaderboard, :invite, :avatar, :crop, :default_avatar, :avatar_upload, :share]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :settings, :leaderboard, :invite, :avatar, :crop, :default_avatar, :avatar_upload, :share, :predictions]
 
   # GET /groups
   # GET /groups.json
@@ -13,7 +13,7 @@ class GroupsController < AuthenticatedController
 
   def show
     authorize_action_for @group
-    @predictions = Prediction.recent.latest.for_group(@group.id).offset(param_offset).limit(param_limit)
+    @predictions = Prediction.recent.latest.for_group(@group.id).offset(param_offset).limit(5)
     @user = current_user
     @leaders = Group.weeklyLeaderboard(@group)
     render 'show'
@@ -131,6 +131,15 @@ class GroupsController < AuthenticatedController
   end  
 
   def crop
+  end  
+
+  def predictions
+    @predictions = Prediction.recent.latest.for_group(@group.id)
+    @predictions = @predictions.id_lt(param_id_lt)
+    @predictions = @predictions.offset(param_offset).limit(param_limit)
+    if param_offset.to_i > 0
+      render :partial => "predictions/predictions"
+    end    
   end  
 
   private

@@ -157,3 +157,31 @@ window.GroupSettingsView = class GroupSettingsView
             authenticity_token : $('meta[name=csrf-token]').attr('content')              
           success: (x) =>
             window.location = "/groups"
+
+window.GroupPredictionListView = class GroupPredictionListView
+  currentOffset : 0
+  pageSize : 5
+  loading : false
+  constructor: (options) ->
+    @group_id = options.group_id
+    $(window).scroll @onScroll
+  onScroll: =>
+    if @shouldLoadAnotherPage()
+      container = $('#predictionsList')
+      @loading = true
+      startLoading()
+      url = "/groups/#{@group_id}/predictions?offset=#{@currentOffset+@pageSize}&limit=#{@pageSize}"
+      $.ajax
+        url: url
+        type: "GET"
+        success: (x) =>
+          @currentOffset = @currentOffset + @pageSize
+          container.append($(x))
+          unbindAll()
+          bindAll()
+          @loading = false
+          stopLoading()  
+  shouldLoadAnotherPage: =>
+    predictionsOnScreen = $('#predictionsList').children('.predictionContainer').length
+    ($(window).scrollTop() + $(window).height()) is $(document).height() and not @loading and predictionsOnScreen >= (@pageSize * (@currentOffset+1))
+        

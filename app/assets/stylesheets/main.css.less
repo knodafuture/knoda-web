@@ -89,7 +89,7 @@ h3 {
 }
 .sansRegular {
 	font-family: 'Open Sans', sans-serif;
-	font-weight: 300;
+	font-weight: 500;
 }
 .sansBold {
 	font-family: 'Open Sans', sans-serif;
@@ -633,25 +633,54 @@ input[type="date"], input[type="time"] {
 	form {
 		margin-bottom: 5px;
 	}
-	.thumbnail .caption {
-		padding: 2px;
+	.thumbnail {
+		border: none;
+		.caption {
+			padding: 2px;
+		}
 	}
 }
 
 #groups-index {
 	.group-thumb {
+		div {
+			margin:0px;
+			padding:0px;
+		}
+		margin:0px;
+		padding: 5px;
 		.thumbnail {
+			border: none;
+			&:hover, &:focus, &.active {
+				border:none;
+			}
+			background: white;
+			padding: 0px;
+			margin:0px;			
 			img {
 				height: 100px;
 				width: 100px;
-				margin-left:20px;
+				margin-left:0px;
 				margin-right: 10px;
 			}
 			h3 {
-				margin: 5px;
+				width: 280px;
+				display:inline-block;
+				padding: 0px 0px 5px 0px;
+				margin: 15px 0px 5px 0px;
+				a {
+					color: @green-knoda-light;
+					&:active {
+						color: @green-knoda-dark;
+					}
+				}
+			}
+			.statValue, .statLabel {
+				color: @green-knoda-dark;
 			}
 			.statLabel {
-				font-size: .6em;
+				.sansLight;
+				font-size: .75em;
 			}
 			.row1, .row2 {
 				height: 50px;
@@ -668,28 +697,30 @@ input[type="date"], input[type="time"] {
 		display: inline-block;
 		height: 95px;
 		width: 95px;
-		margin-left: 20px;
+		margin-left: 0px;
 		margin-right: 20px;
 		margin-bottom: 0px;
-		background-color: @green-knoda-light;
-		.img-retina("icons/invite_icon.png", "icons/invite_icon@2x.png", 19px, 19px);
+		.img-retina("icons/groups_avatar_default.png", "icons/groups_avatar_default@2x.png", 95px, 95px);
 		background-position: center center;
 		background-repeat: no-repeat;
+		background-size: 95px;
 	}
 }
 
 .groups-header {
 	.btn-settings, .btn-rankings, .btn-predictions {
 		height: 50px;
-		width: 60px;
+		width: 70px;
 		display: inline-block;
 		margin: 0px 5px;
 		padding-top: 40px;
 		background-repeat: no-repeat;
 		background-position: center 10px;
 		text-decoration: none;
-		font-size: 0.75em;
+		font-size: 0.8em;
 		text-align: center;
+		color: @text-color;
+		text-transform: uppercase;
 	}
 	.btn-settings {
 		.img-retina("icons/settings_icon.png", "icons/settings_icon@2x.png", 24px, 24px);
@@ -710,7 +741,7 @@ input[type="date"], input[type="time"] {
 		}
 	}	
 	.name {
-		.sansBold;
+		.sansRegular;
 		font-size: 1.5em;
 		margin-bottom: 2px;
 	}
@@ -773,9 +804,16 @@ input[type="date"], input[type="time"] {
 	.img-retina("no_content_image.png", "no_content_image@2x.png", 150px, 150px);
 	text-align:center;
 	height:300px;
+	margin-top: 30px;
 	background-position: center top;
 	background-repeat: no-repeat;
 	padding-top: 155px;
+	.sansLight;
+	a {
+		text-decoration: none;
+		cursor: pointer;
+		color: @green-knoda-light;
+	}
 }
 .limit-size-small {
 	max-width:480px;margin: auto;

@@ -4,7 +4,7 @@
         <div class="row">
           <div class="col-xs-12 col-sm-7">
             <span style="position:relative;">
-              <img src="<%= avatar_small(@group) %>" class="avatar_small pull-left" style="padding-right:10px;"/> 
+              <img src="<%= avatar_small(@group) %>" class="avatar_small pull-left" style="margin-right:10px;"/> 
             </span>            
             <% if group.owned_by?(current_user) %>
               <p class="group-editable name" contenteditable="true"><%= group.name %></p>

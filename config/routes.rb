@@ -49,6 +49,7 @@ KnodaWeb::Application.routes.draw do
       get 'crop'
       post 'avatar_upload'
       get 'share'
+      get 'predictions'
     end
     collection do
       get 'join'
