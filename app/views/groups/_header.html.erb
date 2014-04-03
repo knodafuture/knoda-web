@@ -14,7 +14,7 @@
               <p class="description"><%= group.description %></p>
             <% end %>
             <% if group.owned_by?(current_user) %>
-              <a href="/groups/<%= @group.id%>/avatar" style="font-size:0.75em">Change Avatar</a>
+              <a href="/groups/<%= @group.id%>/avatar" class="change-avatar">Change Avatar</a>
             <% end %>            
           </div>
           <div class="col-xs-12 visible-xs" style="text-align:center;">

@@ -70,6 +70,11 @@
 	.sansLight;
 }
 
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
+	background-color: @green-knoda-dark;
+	border-color: @green-knoda-dark;
+}
+
 a {
 	text-decoration: none;
 	cursor: pointer
@@ -695,15 +700,15 @@ input[type="date"], input[type="time"] {
 	}
 	.new-group {
 		display: inline-block;
-		height: 95px;
-		width: 95px;
+		height: 100px;
+		width: 100px;
 		margin-left: 0px;
 		margin-right: 20px;
 		margin-bottom: 0px;
-		.img-retina("icons/groups_avatar_default.png", "icons/groups_avatar_default@2x.png", 95px, 95px);
+		.img-retina("icons/groups_avatar_default.png", "icons/groups_avatar_default@2x.png", 100px, 100px);
 		background-position: center center;
 		background-repeat: no-repeat;
-		background-size: 95px;
+		background-size: 100px;
 	}
 }
 
@@ -748,6 +753,12 @@ input[type="date"], input[type="time"] {
 	.description {
 		.sansLight;
 	}	
+	.change-avatar {
+		font-size:0.75em;
+		text-decoration: none;
+		cursor: pointer;
+		color: @green-knoda-light;
+	}
 }
 
 #groups-show-container {
