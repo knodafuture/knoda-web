@@ -102,7 +102,7 @@ window.GroupSettingsView = class GroupSettingsView
     @group_id = options.group_id
     @el = $('#groups-settings')
     @el.find('.remove-member').click (e) ->
-      if confirm("Knoda is even more fun with friends. Do you really remove this user from the group?")
+      if confirm("Knoda is even more fun with friends. Do you really want to remove this user from the group?")
         $.ajax
           url: "/memberships/#{$(e.currentTarget).attr('data-membership-id')}.json"
           type: "DELETE"
