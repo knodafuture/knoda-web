@@ -1,4 +1,10 @@
-<% title "Knoda | Predict • Compete • Conquer" %>
+<% content_for :head do %>
+    <meta property="og:image" content="<%= avatar_big(@group) %>" />
+    <meta property="og:title" content="Knoda | <%= @group.name%>" />
+    <meta property="og:description" content="<%= @owner.username %> has invited you to join the group <%= @group.name %> on Knoda." />
+    <meta property="og:site_name" content="Knoda" />
+<% end %>
+<% title "Knoda | #{@group.name}" %>
 <div class="row home-top join_login">       
   <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 left" style="padding-top:30px">
       <div style="padding-bottom:10px">
