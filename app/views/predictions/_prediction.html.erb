@@ -55,8 +55,8 @@
           <% end %>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-2">
-          <a class="share share-prediction"></a>
-          <a class="share-prediction"><p>SHARE</p></a>
+          <a class="share share-prediction <% if prediction.group_id %>inactive<% end %>"></a>
+          <a class="share-prediction <% if prediction.group_id %>inactive<% end %>"><p>SHARE</p></a>
         </div>                        
       </div>
       <div class="row">

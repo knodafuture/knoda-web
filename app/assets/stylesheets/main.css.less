@@ -354,6 +354,15 @@ h3 {
 			&.active, &:active {
 				background-image: image-url("icons/sd/action_share_active.png");
 			}
+			&.inactive, &.inactive:active {
+				cursor: default;
+				.img-retina("icons/action_share_inactive.png", "icons/action_share_inactive@2x.png", 38px, 27px);
+			}
+		}
+		.share-prediction {
+			&.inactive {
+				color: @gray-light;
+			}
 		}
 		a {
 			text-decoration: none;
