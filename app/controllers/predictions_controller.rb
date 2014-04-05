@@ -4,7 +4,6 @@ class PredictionsController < AuthenticatedController
   skip_before_action :unseen_activities, only: [:share, :show]
   before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments, :bs]
   after_action :after_close, only: [:close]
-  after_action :rebuild_leaderboard, only: :close
 
   def share
     if user_signed_in?
@@ -160,14 +159,7 @@ class PredictionsController < AuthenticatedController
       params.require(:prediction).permit(:outcome)
     end
 
-    def rebuild_leaderboard
-      if @prediction.group
-        Group.rebuildLeaderboards(@prediction.group)
-      end
-    end
-
     def after_close
-      puts "AFTER CLOSE in controller"
-      @prediction.after_close
+      PredictionClose.new.async.perform(@prediction.id)
     end
 end

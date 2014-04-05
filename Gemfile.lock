@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: 823c93c1af5c05c1d2ee329a6daf13b2f48980ed
+  revision: 43a88018e1556befeeb2010270c1fda939db5eb3
   branch: groups
   specs:
     knoda_core (0.0.1)
@@ -62,6 +62,8 @@ GEM
       oauth2 (>= 0.5.0, < 0.9)
     browser_detect (0.0.5)
     builder (3.1.4)
+    celluloid (0.15.2)
+      timers (~> 1.1.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.3)
@@ -181,6 +183,8 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    sucker_punch (1.0.3)
+      celluloid (~> 0.15.2)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -188,6 +192,7 @@ GEM
     thread_safe (0.2.0)
       atomic (>= 1.1.7, < 2)
     tilt (1.4.1)
+    timers (1.1.0)
     tire (0.6.2)
       activemodel (>= 3.0)
       activesupport
@@ -242,6 +247,7 @@ DEPENDENCIES
   rest-client (= 1.6.7)
   searchkick (= 0.5.3)
   simple_form
+  sucker_punch (~> 1.0.3)
   therubyracer
   uglifier (>= 1.3.0)
   unicorn

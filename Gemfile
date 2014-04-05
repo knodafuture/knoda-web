@@ -29,6 +29,7 @@ gem 'simple_form'
 gem "browser_detect"
 gem 'rest-client', '1.6.7'
 gem 'mandrill_mailer'
+gem 'sucker_punch', '~> 1.0.3'
 
 gem 'knoda_core', :git => "https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git", :branch => 'groups'
 # Use this to test local core engine changes
