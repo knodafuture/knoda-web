@@ -38,9 +38,11 @@ class MembershipsController < ApplicationController
     def membership_params
       params.require(:membership).permit(:group_id, :code)
     end    
+    
     def set_membership
       @membership = Membership.find(params[:id])
     end    
+
     def rebuild_leaderboard
       LeaderboardRebuild.new.async.perform(@membership.group_id)
     end
