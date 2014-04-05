@@ -104,7 +104,7 @@ class PredictionsController < AuthenticatedController
 
   def close
     respond_to do |format|
-      #authorize_action_for(@prediction)
+      authorize_action_for(@prediction)
       close_as = prediction_close_params[:outcome]
       if @prediction.close_as(close_as)
         format.json { render json: @prediction, status: 201 }
