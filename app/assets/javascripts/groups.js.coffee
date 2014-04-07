@@ -11,12 +11,22 @@ window.GroupsView = class GroupsView
       success: (json) ->
         startLoading()
         window.location = "/groups/#{json.id}/settings"
+  removeInvitee: (e) =>
+    @invitees.splice @invitees.indexOf($(e.currentTarget).data('u')), 1
+    $(e.currentTarget).unbind().parent().remove()
+
   addInvitee: (user) ->     
     if user.username
       labelText = user.username
     else
       labelText = user.email
-    $('.invitees').append("<div class='label label-default'>#{labelText}</div>")
+    l = $(document.createElement('div'))
+    l.addClass('label label-default')
+    l.html "#{labelText}"
+    removeInvitee = $(document.createElement('span')).addClass("remove-invitee").html('&times;').data('u', user)
+    removeInvitee.on 'click', @removeInvitee
+    l.append(removeInvitee)
+    $('.invitees').append(l)
     @invitees.splice 0, 0, user
   search: _.throttle( ->
       createMatchElement = (m) ->
