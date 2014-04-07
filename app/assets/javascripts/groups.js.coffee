@@ -54,12 +54,10 @@ window.GroupsView = class GroupsView
                 @addInvitee($(e.currentTarget).data('d'))
                 $(e.currentTarget).remove()
               $('.matches').append(l)
-            if @isEmail($.trim(q))
-              l = createMatchElement({email: q, username: q})
-              $(l).click (e) =>
-                @addInvitee($(e.currentTarget).data('d'))
-                $(e.currentTarget).remove()
-              $('.matches').append(l)
+            if @isEmail(q)
+              q = $.trim(q).replace(';','')
+              @addInvitee {email: q, username: q}
+              $('#query').val('')
     ,500)
   inviteUsers: ->
     invitations = []
@@ -85,7 +83,7 @@ window.GroupsView = class GroupsView
     $('#query').keyup (e) =>
       @search(e)
   isEmail: (email) ->
-    /.+@.+\..+/i.test email  
+    /.+@.+\..+([\s,;]){1,1}/i.test email  
 
 window.JoinGroupView = class JoinGroupView 
   constructor: (group_id, code) ->
@@ -168,6 +166,13 @@ window.GroupSettingsView = class GroupSettingsView
             authenticity_token : $('meta[name=csrf-token]').attr('content')              
           success: (x) =>
             window.location = "/groups"
+    $('#groups-inviteUsers').on 'shown.bs.modal', ->
+        $("input[name='query']").focus()
+
+    $('#groups-inviteUsers').on 'shown.bs.modal', ->
+      $("input[name='query']").focus()
+    $('#groups-shareLink').on 'shown.bs.modal', ->
+      $('#groups-shareLink .share-url').focus().select()
 
 window.GroupPredictionListView = class GroupPredictionListView
   currentOffset : 0
