@@ -114,6 +114,7 @@ window.unbindAll = () ->
   $('a.comments').unbind()
   $('a.tally').unbind()
   $('a.bs').unbind()
+  $('a.share-prediction').unbind()
 
 
 window.bindAll = () ->
@@ -157,9 +158,6 @@ window.bindAll = () ->
     el.find('.comments-content').show()
     el.find('a.comments').addClass('active')
     el.find('a.tally').removeClass('active')
-    #prediction_id = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
-    #startLoading();
-    #loadComments(el, prediction_id);    
 
   $('a.tally, .tallyText').click (e) ->
     e.preventDefault()
@@ -177,6 +175,15 @@ window.bindAll = () ->
     el = $(e.target).parents('.predictionContainer')
     prediction_id = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
     callBS(prediction_id)
+
+  $('a.share-prediction').click (e) ->
+    predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
+    groupId = $(e.target).parents('.predictionContainer').attr('data-group-id')
+    if !groupId
+      $('#sharePrediction').modal
+        remote : "/predictions/#{predictionId}/share_dialog"
+    else
+      alert("Hold on, this is a private group prediction. You won't be be able to share it with the world.")
 
 
 $ ->

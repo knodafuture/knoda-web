@@ -1,6 +1,6 @@
 <% title "Knoda | Predict • Compete • Conquer" %>
 <div class="row home-top">       
-  <div class="col-xs-12 col-sm-8 col-sm-offset-1 col-md-4 col-md-offset-1 left" style="padding-top:30px;padding-bottom: 30px">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-1 col-md-4 col-md-offset-1 left" style="padding-top:30px;">
       <div style="padding-bottom:10px">
         <%= image_tag('knoda_logo.png', :style => 'vertical-align:middle') %>
         <p style="display:inline-block;font-family: 'Krona One', sans-serif; font-size: 24px;margin-bottom:0px;vertical-align:middle;color:#255b38">KNODA</p>    
@@ -26,11 +26,14 @@
         <div>
           <button type="submit" class="btn btn-link signup">Sign Up <%= image_tag('home/sd/login_arrow.png') %></button>
         </div>
-        <a href="#" class="login" data-toggle="modal" data-target="#loginModal" style="width:100%;text-align:center;display:inline-block;">Already a Knoda user? Login</a>
+        <div>
+          <a href="#" class="login" data-toggle="modal" data-target="#loginModal" style="width:100%;text-align:center;display:inline-block;">Already a Knoda user? Login</a>
+        </div>
       <% end %>       
   </div>
-  <div class="col-md-7 hidden-sm hidden-xs right" style="height:425px;padding-top:190px;text-align:center;">
-    <a href="#section2"><%= image_tag("home/hd/learnmore_btn.png", :style => "height:45px;width:200px;") %></a>
+  <div class="col-md-7 hidden-sm hidden-xs right" style="height:430px;text-align:center;max-width:951px;">
+    <a href="#section2" style="position:absolute;"><%= image_tag("home/hd/learnmore_btn.png", :style => "height:45px;width:200px;position:absolute;top:190px") %></a>
+    <div class="right-overlay"></div>
   </div>
 </div> 
 <div class="row" id="section2">
@@ -58,77 +61,4 @@
   </div>
 </div>
 
-<% content_for :bodyClose do %>
-  <div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
-  <div class="modal-dialog">
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:id => 'login_form'}) do |f| %>
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <div class="modal-title" id="myModalLabel">LOGIN TO KNODA</div>
-      </div>
-      <div class="modal-body">
-            <div class="alert alert-danger" style="display:none">
-              <p>Whoa there, we couldn't log you in.  Check your username & password and try again.</p>
-            </div>
-              <div class="form-group">
-                <%= f.text_field :login, :autofocus => true, :class => 'form-control', :placeholder => 'email address or username' %>
-              </div>
-              <div class="form-group">
-                <%= f.password_field :password, :class => 'form-control', :placeholder => 'password'%>
-              </div>
-              <%= link_to 'forgot password?', new_password_path(:user) %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <%= f.submit :value => "Sign In", :class => 'btn btn-success' %>
-      </div>
-    </div><!-- /.modal-content -->
-    <% end %>         
-  </div><!-- /.modal-dialog -->     
-  </div>
-
-  <script>
-  $(function() {
-    submitSignup = function(e) {
-      e.preventDefault();
-      startLoading()
-      $.ajax({
-        url: "/users.json",
-        data: $('#new_user').serialize(),
-        type: "POST",
-        dataType: "json",
-        success: function(json, status) {
-          ga('send', 'event', 'users', 'signup');
-          window.location = json.location;
-        },
-        error: function(xhr, status) {
-          $('#new_user .alert').show()
-          $('#new_user .alert ul').empty();
-          for (var x in xhr.responseJSON.errors) {
-            $('#new_user .alert ul').append('<li>' + x + ' ' + xhr.responseJSON.errors[x][0]);
-          }
-        }
-      });      
-    }    
-    $('.signup').on('click', submitSignup);
-    $('#new_user').on('submit', submitSignup);
-    $('#login_form').on('submit', function(e) {
-      e.preventDefault();
-      startLoading()
-      $.ajax({
-        url: "/signin.json",
-        data: $('#login_form').serialize(),
-        type: "POST",
-        success: function(json, status) {
-          ga('send', 'event', 'users', 'login');
-          window.location = '/predictions'
-        },
-        error: function(xhr, status) {
-          $('#login_form .alert').show()
-        }
-      });      
-    });
-  });
-  </script>
-<% end %>
+<%= render partial: "shared/login_modal.html.erb", locals: {destination: '/predictions'} %>

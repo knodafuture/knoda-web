@@ -1,0 +1,51 @@
+<% content_for :head do %>
+  <script language="Javascript">
+  function showPreview(coords)
+  {
+    var rx = 100 / coords.w;
+    var ry = 100 / coords.h;
+    var ratio = <%= @group.avatar_geometry(:original).width %> / $('.jcrop-holder img').first().width(); 
+
+    $('#preview').css({
+      width: Math.round(rx * <%= @group.avatar_geometry(:big).width.to_i %>) + 'px',
+      height: Math.round(ry * <%= @group.avatar_geometry(:big).height.to_i %>) + 'px',
+      marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+      marginTop: '-' + Math.round(ry * coords.y) + 'px'
+    });
+    $('#crop_x').val(Math.round(coords.x * ratio));
+    $('#crop_y').val(Math.round(coords.y * ratio));
+    $('#crop_w').val(Math.round(coords.w * ratio));
+    $('#crop_h').val(Math.round(coords.h * ratio));
+  }
+
+  $(function() {
+    $('#cropbox').Jcrop({
+        onSelect: showPreview,
+        onChange: showPreview,
+        setSelect:   [ 20, 20, 180, 180 ],
+        aspectRatio: 1/1
+      });
+  });
+  </script>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-9 col-sm-offset-1 col-md-6 col-md-offset-2" style="text-align:center">
+    <%= image_tag @group.avatar.url(:big), :id => 'cropbox', :width => 300 %>
+    <%= form_for(@group) do |f| %>
+    <div style="display:none">
+      <%= f.text_field :crop_x, :id => 'crop_x' %><br />
+      <%= f.text_field :crop_y, :id => 'crop_y' %><br />
+      <%= f.text_field :crop_w, :id => 'crop_w' %><br />
+      <%= f.text_field :crop_h, :id => 'crop_h' %><br />
+    </div>
+    <br />
+    <div class="form-group">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6"><%= f.submit "Use this image", :class =>'btn btn-success', :style=>"width: 100%" %></div>
+        <div class="col-xs-12 col-sm-6"><a href="/groups/<%= @group.id %>/avatar" class="btn btn-success" style="display:inline-block;width: 100%" >Choose a different image</a></div>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>

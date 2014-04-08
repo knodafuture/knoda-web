@@ -1,0 +1,64 @@
+<%= simple_form_for @group, :html=> { class: 'form-horizontal' } do |f| %>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <div class="modal-title">CREATE A GROUP</div>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-danger" style="display:none">
+            <p>Hold on, your group isn't ready yet.  You'll need to</p>
+            <ul style="padding-left:30px">
+            </ul>
+        </div>
+        <div class="form-group">
+          <%= f.input_field :name, :class => 'form-control name', :placeholder => 'Name your group...', :maxlength => '30'  %>
+        </div>        
+        <div class="form-group">
+          <%= f.input_field :description, :class => 'form-control description', :placeholder => 'Short description for your group...', :maxlength => '140'  %>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      <%= f.button :submit , :class => 'btn btn-success' %>
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+<% end %>  
+<script>
+  var clearValidation = function() {
+    $('#new_group .alert ul').empty()
+    $('#new_group .alert').hide()
+  }
+  var validateNewGroup = function() {
+    clearValidation()
+    var name = $.trim($('#new_group .name').val())
+    var description = $.trim($('#new_group .description').val())
+    var errors = []
+    if (name == '')
+      errors.push({msg: 'Enter a short name.'})
+    if (errors.length == 0) {
+      return true
+    }else {
+      $('#new_group .alert').show()
+      for (var i in errors) {
+        $('#new_group .alert ul').append("<li>" + errors[i].msg + "</li>")
+      }
+      return false
+    }
+  }
+  $(function() {    
+    $('textarea').maxlength({
+      alwaysShow: true 
+    }); 
+    // Form Submission
+    $('#new_group').on('submit', function(e) {
+      e.preventDefault()
+      if (validateNewGroup()) {
+        groupsView = new window.GroupsView()
+        groupsView.initializeSearch();        
+        groupsView.create()
+      }
+    });  
+  });
+</script>

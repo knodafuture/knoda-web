@@ -1,0 +1,30 @@
+<div id="groups-leaderboard">
+  <%= render partial: "groups/header", locals: {group: @group} %> 
+  <div  class="limit-size-small">
+  <div class="row" style="margin: 5px 0px;">
+      <ul class="nav nav-pills col-xs-12" style="text-align:left;">
+        <li <% if !params[:board] %>class="active"<%end %>><a href="/groups/<%= @group.id %>/leaderboard">Last 7 Days</a></li>
+        <li <% if params[:board] == 'monthly' %>class="active"<%end %>><a href="/groups/<%= @group.id %>/leaderboard?board=monthly">Last 30 Days</a></li>
+        <li <% if params[:board] == 'alltime' %>class="active"<%end %>><a href="/groups/<%= @group.id %>/leaderboard?board=alltime">All Time</a></li>
+      </ul>
+  </div>
+  <div class="row">
+    <table class="table table-striped"
+      <tbody>
+      <% @leaders.each do |l| %>
+        <tr>
+          <td>
+            <div class="row">
+              <div class="col-xs-1 greenLight sansBold"><%= l[:rank] %></div>
+              <div class="col-xs-5"><span><%= l[:username] %></span><% if l[:verified_account] %><%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %><% end %></div>
+              <div class="col-xs-3"><%= l[:won] %>-<%= l[:lost]%></div>
+              <div class="col-xs-3"><%= winning_percentage(l[:won], l[:lost]) %></div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>

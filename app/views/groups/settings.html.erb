@@ -1,0 +1,55 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "groups" %>
+<% end %>
+
+<div id="groups-settings">
+  <%= render partial: "groups/header", locals: {group: @group} %>
+  <div class="row group-invite-buttons">
+    <div class="col-xs-12 col-sm-4" style="margin-top: 10px;">
+      <% if @group.owned_by?(current_user) %>
+        <div><a class="btn btn-primary" href="/groups/<%=@group.id%>/invite" data-toggle="modal" data-target="#groups-inviteUsers"><span class="invite">Invite Users</span></a> </div><br />
+        <div><a class="btn btn-primary" href="/groups/<%=@group.id%>/share" data-toggle="modal" data-target="#groups-shareLink"><span class="share_link">Share Link</span></a></div>
+      <% else %>
+        <div><a class="btn btn-primary leave-group" data-membership-id="<%= my_membership(@group).id %>">Leave Group</a></div>
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-8">
+      <div class="alert alert-success fade in" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        Your invitations are on the way.
+      </div>
+      <%if @memberships.size == 0 %>
+        <div class="row empty-state">
+          <div class="col-xs-12">
+            <p>A group without members is lame-o.<br/>
+             Invite your friends or share the group link.
+            </p>
+          </div>
+        </div>
+      <% else %>
+        <table class="table table-striped">
+          <thead><tr><th>Group Members</th></tr></thead>
+          <% @memberships.each do |u| %>
+          <tr>
+            <td><%= u.user.username %>
+            <% if @group.owned_by?(current_user) %>
+            <a class="pull-right remove-member" data-membership-id="<%= u.id %>" style="font-size:1.2em;">&times;</a>
+            <% end %>
+            </td></tr>
+          <% end %>
+        </table>     
+      <% end %>  
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="groups-inviteUsers" tabindex="-1" role="dialog" aria-hidden="true">
+</div>   
+
+<div class="modal fade" id="groups-shareLink" tabindex="-1" role="dialog" aria-hidden="true">
+</div> 
+
+<script>
+  view = new window.GroupSettingsView({group_id : <%= @group.id %> })
+</script>

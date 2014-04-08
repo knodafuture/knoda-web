@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     if @user != current_user
+      @predictions = @user.predictions.visible_to_user(current_user).latest.offset(param_offset).limit(param_limit).id_lt(param_id_lt)
       render 'show_public'
     else
       render 'show'
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
     p = Rails.root.join('app', 'assets', 'images', 'avatars', "avatar_#{av}@2x.png")
     @user.avatar_from_path p
     @user.save
-    redirect_to '/predictions'
+    redirect_to params[:destination]
   end
 
   def create
@@ -66,7 +67,7 @@ class UsersController < ApplicationController
       if params[:user][:avatar].blank?
         if @user.cropping?
           @user.reprocess_avatar
-          redirect_to '/'
+          redirect_to params[:destination] || '/'
         else
           respond_to do |format|
             format.json { render json: @user, :status => 200 }
@@ -103,6 +104,10 @@ class UsersController < ApplicationController
       render :json => @user.errors, :status => :bad_request
     end
   end  
+
+  def autocomplete
+    @users = User.search(params[:query], fields: [{:username => :text_start}], limit: 10)
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -6,6 +6,7 @@ Bundler.require(:default, Rails.env)
 
 module KnodaWeb
   class Application < Rails::Application
+    config.paths['db/migrate'] = KnodaCore::Engine.paths['db/migrate'].existent
     config.middleware.use Rack::Deflater    
     config.knoda_web_url = ENV['KNODA_WEB_URL'] || 'http://www.knoda.com'
     
@@ -17,6 +18,8 @@ module KnodaWeb
 
     config.analytics_enabled = ENV['ANALYTICS_ENABLED'] || false
     config.lucky_orange_enabled = ENV['LUCKY_ORANGE_ENABLED'] || false
+
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
 
     config.assets.precompile << Proc.new do |path|
       if path =~ /\.(js)\z/

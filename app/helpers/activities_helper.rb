@@ -9,6 +9,8 @@ module ActivitiesHelper
         "icons/ActivityCommentIcon.png"
       when 'EXPIRED'
         "icons/ActivityExpiredIcon.png"
+      when "INVITATION"
+        "icons/activity/activity_groups_icon.png"
     end  	
   end
 

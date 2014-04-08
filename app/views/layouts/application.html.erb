@@ -89,6 +89,11 @@
                 <span class="collapseText">Badges</span>
               </a>
             </li>
+            <li>
+              <a class="groups <% if params[:controller] == 'groups' %> active <% end %>"href="/groups" title="Groups">
+                <span class="collapseText">Groups</span>
+              </a>
+            </li>            
           </ul>                            
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -103,8 +108,8 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a class="predict" href="/predictions/new" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new" title="Make a prediction">
+            <li>  
+              <a class="predict" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new<% if @group %>?group_id=<%=@group.id%><% end %>" title="Make a prediction">
                 <span class="collapseText">Predict</span>
               </a>
             </li>

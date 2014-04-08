@@ -10,10 +10,15 @@
             <p>Hold on, your prediction isn't ready yet.  You'll need to</p>
             <ul style="padding-left:30px">
             </ul>
-        </div>
+        </div>          
         <div class="form-group">
           <%= f.input_field :body, :class => 'form-control body', :placeholder => 'Make a prediction...', :maxlength => '300'  %>
         </div>
+        <% if @groups.size > 0 %>
+          <div class="form-group">
+          <%= f.input_field :group_id, :collection => @groups, :label_method => :name, :value_method => :id, :class =>'form-control group_id', :prompt => 'Public'%>
+          </div>        
+        <% end %>              
         <div class="form-group">
         <%= f.input_field :tags, :collection => ['SPORTS','ENTERTAINMENT','PERSONAL','BUSINESS','WEATHER', 'POLITICS', 'STOCKS','FUNNY','OTHER'], :class =>'form-control category', :prompt => 'Select a Category' %>
         </div>
@@ -86,6 +91,9 @@
     }
   }
   $(function() {    
+    <% if @default_group %>
+      $('#new_prediction .group_id > option[value=<%=@default_group.id%>]').prop('selected', 'selected')
+    <% end %>
     oneMinuteInFuture = moment().add('minutes', 1)
     twoMinutesInFuture = moment().add('minutes', 2)
     $('input[name=prediction_expires_at_date]').attr('min', oneMinuteInFuture.format('YYYY-MM-DD')).val(oneMinuteInFuture.format('YYYY-MM-DD'))

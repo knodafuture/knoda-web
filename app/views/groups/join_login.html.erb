@@ -1,0 +1,67 @@
+<% content_for :head do %>
+    <meta property="og:image" content="<%= avatar_big(@group) %>" />
+    <meta property="og:title" content="Knoda | <%= @group.name%>" />
+    <meta property="og:description" content="<%= @owner.username %> has invited you to join the group <%= @group.name %> on Knoda." />
+    <meta property="og:site_name" content="Knoda" />
+<% end %>
+<% title "Knoda | #{@group.name}" %>
+<div class="row home-top join_login">       
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 left" style="padding-top:30px">
+      <div style="padding-bottom:10px">
+        <%= image_tag('knoda_logo.png', :style => 'vertical-align:middle') %>
+        <p style="display:inline-block;font-family: 'Krona One', sans-serif; font-size: 24px;margin-bottom:0px;vertical-align:middle;color:#255b38">KNODA</p>    
+      </div>
+      <p class="invitation-text"><%= @owner.username %> has invited you to join the group <span class="group-name"><%= @group.name %></span> on Knoda.<br />To accept the invitation, login or create an account.</p>
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <div class="alert alert-danger" style="display:none">
+          <p>Hold on, your registration isn't ready yet.</p>
+          <ul style="padding-left:30px">
+          </ul>
+        </div>
+        <div class="form-group">
+          <%= f.email_field :email, :class => 'form-control input-lg', :placeholder => 'email', :maxlength => '255' %>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :username, :class => 'form-control input-lg', :placeholder => 'username', :maxlength => '15'%>
+        </div>
+        <div class="form-group">
+          <%= f.password_field :password, :class => 'form-control input-lg', :placeholder => 'password', :maxlength => '50' %>
+        </div>
+        <%= f.submit :class => 'hidden-xs hidden-sm hidden-md hidden-lg' %>
+        <div>
+          <button type="submit" class="btn btn-link signup">Sign Up <%= image_tag('home/sd/login_arrow.png') %></button>
+        </div>
+        <div>
+          <a href="#" class="login" data-toggle="modal" data-target="#loginModal" style="width:100%;text-align:center;display:inline-block;">Already a Knoda user? Login</a>
+        </div>
+      <% end %>       
+  </div>
+  <div class="hidden-sm hidden-xs">
+  </div>
+</div> 
+<div class="row" id="section2">
+  <div class="col-md-4 col-md-offset-1 hidden-sm hidden-xs">
+    <%= image_tag("app_mockups.png", :style => 'height: 350px;margin-top: 25px;margin-right:15%') %>
+    <div class="appBadges">
+      <a onclick="ga('send', 'event', 'redirect', 'play_store');" href="https://play.google.com/store/apps/details?id=com.knoda.knoda">
+        <img alt="Get it on Google Play"
+             src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+      </a>
+      <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>      
+    </div>
+  </div>
+  <div class="col-md-5 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
+    <div class="row home-bullets">
+      <div><%= image_tag("icons/sd/predictfuture_icon.png")  %><h2>Predict anything.</h2></div>
+      <p>What team is winning the big game? Who is the next celeb heading to rehab? When is your best friend getting engaged?</p>
+      <div><%= image_tag("icons/sd/settlescore_icon.png") %><h2>Settle the score</h2></div>
+      <p>Results are crowdsourced by you, the Knoda community. A BS button allows the community to reverse wrong results.</p>
+      <div><%= image_tag("icons/sd/challenge_icon.png") %><h2>Challenge friends</h2></div>
+      <p>Vote on other predictions. Agree if you like the prediction. Disagree and go head-to-head against them if you don’t.</p>
+      <div><%= image_tag("icons/sd/talktrash_icon.png") %><h2>Talk some trash</h2></div>
+      <p>Comment on any prediction. Have some fun. Hold your friends accountable. Capitalize on your bragging rights.</p>
+    </div>  
+  </div>
+</div>
+
+<%= render partial: "shared/login_modal.html.erb", locals: {destination: @destination} %>

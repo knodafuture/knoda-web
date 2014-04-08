@@ -1,0 +1,29 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'prediction_actions' %>
+  <%= javascript_include_tag "groups" %>
+<% end %>
+
+<%= render partial: "groups/header", locals: {group: @group} %> 
+
+<%if @predictions.size == 0 %>
+<div class="row empty-state">
+  <div class="col-xs-12">
+    <p>A group without predictions is lame-o.<br/>
+       Get things started and <a data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new<% if @group %>?group_id=<%=@group.id%><% end %>" title="Make a prediction">make a prediction</a>.
+    </p>
+  </div>
+</div>
+<% else %>
+  <div class="panel-group" id="predictionsList">
+      <% @predictions.each do |i| %>
+        <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
+      <% end %>
+  </div>
+<% end %>
+
+<script>
+  $(function() {
+    console.log($('#predictionsList'))
+    new window.GroupPredictionListView({group_id : <%= @group.id %> })
+  });
+</script>

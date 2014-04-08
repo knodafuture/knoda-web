@@ -3,7 +3,8 @@ class PredictionsController < AuthenticatedController
   skip_before_action :authenticate_user!, only: [:share, :show]
   skip_before_action :unseen_activities, only: [:share, :show]
   before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments, :bs]
-  
+  after_action :after_close, only: [:close]
+
   def share
     if user_signed_in?
       redirect_to  action: 'show', id: @prediction.id
@@ -15,9 +16,9 @@ class PredictionsController < AuthenticatedController
 
   def index
     if params[:tag]
-      @predictions = Prediction.recent.latest.where("'#{params[:tag]}' = ANY (tags)").offset(param_offset).limit(param_limit)
+      @predictions = Prediction.recent.latest.visible_to_user(current_user.id).where("'#{params[:tag]}' = ANY (tags)").offset(param_offset).limit(param_limit)
     else
-      @predictions = Prediction.includes(:user,:comments).recent.latest.offset(param_offset).limit(param_limit)
+      @predictions = Prediction.includes(:user,:comments).visible_to_user(current_user.id).recent.latest.offset(param_offset).limit(param_limit)
     end
     if param_offset.to_i > 0
       render :partial => "predictions"
@@ -43,6 +44,10 @@ class PredictionsController < AuthenticatedController
   # GET /predictions/new
   def new
     @prediction = Prediction.new
+    @groups = current_user.groups
+    if params[:group_id]
+      @default_group = Group.find(params[:group_id])
+    end
     render layout: false
   end
 
@@ -147,10 +152,14 @@ class PredictionsController < AuthenticatedController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prediction_params
-      params.require(:prediction).permit(:body, :expires_at, :resolution_date, :tags)
+      params.require(:prediction).permit(:body, :expires_at, :resolution_date, :tags, :group_id)
     end    
 
     def prediction_close_params
       params.require(:prediction).permit(:outcome)
+    end
+
+    def after_close
+      PredictionClose.new.async.perform(@prediction.id)
     end
 end

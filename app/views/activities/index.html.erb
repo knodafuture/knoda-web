@@ -4,7 +4,11 @@
 	    <tr <% if not i.seen %> style="background-color:#efefef" <% end%>>
 	    	<td><%= image_tag(activity_icon(i)) %></td>
 	    	<td>
-	    		<a href="/predictions/<%= i.prediction_id %>"><%= i.title %> "<%= i.prediction_body %>"</a>
+	    		<% if i.activity_type == 'INVITATION' %>
+	    			<a href="/groups/join?code=<%= i.invitation_code %>"><%= i.invitation_sender %> has invited you to join the group "<%=i.invitation_group_name %>"</a>
+	    		<% else %>
+	    			<a href="/predictions/<%= i.prediction_id %>"><%= i.title %> "<%= i.prediction_body %>"</a>
+	    		<% end %>
 	    	</td>
 	    </tr>
 	  <% end %>

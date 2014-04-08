@@ -18,7 +18,7 @@
 
 // Components
 @import "twitter/bootstrap/component-animations";
-@import "twitter/bootstrap/glyphicons";
+//@import "glyphicons";
 @import "twitter/bootstrap/dropdowns";
 @import "twitter/bootstrap/button-groups";
 @import "twitter/bootstrap/input-groups";
@@ -51,7 +51,6 @@
 
 @import "loading";
 
-
 .img-retina(@file-1x; @file-2x; @width-1x; @height-1x) {
   background-image: image-url("@{file-1x}");
 
@@ -67,6 +66,15 @@
   }
 }
 
+.btn {
+	.sansLight;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
+	background-color: @green-knoda-dark;
+	border-color: @green-knoda-dark;
+}
+
 a {
 	text-decoration: none;
 	cursor: pointer
@@ -76,13 +84,17 @@ h3 {
 	font-size: 18px;
 }
 
+.greenLight {
+	color: @green-knoda-light;
+}
+
 .sansLight {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 }
 .sansRegular {
 	font-family: 'Open Sans', sans-serif;
-	font-weight: 300;
+	font-weight: 500;
 }
 .sansBold {
 	font-family: 'Open Sans', sans-serif;
@@ -96,6 +108,11 @@ h3 {
 	text-align: center;
 }
 
+.smallCaption {
+	.sansRegular;
+	font-size: 0.75em;
+}
+
 #topNav {
 	.logo {
 		height: 50px;
@@ -105,7 +122,7 @@ h3 {
 		margin: 0px;
 
 	}
-	.home, .history, .activity, .badges, .search, .predict {
+	.home, .history, .activity, .badges, .groups, .search, .predict {
 		background-size: 25px 25px;
 		width: 50px;
 		height: 50px;
@@ -138,6 +155,12 @@ h3 {
 			.img-retina("icons/sd/nav_badges_active.png", "icons/hd/nav_badges_active.png", 25px, 25px);
 		}		
 	}	
+	.groups {
+		.img-retina("icons/nav/nav_groups.png", "icons/nav/nav_groups@2x.png", 25px, 25px);
+		&.active, &:active {
+			.img-retina("icons/nav/nav_groups_active.png", "icons/nav/nav_groups_active@2x.png", 25px, 25px);
+		}			
+	}
 	.search {
 		margin-right: 20px;
 		.img-retina("icons/sd/nav_search.png", "icons/hd/nav_search.png", 25px, 25px);
@@ -189,6 +212,22 @@ h3 {
 		text-decoration:none;
 		color: #77BC1F;
 		font-size: 0.75em;
+	}
+}
+.predictionInfoLine2 {
+	padding-bottom: 0px;	
+}
+.predictionInfoLine3 {
+	.img-retina("icons/group_prediction_badge.png", "icons/group_prediction_badge@2x.png", 13px, 12px);
+	background-color:white; padding: 0px 0px 5px 0px; 	
+	background-repeat: no-repeat;
+	background-position: 20px 4px;
+	padding-left: 40px;
+	a {
+		color: @green-knoda-dark;
+		.sansBold;
+		font-size: 0.75em;
+		text-decoration: none;
 	}
 }
 .commentInfoLine2 {
@@ -279,33 +318,50 @@ h3 {
 			width: 70px;
 			margin: 0 auto;
 		}
-		.comments, .similar, .tally, .share {
+		.comments, .similar, .tally, .share, .group {
 			display: inline-block;
 			height: 27px;
 			width: 70px;
+			background-repeat: no-repeat;
+			background-position: center;
 		}
 		.comments {
-			background: image-url("icons/sd/action_comment.png") center no-repeat;
+			background-image: image-url("icons/sd/action_comment.png");
 			&.active, &:active {
-				background: image-url("icons/sd/action_comment_active.png") center no-repeat;
+				background-image: image-url("icons/sd/action_comment_active.png");
 			}			
 		}
 		.tally {
-			background: image-url("icons/sd/action_tally.png") center no-repeat;
+			background-image: image-url("icons/sd/action_tally.png");
 			&.active, &:active {
-				background: image-url("icons/sd/action_tally_active.png") center no-repeat;
+				background-image: image-url("icons/sd/action_tally_active.png");
 			}
 		}
 		.similar {
-			background: image-url("icons/sd/action_similar.png") center no-repeat;
+			background-image: image-url("icons/sd/action_similar.png");
 			&.active, &:active {
-				background: image-url("icons/sd/action_similar_active.png") center no-repeat;
+				background-image: image-url("icons/sd/action_similar_active.png");
 			}
 		}
+		.group {
+		.img-retina("icons/action_group.png", "icons/action_group@2x.png", 38px, 27px);
+		&.active, &:active {
+			.img-retina("icons/action_group_active.png", "icons/action_group_active@2x.png", 38px, 27px);
+		}
+		}
 		.share {
-			background: image-url("icons/sd/action_share.png") center no-repeat;
+			background-image: image-url("icons/sd/action_share.png");
 			&.active, &:active {
-				background: image-url("iicons/sd/action_share_active.png") center no-repeat;
+				background-image: image-url("icons/sd/action_share_active.png");
+			}
+			&.inactive, &.inactive:active {
+				cursor: default;
+				.img-retina("icons/action_share_inactive.png", "icons/action_share_inactive@2x.png", 38px, 27px);
+			}
+		}
+		.share-prediction {
+			&.inactive {
+				color: @gray-light;
 			}
 		}
 		a {
@@ -461,6 +517,8 @@ h3 {
 	display: none;
 }
 .navbar-collapse.in{
+	background-color: @green-knoda-light;
+	margin-bottom: 20px;
 	.collapseText {
 		display: inline-block;
 		font-size: 1.25em;
@@ -470,7 +528,6 @@ h3 {
 		display: inline-block;
 		text-transform: uppercase;
 	}
-	background-color: @green-knoda-light;
 	.dropdown {
 		display:none;
 	}
@@ -532,11 +589,39 @@ input[type="date"], input[type="time"] {
 }
 
 .home-top {
-	.img-retina("home/sd/home_hero_left.jpg", "home/hd/home_hero_left.jpg", '12px', '475px');
-	background-repeat: repeat-x;
+	#gradient > .vertical(#b6db7b; #88c623);
 	.right {
-		.img-retina("home/sd/home_hero_right.jpg", "home/hd/home_hero_right.jpg", '722px', '425px');
+		background-image: image-url("home/homepage_ui_img.png");
 		background-repeat: no-repeat;
+		background-position-x: 50px;
+		.right-overlay {
+			position:absolute;
+			width: 100%;
+			height: 430px;
+			top: 0;
+			left:0;
+			z-index:99;
+			opacity: 0.5;
+			#gradient > .vertical(#b6db7b; #88c623);
+		}
+		a {
+			z-index: 100;
+			opacity: 1.0;
+		}
+	}
+	&.join_login {
+		.group-name {
+			color: @green-knoda-dark;
+			.sansBold;
+		}
+		.invitation-text {
+			color:#fff;
+			font-size:1.5em;
+			.sansRegular;
+		}
+		form {
+			max-width: 400px;
+		}
 	}
 	
 }
@@ -551,4 +636,226 @@ input[type="date"], input[type="time"] {
 
 .nav-tabs, .nav-pills {
     text-align:center;
+}
+
+#groups-inviteUsers {
+	.label {
+		display:inline-block;
+		margin: 0.3em;
+		font-size: 1.0em;
+		.remove-invitee {
+			padding-left: 5px;
+		}
+	}
+	form {
+		margin-bottom: 5px;
+	}
+	.thumbnail {
+		border: none;
+		.caption {
+			padding: 2px;
+		}
+		cursor: pointer;
+	}
+}
+
+#groups-index {
+	.group-thumb {
+		div {
+			margin:0px;
+			padding:0px;
+		}
+		margin:0px;
+		padding: 5px;
+		.thumbnail {
+			border: none;
+			&:hover, &:focus, &.active {
+				border:none;
+			}
+			background: white;
+			padding: 0px;
+			margin:0px;			
+			img {
+				height: 100px;
+				width: 100px;
+				margin-left:0px;
+				margin-right: 10px;
+			}
+			h3 {
+				width: 280px;
+				display:inline-block;
+				padding: 0px 0px 5px 0px;
+				margin: 15px 0px 5px 0px;
+				a {
+					color: @green-knoda-light;
+					&:active {
+						color: @green-knoda-dark;
+					}
+				}
+			}
+			.statValue, .statLabel {
+				color: @green-knoda-dark;
+			}
+			.statLabel {
+				.sansLight;
+				font-size: .75em;
+			}
+			.row1, .row2 {
+				height: 50px;
+				margin: 0px;
+				padding: 0px;
+			}
+			a {
+				text-decoration: none;
+				cursor: pointer;
+			}
+		}
+	}
+	.new-group {
+		display: inline-block;
+		height: 100px;
+		width: 100px;
+		margin-left: 0px;
+		margin-right: 20px;
+		margin-bottom: 0px;
+		.img-retina("icons/groups_avatar_default.png", "icons/groups_avatar_default@2x.png", 100px, 100px);
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: 100px;
+	}
+}
+
+.groups-header {
+	.btn-settings, .btn-rankings, .btn-predictions {
+		height: 50px;
+		width: 70px;
+		display: inline-block;
+		margin: 0px 5px;
+		padding-top: 40px;
+		background-repeat: no-repeat;
+		background-position: center 10px;
+		text-decoration: none;
+		font-size: 0.8em;
+		text-align: center;
+		color: @text-color;
+		text-transform: uppercase;
+	}
+	.btn-settings {
+		.img-retina("icons/settings_icon.png", "icons/settings_icon@2x.png", 24px, 24px);
+		&.active, &:active {
+			.img-retina("icons/settings_icon_active.png", "icons/settings_icon_active@2x.png", 24px, 24px);
+		}
+	}
+	.btn-rankings {
+		.img-retina("icons/rankings_icon.png", "icons/rankings_icon@2x.png", 24px, 24px);
+		&.active, &:active {
+			.img-retina("icons/rankings_icon_active.png", "icons/rankings_icon_active@2x.png", 24px, 24px);
+		}
+	}
+	.btn-predictions {
+		.img-retina("icons/predictions_icon.png", "icons/predictions_icon@2x.png", 24px, 24px);
+		&.active, &:active {
+			.img-retina("icons/predictions_icon_active.png", "icons/predictions_icon_active@2x.png", 24px, 24px);
+		}
+	}	
+	.name {
+		.sansRegular;
+		font-size: 1.5em;
+		margin-bottom: 2px;
+	}
+	.description {
+		.sansLight;
+	}	
+	.change-avatar {
+		font-size:0.75em;
+		text-decoration: none;
+		cursor: pointer;
+		color: @green-knoda-light;
+	}
+}
+
+#groups-show-container {
+}
+
+#groups-leaderboard {
+	img.verified-account {
+		padding-left: 0.5em;
+		padding-bottom: 0.2em;
+		vertical-align:middle;
+	}
+	.nav-pills {
+		li > a {
+			.sansRegular;
+			color: @green-knoda-light;
+		}
+		li > a:hover {
+			background-color: transparent;
+			color: @green-knoda-dark;
+		}
+		li.active > a {
+			background-color: transparent;
+			color: @green-knoda-dark;
+			.sansBold;
+		}
+	}
+}
+
+#groups-settings {
+	.group-invite-buttons {
+		a.btn {
+			padding-top:10px;
+			padding-bottom: 10px;
+			width: 100%;
+			margin-left:2px;
+			margin-right:2px;
+			background-color: @green-knoda-dark;
+		 	border-color: @green-knoda-dark;
+		}
+		span.invite, span.share_link {
+			padding-left: 25px;
+			background-repeat: no-repeat;
+		}
+		span.invite {
+			.img-retina("icons/invite_icon.png", "icons/invite_icon@2x.png", 19px, 19px);
+		}
+		span.share_link {
+			.img-retina("icons/share_link_icon.png", "icons/share_link_icon@2x.png", 19px, 19px);
+		}
+	}
+}
+
+.empty-state {
+	.img-retina("no_content_image.png", "no_content_image@2x.png", 150px, 150px);
+	text-align:center;
+	height:300px;
+	margin-top: 30px;
+	background-position: center top;
+	background-repeat: no-repeat;
+	padding-top: 155px;
+	.sansLight;
+	a {
+		text-decoration: none;
+		cursor: pointer;
+		color: @green-knoda-light;
+	}
+}
+.limit-size-small {
+	max-width:480px;margin: auto;
+}
+
+.knoda-green-light {
+	color: @green-knoda-light;
+}
+
+#badges-index-container {
+	.thumbnail > img, .thumbnail a > img {
+		max-width: 100px;
+	}
+	a.thumbnail {
+		cursor: default;
+		border: none;
+		&:hover, &:focus, &.active {
+			border:none;
+		}
+	}
 }

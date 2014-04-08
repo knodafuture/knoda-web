@@ -30,12 +30,33 @@ KnodaWeb::Application.routes.draw do
       get 'crop'
       post 'avatar_upload'
     end
+    collection do
+      get 'autocomplete'
+    end
   end
   resources :comments
   resources :badges
   resources :history
   resources :activities
   resources :search
+  resources :groups do
+    member do
+      get 'leaderboard'
+      get 'settings'
+      get 'invite'
+      get 'avatar'
+      get 'default_avatar'
+      get 'crop'
+      post 'avatar_upload'
+      get 'share'
+      get 'predictions'
+    end
+    collection do
+      get 'join'
+    end
+  end
+  resources :invitations
+  resources :memberships
   
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'
