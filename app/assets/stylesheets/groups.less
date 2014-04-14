@@ -1,0 +1,186 @@
+
+#groups-inviteUsers {
+  .label {
+    display:inline-block;
+    margin: 0.3em;
+    font-size: 1.0em;
+    .remove-invitee {
+      padding-left: 5px;
+    }
+  }
+  form {
+    margin-bottom: 5px;
+  }
+  .thumbnail {
+    border: none;
+    .caption {
+      padding: 2px;
+    }
+    cursor: pointer;
+  }
+}
+
+#groups-index {
+  .group-thumb {
+    div {
+      margin:0px;
+      padding:0px;
+    }
+    margin:0px;
+    padding: 5px;
+    .thumbnail {
+      border: none;
+      &:hover, &:focus, &.active {
+        border:none;
+      }
+      background: white;
+      padding: 0px;
+      margin:0px;     
+      img {
+        height: 100px;
+        width: 100px;
+        margin-left:0px;
+        margin-right: 10px;
+      }
+      h3 {
+        width: 280px;
+        display:inline-block;
+        padding: 0px 0px 5px 0px;
+        margin: 15px 0px 5px 0px;
+        a {
+          color: @green-knoda-light;
+          &:active {
+            color: @green-knoda-dark;
+          }
+        }
+      }
+      .statValue, .statLabel {
+        color: @green-knoda-dark;
+      }
+      .statLabel {
+        .sansLight;
+        font-size: .75em;
+      }
+      .row1, .row2 {
+        height: 50px;
+        margin: 0px;
+        padding: 0px;
+      }
+      a {
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
+  .new-group {
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+    margin-left: 0px;
+    margin-right: 20px;
+    margin-bottom: 0px;
+    .img-retina("icons/groups_avatar_default.png", "icons/groups_avatar_default@2x.png", 100px, 100px);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100px;
+  }
+}
+
+.groups-header {
+  .btn-settings, .btn-rankings, .btn-predictions {
+    height: 50px;
+    width: 70px;
+    display: inline-block;
+    margin: 0px 5px;
+    padding-top: 40px;
+    background-repeat: no-repeat;
+    background-position: center 10px;
+    text-decoration: none;
+    font-size: 0.8em;
+    text-align: center;
+    color: @text-color;
+    text-transform: uppercase;
+  }
+  .btn-settings {
+    .img-retina("icons/settings_icon.png", "icons/settings_icon@2x.png", 24px, 24px);
+    &.active, &:active {
+      .img-retina("icons/settings_icon_active.png", "icons/settings_icon_active@2x.png", 24px, 24px);
+    }
+  }
+  .btn-rankings {
+    .img-retina("icons/rankings_icon.png", "icons/rankings_icon@2x.png", 24px, 24px);
+    &.active, &:active {
+      .img-retina("icons/rankings_icon_active.png", "icons/rankings_icon_active@2x.png", 24px, 24px);
+    }
+  }
+  .btn-predictions {
+    .img-retina("icons/predictions_icon.png", "icons/predictions_icon@2x.png", 24px, 24px);
+    &.active, &:active {
+      .img-retina("icons/predictions_icon_active.png", "icons/predictions_icon_active@2x.png", 24px, 24px);
+    }
+  } 
+  .name {
+    .sansRegular;
+    font-size: 1.5em;
+    margin-bottom: 2px;
+  }
+  .description {
+    .sansLight;
+  } 
+  .change-avatar {
+    font-size:0.75em;
+    text-decoration: none;
+    cursor: pointer;
+    color: @green-knoda-light;
+  }
+}
+
+#groups-show-container {
+}
+
+#groups-leaderboard {
+  img.verified-account {
+    padding-left: 0.5em;
+    padding-bottom: 0.2em;
+    vertical-align:middle;
+  }
+  .nav-pills {
+    li > a {
+      .sansRegular;
+      color: @green-knoda-light;
+    }
+    li > a:hover {
+      background-color: transparent;
+      color: @green-knoda-dark;
+    }
+    li.active > a {
+      background-color: transparent;
+      color: @green-knoda-dark;
+      .sansBold;
+    }
+  }
+}
+
+#groups-settings {
+  .group-invite-buttons {
+    a.btn {
+      padding-top:10px;
+      padding-bottom: 10px;
+      width: 100%;
+      margin-left:2px;
+      margin-right:2px;
+      background-color: @green-knoda-dark;
+      border-color: @green-knoda-dark;
+    }
+    span.invite, span.share_link {
+      padding-left: 25px;
+      background-repeat: no-repeat;
+    }
+    span.invite {
+      .img-retina("icons/invite_icon.png", "icons/invite_icon@2x.png", 19px, 19px);
+    }
+    span.share_link {
+      .img-retina("icons/share_link_icon.png", "icons/share_link_icon@2x.png", 19px, 19px);
+    }
+  }
+}

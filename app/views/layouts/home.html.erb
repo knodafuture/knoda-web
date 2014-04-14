@@ -1,60 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title><%= yield(:title) %></title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <meta name="description" content="Knoda lets you predict anything, challenge your friends, and talk some trash.  Make your prediction today." />    
-    <title><%= yield(:title) %></title>
+    <meta name="description" content="Knoda lets you predict anything, challenge your friends, and talk some trash.  Make your prediction today." /> 
+    <%= csrf_meta_tags %>
+    
     <link href='http://fonts.googleapis.com/css?family=Krona+One' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:500,400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+
+    <%= stylesheet_link_tag "application-home" %>
+    <!--<link href="<%= local_stylesheet_path('application-home')%>" media="all" rel="stylesheet">-->
     <link rel="icon" type="image/png" href="<%= image_path('favicon.png') %>" />
     <link rel="shortcut icon" type="image/png" href="<%= image_path('favicon.png') %>" />    
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <link href="<%= local_stylesheet_path('application')%>" media="all" rel="stylesheet">
-    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "home" %>
+    <%= javascript_include_tag 'home/animations/vote_on_predictions_edgePreload' %>
+    <%= javascript_include_tag 'home/animations/settle_results_edgePreload' %>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>  
     <![endif]-->
-    <%= csrf_meta_tags %>
     <%= yield :head %>
     <%= render partial: "shared/google_analytics" %>
-    <%= render partial: "shared/lucky_orange" %>
     <style>
-      html,
-      body {
-        height: 100%;
-        padding-top: 0px;
-      }
-      #wrap {
-        min-height: 100%;
-        height: auto;
-        margin: 0 auto -50px;
-        padding: 0 0 50px;
-        background-color:#255b38
-      }
-    </style>    
+      .edgeLoad-EDGE-160599758 { visibility:hidden; }
+      .edgeLoad-EDGE-136483370 { visibility:hidden; }
+    </style>
   </head>
- <body>
-    <div id="wrap" class="home">
-        <div class="container" style="margin: 0px; padding: 0px 0px; width: 100%">
-          <%= yield %>
-      </div>        
+  <body>
+    <div id="home-container">
+      <%= yield %>
     </div>
-    <div id="footer">
-      <ul class="nav nav-pills">
-        <li class="disabled"><span style="padding-right:20px;">Knoda, LLC &copy; 2014</span></li>
-        <li class="disabled"><a href="/about">About</a></li>
-        <li class="disabled"><a href="http://blog.knoda.com">Blog</a></li>
-        <li class="disabled"><a href="/terms">Terms</a></li>
-        <li class="disabled"><a href="/privacy">Privacy</a></li>
-        <li class="disabled"><a href="/support">Support</a></li>
-        <li class="disabled"><a href="http://twitter.com/KNODAfuture" target="_blank"><%= image_tag("home/sd/twitter_icon.png") %></a></li>
-        <li class="disabled"><a href="http://facebook.com/KNODAfuture" target="_blank"><%= image_tag("home/sd/facebook_icon.png") %></a></li>
-      </ul>
-    </div>
-    <%= yield :bodyClose %>
   </body>
- </html>
+</html>

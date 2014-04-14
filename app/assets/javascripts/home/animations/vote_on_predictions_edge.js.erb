@@ -1,0 +1,158 @@
+/**
+ * Adobe Edge: symbol definitions
+ */
+(function($, Edge, compId){
+//images folder
+var im='images/';
+
+var fonts = {};
+var opts = {};
+var resources = [
+];
+var symbols = {
+"stage": {
+    version: "3.0.0",
+    minimumCompatibleVersion: "3.0.0",
+    build: "3.0.0.322",
+    baseState: "Base State",
+    scaleToFit: "none",
+    centerStage: "none",
+    initialState: "Base State",
+    gpuAccelerate: false,
+    resizeInstances: false,
+    content: {
+            dom: [
+            {
+                id: 'agree_bg2',
+                type: 'image',
+                rect: ['-106px', '0px','375px','135px','auto', 'auto'],
+                fill: ["rgba(0,0,0,0)","<%= asset_path('home/animations/agree_bg.png') %>",'0px','0px']
+            },
+            {
+                id: 'tint_agree2',
+                type: 'rect',
+                rect: ['0px', '0px','187px','135px','auto', 'auto'],
+                fill: ["rgba(0,0,0,0.7)"],
+                stroke: [0,"rgb(0, 0, 0)","none"]
+            },
+            {
+                id: 'disagree_bg2',
+                type: 'image',
+                rect: ['106px', '0px','375px','135px','auto', 'auto'],
+                fill: ["rgba(0,0,0,0)","<%= asset_path('home/animations/disagree_bg.png') %>",'0px','0px']
+            },
+            {
+                id: 'tint_disagree2',
+                type: 'rect',
+                rect: ['188px', '0px','187px','135px','auto', 'auto'],
+                fill: ["rgba(0,0,0,0.7)"],
+                stroke: [0,"rgb(0, 0, 0)","none"]
+            },
+            {
+                id: 'prediction2',
+                type: 'image',
+                rect: ['0px', '0px','375px','135px','auto', 'auto'],
+                fill: ["rgba(0,0,0,0)","<%= asset_path('home/animations/prediction.png') %>",'0px','0px']
+            },
+            {
+                id: 'disagree_arrow2',
+                type: 'image',
+                rect: ['333px', '0px','42px','42px','auto', 'auto'],
+                fill: ["rgba(0,0,0,0)","<%= asset_path('home/animations/disagree_arrow.png') %>",'0px','0px']
+            },
+            {
+                id: 'agree_arrow2',
+                type: 'image',
+                rect: ['521px', '0px','42px','42px','auto', 'auto'],
+                fill: ["rgba(0,0,0,0)","<%= asset_path('home/animations/agree_arrow.png') %>",'0px','0px']
+            }],
+            symbolInstances: [
+
+            ]
+        },
+    states: {
+        "Base State": {
+            "${_agree_arrow2}": [
+                ["style", "top", '0px'],
+                ["style", "left", '521px']
+            ],
+            "${_Stage}": [
+                ["color", "background-color", 'rgba(255,255,255,1)'],
+                ["style", "width", '375px'],
+                ["style", "height", '135px'],
+                ["style", "overflow", 'hidden']
+            ],
+            "${_disagree_arrow2}": [
+                ["style", "top", '0px'],
+                ["style", "opacity", '0'],
+                ["style", "left", '145px']
+            ],
+            "${_disagree_bg2}": [
+                ["style", "top", '0px'],
+                ["style", "opacity", '1'],
+                ["style", "left", '106px'],
+                ["style", "right", 'auto']
+            ],
+            "${_tint_agree2}": [
+                ["style", "top", '0px'],
+                ["style", "height", '135px'],
+                ["color", "background-color", 'rgba(0,0,0,0.70)'],
+                ["style", "left", '0px'],
+                ["style", "width", '187px']
+            ],
+            "${_prediction2}": [
+                ["style", "left", '0px'],
+                ["style", "top", '0px']
+            ],
+            "${_tint_disagree2}": [
+                ["style", "top", '0px'],
+                ["style", "height", '135px'],
+                ["color", "background-color", 'rgba(0,0,0,0.70)'],
+                ["style", "left", '188px'],
+                ["style", "width", '187px']
+            ],
+            "${_agree_bg2}": [
+                ["style", "left", '-106px'],
+                ["style", "top", '0px']
+            ]
+        }
+    },
+    timelines: {
+        "Default Timeline": {
+            fromState: "Base State",
+            toState: "",
+            duration: 7250,
+            autoPlay: true,
+            timeline: [
+                { id: "eid88", tween: [ "style", "${_prediction2}", "left", '-188px', { fromValue: '0px'}], position: 750, duration: 1250, easing: "easeOutCubic" },
+                { id: "eid89", tween: [ "style", "${_prediction2}", "left", '0px', { fromValue: '-188px'}], position: 2250, duration: 1000, easing: "easeOutCirc" },
+                { id: "eid90", tween: [ "style", "${_prediction2}", "left", '188px', { fromValue: '0px'}], position: 3500, duration: 1250, easing: "easeOutCubic" },
+                { id: "eid91", tween: [ "style", "${_prediction2}", "left", '0px', { fromValue: '188px'}], position: 5000, duration: 1000, easing: "easeOutCirc" },
+                { id: "eid94", tween: [ "style", "${_disagree_arrow2}", "opacity", '1', { fromValue: '0'}], position: 2000, duration: 250, easing: "easeOutCirc" },
+                { id: "eid121", tween: [ "style", "${_disagree_bg2}", "left", '0px', { fromValue: '106px'}], position: 908, duration: 1092, easing: "easeOutCubic" },
+                { id: "eid122", tween: [ "style", "${_disagree_bg2}", "left", '106px', { fromValue: '0px'}], position: 2250, duration: 250, easing: "easeOutCirc" },
+                { id: "eid123", tween: [ "style", "${_agree_bg2}", "left", '0px', { fromValue: '-106px'}], position: 3658, duration: 1092, easing: "easeOutCubic" },
+                { id: "eid124", tween: [ "style", "${_agree_bg2}", "left", '-106px', { fromValue: '0px'}], position: 5000, duration: 250, easing: "easeOutCirc" },
+                { id: "eid92", tween: [ "style", "${_disagree_arrow2}", "left", '333px', { fromValue: '145px'}], position: 2250, duration: 1000, easing: "easeOutCirc" },
+                { id: "eid97", tween: [ "style", "${_disagree_arrow2}", "left", '521px', { fromValue: '333px'}], position: 3500, duration: 1250, easing: "easeOutCubic" },
+                { id: "eid101", tween: [ "style", "${_agree_arrow2}", "left", '333px', { fromValue: '521px'}], position: 5000, duration: 1000, easing: "easeOutCirc" },
+                { id: "eid108", tween: [ "style", "${_disagree_bg2}", "opacity", '0', { fromValue: '1'}], position: 3250, duration: 250, easing: "easeOutCirc" },
+                { id: "eid109", tween: [ "color", "${_tint_agree2}", "background-color", 'rgba(0,0,0,0.00)', { animationColorSpace: 'RGB', valueTemplate: undefined, fromValue: 'rgba(0,0,0,0.70)'}], position: 3658, duration: 592, easing: "easeOutCirc" },
+                { id: "eid110", tween: [ "color", "${_tint_agree2}", "background-color", 'rgba(0,0,0,0.70)', { animationColorSpace: 'RGB', valueTemplate: undefined, fromValue: 'rgba(0,0,0,0.00)'}], position: 5096, duration: 904, easing: "easeOutCirc" },
+                { id: "eid102", tween: [ "color", "${_tint_disagree2}", "background-color", 'rgba(0,0,0,0.00)', { animationColorSpace: 'RGB', valueTemplate: undefined, fromValue: 'rgba(0,0,0,0.70)'}], position: 908, duration: 592, easing: "easeOutCirc" },
+                { id: "eid103", tween: [ "color", "${_tint_disagree2}", "background-color", 'rgba(0,0,0,0.70)', { animationColorSpace: 'RGB', valueTemplate: undefined, fromValue: 'rgba(0,0,0,0.00)'}], position: 2346, duration: 904, easing: "easeOutCirc" }            ]
+        }
+    }
+}
+};
+
+
+Edge.registerCompositionDefn(compId, symbols, fonts, resources, opts);
+
+/**
+ * Adobe Edge DOM Ready Event Handler
+ */
+$(window).ready(function() {
+     Edge.launchComposition(compId);
+});
+})(jQuery, AdobeEdge, "EDGE-136483370");

@@ -97,7 +97,9 @@ class GroupsController < AuthenticatedController
         render 'join'
       end
     else
-      render 'join_login', :layout => 'invitation'
+      @groupInvitation = true
+      @scoredPredictions = ScoredPrediction.all
+      render "home/index", :layout => 'home'
     end    
   end
 

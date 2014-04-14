@@ -1,0 +1,366 @@
+// Core variables and mixins
+@import "twitter/bootstrap/variables";
+@import "variables";
+@import "overrides/variables-home";
+@import "twitter/bootstrap/mixins";
+@import "overrides/mixins";
+
+// Reset
+@import "twitter/bootstrap/normalize";
+@import "twitter/bootstrap/print";
+
+// Core CSS
+@import "twitter/bootstrap/scaffolding";
+@import "twitter/bootstrap/type";
+@import "twitter/bootstrap/code";
+@import "twitter/bootstrap/grid";
+@import "twitter/bootstrap/tables";
+@import "twitter/bootstrap/forms";
+@import "twitter/bootstrap/buttons";
+
+// Components
+@import "twitter/bootstrap/component-animations";
+//@import "overrides/glyphicons";
+@import "twitter/bootstrap/dropdowns";
+@import "twitter/bootstrap/button-groups";
+@import "twitter/bootstrap/input-groups";
+@import "twitter/bootstrap/navs";
+@import "twitter/bootstrap/navbar";
+@import "twitter/bootstrap/breadcrumbs";
+@import "twitter/bootstrap/pagination";
+@import "twitter/bootstrap/pager";
+@import "twitter/bootstrap/labels";
+@import "twitter/bootstrap/badges";
+@import "twitter/bootstrap/jumbotron";
+@import "twitter/bootstrap/thumbnails";
+@import "twitter/bootstrap/alerts";
+@import "twitter/bootstrap/progress-bars";
+@import "twitter/bootstrap/media";
+@import "twitter/bootstrap/list-group";
+@import "twitter/bootstrap/panels";
+@import "twitter/bootstrap/wells";
+@import "twitter/bootstrap/close";
+
+// Components w/ JavaScript
+@import "twitter/bootstrap/modals";
+@import "overrides/modals";
+@import "twitter/bootstrap/tooltip";
+@import "twitter/bootstrap/popovers";
+@import "twitter/bootstrap/carousel";
+
+// Utility classes
+@import "twitter/bootstrap/utilities";
+@import "twitter/bootstrap/responsive-utilities";
+@import "font";
+
+.center {
+  text-align: center;
+}
+
+#home-container {
+  .btn.signup, .btn.login, .btn.start {
+    width: 100%;
+    .sansLight;
+    background-color: @green-knoda-dark;
+    color: #ffffff;
+    font-size: 1.25em;
+    line-height: 1.5em;
+  }
+  .btn.start{
+    max-width: 250px;
+  }
+  #section-1, #section-2, #section-3, #section-4 {
+    min-height: 300px;
+  }
+  #section-1 {
+    background-color: @green-knoda-light;
+    .invitation-text {
+      text-align:left;
+      .group-name {
+        color: @green-knoda-dark;
+        .sansRegular;
+      }
+    }
+    h1 {
+      font-family: 'Krona One', sans-serif;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+    p {
+      color: @white;  
+      .sansLight;
+      font-size: 15px;
+    }
+    .header {
+      a, img {
+        .sansRegular;
+        color: @green-knoda-dark;
+        font-size: 12px;
+        padding: 10px 5px;
+        text-decoration: none;
+        text-transform: uppercase;
+        &.active {
+          .sansBold;
+        }
+      }
+    }
+    .homeTabs {
+      text-align:center;
+      color: @green-knoda-dark;
+      .tab-links {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      a {
+        .sansRegular;
+        color: @green-knoda-dark;
+        text-decoration: none;
+        cursor: pointer;
+        &.active {
+          .sansBold;
+        }
+      }
+    }
+    form.new_user {
+      display: inline-block;
+      max-width: 300px;
+      input {
+        background-color: #9dce5d;
+        border: 1px solid @green-knoda-light;
+        .placeholder(@green-knoda-light);
+        &:focus, &.changed {
+          background-color: @white;
+          .placeholder(@green-knoda-dark);
+          color: @green-knoda-dark;
+        }
+      }
+      .alert-danger {
+        background-color: @white;
+        border: 1px solid @gray-knoda;
+        color: #a94442;
+        text-align: left;
+        p {
+          color: #a94442;
+        }
+      }
+    }
+    .home-prediction {
+      display:none;
+      img {
+        width: 50px;
+      }
+      .detail {
+        max-width: 75%;
+        padding-left: 20px;
+        .sansLight;
+        font-size: 15px;
+        .line1 {
+          .username {
+            color: @green-knoda-dark;
+          }
+          .body {
+            color: @white;  
+          }
+          min-height: 25px;
+        }
+        .line2 {
+          color: @green-knoda-dark;
+          font-size: 10px;
+        }
+      }
+    }    
+  }
+  #section-2 {
+    .sansLight;
+    .carousel-indicators {
+      bottom: 0px;
+    }
+    .carousel-caption {
+      left: 5%;
+      right: 5%;
+      top: 5%;
+      h3 {
+        font-size: 18px;
+        line-height: 24px;
+        .sansLight;
+        margin: 5px 0px 15px 0px;
+      }
+      .date, .explainer {
+        color: @green-knoda-light;
+        .sansRegular;
+        font-size: 12px;
+      }
+    }
+    .carousel-inner>.item>img, .carousel-inner>.item>a>img {
+      display: block;
+      min-width: 100%;
+      width: 100%;
+      max-width: 100%;
+      line-height: 1;
+    }
+    .focal-point {
+      img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+      }
+    }
+  }
+  #section-3 {
+    text-align:center;
+    margin-bottom: 80px;
+    .title {
+      color: @green-knoda-dark;
+      font-size: 28px;
+      text-align:center;
+      .sansRegular;
+      padding: 30px 0px;
+      margin: 0px;
+    }
+    .howStepRow {
+      margin-bottom: 30px;
+    }
+    .how1Number, .how2Number, .how3Number {
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 80px;
+      width: 100%;
+    }
+    .how1, .how2, .how3 {
+      background-color: lighten(@gray-knoda, 50%);
+      margin-bottom: 0px;
+      min-height: 80px;
+      h3 {
+        text-transform: uppercase;
+        font-size: 12px;
+        .sansRegular;
+        padding: 0px;
+        margin: 0px;
+      }
+      p {
+        font-size: 13px;
+        .sansLight;
+        color: @green-knoda-light;
+      }
+    }
+    .how1Number {
+      .img-retina("home/howitworks/circle_icon1.png", "home/howitworks/circle_icon1@2x.png", 70px, 70px);
+    }
+    .how2Number {
+      .img-retina("home/howitworks/circle_icon2.png", "home/howitworks/circle_icon2@2x.png", 70px, 70px);
+    }
+    .how3Number {
+      .img-retina("home/howitworks/circle_icon3.png", "home/howitworks/circle_icon3@2x.png", 70px, 70px);
+    }   
+    #step1Text {
+      font-family: 'Roboto', sans-serif;
+      font-weight:300;
+      font-size: 15px;
+      max-width: 300px;
+      color: #666666;
+      line-height: 16px;
+    }
+  }
+  #section-4 {
+    background-color: @green-knoda-light;
+    height: 400px;
+    padding-top: 125px;
+    text-align:center;
+    h2 {
+      color: @white;
+      .sansLight;
+      font-size: 36px;
+    }
+  }
+  #footer {
+    background-color: @green-knoda-light;
+    text-align: center;
+    padding-bottom: 10px;
+    h2 {
+      margin-bottom: 30px;
+    }
+    a {
+      display: inline-block;
+      .sansLight;
+      font-size: 0.8em;
+      color: @green-knoda-dark;
+      padding: 0px 8px;
+    }
+    img {
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) {
+  #home-container {
+    #section-2 {
+      .carousel-caption {
+        top: 10%;
+        h3 {
+          font-size: 32px;
+          line-height: 40px;
+        }
+        .date, .explainer {
+          font-size: 16px;
+        }        
+      }
+    }
+    #section-3 {       
+    }
+  }  
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) {
+  #home-container {
+    #section-2 {
+      .carousel-caption {
+        top: 10%;
+        h3 {
+          font-size: 44px;
+          line-height: 62px;
+        }
+        .date, .explainer {
+          font-size: 20px;
+        }        
+      }
+    }
+    #section-3 {
+      .how1Number, .how2Number, .how3Number {
+        background-position: center right;
+      }
+      .howStepRow {
+        margin-bottom: 60px;
+      }
+      .how1 {
+        height: 147px;
+      }
+      .how2 {
+        height: 170px;
+      }
+      .how3 {
+        height: 254px;
+      }       
+    }
+  }  
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) {
+  #home-container {
+    #section-2 {
+      .carousel-caption {
+        top: 15%;
+      }
+    }
+    #section-3 {
+    text-align:left;
+    }
+  }
+  .container {
+    width: 1200px;
+  }  
+}

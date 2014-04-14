@@ -31,7 +31,7 @@ gem 'rest-client', '1.6.7'
 gem 'mandrill_mailer'
 gem 'sucker_punch', '~> 1.0.3'
 
-gem 'knoda_core', :git => "https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git", :branch => 'groups'
+gem 'knoda_core', :git => "https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git", :branch => 'develop'
 # Use this to test local core engine changes
 #gem 'knoda_core', :path => "../knoda_core"
 
