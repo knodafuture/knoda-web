@@ -22,6 +22,12 @@ module KnodaWeb
     config.assets.precompile += %w(application-home.css)
     config.assets.precompile += %w(application-prelogin.css)
     config.assets.precompile += %w(edge.3.0.0.min.js)
+    config.twitter_key = "14fSb3CT7EEQkoryO8RNx7BrG"
+    config.twitter_secret = "6Z5OGzxLL9NqVEpAbLs9FFd2PyLm6pd7j5r98IZr5e0HRr73bo"
+
+    config.facebook_app_id = "455514421245892"
+    config.facebook_app_secret = "34ad3fdfaa67ccd2a7dae8927501c7e3"
+
     config.assets.precompile << Proc.new do |path|
       puts path
       if path =~ /\.(js)\z/

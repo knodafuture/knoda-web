@@ -4,7 +4,7 @@ KnodaWeb::Application.routes.draw do
   get 'thebuzz', to: redirect('/')
   get '1mc', to: redirect('/')
   
- devise_for :users, :controllers => {:sessions => 'sessions'}, :skip => [:sessions] do
+ devise_for :users, :controllers => {:sessions => 'sessions', :omniauth_callbacks => "omniauth_callbacks"}, :skip => [:sessions] do
     get '/'   => "home#index",       :as => :new_user_session
     post '/signin'  => 'sessions#create',    :as => :user_session
     get '/signout'  => 'sessions#destroy',   :as => :destroy_user_session
@@ -57,6 +57,9 @@ KnodaWeb::Application.routes.draw do
   end
   resources :invitations
   resources :memberships
+  
+  resources :twitter
+  resources :facebook
   
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'

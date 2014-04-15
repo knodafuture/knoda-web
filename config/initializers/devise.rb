@@ -8,7 +8,10 @@ Devise.setup do |config|
   address = Mail::Address.new "support@knoda.com"
   address.display_name = "Knoda"    
   config.mailer_sender = address.format
-
+  require "omniauth-twitter"
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development? 
+  config.omniauth :twitter, Rails.application.config.twitter_key, Rails.application.config.twitter_secret
+  config.omniauth :facebook, Rails.application.config.facebook_app_id, Rails.application.config.facebook_app_secret, { :scope => 'publish_stream,publish_actions,email,read_stream,offline_access'}
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
 

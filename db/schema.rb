@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321144004) do
+ActiveRecord::Schema.define(version: 20140415163915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,8 @@ ActiveRecord::Schema.define(version: 20140321144004) do
     t.string   "share_id"
   end
 
+  add_index "groups", ["share_id"], name: "index_groups_on_share_id", using: :btree
+
   create_table "invitations", force: true do |t|
     t.integer  "user_id",           null: false
     t.integer  "group_id"
@@ -123,7 +125,9 @@ ActiveRecord::Schema.define(version: 20140321144004) do
     t.string  "role",     default: "MEMBER", null: false
   end
 
+  add_index "memberships", ["group_id", "user_id", "role"], name: "index_memberships_on_group_id_and_user_id_and_role", using: :btree
   add_index "memberships", ["user_id", "group_id"], name: "index_memberships_on_user_id_and_group_id", unique: true, using: :btree
+  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
   create_table "predictions", force: true do |t|
     t.integer  "user_id"
@@ -136,15 +140,37 @@ ActiveRecord::Schema.define(version: 20140321144004) do
     t.boolean  "is_closed",        default: false
     t.datetime "push_notified_at"
     t.string   "short_url"
-    t.datetime "resolutionDate"
     t.datetime "resolution_date",                  null: false
     t.datetime "activity_sent_at"
     t.string   "tags",             default: [],                 array: true
     t.integer  "group_id"
   end
 
+  add_index "predictions", ["group_id"], name: "index_predictions_on_group_id", using: :btree
   add_index "predictions", ["tags"], name: "index_predictions_on_tags", using: :gin
   add_index "predictions", ["user_id"], name: "index_predictions_on_user_id", using: :btree
+
+  create_table "scored_predictions", force: true do |t|
+    t.integer  "prediction_id"
+    t.string   "body"
+    t.datetime "expires_at"
+    t.string   "username"
+    t.string   "avatar_image"
+    t.integer  "agree_percentage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "social_accounts", force: true do |t|
+    t.integer  "user_id"
+    t.string   "providerName"
+    t.string   "providerId"
+    t.string   "provider"
+    t.string   "access_token"
+    t.string   "access_token_secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "topics", force: true do |t|
     t.string   "name"
@@ -182,7 +208,6 @@ ActiveRecord::Schema.define(version: 20140321144004) do
     t.boolean  "verified_account",       default: false
   end
 
-  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree

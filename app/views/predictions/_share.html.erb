@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'share_actions' %>
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
@@ -8,8 +9,17 @@
       <div class="row">
         <div class="col-xs-12" style="text-align:center">
           <div class="row">
-            <a href="https://twitter.com/intent/tweet?text=<%=u(prediction.body)%>&tw_p=tweetbutton&url=<%= u(prediction.short_url)%>&via=KNODAfuture" target="_new"><%= image_tag('icons/social/twitter.png') %></a>
-            <a href="https://www.facebook.com/sharer/sharer.php?app_id=225565977626604&sdk=joey&u=<%= u(prediction.short_url)%>" target="_new"><%= image_tag('icons/social/facebook.png') %></a>
+            <% if current_user.twitter_account != nil %>
+              <a id="twitter-share-button" data-prediction-id=<%= prediction.id %>><%= image_tag('icons/social/twitter.png') %></a>
+            <% else %>
+              <a href="https://twitter.com/intent/tweet?text=<%=u(prediction.body)%>&tw_p=tweetbutton&url=<%= u(prediction.short_url)%>&via=KNODAfuture" target="_new"><%= image_tag('icons/social/twitter.png') %></a>
+            <% end %>
+            <% if current_user.facebook_account != nil %>
+              <a id="facebook-share-button" data-prediction-id=<%= prediction.id %>><%= image_tag('icons/social/facebook.png') %></a>
+            <% else %>
+              <a href="https://www.facebook.com/sharer/sharer.php?app_id=225565977626604&sdk=joey&u=<%= u(prediction.short_url)%>" target="_new"><%= image_tag('icons/social/facebook.png') %></a>
+            <% end %>
+            
           </div>
           <div class="row" style="text-align:center">
             <div style="width:128px;display:inline-block">Twitter</div>
@@ -19,7 +29,7 @@
         </div>
       </div>
       <div style="display:none">
-		    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.knoda/predictions/<%=prediction.id%>/share" data-text="<%=prediction.body%>" data-via="KnodaFuture" data-size="large" data-count="none">Tweet</a>
+		      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.knoda/predictions/<%=prediction.id%>/share" data-text="<%=prediction.body%>" data-via="KnodaFuture" data-size="large" data-count="none">Tweet</a>
         <div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-type="button" data-width="76px" ></div>
       </div>
     </div>
