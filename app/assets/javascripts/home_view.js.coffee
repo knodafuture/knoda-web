@@ -11,11 +11,13 @@ window.HomeView = class HomeView
       @container.find('.tab-login').hide()
       @container.find('.tab-btn-login').removeClass('active')
       @container.find('.tab-btn-signup').addClass('active')      
+      @container.find('#user_email').focus()
     @container.find('.tab-btn-login').click =>
       @container.find('.tab-login').show()
       @container.find('.tab-signup').hide()    
       @container.find('.tab-btn-signup').removeClass('active')
       @container.find('.tab-btn-login').addClass('active')
+      @container.find('#user_login').focus()
     $(".signup").on "click", @submitSignup
     $("#new_user").on "submit", @submitSignup
     $("#login_form").on "submit", @login
