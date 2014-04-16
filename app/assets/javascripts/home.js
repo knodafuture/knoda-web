@@ -37,7 +37,7 @@ $.fn.vAlign = function() {
   var ph = $(this).parent().height();
   console.log(ah);
   console.log(ph);
-  var mh = Math.ceil((ph-ah) / 4);
+  var mh = Math.ceil((ph-ah) / 2);
   $(this).css('padding-top', mh);
   });
 };

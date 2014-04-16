@@ -57,6 +57,8 @@
   text-align: center;
 }
 
+
+
 #home-container {
   .btn.signup, .btn.login, .btn.start {
     width: 100%;
@@ -64,7 +66,7 @@
     background-color: @green-knoda-dark;
     color: #ffffff;
     font-size: 1.25em;
-    line-height: 1.5em;
+    line-height: 2em;
   }
   .btn.start{
     max-width: 250px;
@@ -85,6 +87,7 @@
       font-family: 'Krona One', sans-serif;
       font-size: 24px;
       text-transform: uppercase;
+      color: @green-knoda-dark;
     }
     p {
       color: @white;  
@@ -178,7 +181,7 @@
     .carousel-caption {
       left: 5%;
       right: 5%;
-      top: 5%;
+      top: 0%;
       h3 {
         font-size: 18px;
         line-height: 24px;
@@ -189,6 +192,9 @@
         color: @green-knoda-light;
         .sansRegular;
         font-size: 12px;
+      }
+      img {
+        width: 50px;
       }
     }
     .carousel-inner>.item>img, .carousel-inner>.item>a>img {
@@ -208,7 +214,7 @@
   }
   #section-3 {
     text-align:center;
-    margin-bottom: 80px;
+    margin-bottom: 0px;
     .title {
       color: @green-knoda-dark;
       font-size: 28px;
@@ -263,8 +269,7 @@
   }
   #section-4 {
     background-color: @green-knoda-light;
-    height: 400px;
-    padding-top: 125px;
+    height: 200px;
     text-align:center;
     h2 {
       color: @white;
@@ -275,7 +280,7 @@
   #footer {
     background-color: @green-knoda-light;
     text-align: center;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     h2 {
       margin-bottom: 30px;
     }
@@ -296,6 +301,9 @@
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @screen-sm-min) {
   #home-container {
+    #section-1 {
+      min-height: 600px;
+    }
     #section-2 {
       .carousel-caption {
         top: 10%;
@@ -305,10 +313,16 @@
         }
         .date, .explainer {
           font-size: 16px;
-        }        
+        }   
+        img {
+          width: 100px;
+        }     
       }
     }
     #section-3 {       
+    }
+    #section-4 {
+      height: 600px;
     }
   }  
 }
@@ -336,13 +350,10 @@
         margin-bottom: 60px;
       }
       .how1 {
-        height: 147px;
       }
       .how2 {
-        height: 170px;
       }
       .how3 {
-        height: 254px;
       }       
     }
   }  
