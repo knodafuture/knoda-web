@@ -32,12 +32,10 @@ stopLoading = function() {
 // VERTICALLY ALIGN FUNCTION
 $.fn.vAlign = function() {
   return this.each(function(i){
-  console.log($(this));
   var ah = $(this).height();
   var ph = $(this).parent().height();
-  console.log(ah);
-  console.log(ph);
   var mh = Math.ceil((ph-ah) / 2);
+  console.log($(window).width());
   $(this).css('padding-top', mh);
   });
 };
