@@ -1,0 +1,161 @@
+/**
+ * Adobe Edge: symbol definitions
+ */
+(function($, Edge, compId){
+//images folder
+var im='images/';
+
+var fonts = {};
+var opts = {};
+var resources = [
+];
+var symbols = {
+"stage": {
+    version: "3.0.0",
+    minimumCompatibleVersion: "3.0.0",
+    build: "3.0.0.322",
+    baseState: "Base State",
+    scaleToFit: "none",
+    centerStage: "none",
+    initialState: "Base State",
+    gpuAccelerate: false,
+    resizeInstances: false,
+    content: {
+            dom: [
+            {
+                id: 'prediction_detail2',
+                type: 'image',
+                rect: ['0px', '0px','320px','173px','auto', 'auto'],
+                fill: ["rgba(0,0,0,0)","<%= asset_path('home/animations/prediction_detail.png')%>",'0px','0px']
+            },
+            {
+                id: 'Yes',
+                type: 'rect',
+                rect: ['0px', '127px','105px','36px','auto', 'auto'],
+                fill: ["rgba(119,188,31,1)"],
+                stroke: [0,"rgb(0, 0, 0)","none"]
+            },
+            {
+                id: 'No',
+                type: 'rect',
+                rect: ['0px', '127px','106px','36px','auto', 'auto'],
+                fill: ["rgba(119,188,31,1)"],
+                stroke: [0,"rgb(0, 0, 0)","none"]
+            },
+            {
+                id: 'IDK_Yet',
+                type: 'rect',
+                rect: ['0px', '127px','105px','36px','auto', 'auto'],
+                fill: ["rgba(119,188,31,1)"],
+                stroke: [0,"rgb(0, 0, 0)","none"]
+            },
+            {
+                id: 'w_result2',
+                type: 'image',
+                rect: ['284px', '0px','36px','36px','auto', 'auto'],
+                fill: ["rgba(0,0,0,0)","<%= asset_path('home/animations/w_result.png')%>",'0px','0px']
+            },
+            {
+                id: 'result_points3',
+                type: 'image',
+                rect: ['320px', '103px','320px','70px','auto', 'auto'],
+                fill: ["rgba(0,0,0,0)","<%= asset_path('home/animations/result_points.png')%>",'0px','0px']
+            },
+            {
+                id: 'settle_btns',
+                type: 'image',
+                rect: ['0px', '103px','320px','70px','auto', 'auto'],
+                fill: ["rgba(0,0,0,0)","<%= asset_path('home/animations/settle_btns.png')%>",'0px','0px']
+            }],
+            symbolInstances: [
+
+            ]
+        },
+    states: {
+        "Base State": {
+            "${_No}": [
+                ["style", "top", '127px'],
+                ["style", "height", '36px'],
+                ["color", "background-color", 'rgba(119,188,31,1.00)'],
+                ["style", "left", '107px'],
+                ["style", "width", '106px']
+            ],
+            "${_settle_btns}": [
+                ["style", "left", '0px'],
+                ["style", "top", '103px']
+            ],
+            "${_IDK_Yet}": [
+                ["style", "top", '127px'],
+                ["style", "height", '36px'],
+                ["color", "background-color", 'rgba(119,188,31,1.00)'],
+                ["style", "left", '215px'],
+                ["style", "width", '105px']
+            ],
+            "${_result_points3}": [
+                ["style", "top", '103px'],
+                ["style", "left", '320px'],
+                ["style", "bottom", 'auto']
+            ],
+            "${_w_result2}": [
+                ["style", "top", '0px'],
+                ["style", "opacity", '0'],
+                ["style", "left", '284px']
+            ],
+            "${_Stage}": [
+                ["color", "background-color", 'rgba(255,255,255,1)'],
+                ["style", "min-width", '0px'],
+                ["style", "overflow", 'hidden'],
+                ["style", "height", '173px'],
+                ["style", "max-width", 'none'],
+                ["style", "width", '320px']
+            ],
+            "${_Yes}": [
+                ["style", "top", '127px'],
+                ["style", "height", '36px'],
+                ["color", "background-color", 'rgba(119,188,31,1.00)'],
+                ["style", "left", '0px'],
+                ["style", "width", '105px']
+            ],
+            "${_prediction_detail2}": [
+                ["style", "left", '0px'],
+                ["style", "top", '0px']
+            ]
+        }
+    },
+    timelines: {
+        "Default Timeline": {
+            fromState: "Base State",
+            toState: "",
+            duration: 4000,
+            autoPlay: true,
+            timeline: [
+                { id: "eid99", tween: [ "style", "${_settle_btns}", "left", '0px', { fromValue: '0px'}], position: 250, duration: 0, easing: "easeOutSine" },
+                { id: "eid98", tween: [ "style", "${_settle_btns}", "left", '-425px', { fromValue: '0px'}], position: 1500, duration: 250, easing: "easeOutSine" },
+                { id: "eid118", tween: [ "style", "${_No}", "top", '127px', { fromValue: '127px'}], position: 1500, duration: 0, easing: "easeOutSine" },
+                { id: "eid119", tween: [ "style", "${_No}", "left", '107px', { fromValue: '107px'}], position: 0, duration: 0, easing: "easeOutSine" },
+                { id: "eid120", tween: [ "style", "${_No}", "left", '-318px', { fromValue: '107px'}], position: 1500, duration: 250, easing: "easeOutSine" },
+                { id: "eid105", tween: [ "color", "${_Yes}", "background-color", 'rgba(119,188,31,1.00)', { animationColorSpace: 'RGB', valueTemplate: undefined, fromValue: 'rgba(119,188,31,1.00)'}], position: 0, duration: 0 },
+                { id: "eid106", tween: [ "color", "${_Yes}", "background-color", 'rgba(35,92,55,1.00)', { animationColorSpace: 'RGB', valueTemplate: undefined, fromValue: 'rgba(119,188,31,1.00)'}], position: 750, duration: 0 },
+                { id: "eid107", tween: [ "style", "${_Yes}", "left", '0px', { fromValue: '0px'}], position: 0, duration: 0, easing: "easeOutSine" },
+                { id: "eid112", tween: [ "style", "${_Yes}", "left", '-425px', { fromValue: '0px'}], position: 1500, duration: 250, easing: "easeOutSine" },
+                { id: "eid123", tween: [ "style", "${_IDK_Yet}", "left", '215px', { fromValue: '215px'}], position: 0, duration: 0, easing: "easeOutSine" },
+                { id: "eid124", tween: [ "style", "${_IDK_Yet}", "left", '-210px', { fromValue: '215px'}], position: 1500, duration: 250, easing: "easeOutSine" },
+                { id: "eid113", tween: [ "style", "${_w_result2}", "opacity", '1', { fromValue: '0'}], position: 1632, duration: 250, easing: "easeOutSine" },
+                { id: "eid125", tween: [ "style", "${_IDK_Yet}", "top", '127px', { fromValue: '127px'}], position: 1500, duration: 0, easing: "easeOutSine" },
+                { id: "eid109", tween: [ "style", "${_Yes}", "top", '127px', { fromValue: '127px'}], position: 1500, duration: 0, easing: "easeOutSine" },
+                { id: "eid117", tween: [ "style", "${_result_points3}", "left", '0px', { fromValue: '320px'}], position: 1500, duration: 1000, easing: "easeOutBack" }            ]
+        }
+    }
+}
+};
+
+
+Edge.registerCompositionDefn(compId, symbols, fonts, resources, opts);
+
+/**
+ * Adobe Edge DOM Ready Event Handler
+ */
+$(window).ready(function() {
+     Edge.launchComposition(compId);
+});
+})(jQuery, AdobeEdge, "EDGE-160599758");

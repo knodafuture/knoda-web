@@ -3,10 +3,6 @@
  *= require jquery.Jcrop
  */
 
-body {
-  padding-top: 50px;
-}
-
 #avatarSelection {
 	margin-top: 50px;
 }

@@ -1,64 +1,286 @@
-<% title "Knoda | Predict • Compete • Conquer" %>
-<div class="row home-top">       
-  <div class="col-xs-12 col-sm-8 col-sm-offset-1 col-md-4 col-md-offset-1 left" style="padding-top:30px;">
-      <div style="padding-bottom:10px">
-        <%= image_tag('knoda_logo.png', :style => 'vertical-align:middle') %>
-        <p style="display:inline-block;font-family: 'Krona One', sans-serif; font-size: 24px;margin-bottom:0px;vertical-align:middle;color:#255b38">KNODA</p>    
+<% if (@groupInvitation) %>
+  <% content_for :head do %>
+      <meta property="og:image" content="<%= avatar_big(@group) %>" />
+      <meta property="og:title" content="Knoda | <%= @group.name%>" />
+      <meta property="og:description" content="<%= @owner.username %> has invited you to join the group <%= @group.name %> on Knoda." />
+      <meta property="og:site_name" content="Knoda" />
+  <% end %>
+  <% title "#{@group.name}" %>
+<% else %>
+  <% title("Predict Compete Conquer") %>
+<% end %>
+<div id="section-1" class="section-1">
+  <div class="container-fluid">
+    <div class="row header hidden-xs" style="margin-top:10px;margin-bottom: 100px;">
+      <div class="col-md-6 col-md-offset-6 col-xs-7 col-xs-offset-5">
+        <%= image_tag("knoda_logo.png", :style => "margin:0px;padding:0px;") %>
+        <a class="active" href="#section-1">Sign up</a>
+        <a class="" href="#section-2">History</a>
+        <a class="" href="#section-3">How it works</a>
+        <a class="" href="#section-4">Download</a>
       </div>
-      <h1>Earn your bragging rights.</h1>
-      <h3>Predict anything, challenge friends, and prove you are always right. <span style="font-weight:700;">Sign up now.</span></h3>
-      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-        <div class="alert alert-danger" style="display:none">
-          <p>Hold on, your registration isn't ready yet.</p>
-          <ul style="padding-left:30px">
-          </ul>
+    </div>    
+    <div class="row">
+      <div class="hidden-xs col-sm-6 col-md-5 col-md-offset-1 hidden-xs">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1>Welcome to Knoda!</h1>
+            <p>Knoda is the prediction record book. Predict anything, challenge friends, and prove you are always right.</p>
+            <p>Compete against your friends and the rest of the community publicly, or create private groups.  Earn the right to say "I told you so!" when your predictions come true.</p>
+          </div>
+      </div>
+        <div class="row">
+          <div class="col-xs-12 appBadges" style="margin-top:20px;">
+            <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>      
+            <a onclick="ga('send', 'event', 'redirect', 'play_store');" href="https://play.google.com/store/apps/details?id=com.knoda.knoda" target="_blank"><%= image_tag("playStoreBadge.png") %></a>          
+          </div>
         </div>
-        <div class="form-group">
-          <%= f.email_field :email, :class => 'form-control input-lg', :placeholder => 'email', :maxlength => '255' %>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-5 homeTabs">
+        <% if (@groupInvitation) %>
+          <p class="invitation-text">
+            <%= @owner.username %> has invited you to join the group <span class="group-name"><%= @group.name %></span> on Knoda.<br />To accept the invitation, login or create an account.</p>
+        <% end %>        
+        <div class="row tab-links">
+          <div class="col-xs-12">
+            <div style="max-width:300px;margin-left: auto;margin-right: auto;text-align:left;">
+              <a class="tab-btn-signup active">SIGN UP</a> | <a class="tab-btn-login">LOGIN</a>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <%= f.text_field :username, :class => 'form-control input-lg', :placeholder => 'username', :maxlength => '15'%>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="tab-signup">
+              <%= render partial: "shared/signup.html.erb"%>
+            </div>
+            <div class="tab-login" style="display:none">
+              <%= render partial: "shared/login.html.erb"%>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <%= f.password_field :password, :class => 'form-control input-lg', :placeholder => 'password', :maxlength => '50' %>
-        </div>
-        <%= f.submit :class => 'hidden-xs hidden-sm hidden-md hidden-lg' %>
-        <div>
-          <button type="submit" class="btn btn-link signup">Sign Up <%= image_tag('home/sd/login_arrow.png') %></button>
-        </div>
-        <div>
-          <a href="#" class="login" data-toggle="modal" data-target="#loginModal" style="width:100%;text-align:center;display:inline-block;">Already a Knoda user? Login</a>
-        </div>
-      <% end %>       
-  </div>
-  <div class="col-md-7 hidden-sm hidden-xs right" style="height:430px;text-align:center;max-width:951px;">
-    <a href="#section2" style="position:absolute;"><%= image_tag("home/hd/learnmore_btn.png", :style => "height:45px;width:200px;position:absolute;top:190px") %></a>
-    <div class="right-overlay"></div>
-  </div>
-</div> 
-<div class="row" id="section2">
-  <div class="col-md-4 col-md-offset-1 hidden-sm hidden-xs">
-    <%= image_tag("app_mockups.png", :style => 'height: 350px;margin-top: 25px;margin-right:15%') %>
-    <div class="appBadges">
-      <a onclick="ga('send', 'event', 'redirect', 'play_store');" href="https://play.google.com/store/apps/details?id=com.knoda.knoda">
-        <img alt="Get it on Google Play"
-             src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
-      </a>
-      <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>      
+      </div>
     </div>
-  </div>
-  <div class="col-md-5 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
-    <div class="row home-bullets">
-      <div><%= image_tag("icons/sd/predictfuture_icon.png")  %><h2>Predict anything.</h2></div>
-      <p>What team is winning the big game? Who is the next celeb heading to rehab? When is your best friend getting engaged?</p>
-      <div><%= image_tag("icons/sd/settlescore_icon.png") %><h2>Settle the score</h2></div>
-      <p>Results are crowdsourced by you, the Knoda community. A BS button allows the community to reverse wrong results.</p>
-      <div><%= image_tag("icons/sd/challenge_icon.png") %><h2>Challenge friends</h2></div>
-      <p>Vote on other predictions. Agree if you like the prediction. Disagree and go head-to-head against them if you don’t.</p>
-      <div><%= image_tag("icons/sd/talktrash_icon.png") %><h2>Talk some trash</h2></div>
-      <p>Comment on any prediction. Have some fun. Hold your friends accountable. Capitalize on your bragging rights.</p>
-    </div>  
+    <div class="row hidden-xs" style="margin-bottom:20px;margin-top:100px;">
+      <div class="col-xs-10 col-xs-offset-1">
+        <div class="prediction-slider container-fluid">
+          <% @scoredPredictions.each do |p| %>
+            <div class="home-prediction">
+              <div class="pull-left">
+                <img src="<%= p.avatar_image || 'http://placehold.it/50x50' %>"/>
+              </div>
+              <div class="pull-left detail">
+                <div class="row line1"><div class="col-xs-12">
+                  <span class="username"><%= p.username %>:</span>
+                  <span class="body">"<%= p.body %>"</span>
+                </div></div>
+                <div class="row line2"><div class="col-xs-12">
+                  <span><%= display_close_status(p) %>| <%= p.agree_percentage %>% agree</span>
+                </div></div>
+              </div>
+            </div>            
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row visible-xs center" style="margin: 20px 0px">
+      <div class="col-xs-12 appBadges">
+        <div style="margin-bottom: 10px;">
+          <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>      
+        </div>
+        <div>
+          <a onclick="ga('send', 'event', 'redirect', 'play_store');" href="https://play.google.com/store/apps/details?id=com.knoda.knoda" target="_blank"><%= image_tag("playStoreBadge.png") %></a>          
+        </div>
+      </div>
+    </div>    
   </div>
 </div>
-
-<%= render partial: "shared/login_modal.html.erb", locals: {destination: '/predictions'} %>
+<div id="section-2">
+  <div id="myCarousel" class="carousel slide" data-interval="7000" data-pause="false">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+      <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+      <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+      <li data-target="#myCarousel" data-slide-to="4" class=""></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="item active">
+        <div class="focal-point left-0 down-0">
+          <div id="history1"><%= image_tag('home/history/namath_img_lg.jpg') %></div>
+        </div>    
+        <div class="carousel-caption">
+          <%= image_tag('home/history/avatars/namath.png') %>
+          <p class="date">January 12, 1969</p>
+          <h3>"We're going to win Sunday. I guarantee it"</h3>
+          <p class="explainer">Joe Namath predicting a Jets upset win over the heavily favored Colts in Super Bowl III</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="focal-point left-0 down-0">
+          <div id="history2"><%= image_tag('home/history/docbrown_img_lg.jpg') %></div>
+        </div>
+        <div class="carousel-caption">
+          <%= image_tag('home/history/avatars/docbrown.png') %>
+          <p class="date">November 5, 1955</p>
+          <h3>"I'm sure that in 1985, plutonium is available in every corner drugstore..."</h3>
+          <p class="explainer">Doc Brown predicting the availability of plutonium in the 1980’s</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="focal-point left-0 down-0">
+          <div id="history3"><%= image_tag('home/history/bitcoin_img_lg.jpg') %></div>
+        </div>    
+        <div class="carousel-caption">
+          <%= image_tag('home/history/avatars/bitcoin.png') %>
+          <p class="date">February 5, 2014</p>
+          <h3>"Five years from now, in January 2019, 10 percent or more Americans will have used bitcoin to buy something in the past month."</h3>
+          <p class="explainer">Ben Horowitz making a prediction on the future of Bitcoin</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="focal-point left-0 down-0">
+          <div id="history4"><%= image_tag('home/history/goldenglobes_img_lg.jpg') %></div>
+        </div>    
+        <div class="carousel-caption">
+          <%= image_tag('home/history/avatars/goldenglobes.png') %>
+          <p class="date">January 13, 2013</p>
+          <h3>"Jennifer Lawrence will win the Golden Globe for Best Actress for ‘Silver Linings Playbook’."</h3>
+          <p class="explainer">Elena Sheppard accurately predicted all 25 of the 2013 Golden Globe winners</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="focal-point left-0 down-0">
+          <div id="history5"><%= image_tag('home/history/stockmkt_img_lg.jpg') %></div>
+        </div>    
+        <div class="carousel-caption">
+          <%= image_tag('home/history/avatars/stockmkt.png') %>
+          <p class="date">October 26, 1929</p>
+          <h3>"Stock prices have reached what seems to be a permanently high plateau."</h3>
+          <p class="explainer">Economist Irving Fisher, 3 days before the stock market crash that triggered the Great Depression</p>
+        </div>
+      </div>            
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev"></a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next"></a>
+  </div>
+</div>
+<div id="section-3">
+  <div class="container-fluid">
+    <div class="row">
+      <h2 class="col-xs-12 title">How it works</h2>
+    </div>
+    <div class="row howStepRow">
+      <div class="col-xs-12 col-md-2 col-lg-1 col-lg-offset-1">
+        <div class="how1Number"></div>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div class="how1" style="background-color: transparent;">
+          <div>
+            <h3>Predict Anything</h3>
+            <p>Make predictions on sports, pop culture, stocks, weather, even personal...</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-5" style="text-align:center">
+        <div style="position:relative;">
+          <%= image_tag('home/howitworks/step1.png', :style => 'width: 320px;') %>
+          <p id="step1Text" style="position:absolute;top:6px;left:100px;width:250px;text-align:left;left: 50%;right: 50%;margin-left: -110px;"></p>
+        </div>
+      </div>
+    </div>  
+    <div class="row howStepRow">
+      <div class="col-xs-12 col-md-2 col-lg-1 col-lg-offset-1">
+        <div class="how2Number"></div>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div class="how1" style="background-color: transparent;">
+          <div>
+            <h3>Vote On Predictions</h3>
+            <p>Pick a side and see how the community votes on your predictions. Longshots are worth more than easy wins.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-5">
+        <div id="StageTwo" class="EDGE-136483370" style="margin-left:auto;margin-right:auto;text-align:center;"></div>
+      </div>
+    </div>  
+    <div class="row howStepRow">
+      <div class="col-xs-12 col-md-2 col-lg-1 col-lg-offset-1">
+        <div class="how3Number"></div>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div class="how1" style="background-color: transparent;">
+          <div>
+            <h3>Settle The Results</h3>
+            <p>You determine the outcome, but don't lie. Knoda's BS button will keep you honest.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-5">
+        <div id="StageOne" class="EDGE-160599758" style="margin-left:auto;margin-right:auto;text-align:center;"></div>
+      </div>
+    </div>            
+  </div>
+</div>
+<div id="section-4">
+  <div class="section-4-content container-fluid">
+    <div class="row"><div class="col-xs-12">
+      <h2>Convinced yet?</h2>
+    </div></div>
+    <div class="row"><div class="col-xs-12">
+      <a href="/start" class="btn btn-primary start">Get Started</a>
+    </div></div> 
+  </div> 
+</div>
+<div id="footer">
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 hidden-sm hidden-md hidden-lg" style="margin:5px 0px;">
+      <a href="http://twitter.com/KNODAfuture" target="_blank"><%= image_tag("icons/social/twitter_icon.png") %></a>
+      <a href="http://facebook.com/KNODAfuture" target="_blank"><%= image_tag("icons/social/facebook_icon.png") %></a>
+    </div>    
+    <div class="col-xs-12">
+      <span class="hidden-xs"><a href="#section-1" style="cursor:default;text-decoration:none;">Knoda, LLC &copy; 2014</a></span>
+      <span><a href="/about">About</a></span>
+      <span><a href="http://blog.knoda.com">Blog</a></span>
+      <span><a href="/terms">Terms</a></span>
+      <span><a href="/privacy">Privacy</a></span>
+      <span><a href="/support">Support</a></span>
+      <span class="hidden-xs">
+        <a href="http://twitter.com/KNODAfuture" target="_blank"><%= image_tag("icons/social/twitter_icon.png") %></a>
+        <a href="http://facebook.com/KNODAfuture" target="_blank"><%= image_tag("icons/social/facebook_icon.png") %></a>
+      </span>
+    </div>
+    <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+      <span><a href="#section-1" style="cursor:default;text-decoration:none;">Knoda, LLC &copy; 2014</a></span>
+    </div>
+  </div>
+  </div>
+</div>
+<script>
+$(function() {
+  homeView = new HomeView({container: $('#home-container'), destination: '<%= @destination || "/predictions" %>'})
+  psv = new PredictionSliderView({container: $('.prediction-slider')});
+  w = $(window).width()
+  if (w < 750) {
+    $('#history1').html("<%= escape_javascript(image_tag('home/history/namath_img_sm.jpg')) %>")
+    $('#history2').html("<%= escape_javascript(image_tag('home/history/docbrown_img_sm.jpg')) %>")
+    $('#history3').html("<%= escape_javascript(image_tag('home/history/bitcoin_img_sm.jpg')) %>")
+    $('#history4').html("<%= escape_javascript(image_tag('home/history/goldenglobes_img_sm.jpg')) %>")
+    $('#history5').html("<%= escape_javascript(image_tag('home/history/stockmkt_img_sm.jpg')) %>")
+  } else if (w < 1050) {
+    $('#history1').html("<%= escape_javascript(image_tag('home/history/namath_img_md.jpg')) %>")
+    $('#history2').html("<%= escape_javascript(image_tag('home/history/docbrown_img_md.jpg')) %>")
+    $('#history3').html("<%= escape_javascript(image_tag('home/history/bitcoin_img_md.jpg')) %>")
+    $('#history4').html("<%= escape_javascript(image_tag('home/history/goldenglobes_img_md.jpg')) %>")
+    $('#history5').html("<%= escape_javascript(image_tag('home/history/stockmkt_img_md.jpg')) %>")
+  } 
+  /*else {
+    $('#history1').html("<%= escape_javascript(image_tag('home/history/namath_img_lg.jpg')) %>")
+    $('#history2').html("<%= escape_javascript(image_tag('home/history/docbrown_img_lg.jpg')) %>")
+    $('#history3').html("<%= escape_javascript(image_tag('home/history/bitcoin_img_lg.jpg')) %>")
+    $('#history4').html("<%= escape_javascript(image_tag('home/history/goldenglobes_img_lg.jpg')) %>")
+    $('#history5').html("<%= escape_javascript(image_tag('home/history/stockmkt_img_lg.jpg')) %>")
+  }*/
+});
+</script>  

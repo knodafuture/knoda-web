@@ -8,6 +8,7 @@ class HomeController < ApplicationController
         redirect_to "/users/me/avatar"
       end
     else
+      @scoredPredictions = ScoredPrediction.all
       render :layout => 'home'
     end
   end

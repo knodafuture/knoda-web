@@ -137,7 +137,7 @@ module ApplicationHelper
   end    
 
   def local_stylesheet_path(source)
-    p = stylesheet_path("application")
+    p = stylesheet_path(source)
     tokens = p.split("/")
     t = tokens[tokens.length-1]
     return "/assets/#{t}"

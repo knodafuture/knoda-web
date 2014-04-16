@@ -18,10 +18,12 @@ module KnodaWeb
 
     config.analytics_enabled = ENV['ANALYTICS_ENABLED'] || false
     config.lucky_orange_enabled = ENV['LUCKY_ORANGE_ENABLED'] || false
-
+    config.assets.debug = true
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
-
+    config.assets.precompile += %w(application-home.css)
+    config.assets.precompile += %w(edge.3.0.0.min.js)
     config.assets.precompile << Proc.new do |path|
+      puts path
       if path =~ /\.(js)\z/
         full_path = Rails.application.assets.resolve(path).to_path
         app_assets_path = Rails.root.join('app', 'assets').to_path

@@ -9,8 +9,12 @@ class PredictionsController < AuthenticatedController
     if user_signed_in?
       redirect_to  action: 'show', id: @prediction.id
     else
-      @prediction = Prediction.find(params[:id])
-      render 'share', :layout => 'prelogin'
+        @prediction = Prediction.find(params[:id])
+        if (@prediction.group)
+          raise ActionController::RoutingError.new('Not Found')
+        else
+          render 'share', :layout => 'prelogin'
+        end
     end
   end
 
@@ -33,6 +37,7 @@ class PredictionsController < AuthenticatedController
     if not user_signed_in?
       redirect_to action: 'share', id: @prediction.id
     else
+      authorize_action_for(@prediction)
       authenticate_user!
       unseen_activities()
       @agreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: true})
