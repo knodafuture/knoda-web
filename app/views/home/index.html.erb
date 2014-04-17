@@ -9,6 +9,17 @@
 <% else %>
   <% title("Predict Compete Conquer") %>
 <% end %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "application-home" %>
+  <%= javascript_include_tag "home" %>
+  <%= javascript_include_tag 'home/animations/vote_on_predictions_edgePreload' %>
+  <%= javascript_include_tag 'home/animations/settle_results_edgePreload' %>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <style>
+    .edgeLoad-EDGE-160599758 { visibility:hidden; }
+    .edgeLoad-EDGE-136483370 { visibility:hidden; }
+  </style>
+<% end %>
 <div id="section-1" class="section-1">
   <div class="container-fluid">
     <div class="row header hidden-xs" style="margin-top:10px;margin-bottom: 100px;">

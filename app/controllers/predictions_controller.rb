@@ -13,7 +13,7 @@ class PredictionsController < AuthenticatedController
         if (@prediction.group)
           raise ActionController::RoutingError.new('Not Found')
         else
-          render 'share', :layout => 'prelogin'
+          render 'share', :layout => 'home'
         end
     end
   end

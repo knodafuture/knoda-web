@@ -10,17 +10,11 @@
     
     <link href='http://fonts.googleapis.com/css?family=Krona+One' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:500,400,300,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
 
-    <%= stylesheet_link_tag "application-home" %>
-    <!--<link href="<%= local_stylesheet_path('application-home')%>" media="all" rel="stylesheet">-->
     <link rel="icon" type="image/png" href="<%= image_path('favicon.png') %>" />
     <link rel="shortcut icon" type="image/png" href="<%= image_path('favicon.png') %>" />    
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <%= javascript_include_tag "home" %>
-    <%= javascript_include_tag 'home/animations/vote_on_predictions_edgePreload' %>
-    <%= javascript_include_tag 'home/animations/settle_results_edgePreload' %>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -28,10 +22,16 @@
     <![endif]-->
     <%= yield :head %>
     <%= render partial: "shared/google_analytics" %>
-    <style>
-      .edgeLoad-EDGE-160599758 { visibility:hidden; }
-      .edgeLoad-EDGE-136483370 { visibility:hidden; }
-    </style>
+    <script>
+      $(function() {
+        console.log($('.full-height-content').height() - 160);
+        console.log($(window).height());
+        if (($('.full-height-content').height()) < $(window).height() - 160) {
+          console.log('yes!');
+          $('.full-height-content').height($(window).height() - 160)
+        }
+      });
+    </script>
   </head>
   <body>
     <div id="home-container">

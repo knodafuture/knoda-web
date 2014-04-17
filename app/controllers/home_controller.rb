@@ -14,15 +14,15 @@ class HomeController < ApplicationController
   end
 
   def about
-    render :layout => 'prelogin'
+    render :layout => 'home'
   end
 
   def privacy
-    render :layout => 'prelogin'
+    render :layout => 'home'
   end
 
   def terms
-    render :layout => 'prelogin'
+    render :layout => 'home'
   end
 
   def start
