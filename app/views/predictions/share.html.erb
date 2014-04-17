@@ -1,10 +1,15 @@
-<% content_for :head do %>
-    <meta property="og:image" content="<%= avatar_big(@prediction.user) %>" />
-    <meta property="og:description" content="<%= @prediction.body%>" />
-    <meta property="og:site_name" content="Knoda" />
-<% end %>
 <% title "#{@prediction.user.username}'s prediction" %>
-<div class="content container" style="margin-top: 30px;">
+<% content_for :head do %>
+  <link href="<%= local_stylesheet_path('application')%>" media="all" rel="stylesheet">
+  <%= stylesheet_link_tag "prelogin" %>
+  <meta property="og:image" content="<%= avatar_big(@prediction.user) %>" />
+  <meta property="og:description" content="<%= @prediction.body%>" />
+  <meta property="og:site_name" content="Knoda" />  
+<% end %>
+
+<%= render "home/prelogin/header"%>
+
+<div class="content container">
 <div class="panel panel-default predictionContainer" data-prediction-id="<%= @prediction.id%>" style="">
     <div class="panel-heading" style="padding:0px 15px; background-color: #EFEFEF">
     <div class="row userInfo" style="height:40px">
@@ -28,6 +33,9 @@
 </div>
 <div class="row" style="text-align:center;margin-top:20px;">
   <p><a href="/" style="color:white;font-size:1.1em;">Sign Up or Login to join the conversation.</a></p>
-  <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
+  <div class="app-badges" style="text-align: center;">
+    <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>      
+    <a onclick="ga('send', 'event', 'redirect', 'play_store');" href="https://play.google.com/store/apps/details?id=com.knoda.knoda" target="_blank"><%= image_tag("playStoreBadge.png") %></a>                  
+  </div>
 </div> 
 </div>

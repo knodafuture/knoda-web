@@ -1,13 +1,29 @@
 <% title "About Us" %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "prelogin" %>
+<% end %>
 
-<div class="row" style="background-color: white; padding: 0px 40px;min-height: 300px;padding-top: 50px;">
-  <div class="col-xs-12">
-    <p>Are you always right when you make a prediction about your favorite sports team, your friends dating failure or the next celebrity to end up in rehab? Prove it on Knoda!</p>
-    <p>Knoda is a social prediction platform. Make predictions on absolutely anything. Vote on interesting predictions. Talk trash. Track your predictions. Results are crowdsourced by the community. Win and earn your bragging rights.</p>
-    <p>Our vision: to become the official record book for all predictions.</p>
-    <p>Download Knoda for iPhone <a href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank">here</a>. Android is coming soon!</p>
-    <p style="text-align:center">
-        <a href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
-    </p>    
+<%= render "home/prelogin/header"%>
+<%= render :partial => "home/prelogin/subnav", :locals => { :active => 'about'}  %>
+
+<div class="content full-height-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>About Knoda</h1>
+        <p>Are you always right when you make a prediction about your favorite sports team, your friends dating failure or the next celebrity to end up in rehab? Prove it on Knoda!</p>
+        <p>Knoda is a social prediction platform. Make predictions on absolutely anything. Vote on interesting predictions. Talk trash. Track your predictions. Results are crowdsourced by the community. Win and earn your bragging rights.</p>
+        <h2>Our Vision</h2>
+        <p>Our vision: to become the official record book for all predictions.</p>
+        <h2>Get Started</h2>
+        <p>Knoda is available on iPhone, Android, and web.
+        <div class="app-badges">
+          <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>      
+          <a onclick="ga('send', 'event', 'redirect', 'play_store');" href="https://play.google.com/store/apps/details?id=com.knoda.knoda" target="_blank"><%= image_tag("playStoreBadge.png") %></a>                  
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<%= render "home/prelogin/footer" %>

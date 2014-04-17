@@ -1,6 +1,15 @@
 <% title "Terms & Conditions" %>
-<div class="row" style="background-color: white; padding: 0px 40px;min-height: 300px;padding-top: 50px">
-  <div class="col-xs-12">
+<% content_for :head do %>
+  <%= stylesheet_link_tag "prelogin" %>
+<% end %>
+
+<%= render "home/prelogin/header"%>
+<%= render :partial => "home/prelogin/subnav", :locals => { :active => 'terms'}  %>
+
+<div class="content full-height-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
         <h1>Terms of Use</h1>
         <p>Effective as of December 1, 2013</p>
         <p>The www.knoda.com website, application, and any derivative websites or applications on which these Terms of Use are posted are owned and operated by Knoda, LLC, a Kansas limited liability company (“Knoda”).  Knoda has adopted these Terms of Use (“Terms of Use” or “Agreement”) to make you aware of the terms and conditions of your use of the www.knoda.com website, application, any derivative websites and applications on which these Terms of Use are posted and any Content, Widgets, or other products or services that are offered or provided via the aforementioned websites (collectively, the “Website”). In the event that you purport to be the agent of, represent, or otherwise act on behalf of an entity or any other person, references to “you,” “your” or “User” shall include such entity or person in addition to you, and your acceptance of this Agreement shall constitute acceptance on behalf of such entity or person.</p>
@@ -83,5 +92,8 @@
           your address, telephone number, and email address;<br>
           a statement by you that you have a good faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law; and<br>
           a statement by you, made under penalty of perjury, that the above information in your notice is accurate and that you are the copyright owner or authorized to act on the copyright owner’s behalf. </p>
-    </div>     
+      </div>     
+    </div>
   </div>
+</div>
+<%= render "home/prelogin/footer" %>          
