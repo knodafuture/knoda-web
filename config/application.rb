@@ -21,6 +21,7 @@ module KnodaWeb
     config.assets.debug = true
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
     config.assets.precompile += %w(application-home.css)
+    config.assets.precompile += %w(application-prelogin.css)
     config.assets.precompile += %w(edge.3.0.0.min.js)
     config.assets.precompile << Proc.new do |path|
       puts path

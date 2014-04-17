@@ -1,7 +1,7 @@
 <% title "#{@prediction.user.username}'s prediction" %>
 <% content_for :head do %>
   <link href="<%= local_stylesheet_path('application')%>" media="all" rel="stylesheet">
-  <%= stylesheet_link_tag "prelogin" %>
+  <%= stylesheet_link_tag "application-prelogin" %>
   <meta property="og:image" content="<%= avatar_big(@prediction.user) %>" />
   <meta property="og:description" content="<%= @prediction.body%>" />
   <meta property="og:site_name" content="Knoda" />  
