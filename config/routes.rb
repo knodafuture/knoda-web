@@ -3,6 +3,7 @@ KnodaWeb::Application.routes.draw do
   get 'start' => 'home#start'
   get 'thebuzz', to: redirect('/')
   get '1mc', to: redirect('/')
+  get 'embedDemo' => 'home#embedDemo'
 
  devise_for :users, :controllers => {:sessions => 'sessions', :omniauth_callbacks => "omniauth_callbacks"}, :skip => [:sessions] do
     get '/'   => "home#index",       :as => :new_user_session
@@ -20,6 +21,7 @@ KnodaWeb::Application.routes.draw do
       post 'bs'
       post 'facebook_share'
       post 'twitter_share'
+      get 'embed'
     end
   end
   resources :challenges

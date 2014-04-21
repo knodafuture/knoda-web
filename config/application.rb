@@ -7,6 +7,7 @@ Bundler.require(:default, Rails.env)
 module KnodaWeb
   class Application < Rails::Application
     config.paths['db/migrate'] = KnodaCore::Engine.paths['db/migrate'].existent
+    config.action_dispatch.default_headers['X-Frame-Options'] = "GOFORIT"
     config.knoda_web_url = ENV['KNODA_WEB_URL'] || 'http://www.knoda.com'
     
     config.action_mailer.default_url_options = { :host => config.knoda_web_url }
@@ -21,6 +22,7 @@ module KnodaWeb
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
     config.assets.precompile += %w(application-home.css)
     config.assets.precompile += %w(application-prelogin.css)
+    config.assets.precompile += %w(application-embed.css)
     config.assets.precompile += %w(edge.3.0.0.min.js)
     config.twitter_key = "14fSb3CT7EEQkoryO8RNx7BrG"
     config.twitter_secret = "6Z5OGzxLL9NqVEpAbLs9FFd2PyLm6pd7j5r98IZr5e0HRr73bo"

@@ -1,0 +1,92 @@
+// Core variables and mixins
+@import "twitter/bootstrap/variables";
+@import "variables";
+@import "twitter/bootstrap/mixins";
+@import "overrides/mixins";
+
+// Reset
+@import "twitter/bootstrap/normalize";
+@import "twitter/bootstrap/print";
+
+// Core CSS
+@import "twitter/bootstrap/scaffolding";
+@import "twitter/bootstrap/type";
+@import "twitter/bootstrap/code";
+@import "twitter/bootstrap/grid";
+@import "twitter/bootstrap/tables";
+@import "twitter/bootstrap/forms";
+@import "twitter/bootstrap/buttons";
+
+// Components
+@import "twitter/bootstrap/component-animations";
+//@import "overrides/glyphicons";
+//@import "twitter/bootstrap/dropdowns";
+//@import "twitter/bootstrap/button-groups";
+//@import "twitter/bootstrap/input-groups";
+//@import "twitter/bootstrap/navs";
+//@import "twitter/bootstrap/navbar";
+//@import "twitter/bootstrap/breadcrumbs";
+//@import "twitter/bootstrap/pagination";
+//@import "twitter/bootstrap/pager";
+//@import "twitter/bootstrap/labels";
+//@import "twitter/bootstrap/badges";
+//@import "twitter/bootstrap/jumbotron";
+//@import "twitter/bootstrap/thumbnails";
+//@import "twitter/bootstrap/alerts";
+//@import "twitter/bootstrap/progress-bars";
+//@import "twitter/bootstrap/media";
+//@import "twitter/bootstrap/list-group";
+//@import "twitter/bootstrap/panels";
+//@import "twitter/bootstrap/wells";
+//@import "twitter/bootstrap/close";
+
+// Components w/ JavaScript
+@import "twitter/bootstrap/modals";
+//@import "overrides/modals";
+//@import "twitter/bootstrap/tooltip";
+//@import "twitter/bootstrap/popovers";
+//@import "twitter/bootstrap/carousel";
+
+// Utility classes
+@import "twitter/bootstrap/utilities";
+@import "twitter/bootstrap/responsive-utilities";
+@import "font";
+
+.center {
+  text-align: center;
+}
+
+body{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.container{
+  padding:0px;
+  width: auto;
+}
+#embed-container {
+  .btn-agree, .btn-disagree {
+    width: 49%;
+    padding:0px;
+    margin:0px;
+    line-height: 2em;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) {
+  #embed-container {
+  }  
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) {
+  #embed-container {
+  }  
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) {
+  #embed-container {
+  }
+}
