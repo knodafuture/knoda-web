@@ -29,7 +29,6 @@ stopLoading = function() {
 };
 
 (function ($) {
-// VERTICALLY ALIGN FUNCTION
 $.fn.vAlign = function() {
   return this.each(function(i){
   var ah = $(this).height();

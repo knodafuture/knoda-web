@@ -7,9 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <meta name="description" content="Knoda lets you predict anything, challenge your friends, and talk some trash.  Make your prediction today." /> 
     <%= csrf_meta_tags %>
-    
-    <link href='http://fonts.googleapis.com/css?family=Krona+One' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:500,400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:500,400,300,700|Krona+One' rel='stylesheet' type='text/css'>
 
     <link rel="icon" type="image/png" href="<%= image_path('favicon.png') %>" />
     <link rel="shortcut icon" type="image/png" href="<%= image_path('favicon.png') %>" />    
@@ -24,10 +22,7 @@
     <%= render partial: "shared/google_analytics" %>
     <script>
       $(function() {
-        console.log($('.full-height-content').height() - 160);
-        console.log($(window).height());
         if (($('.full-height-content').height()) < $(window).height() - 160) {
-          console.log('yes!');
           $('.full-height-content').height($(window).height() - 160)
         }
       });

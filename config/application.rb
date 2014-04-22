@@ -7,7 +7,6 @@ Bundler.require(:default, Rails.env)
 module KnodaWeb
   class Application < Rails::Application
     config.paths['db/migrate'] = KnodaCore::Engine.paths['db/migrate'].existent
-    config.middleware.use Rack::Deflater    
     config.knoda_web_url = ENV['KNODA_WEB_URL'] || 'http://www.knoda.com'
     
     config.action_mailer.default_url_options = { :host => config.knoda_web_url }

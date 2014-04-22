@@ -22,6 +22,7 @@ group :production do
   gem 'unicorn'
   gem 'memcachier'
   gem 'dalli'    
+  gem 'heroku-deflater', '~> 0.5.3'
 end
 
 gem 'simple_form', '~> 3.0.2'
