@@ -17,6 +17,7 @@ gem 'bitly', '0.9.0'
 gem 'searchkick', '0.5.3'
 gem 'acts-as-taggable-on', '2.4.1'
 gem 'jcrop-rails-v2', '~> 0.9.12.3'
+gem 'sitemap_generator', '~> 5.0.2'
 
 group :production do
   gem 'rails_12factor'
