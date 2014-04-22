@@ -1,14 +1,8 @@
 class PredictionsController < AuthenticatedController
   before_filter :authenticate_user!
-<<<<<<< HEAD
-  skip_before_action :authenticate_user!, only: [:share, :show]
-  skip_before_action :unseen_activities, only: [:share, :show]
-  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments, :bs, :facebook_share, :twitter_share]
-=======
   skip_before_action :authenticate_user!, only: [:share, :show, :embed]
   skip_before_action :unseen_activities, only: [:share, :show, :embed]
-  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments, :bs, :embed]
->>>>>>> Building embed widget for a prediction
+  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments, :bs, :facebook_share, :twitter_share, :embed]
   after_action :after_close, only: [:close]
 
   def share
@@ -27,7 +21,7 @@ class PredictionsController < AuthenticatedController
   def embed
     @user = current_user
     render 'embed', :layout => false
-  end  
+  end
 
   def index
     if params[:tag]

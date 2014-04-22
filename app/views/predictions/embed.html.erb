@@ -4,19 +4,19 @@
     <title>Knoda</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <meta name="description" content="Knoda lets you predict anything, challenge your friends, and talk some trash.  Make your prediction today." /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Knoda lets you predict anything, challenge your friends, and talk some trash.  Make your prediction today." />
     <%= csrf_meta_tags %>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:500,400,300,700' rel='stylesheet' type='text/css'>
     <link rel="icon" type="image/png" href="<%= image_path('favicon.png') %>" />
-    <link rel="shortcut icon" type="image/png" href="<%= image_path('favicon.png') %>" />    
+    <link rel="shortcut icon" type="image/png" href="<%= image_path('favicon.png') %>" />
     <%= stylesheet_link_tag "application-embed" %>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <%= javascript_include_tag "embed" %>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>  
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <%= render partial: "shared/google_analytics" %>
     <script>
@@ -24,42 +24,76 @@
       });
     </script>
   </head>
-  <body>
+  <body style="background-color:#ffffff;">
     <div id="embed-container">
       <div class="container">
-        <div class="row" style="height:60px;">
+        <div class="row header">
           <div class="col-xs-12">
-            <img src="<%= avatar_small(@prediction.user) %>" style="display:inline-block; height: 47px; width:47px;" />
+            <img src="<%= avatar_small(@prediction.user) %>" class="pull-left" style="display:inline-block; height: 50px;" />
+            <p class="pull-left prediction-username"><%= @prediction.user.username %></p>
+            <span class="pull-right logo"></span>
           </div>
         </div>
-        <div class="row"  style="height:60px;">
+        <div class="row">
           <div class="col-xs-12">
-            <%= @prediction.body %>
+            <p class="prediction-body"><%= @prediction.body %></p>
           </div>
         </div>
-        <div class="row"  style="height:60px;padding-top:30px;">
+        <div class="row">
           <div class="col-xs-12">
-            <a class="btn btn-success btn-agree" data-toggle="modal" data-target="#myModal">Agree</a>
-            <a class="btn btn-success btn-disagree" data-toggle="modal" data-target="#myModal">Disagree</a>
+            <p class="prediction-meta">made 12 hours ago on <span style="font-weight:400">Knoda.com</span></p>
           </div>
-        </div>  
-      </div>
-    </div>
-    <div class="modal fade" id="myModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
-            <input class="form-control input-sm" name="email" type="text" placeholder="email"/> 
-            <input class="form-control input-sm" name="username" type="text" placeholder="username"/> 
-            <input class="form-control input-sm" name="password" type="password" placeholder="password" /> 
-            <div style="height:30px;">
-              <a class="pull-left">Login</a>
-              <a class="btn btn-success pull-right" data-dismiss="modal" aria-hidden="true">Close</a>
-              <a class="btn btn-success pull-right">Join</a>
+        </div>
+        <div class="row">
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" style="width: <%= @prediction.agree_percentage %>%">
+              <span class="sr-only"><%= @prediction.agree_percentage %>% Agree</span>
+            </div>
+            <div class="progress-bar progress-bar-danger" style="width: <%= 100 - @prediction.agree_percentage %>%">
+              <span class="sr-only"><%= 100 - @prediction.agree_percentage %>% Disagree</span>
             </div>
           </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div>
+        <div class="row tally">
+          <div class="col-xs-3 center agree"><%= @prediction.agreed_count %></div>
+          <% if @prediction.is_expired? && @prediction.is_closed? %>
+            <div class="col-xs-6 center resolved">
+              <%= display_owner_result_outcome_icon(@prediction) %>
+              <p><%= @prediction.user.username %> <% if @prediction.outcome == true %>Won<%else%>Lost<%end%>!</p>
+            </div>
+          <% else %>
+            <div class="col-xs-6 center "><span class="percentage"><%= @prediction.agree_percentage %>%</span> <br />Agree</div>
+          <% end %>
+          <div class="col-xs-3 center disagree"><%= @prediction.disagreed_count %></div>
+        </div>
+        <% if (current_user == nil || current_user.id != @prediction.user_id) && !@prediction.is_expired? && !@prediction.is_closed? %>
+        <div class="row action-buttons" style="position:relative;">
+          <div class="sep"><span class="badge">or</span></div>
+          <div class="col-xs-6" style="border-right:1px solid white;">
+            <a class="btn btn-success btn-agree <%= embed_active_challenge(@prediction, 'agree') %>">Agree</a>
+          </div>
+          <div class="col-xs-6"  style="border-left:1px solid white;">
+            <a class="btn btn-success btn-disagree <%= embed_active_challenge(@prediction, 'disagree') %>">Disagree</a>
+          </div>
+        </div>
+        <% else %>
+        <div class="row call-to-action">
+          <div class="col-xs-12">
+            Make your own predictions on Knoda.com
+          </div>
+        </div>
+        <% end %>
+      </div>
+
+    </div>
+  <script>
+  $(function() {
+    embedView = new EmbedView({container: $('body')})
+    embedView.prediction = JSON.parse("<%= escape_javascript(@prediction.to_json.html_safe) %>")
+    <% if current_user %>
+    embedView.userId = <%= current_user.id %>
+    <% end %>
+  });
+  </script>
   </body>
 </html>

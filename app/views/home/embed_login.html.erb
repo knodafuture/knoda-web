@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Knoda</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Knoda lets you predict anything, challenge your friends, and talk some trash.  Make your prediction today." />
+    <%= csrf_meta_tags %>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:500,400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="icon" type="image/png" href="<%= image_path('favicon.png') %>" />
+    <link rel="shortcut icon" type="image/png" href="<%= image_path('favicon.png') %>" />
+    <%= stylesheet_link_tag "application-embed" %>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <%= javascript_include_tag "embed" %>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <%= render partial: "shared/google_analytics" %>
+    <script>
+      $(function() {
+      });
+    </script>
+  </head>
+  <body style="background-color:#ffffff;">
+    <div id="embed-login-container">
+      <div class="container">
+        <%= render partial: "shared/knoda_connect.html.erb", locals: {popup: true}%>
+        <!--<div class="row header">
+          <div class="col-xs-2"><div class="back pull-left" style="display:none;"></div></div>
+          <div class="col-xs-8"><div class="logo"></div></div>
+          <div class="col-xs-2"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="connect-options">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="connect-option connect-option-email">
+                    <a><span class="btn-email">Sign up with Email</span></a>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="connect-option connect-option-facebook">
+                    <a href="<%= user_omniauth_authorize_path(:facebook, display: 'popup', embed: true)%>"><span class="btn-facebook">Sign in with Facebook</span></a>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="connect-option connect-option-twitter">
+                    <a href="<%= user_omniauth_authorize_path(:twitter, embed: true)%>"><span class="btn-twitter">Sign in with Twitter</span></a>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                    <a class="login pull-right">Knoda User?  Login</a>
+                </div>
+              </div>
+            </div>
+            <div class="signup-page" style="display:none;">
+              <p>Text goes here</p>
+              <%= render partial: "shared/signup.html.erb", locals: {input_size: 'input-lg'} %>
+            </div>
+            <div class="facebook-page" style="display:none;">
+            </div>
+            <div class="twitter-page" style="display:none;">
+            </div>
+            <div class="login-page" style="display:none;">
+              <%= render partial: "shared/login.html.erb" , locals: {input_size: ''} %>
+            </div>
+          </div>
+        </div>
+      </div>-->
+      </div>
+    </div>
+  <script>
+  $(function() {
+    <% if params[:close] %>
+      window.opener.embedView.afterLogin()
+      self.close()
+    <% else %>
+      embedLoginView = new EmbedLoginView({container: $('body')})
+    <% end %>
+  });
+  </script>
+  </body>
+</html>

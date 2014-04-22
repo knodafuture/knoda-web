@@ -4,6 +4,9 @@ KnodaWeb::Application.routes.draw do
   get 'thebuzz', to: redirect('/')
   get '1mc', to: redirect('/')
   get 'embedDemo' => 'home#embedDemo'
+  get 'socialDemo' => 'home#socialDemo'
+  get 'embed-login' => 'home#embed_login'
+
 
  devise_for :users, :controllers => {:sessions => 'sessions', :omniauth_callbacks => "omniauth_callbacks"}, :skip => [:sessions] do
     get '/'   => "home#index",       :as => :new_user_session

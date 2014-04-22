@@ -2,17 +2,17 @@ module ApplicationHelper
   def resource_name
     :user
   end
-   
+
   def resource
     @resource ||= User.new
   end
-   
+
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
-   
-  def resource_class 
-    User 
+
+  def resource_class
+    User
   end
 
   def avatar_small(user)
@@ -29,7 +29,7 @@ module ApplicationHelper
     else
       return image_path('avatars/avatar_1@2x.png')
     end
-  end  
+  end
 
   def title(page_title)
     content_for :title, "Knoda | #{page_title.to_s}"
@@ -61,7 +61,7 @@ module ApplicationHelper
           image_tag('icons/sd/disagree_active.png')
         end
       end
-  end  
+  end
 
   def display_won_lost(prediction)
     c = my_challenge(prediction)
@@ -73,7 +73,7 @@ module ApplicationHelper
       else
         content_tag(:span, :class=>'pull-right won-lost-indicator lost') do
           'L'
-        end        
+        end
       end
     end
   end
@@ -89,6 +89,20 @@ module ApplicationHelper
       end
     end
   end
+
+  def embed_active_challenge(prediction, challengeType)
+    if current_user
+      c = my_challenge(prediction)
+      if c
+        if c.agree and challengeType == 'agree'
+          return 'active'
+        end
+        if !c.agree and challengeType == 'disagree'
+          return 'active'
+        end
+      end
+    end
+  end  
 
   def display_close_status(prediction)
     if prediction.expires_at > Time.now
@@ -110,6 +124,14 @@ module ApplicationHelper
     end
   end
 
+  def display_owner_result_outcome_icon(prediction)
+    if (prediction.outcome == true)
+      image_tag("icons/ResultsWinIcon@2x.png")
+    else
+      image_tag("icons/ResultsLoseIcon@2x.png")
+    end
+  end
+
   def display_result_outcome_text(prediction)
     c = my_challenge(prediction)
     if c
@@ -119,7 +141,7 @@ module ApplicationHelper
         return "YOU LOST!"
       end
     end
-  end 
+  end
 
   def my_challenge(prediction)
       l = prediction.challenges.select { |c| c.user_id == current_user.id}
@@ -133,8 +155,8 @@ module ApplicationHelper
   def total_points(prediction)
     if my_challenge(prediction)
       my_challenge(prediction).total_points
-    end     
-  end    
+    end
+  end
 
   def local_stylesheet_path(source)
     p = stylesheet_path(source)
@@ -149,6 +171,6 @@ module ApplicationHelper
       return true
     else
       return false
-    end    
+    end
   end
 end
