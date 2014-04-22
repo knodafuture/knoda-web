@@ -16,6 +16,7 @@ gem 'authority', '~> 2.10.0'
 gem 'bitly', '~> 0.10.0'
 gem 'searchkick', '~> 0.7.1'
 gem 'jcrop-rails-v2', '~> 0.9.12.3'
+gem 'sitemap_generator', '~> 5.0.2'
 
 group :production do
   gem 'rails_12factor'

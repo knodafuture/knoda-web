@@ -187,6 +187,8 @@ GEM
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    sitemap_generator (5.0.2)
+      builder      
     sprockets (2.12.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -250,6 +252,7 @@ DEPENDENCIES
   rest-client (= 1.6.7)
   searchkick (~> 0.7.1)
   simple_form (~> 3.0.2)
+  sitemap_generator (~> 5.0.2)
   sucker_punch (~> 1.0.3)
   therubyracer
   uglifier (~> 2.5.0)
