@@ -97,8 +97,13 @@ class GroupsController < AuthenticatedController
         render 'join'
       end
     else
+      if Rails.cache.exist?("scoredPredictions_home")
+        @scoredPredictions = Rails.cache.read("scoredPredictions_home")
+      else
+        @scoredPredictions = ScoredPrediction.all.to_a
+        Rails.cache.write("scoredPredictions_home", @scoredPredictions, timeToLive: 1.hours)
+      end         
       @groupInvitation = true
-      @scoredPredictions = ScoredPrediction.all
       render "home/index", :layout => 'home'
     end    
   end
