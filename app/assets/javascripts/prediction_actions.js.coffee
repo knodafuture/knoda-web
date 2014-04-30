@@ -19,10 +19,6 @@ createChallenge = (prediction_id, agree) ->
       if el.find('.disagreeUsersList').length > 0
         loadTally(el, prediction_id)
       window.badges.checkAndShow() 
-    error: (xhr, status) ->
-      console.log "Sorry, there was a problem!"
-    complete: (xhr, status) ->
-      console.log "The request is complete!"
 
 
 comment = (prediction_id, text) ->
@@ -40,11 +36,7 @@ comment = (prediction_id, text) ->
         el.find(".comments-content").html(comments);
         unbindAll()
         bindAll()
-        stopLoading()
-      error: (xhr, status) ->
-        console.log "Sorry, there was a problem!"
-      complete: (xhr, status) ->
-        console.log "The request is complete!"      
+        stopLoading()    
 
 close = (prediction_id, outcome) ->
   startLoading()
@@ -80,11 +72,6 @@ loadTally = (el, prediction_id) ->
       type: "GET"
       success: (html) ->
         el.find('.tally-content').html(html)
-      error: (xhr, status) ->
-        console.log "Sorry, there was a problem!"
-      complete: (xhr, status) ->
-        stopLoading();
-        console.log "The request is complete!" 
 
 loadComments = (el, prediction_id) ->
     $.ajax
@@ -118,7 +105,9 @@ window.unbindAll = () ->
 
 
 window.bindAll = () ->
- $('textarea').maxlength 
+  $('#sharePrediction').on 'hidden.bs.modal', ->
+    $(this).removeData();
+  $('textarea').maxlength 
     alwaysShow: true
 
   $('.yes').click (e) ->
@@ -139,7 +128,6 @@ window.bindAll = () ->
     predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
     createChallenge(predictionId, true)
     
-
   $('.disagree').click (e) ->
     e.preventDefault()
     predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
