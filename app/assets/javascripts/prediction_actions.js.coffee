@@ -72,6 +72,8 @@ loadTally = (el, prediction_id) ->
       type: "GET"
       success: (html) ->
         el.find('.tally-content').html(html)
+      complete: (xhr, status) ->
+        stopLoading();        
 
 loadComments = (el, prediction_id) ->
     $.ajax
