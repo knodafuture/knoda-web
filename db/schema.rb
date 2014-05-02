@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415163915) do
+ActiveRecord::Schema.define(version: 20140428104136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 20140415163915) do
     t.boolean  "is_closed",        default: false
     t.datetime "push_notified_at"
     t.string   "short_url"
+    t.datetime "resolutionDate"
     t.datetime "resolution_date",                  null: false
     t.datetime "activity_sent_at"
     t.string   "tags",             default: [],                 array: true
@@ -163,9 +164,9 @@ ActiveRecord::Schema.define(version: 20140415163915) do
 
   create_table "social_accounts", force: true do |t|
     t.integer  "user_id"
-    t.string   "providerName"
-    t.string   "providerId"
-    t.string   "provider"
+    t.string   "provider_name"
+    t.string   "provider_id"
+    t.string   "provider_account_name"
     t.string   "access_token"
     t.string   "access_token_secret"
     t.datetime "created_at"
@@ -183,7 +184,7 @@ ActiveRecord::Schema.define(version: 20140415163915) do
   add_index "topics", ["name"], name: "index_topics_on_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "",    null: false
+    t.string   "email",                  default: ""
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -208,6 +209,7 @@ ActiveRecord::Schema.define(version: 20140415163915) do
     t.boolean  "verified_account",       default: false
   end
 
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
