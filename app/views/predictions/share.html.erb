@@ -11,14 +11,18 @@
     <% if @prediction.user.twitter_account %>
     <meta name="twitter:creator" content="<%= "@#{@prediction.user.twitter_account.providerName}" %>">
     <% end %>
-    <meta name="twitter:image:src" content="http://placekitten.com/250/300">
+    <meta name="twitter:app:name:iphone" content="Knoda"/>
+    <meta name="twitter:app:id:iphone" content="764642995"/>
+    <meta name="twitter:app:url:iphone" content="knoda://predictions/<%= "@#{@prediction.id}" %>"/>
+    <meta name="twitter:app:name:ipad" content="Knoda"/>
+    <meta name="twitter:app:id:ipad" content="764642995"/>
+    <meta name="twitter:app:url:ipad" content="knoda://predictions/<%= "@#{@prediction.id}" %>"/>
     <meta name="twitter:domain" content="knoda.com">
     <meta property="fb:app_id" content="455514421245892" /> 
     <meta property="og:type"   content="knodafacebook:prediction" /> 
     <meta property="og:url"    content="<%= request.original_url %>" /> 
     <meta property="og:title"  content="Totally Rad Prediction" /> 
     <meta property="og:description"  content="<%= @prediction.body%>" /> 
-    <meta property="og:image"  content="https://fbstatic-a.akamaihd.net/images/devsite/attachment_blank.png" /> 
 <% end %>
 
 <%= render "home/prelogin/header"%>
