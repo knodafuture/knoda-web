@@ -2,7 +2,7 @@ module CroppableAvatar extend ActiveSupport::Concern
   included do
     has_attached_file :avatar, :styles => { :big => ["344х344"], :small => ["100x100"], :thumb => ["40x40"]}, :processors => [:cropper], :default_url => ""
     attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-    validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+    validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif", "application/octet-stream"]
   end
 
   module ClassMethods
