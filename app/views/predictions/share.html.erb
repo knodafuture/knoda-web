@@ -1,5 +1,6 @@
 <% title "#{@prediction.user.username}'s prediction" %>
 <% content_for :head do %>
+    <%= stylesheet_link_tag "application-prelogin" %>
     <meta property="og:image" content="<%= avatar_big(@prediction.user) %>" />
     <meta property="og:description" content="<%= @prediction.body%>" />
     <meta property="og:site_name" content="Knoda" />
@@ -9,7 +10,7 @@
     <meta name="twitter:title" content="Check out my prediction!">
     <meta name="twitter:description" content="<%= @prediction.body%>">
     <% if @prediction.user.twitter_account %>
-    <meta name="twitter:creator" content="<%= "@#{@prediction.user.twitter_account.provider_account_name}" %>">
+      <meta name="twitter:creator" content="<%= "@#{@prediction.user.twitter_account.provider_account_name}" %>">
     <% end %>
     <meta name="twitter:app:name:iphone" content="Knoda"/>
     <meta name="twitter:app:id:iphone" content="764642995"/>
