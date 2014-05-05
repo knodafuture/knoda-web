@@ -9,7 +9,7 @@
     <meta name="twitter:title" content="Check out my prediction!">
     <meta name="twitter:description" content="<%= @prediction.body%>">
     <% if @prediction.user.twitter_account %>
-    <meta name="twitter:creator" content="<%= "@#{@prediction.user.twitter_account.providerName}" %>">
+    <meta name="twitter:creator" content="<%= "@#{@prediction.user.twitter_account.provider_account_name}" %>">
     <% end %>
     <meta name="twitter:app:name:iphone" content="Knoda"/>
     <meta name="twitter:app:id:iphone" content="764642995"/>
