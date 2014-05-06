@@ -1,15 +1,17 @@
-PATH
-  remote: ../knoda_core
+GIT
+  remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
+  revision: f8679f9271af794d987a226ff8b5c9a889e393ab
+  branch: master
   specs:
     knoda_core (0.0.1)
       authority (= 2.10.0)
       aws-sdk (= 1.38.0)
-      bitly (~> 0.10.0)
       devise (= 3.0.0.rc)
       mailchimp-api
       mandrill_mailer
       omniauth-twitter
       open_uri_redirections
+      owly (= 0.0.2)
       paperclip (= 4.1.1)
       pg (= 0.17.1)
       rails (~> 4.1.0)
@@ -176,6 +178,9 @@ GEM
       omniauth-oauth (~> 1.0)
     open_uri_redirections (0.1.4)
     orm_adapter (0.5.0)
+    owly (0.0.2)
+      httparty (~> 0.13)
+      json (~> 1.8)
     paperclip (4.1.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
