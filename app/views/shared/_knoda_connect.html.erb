@@ -1,0 +1,72 @@
+<% content_for :head do %>
+  <script>
+  $(function() {
+    <% if params[:close] %>
+      window.opener.view.afterLogin()
+      self.close()
+    <% else %>
+      view = new KnodaConnectView()
+      console.log(view);
+    <% end %>
+  });
+  </script>
+<% end %>
+<div class="connect-options">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="connect-option connect-option-email">
+        <a><span class="btn-email">Sign up with Email</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="connect-option connect-option-facebook">
+        <% if popup %>
+          <a href="<%= user_omniauth_authorize_path(:facebook, display: 'popup', embed: true)%>"><span class="btn-facebook">Sign in with Facebook</span></a>
+        <% else %>
+          <a href="<%= user_omniauth_authorize_path(:facebook)%>"><span class="btn-facebook">Sign in with Facebook</span></a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="connect-option connect-option-twitter">
+        <% if popup %>
+        <a href="<%= user_omniauth_authorize_path(:twitter, embed: true)%>"><span class="btn-twitter">Sign in with Twitter</span></a>
+        <% else %>
+          <a href="<%= user_omniauth_authorize_path(:twitter)%>"><span class="btn-twitter">Sign in with Twitter</span></a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+        <a class="login pull-right">Knoda User?  Login</a>
+    </div>
+  </div>
+</div>
+<div class="signup-page" style="display:none;">
+  <div class="row header">
+    <div class="col-xs-2"><div class="back pull-left" style="display:none;"></div></div>
+  </div>
+  <p>Text goes here</p>
+  <%= render partial: "shared/signup.html.erb", locals: {input_size: 'input-lg'} %>
+</div>
+<div class="facebook-page" style="display:none;">
+  <div class="row header">
+    <div class="col-xs-2"><div class="back pull-left" style="display:none;"></div></div>
+  </div>
+</div>
+<div class="twitter-page" style="display:none;">
+  <div class="row header">
+    <div class="col-xs-2"><div class="back pull-left" style="display:none;"></div></div>
+  </div>
+</div>
+<div class="login-page" style="display:none;">
+  <div class="row header">
+    <div class="col-xs-2"><div class="back pull-left" style="display:none;"></div></div>
+  </div>
+  <%= render partial: "shared/login.html.erb" , locals: {input_size: ''} %>
+</div>
