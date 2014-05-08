@@ -113,7 +113,8 @@ GEM
       multi_json (~> 1.2)
     jcrop-rails-v2 (0.9.12.3)
     json (1.8.1)
-    jwt (0.1.12)
+    jwt (0.1.11)
+      multi_json (>= 1.5)
     kgio (2.9.2)
     koala (1.8.0)
       addressable
@@ -292,12 +293,13 @@ DEPENDENCIES
   heroku-deflater (~> 0.5.3)
   jbuilder (= 2.0.6)
   jcrop-rails-v2 (~> 0.9.12.3)
+  jwt (= 0.1.11)
   knoda_core!
   koala (~> 1.8.0rc1)
   less-rails (~> 2.5.0)
   mandrill_mailer (~> 0.4.0)
   memcachier
-  omniauth-facebook
+  omniauth-facebook (~> 1.6.0)
   omniauth-twitter
   open_uri_redirections
   paperclip (~> 4.1.1)
