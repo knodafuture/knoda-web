@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: b7bf156fc4ed0046e9a5d8a4fcc610e6ff0958b9
+  revision: fba461b669733e61190f1f2c494e9c4d958dbbfa
   branch: develop
   specs:
     knoda_core (0.0.1)
@@ -15,6 +15,7 @@ GIT
       paperclip (= 4.1.1)
       pg (= 0.17.1)
       rails (~> 4.1.0)
+      sidekiq (= 3.0.2)
       twilio-ruby
 
 GEM
@@ -79,6 +80,7 @@ GEM
       execjs
     coffee-script-source (1.7.0)
     commonjs (0.2.7)
+    connection_pool (2.0.0)
     dalli (2.7.0)
     devise (3.0.0.rc)
       bcrypt-ruby (~> 3.0)
@@ -213,6 +215,9 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.3.1)
+    redis (3.0.7)
+    redis-namespace (1.4.1)
+      redis (~> 3.0.4)
     ref (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -220,6 +225,12 @@ GEM
       activemodel
       elasticsearch (~> 0.4.11)
       hashie
+    sidekiq (3.0.2)
+      celluloid (>= 0.15.2)
+      connection_pool (>= 2.0.0)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)

@@ -27,7 +27,7 @@ group :production do
   gem 'rails_12factor'
   gem 'unicorn'
   gem 'memcachier'
-  gem 'dalli'    
+  gem 'dalli'
   gem 'heroku-deflater', '~> 0.5.3'
 end
 
