@@ -17,7 +17,7 @@ class MembershipsController < ApplicationController
       else
         head :forbidden
       end
-    else  
+    else
       group = Group.find(p[:group_id].to_i)
       if group.share_url
           @membership = current_user.memberships.create(p)
@@ -32,18 +32,18 @@ class MembershipsController < ApplicationController
     authorize_action_for(@membership)
     @membership.destroy
     head :no_content
-  end  
+  end
 
   private
     def membership_params
       params.require(:membership).permit(:group_id, :code)
-    end    
-    
+    end
+
     def set_membership
       @membership = Membership.find(params[:id])
-    end    
+    end
 
     def rebuild_leaderboard
-      LeaderboardRebuild.new.async.perform(@membership.group_id)
+      LeaderboardRebuild.perform_async(@membership.group_id)
     end
-end  
+end
