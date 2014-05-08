@@ -6,7 +6,6 @@
       self.close()
     <% else %>
       view = new KnodaConnectView()
-      console.log(view);
     <% end %>
   });
   </script>
@@ -48,25 +47,30 @@
   </div>
 </div>
 <div class="signup-page" style="display:none;">
-  <div class="row header">
-    <div class="col-xs-2"><div class="back pull-left" style="display:none;"></div></div>
-  </div>
-  <p>Text goes here</p>
   <%= render partial: "shared/signup.html.erb", locals: {input_size: 'input-lg'} %>
+  <div class="row">
+    <div class="col-xs-12">
+        <a class="back pull-left">Back</a>
+        <a class="login pull-right">Knoda User?  Login</a>
+    </div>
+  </div>
 </div>
 <div class="facebook-page" style="display:none;">
   <div class="row header">
-    <div class="col-xs-2"><div class="back pull-left" style="display:none;"></div></div>
+    <div class="col-xs-2"><div class="back pull-right"></div></div>
   </div>
 </div>
 <div class="twitter-page" style="display:none;">
   <div class="row header">
-    <div class="col-xs-2"><div class="back pull-left" style="display:none;"></div></div>
+    <div class="col-xs-2"><div class="back pull-right"></div></div>
   </div>
 </div>
 <div class="login-page" style="display:none;">
-  <div class="row header">
-    <div class="col-xs-2"><div class="back pull-left" style="display:none;"></div></div>
-  </div>
   <%= render partial: "shared/login.html.erb" , locals: {input_size: ''} %>
+  <div class="row">
+    <div class="col-xs-12">
+        <a class="back pull-left">Back</a>
+        <%= link_to 'forgot password?', new_password_path(:user), :class => 'pull-right'%>
+    </div>
+  </div>
 </div>

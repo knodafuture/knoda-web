@@ -7,7 +7,6 @@ window.KnodaConnectView = class KnodaConnectView
     $('.back').on 'click', @gotoOptions
 
   gotoOptions: =>
-    $('.back').hide()
     $('.connect-options').show()
     $('.signup-page').hide()
     $('.facebook-page').hide()
@@ -27,14 +26,7 @@ window.KnodaConnectView = class KnodaConnectView
     $('.facebook-page').hide()
     $('.twitter-page').hide()
     $('.login-page').hide()
-    $('.back').show()
-
-  gotoFacebook: =>
-    alert('Sorry, not working yet.')
-
-  gotoTwitter: =>
-    alert('Sorry, not working yet.')
-
+    $('#user_email').focus()
 
   login: (e) =>
     e.preventDefault()

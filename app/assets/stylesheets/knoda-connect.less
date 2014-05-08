@@ -3,10 +3,10 @@
   margin-left: auto;
   margin-right: auto;
   .back {
-    line-height: 50px;
-    background: image-url("embed/embed-sprite.png") no-repeat center left;
-    width: 18px;
-    height: 50px;
+    //line-height: 50px;
+    //background: image-url("embed/embed-sprite.png") no-repeat center left;
+    //width: 18px;
+    //height: 50px;
   }
   .back {
     background-position: 0 -74px;
@@ -35,30 +35,43 @@
     }
     span {
       margin-left: 50px;
-      border-left: 1px solid @gray-dark;
       line-height: 49px;
       display: inline-block;
       font-size: 14px;
       .sansRegular;
-      padding-left: 10px;
+      padding-left: 20px;
       width: 300px;
       color: @white;
       text-align: left;
     }
   }
   .connect-option-email {
+    border: 1px solid #134524;
     a {
       background-position: 12px -298px;
     }
+    span {
+      border-left: 1px solid #134524;
+    }
   }
   .connect-option-facebook {
+    background-color: #3B5998;
+    border: 1px solid #1F396F;
     a {
-      background-position: 12px -375px;
+      background-position: 12px -377px;
+    }
+    span {
+      border-left: 1px solid #1F396F;
     }
   }
   .connect-option-twitter {
+    background-color: #2BA9E1;
+    border: 1px solid #2892C0;
     a {
-      background-position: 12px -651px;
+      background-position: 12px -650px;
+    }
+    span {
+      border-left: 1px solid #2892C0;
     }
   }
 }
