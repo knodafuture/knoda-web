@@ -10,15 +10,15 @@
             <p>Hold on, your prediction isn't ready yet.  You'll need to</p>
             <ul style="padding-left:30px">
             </ul>
-        </div>          
+        </div>
         <div class="form-group">
           <%= f.input_field :body, :class => 'form-control body', :placeholder => 'Make a prediction...', :maxlength => '300'  %>
         </div>
         <% if @groups.size > 0 %>
           <div class="form-group">
           <%= f.input_field :group_id, :collection => @groups, :label_method => :name, :value_method => :id, :class =>'form-control group_id', :prompt => 'Public'%>
-          </div>        
-        <% end %>              
+          </div>
+        <% end %>
         <div class="form-group">
         <%= f.input_field :tags, :collection => ['SPORTS','ENTERTAINMENT','PERSONAL','BUSINESS','WEATHER', 'POLITICS', 'STOCKS','FUNNY','OTHER'], :class =>'form-control category', :prompt => 'Select a Category' %>
         </div>
@@ -48,82 +48,28 @@
         </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      <span class="prediction-share">
+      <a class="share-facebook pull-left"></a>
+      <a class="share-twitter pull-left" href="<%= user_omniauth_authorize_path(:twitter, popup: true)%>"></a>
+      </span>
       <%= f.button :submit , :class => 'btn btn-success' %>
     </div>
-  </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
-<% end %>  
+  </div>
+</div>
+<% end %>
 <script>
-  var clearValidation = function() {
-    $('#new_prediction .alert ul').empty()
-    $('#new_prediction .alert').hide()
-  }
-  var validateNewPrediction = function() {
-    clearValidation()
-    var body = $.trim($('#new_prediction .body').val())
-    var category = $.trim($('#new_prediction .category option:selected').val())
-    var expires_at = moment($('#prediction_expires_at').val())
-    var resolution_date = moment($('#prediction_resolution_date').val())
-    var errors = []
-    if (body == '')
-      errors.push({msg: 'Enter a short prediction.'})
-    if (category == '')
-      errors.push({msg: 'Choose a category.'})
-    if (!expires_at.isValid())
-      errors.push({ msg: 'Choose a date for voting to end.'})
-    if (!resolution_date.isValid())
-      errors.push({ msg: 'Choose a date for to resolve your prediction.'})
-    if (resolution_date.isBefore(expires_at))
-      errors.push({ msg: 'Set a resolution date after the voting ends.'})     
-    if (expires_at.isBefore(moment()))
-      errors.push({ msg: 'Set a voting end date in the future.'})       
-    if (resolution_date.isBefore(moment()))
-      errors.push({ msg: 'Set a resolution date in the future.'})              
-    if (errors.length == 0) {
-      return true
-    }else {
-      $('#new_prediction .alert').show()
-      for (var i in errors) {
-        $('#new_prediction .alert ul').append("<li>" + errors[i].msg + "</li>")
-      }
-      return false
-    }
-  }
-  $(function() {    
+  var twitter_account;
+  var facebook_account;
+  <% if current_user.twitter_account %>
+  twitter_account = JSON.parse("<%= escape_javascript(current_user.twitter_account.to_json.html_safe) %>")
+  <% end %>
+  <% if current_user.facebook_account %>
+  facebook_account = JSON.parse("<%= escape_javascript(current_user.facebook_account.to_json.html_safe) %>")
+  <% end %>
+  $(function() {
     <% if @default_group %>
       $('#new_prediction .group_id > option[value=<%=@default_group.id%>]').prop('selected', 'selected')
     <% end %>
-    oneMinuteInFuture = moment().add('minutes', 1)
-    twoMinutesInFuture = moment().add('minutes', 2)
-    $('input[name=prediction_expires_at_date]').attr('min', oneMinuteInFuture.format('YYYY-MM-DD')).val(oneMinuteInFuture.format('YYYY-MM-DD'))
-    $('input[name=prediction_expires_at_time]').val(oneMinuteInFuture.format('HH:mm:ss'))
-    $('input[name=prediction_resolution_date_date]').attr('min', twoMinutesInFuture.format('YYYY-MM-DD')).val(twoMinutesInFuture.format('YYYY-MM-DD'))
-    $('input[name=prediction_resolution_date_time]').val(twoMinutesInFuture.format('HH:mm:ss'))  
-
-    if (!Modernizr.inputtypes.date) {
-      $('input[type="date"]').inputDate();
-    }
-    if (!Modernizr.inputtypes.time) {
-      $('input[type="time"]').inputTime()
-    }  
-
-    $('input[name=prediction_resolution_date_time], input[name=prediction_resolution_date_date], input[name=prediction_expires_at_time], input[name=prediction_expires_at_date]').on('change', function(e) {
-      pe = moment($('input[name=prediction_expires_at_date]').val() + ' ' + $('input[name=prediction_expires_at_time]').val(), "YYYY-MM-DD HH:mm")
-      $('#prediction_expires_at').val(pe.toDate())
-      rd = moment($('input[name=prediction_resolution_date_date]').val() + ' ' + $('input[name=prediction_resolution_date_time]').val(), "YYYY-MM-DD HH:mm")
-      $('#prediction_resolution_date').val(rd.toDate())    
-    })
-
-    $('textarea').maxlength({
-      alwaysShow: true 
-    }); 
-    // Form Submission
-    $('#new_prediction').on('submit', function(e) {
-      e.preventDefault()
-      if (validateNewPrediction()) {
-        createPrediction()
-      }
-    });  
+    view = new window.PredictionCreateView()
   });
 </script>

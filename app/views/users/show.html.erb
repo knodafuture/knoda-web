@@ -74,6 +74,14 @@
 </div>
 <script>
 $(function() {
-    view = new UserShowView()
+    options = { user: {}, social_accounts: [] }
+    options.user = JSON.parse("<%= escape_javascript(@user.to_json.html_safe) %>");
+    <% if @user.twitter_account %>
+    options.social_accounts.push(JSON.parse("<%= escape_javascript(@user.twitter_account.to_json.html_safe) %>"))
+    <% end %>
+    <% if @user.facebook_account %>
+    options.social_accounts.push(JSON.parse("<%= escape_javascript(@user.facebook_account.to_json.html_safe) %>"))
+    <% end %>
+    view = new UserShowView(options)
 });
 </script>

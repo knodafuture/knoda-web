@@ -2,7 +2,7 @@ class PredictionsController < AuthenticatedController
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:share, :show]
   skip_before_action :unseen_activities, only: [:share, :show]
-  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments, :bs]
+  before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments, :bs, :facebook_share, :twitter_share]
   after_action :after_close, only: [:close]
 
   def share
@@ -146,6 +146,16 @@ class PredictionsController < AuthenticatedController
     else
       @challenge.prediction.revert
     end
+    head :no_content
+  end
+
+  def facebook_share
+    FacebookWorker.perform_async(current_user.id,@prediction.id)
+    head :no_content
+  end
+
+  def twitter_share
+    TwitterWorker.perform_async(current_user.id,@prediction.id)
     head :no_content
   end
 

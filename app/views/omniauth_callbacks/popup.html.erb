@@ -1,0 +1,14 @@
+<script>
+  <% if @provider_name.upcase == 'TWITTER' %>
+    if(window.opener.onTwitterConnect) {
+      window.opener.onTwitterConnect();
+    self.close()
+    }
+  <% end %>
+  <% if @provider_name.upcase == 'FACEBOOK' %>
+    if(window.opener.onFacebookConnect) {
+      window.opener.onFacebookConnect();
+    self.close()
+    }
+  <% end %>
+</script>

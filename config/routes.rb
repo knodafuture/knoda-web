@@ -18,6 +18,8 @@ KnodaWeb::Application.routes.draw do
       get 'share_dialog'
       get 'comments'
       post 'bs'
+      post 'facebook_share'
+      post 'twitter_share'
     end
   end
   resources :challenges

@@ -112,7 +112,7 @@ h3 {
 		.img-retina("icons/sd/nav_home.png", "icons/hd/nav_home.png", 25px, 25px);
 		&.active, &:active {
 			.img-retina("icons/sd/nav_home_active.png", "icons/hd/nav_home_active.png", 25px, 25px);
-		}	
+		}
 	}
 	.history {
 		.img-retina("icons/sd/nav_history.png", "icons/hd/nav_history.png", 25px, 25px);
@@ -125,34 +125,34 @@ h3 {
 		.img-retina("icons/sd/nav_activity.png", "icons/hd/nav_activity.png", 25px, 25px);
 		&.active, &:active {
 			.img-retina("icons/sd/nav_activity_active.png", "icons/hd/nav_activity_active.png", 25px, 25px);
-		}		
+		}
 	}
 
 	.badges {
 		.img-retina("icons/sd/nav_badges.png", "icons/hd/nav_badges.png", 25px, 25px);
 		&.active, &:active {
 			.img-retina("icons/sd/nav_badges_active.png", "icons/hd/nav_badges_active.png", 25px, 25px);
-		}		
-	}	
+		}
+	}
 	.groups {
 		.img-retina("icons/nav/nav_groups.png", "icons/nav/nav_groups@2x.png", 25px, 25px);
 		&.active, &:active {
 			.img-retina("icons/nav/nav_groups_active.png", "icons/nav/nav_groups_active@2x.png", 25px, 25px);
-		}			
+		}
 	}
 	.search {
 		margin-right: 20px;
 		.img-retina("icons/sd/nav_search.png", "icons/hd/nav_search.png", 25px, 25px);
 		&.active, &:active {
 			.img-retina("icons/sd/nav_search_active.png", "icons/hd/nav_search_active.png", 25px, 25px);
-		}			
-	}	
+		}
+	}
 	.predict {
 		.img-retina("icons/sd/nav_predict.png", "icons/hd/nav_predict.png", 25px, 25px);
 		&.active, &:active {
 			.img-retina("icons/sd/nav_predict.png", "icons/hd/nav_predict_active.png", 25px, 25px);
-		}			
-	}		
+		}
+	}
 	.dropdown-menu {
 		li {
 			padding-left: 10px;
@@ -183,10 +183,10 @@ h3 {
 		&.active {
 			background: image-url("icons/sd/agree_active.png") center no-repeat;
 		}
-	}	
+	}
 }
 .predictionInfoLine2, .commentInfoLine2 {
-	background-color:white; padding: 5px 20px; 	
+	background-color:white; padding: 5px 20px;
 	a {
 		text-decoration:none;
 		color: #77BC1F;
@@ -194,11 +194,11 @@ h3 {
 	}
 }
 .predictionInfoLine2 {
-	padding-bottom: 0px;	
+	padding-bottom: 0px;
 }
 .predictionInfoLine3 {
 	.img-retina("icons/group_prediction_badge.png", "icons/group_prediction_badge@2x.png", 13px, 12px);
-	background-color:white; padding: 0px 0px 5px 0px; 	
+	background-color:white; padding: 0px 0px 5px 0px;
 	background-repeat: no-repeat;
 	background-position: 20px 4px;
 	padding-left: 40px;
@@ -215,7 +215,7 @@ h3 {
 		margin-bottom: 0px;
 		text-decoration:none;
 		color: #77BC1F;
-		font-size: 0.75em;			
+		font-size: 0.75em;
 	}
 }
 
@@ -245,7 +245,7 @@ h3 {
     min-height: 50px;
     background-color: darken(@green-knoda-dark, 10%);
     color: lighten(@green-knoda-dark, 10%);
-    padding: 10px;	
+    padding: 10px;
     .sansLight;
   	.disabled {
   		padding-right: 10px;
@@ -253,7 +253,7 @@ h3 {
   		cursor: pointer;
   		a {
   			cursor: pointer;
-  		}    		
+  		}
   	}
     a {
     	color: lighten(@green-knoda-dark, 10%);
@@ -309,7 +309,7 @@ h3 {
 		font-size: 1.0em;
 		padding-left: .5em;
 		cursor: pointer;
-		.sansLight;	
+		.sansLight;
 	}
 	.home-bullets {
 		img {
@@ -366,7 +366,7 @@ h3 {
 	}
 	.activityBadge {
 		display: none;
-	}	
+	}
 	.navbar-nav {
 		margin: 0px;
 		padding: 0px;
@@ -456,7 +456,7 @@ input[type="date"], input[type="time"] {
 			max-width: 400px;
 		}
 	}
-	
+
 }
 
 
@@ -494,4 +494,29 @@ input[type="date"], input[type="time"] {
 
 .knoda-green-light {
 	color: @green-knoda-light;
+}
+
+
+.prediction-share {
+	a {
+		width: 32px;
+		height: 32px;
+		display: inline-block;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 32px 32px;
+		margin: 0px 10px;
+	}
+	.share-twitter {
+		.img-retina("icons/social/share/twitter_share.png", "icons/social/share/twitter_share@2x.png", 32px, 32px);
+		&.active {
+			.img-retina("icons/social/share/twitter_share_active.png", "icons/social/share/twitter_share_active@2x.png", 32px, 32px);
+		}
+	}
+	.share-facebook {
+		.img-retina("icons/social/share/facebook_share.png", "icons/social/share/facebook_share@2x.png", 32px, 32px);
+		&.active {
+			.img-retina("icons/social/share/facebook_share_active.png", "icons/social/share/facebook_share_active@2x.png", 32px, 32px);
+		}
+	}
 }
