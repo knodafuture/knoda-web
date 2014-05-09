@@ -1,4 +1,5 @@
 .connect-options, .signup-page, .facebook-page, .twitter-page, .login-page {
+  padding-top: 15px;
   width: 300px;
   margin-left: auto;
   margin-right: auto;
@@ -9,16 +10,29 @@
     //height: 50px;
   }
   .back {
+    padding-left:2px;
     background-position: 0 -74px;
+  }
+  .login {
+    padding-right: 4px;
+  }
+  button.signup, button.login {
+    margin-bottom: 15px;
+    .border-bottom-radius(4px);
+    .border-top-radius(4px);
+  }
+  input {
+    &:-moz-placeholder            { .sansLight } // Firefox 4-18
+    &::-moz-placeholder           { .sansLight } // Firefox 19+
+    &:-ms-input-placeholder       { .sansLight } // Internet Explorer 10+
+    &::-webkit-input-placeholder  { .sansLight } // Safari and Chrome
   }
 }
 .connect-options {
   .connect-option {
     cursor: pointer;
     background-color: @green-knoda-dark;
-    margin-left:auto;margin-right:auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 0px auto 15px auto;
     padding: 0px;
     width: 300px;
     height: 50px;
@@ -37,9 +51,9 @@
       margin-left: 50px;
       line-height: 49px;
       display: inline-block;
-      font-size: 14px;
-      .sansRegular;
-      padding-left: 20px;
+      font-size: 1.25em;
+      .sansLight;
+      padding-left: 10px;
       width: 300px;
       color: @white;
       text-align: left;
@@ -48,7 +62,7 @@
   .connect-option-email {
     border: 1px solid #134524;
     a {
-      background-position: 12px -298px;
+      background-position: 14px -298px;
     }
     span {
       border-left: 1px solid #134524;
@@ -58,7 +72,7 @@
     background-color: #3B5998;
     border: 1px solid #1F396F;
     a {
-      background-position: 12px -377px;
+      background-position: 15px -379px;
     }
     span {
       border-left: 1px solid #1F396F;

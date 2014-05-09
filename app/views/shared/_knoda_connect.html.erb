@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="connect-option connect-option-email">
-        <a><span class="btn-email">Sign up with Email</span></a>
+        <a><span class="btn-email">Sign Up with Email</span></a>
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@
         <% if popup %>
           <a href="<%= user_omniauth_authorize_path(:facebook, display: 'popup', embed: true)%>"><span class="btn-facebook">Sign in with Facebook</span></a>
         <% else %>
-          <a href="<%= user_omniauth_authorize_path(:facebook)%>"><span class="btn-facebook">Sign in with Facebook</span></a>
+          <a href="<%= user_omniauth_authorize_path(:facebook)%>"><span class="btn-facebook">Sign In with Facebook</span></a>
         <% end %>
       </div>
     </div>
@@ -35,7 +35,7 @@
         <% if popup %>
         <a href="<%= user_omniauth_authorize_path(:twitter, embed: true)%>"><span class="btn-twitter">Sign in with Twitter</span></a>
         <% else %>
-          <a href="<%= user_omniauth_authorize_path(:twitter)%>"><span class="btn-twitter">Sign in with Twitter</span></a>
+          <a href="<%= user_omniauth_authorize_path(:twitter)%>"><span class="btn-twitter">Sign In with Twitter</span></a>
         <% end %>
       </div>
     </div>
@@ -51,7 +51,7 @@
   <div class="row">
     <div class="col-xs-12">
         <a class="back pull-left">Back</a>
-        <a class="login pull-right">Knoda User?  Login</a>
+        <a class="login pull-right">Knoda User? Login</a>
     </div>
   </div>
 </div>
@@ -70,7 +70,7 @@
   <div class="row">
     <div class="col-xs-12">
         <a class="back pull-left">Back</a>
-        <%= link_to 'forgot password?', new_password_path(:user), :class => 'pull-right'%>
+        <%= link_to 'Forgot Password?', new_password_path(:user), :class => 'pull-right'%>
     </div>
   </div>
 </div>
