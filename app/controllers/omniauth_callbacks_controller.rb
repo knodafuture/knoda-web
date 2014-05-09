@@ -45,11 +45,17 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 					:access_token_secret => auth.credentials.secret,
 					:provider_account_name => auth.info.nickname
 				})
-				if a.errors
-					h = { :error => a.errors['user_facing'][0]}
-					redirect_to "/users/me?#{h.to_param}"
+				if request.env['omniauth.params']['popup']
+					@provider_name = auth.provider
+					@social_account = a
+					render "popup", layout: false
 				else
-					redirect_to "/users/me"
+					if a.errors
+						h = { :error => a.errors['user_facing'][0]}
+						redirect_to "/users/me?#{h.to_param}"
+					else
+						redirect_to "/users/me"
+					end
 				end
 			else
 	  		@user = User.find_or_create_from_social(

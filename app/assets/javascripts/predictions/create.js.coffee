@@ -20,24 +20,27 @@ window.PredictionCreateView = class PredictionCreateView
   shareTwitter: (e) =>
     e.preventDefault()
     if not twitter_account
-      window.onTwitterConnect = @twitterConnected
       window.open $(e.currentTarget).attr("href"), "windowName", "height=300,width=325;status=0;toolbar=0;location=0;menubar=0;directories=0"
     else
-      $('.share-twitter').toggleClass('active')
+      @onTwitterConnect()
 
   shareFacebook: (e) =>
     e.preventDefault()
     if not facebook_account
-      window.onTwitterConnect = @facebookConnected
       window.open $(e.currentTarget).attr("href"), "windowName", "height=300,width=325;status=0;toolbar=0;location=0;menubar=0;directories=0"
     else
-      @facebookConnected()
+      @onFacebookConnect()
 
-  twitterConnected: (e) =>
+  onTwitterConnect: (e) =>
     $('.share-twitter').toggleClass('active')
 
-  facebookConnected: (e) =>
+  onFacebookConnect: (e) =>
     $('.share-facebook').toggleClass('active')
+
+  onSocialConnectError: (msg) =>
+    $('#new_prediction .alert p').hide()
+    $("#new_prediction .alert").show()
+    $("#new_prediction .alert ul").append "<li>" + msg + "</li>"
 
   submitPrediction: (e) =>
     e.preventDefault()
@@ -53,6 +56,7 @@ window.PredictionCreateView = class PredictionCreateView
   clearValidation: =>
     $("#new_prediction .alert ul").empty()
     $("#new_prediction .alert").hide()
+    $('#new_prediction .alert p').show()
 
   validateNewPrediction: =>
     @clearValidation()
