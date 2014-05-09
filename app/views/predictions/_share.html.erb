@@ -7,6 +7,10 @@
     </div>
     <div class="modal-body">
       <div class="row">
+        <div class="col-xs-12 alerts">
+        </div>
+      </div>
+      <div class="row">
         <div class="col-xs-12" style="text-align:center">
           <div class="row">
             <% if current_user.twitter_account != nil %>
@@ -19,12 +23,12 @@
             <% else %>
               <a href="https://www.facebook.com/sharer/sharer.php?app_id=225565977626604&sdk=joey&u=<%= u(prediction.short_url)%>" target="_new"><%= image_tag('icons/social/facebook.png') %></a>
             <% end %>
-            
+
           </div>
           <div class="row" style="text-align:center">
             <div style="width:128px;display:inline-block">Twitter</div>
             <div style="width:128px;display:inline-block">Facebook</div>
-          </div>  
+          </div>
 
         </div>
       </div>
