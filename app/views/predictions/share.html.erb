@@ -1,10 +1,29 @@
 <% title "#{@prediction.user.username}'s prediction" %>
 <% content_for :head do %>
-  <link href="<%= local_stylesheet_path('application')%>" media="all" rel="stylesheet">
   <%= stylesheet_link_tag "application-prelogin" %>
-  <meta property="og:image" content="<%= avatar_big(@prediction.user) %>" />
-  <meta property="og:description" content="<%= @prediction.body%>" />
-  <meta property="og:site_name" content="Knoda" />  
+  <meta property="og:site_name" content="Knoda" />
+  <meta name="twitter:card" content="photo">
+  <meta name="twitter:image" content="<%=@prediction.shareable_image%>">
+  <meta name="twitter:image:width" content="640">
+  <meta name="twitter:image:height" content="640">
+  <meta name="twitter:site" content="@KNODAfuture">
+  <meta name="twitter:title" content="<%= "@#{@prediction.user.username}" %>'s Prediction">
+  <% if @prediction.user.twitter_account %>
+    <meta name="twitter:creator" content="<%= "@#{@prediction.user.twitter_account.provider_account_name}" %>">
+  <% end %>
+  <meta name="twitter:app:name:iphone" content="Knoda"/>
+  <meta name="twitter:app:id:iphone" content="764642995"/>
+  <meta name="twitter:app:url:iphone" content="knoda://predictions/<%= "#{@prediction.id}" %>"/>
+  <meta name="twitter:app:name:ipad" content="Knoda"/>
+  <meta name="twitter:app:id:ipad" content="764642995"/>
+  <meta name="twitter:app:url:ipad" content="knoda://predictions/<%= "#{@prediction.id}" %>"/>
+  <meta name="twitter:domain" content="knoda.com">
+  <meta property="fb:app_id" content="455514421245892" />
+  <meta property="og:type"   content="knodafacebook:prediction" />
+  <meta property="og:url"    content="<%= request.original_url %>" />
+  <meta property="og:title"  content="<%= "#{@prediction.user.username}" %>'s Prediction" />
+  <meta property="og:description"  content="<%= @prediction.body%>"/>
+  <meta property="og:image" content="<%= @prediction.user.avatar_image[:small]%>"/>
 <% end %>
 
 <%= render "home/prelogin/header"%>
@@ -28,14 +47,14 @@
     </div>
     <div class="row predictionInfoLine2" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=@prediction.id %>"style="background-color:white; padding: 5px 20px; color: #77BC1F">
       <%= display_close_status(@prediction) %> | predicted <%= distance_of_time_in_words_to_now(@prediction.created_at) %> ago | <%=@prediction.agree_percentage %>% agree | <%= image_tag("icons/CommentIcon@2x.png") %> <%=@prediction.comments.size %>
-    </div>    
+    </div>
   </div>
 </div>
 <div class="row" style="text-align:center;margin-top:20px;">
   <p><a href="/" style="color:white;font-size:1.1em;">Sign Up or Login to join the conversation.</a></p>
   <div class="app-badges" style="text-align: center;">
-    <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>      
-    <a onclick="ga('send', 'event', 'redirect', 'play_store');" href="https://play.google.com/store/apps/details?id=com.knoda.knoda" target="_blank"><%= image_tag("playStoreBadge.png") %></a>                  
+    <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
+    <a onclick="ga('send', 'event', 'redirect', 'play_store');" href="https://play.google.com/store/apps/details?id=com.knoda.knoda" target="_blank"><%= image_tag("playStoreBadge.png") %></a>
   </div>
-</div> 
+</div>
 </div>
