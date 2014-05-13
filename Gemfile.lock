@@ -116,7 +116,7 @@ GEM
       multi_json (~> 1.2)
     jcrop-rails-v2 (0.9.12.3)
     json (1.8.1)
-    jwt (0.1.11)
+    jwt (0.1.13)
       multi_json (>= 1.5)
     kgio (2.9.2)
     koala (1.8.0)
@@ -155,6 +155,7 @@ GEM
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     oauth (0.4.7)
+<<<<<<< HEAD
     oauth2 (0.9.3)
       faraday (>= 0.8, < 0.10)
       jwt (~> 0.1.8)
@@ -176,6 +177,16 @@ GEM
       omniauth (~> 1.2)
     omniauth-twitter (1.0.1)
       multi_json (~> 1.3)
+=======
+    omniauth (1.2.1)
+      hashie (>= 1.2, < 3)
+      rack (~> 1.0)
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-twitter (1.0.1)
+      multi_json (~> 1.3)
+>>>>>>> hotfix/v2.1.7
       omniauth-oauth (~> 1.0)
     open_uri_redirections (0.1.4)
     orm_adapter (0.5.0)
@@ -247,6 +258,11 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+<<<<<<< HEAD
+=======
+    sucker_punch (1.0.5)
+      celluloid (~> 0.15.2)
+>>>>>>> hotfix/v2.1.7
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
