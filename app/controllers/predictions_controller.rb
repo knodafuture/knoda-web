@@ -1,4 +1,4 @@
-class PredictionsController < AuthenticatedController  
+class PredictionsController < AuthenticatedController
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:share, :show]
   skip_before_action :unseen_activities, only: [:share, :show]
@@ -29,7 +29,7 @@ class PredictionsController < AuthenticatedController
     else
       render 'index'
     end
-  end  
+  end
 
   # GET /predictions/1
   # GET /predictions/1.json
@@ -41,7 +41,7 @@ class PredictionsController < AuthenticatedController
       authenticate_user!
       unseen_activities()
       @agreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: true})
-      @disagreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: false}) 
+      @disagreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: false})
       render 'show'
     end
   end
@@ -67,7 +67,7 @@ class PredictionsController < AuthenticatedController
     p = prediction_params
     p[:tags] = [p[:tags]]
     puts p
-    @prediction = current_user.predictions.create(p)      
+    @prediction = current_user.predictions.create(p)
     respond_to do |format|
       if @prediction.save
         format.html { redirect_to action: 'index' }
@@ -116,14 +116,14 @@ class PredictionsController < AuthenticatedController
         format.html { render :partial => 'section2', :locals => { prediction: @prediction} }
       else
         render json: @prediction.errors, status: 422
-      end 
+      end
     end
-  end  
+  end
 
   # GET /prediction/1/tally.json
   def tally
     @agreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: true})
-    @disagreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: false}) 
+    @disagreeUsers = User.joins(:challenges).where(challenges: { prediction: @prediction, agree: false})
     render :partial => "tally"
   end
 
@@ -147,7 +147,7 @@ class PredictionsController < AuthenticatedController
       @challenge.prediction.revert
     end
     head :no_content
-  end 
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -158,13 +158,13 @@ class PredictionsController < AuthenticatedController
     # Never trust parameters from the scary internet, only allow the white list through.
     def prediction_params
       params.require(:prediction).permit(:body, :expires_at, :resolution_date, :tags, :group_id)
-    end    
+    end
 
     def prediction_close_params
       params.require(:prediction).permit(:outcome)
     end
 
     def after_close
-      PredictionClose.new.async.perform(@prediction.id)
+      PredictionClose.perform_async(@prediction.id)
     end
 end
