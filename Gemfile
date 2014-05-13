@@ -13,7 +13,6 @@ gem 'aws-sdk', '1.38.0'
 
 gem 'devise', '3.0.0.rc'
 gem 'authority', '~> 2.10.0'
-gem 'bitly', '~> 0.10.0'
 gem 'searchkick', '~> 0.7.1'
 gem 'jcrop-rails-v2', '~> 0.9.12.3'
 gem 'sitemap_generator', '~> 5.0.2'
@@ -22,7 +21,7 @@ group :production do
   gem 'rails_12factor'
   gem 'unicorn'
   gem 'memcachier'
-  gem 'dalli'    
+  gem 'dalli'
   gem 'heroku-deflater', '~> 0.5.3'
 end
 
@@ -31,6 +30,7 @@ gem "browser_detect"
 gem 'rest-client', '1.6.7'
 gem 'mandrill_mailer', '~> 0.4.0'
 gem 'sucker_punch', '~> 1.0.3'
+gem 'sidekiq', '3.0.2'
 
 gem 'knoda_core', :git => "https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git", :branch => 'master'
 # Use this to test local core engine changes

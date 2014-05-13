@@ -20,4 +20,8 @@ after_fork do |server, worker|
 
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.establish_connection
+
+  Sidekiq.configure_client do |config|
+    config.redis = { size: 1, namespace: 'sidekiq-knoda' }
+  end
 end
