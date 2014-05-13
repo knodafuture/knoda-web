@@ -3,7 +3,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <div class="modal-title" id="myModalLabel">SHARE</div>
+      <div class="modal-title" id="myModalLabel">SHARE THIS PREDICTION</div>
     </div>
     <div class="modal-body">
       <div class="row">
@@ -14,22 +14,22 @@
         <div class="col-xs-12" style="text-align:center">
           <div class="row">
             <% if current_user.twitter_account != nil %>
-              <a id="twitter-share-button" data-prediction-id=<%= prediction.id %>><%= image_tag('icons/social/twitter.png') %></a>
+              <a class="tsb" id="twitter-share-button" data-prediction-id="<%= prediction.id %>" data-toggle="tooltip" data-placement="bottom" title="Share on Twitter"></a>
             <% else %>
-              <a href="https://twitter.com/intent/tweet?text=<%=u(prediction.body)%>&tw_p=tweetbutton&url=<%= u(prediction.short_url)%>&via=KNODAfuture" target="_new"><%= image_tag('icons/social/twitter.png') %></a>
+              <a class="tsb" href="https://twitter.com/intent/tweet?text=<%=u(prediction.body)%>&tw_p=tweetbutton&url=<%= u(prediction.short_url)%>&via=KNODAfuture" target="_new" data-toggle="tooltip" data-placement="bottom" title="Share on Twitter"></a>
             <% end %>
             <% if current_user.facebook_account != nil %>
-              <a id="facebook-share-button" data-prediction-id=<%= prediction.id %>><%= image_tag('icons/social/facebook.png') %></a>
+              <a class="fsb" id="facebook-share-button" data-prediction-id="<%= prediction.id %>" data-toggle="tooltip" data-placement="bottom" title="Share on Facebook"></a>
             <% else %>
-              <a href="https://www.facebook.com/sharer/sharer.php?app_id=225565977626604&sdk=joey&u=<%= u(prediction.short_url)%>" target="_new"><%= image_tag('icons/social/facebook.png') %></a>
+              <a class="fsb" href="https://www.facebook.com/sharer/sharer.php?app_id=225565977626604&sdk=joey&u=<%= u(prediction.short_url)%>" target="_new" data-toggle="tooltip" data-placement="bottom" title="Share on Facebook"></a>
             <% end %>
-
+            <a class="btn-share-embed esb" data-toggle="tooltip" data-placement="bottom" title="Embed on Your Website or Blog"></a>
           </div>
-          <div class="row" style="text-align:center">
-            <div style="width:128px;display:inline-block">Twitter</div>
-            <div style="width:128px;display:inline-block">Facebook</div>
-          </div>
-
+        </div>
+      </div>
+      <div class="row embed-code" style="display:none;">
+        <div class="col-xs-12" style="text-align:center;padding-top: 50px;">
+          <textarea class="form-control" style="font-size: 1.25em;"><iframe src="<%= Rails.application.config.knoda_web_url %>/predictions/<%= prediction.id %>/embed" width="640" height="360" frameborder="0"></iframe></textarea>
         </div>
       </div>
       <div style="display:none">
@@ -43,3 +43,9 @@
   </div>
 </div>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script>
+  $('.fsb,.tsb,.esb').tooltip()
+  $('.btn-share-embed').on('click', function() {
+    $('.embed-code').show();
+  });
+</script>

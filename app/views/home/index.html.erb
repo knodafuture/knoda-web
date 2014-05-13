@@ -55,7 +55,7 @@
         <%= render partial: "shared/knoda_connect.html.erb", locals: {popup: false}%>
         <!--<div class="row tab-links">
           <div class="col-xs-12">
-            <div style="max-width:300px;margin-left: auto;margin-right: auto;text-align:left;">
+            <div style="max-width:300px;margin-left: auto;margin-right: auto;text-align:left;padding-left: 15px;">
               <a class="tab-btn-signup active">SIGN UP</a> | <a class="tab-btn-login">LOGIN</a>
             </div>
           </div>
@@ -63,10 +63,10 @@
         <!--<div class="row">
           <div class="col-xs-12">
             <div class="tab-signup">
-              <%= render partial: "shared/signup.html.erb"%>
+              <%= render partial: "shared/signup.html.erb", locals: { :input_size => 'input-lg' } %>
             </div>
             <div class="tab-login" style="display:none">
-              <%= render partial: "shared/login.html.erb"%>
+              <%= render partial: "shared/login.html.erb", locals: { :input_size => 'input-lg' }%>
             </div>
           </div>
         </div>-->

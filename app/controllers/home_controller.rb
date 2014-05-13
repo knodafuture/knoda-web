@@ -46,6 +46,18 @@ class HomeController < ApplicationController
     end
   end
 
+  def embedDemo
+    render :layout => false
+  end
+
+  def socialDemo
+    render :layout => false
+  end
+
+  def embed_login
+    render :layout => false
+  end
+
   private
     def server_side(category, action, client_id = '555')
       puts 'code?'
