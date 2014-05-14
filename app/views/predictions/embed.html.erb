@@ -29,7 +29,7 @@
       <div class="container">
         <div class="row header">
           <div class="col-xs-12">
-            <img src="<%= avatar_small(@prediction.user) %>" class="pull-left" style="display:inline-block; height: 50px;" />
+            <img src="<%= avatar_small(@prediction.user) %>" class="pull-left" />
             <p class="pull-left prediction-username"><%= @prediction.user.username %></p>
             <span class="pull-right logo"></span>
           </div>
@@ -62,7 +62,7 @@
               <p><%= @prediction.user.username %> <% if @prediction.outcome == true %>Won<%else%>Lost<%end%>!</p>
             </div>
           <% else %>
-            <div class="col-xs-6 center "><span class="percentage"><%= @prediction.agree_percentage %>%</span> <br />Agree</div>
+            <div class="col-xs-6 center "><span class="percentage"><%= @prediction.agree_percentage %>%</span><p class="percentage-label">Agree</p></div>
           <% end %>
           <div class="col-xs-3 center disagree"><%= @prediction.disagreed_count %></div>
         </div>
