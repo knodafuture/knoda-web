@@ -1,5 +1,6 @@
 window.KnodaConnectView = class KnodaConnectView
   constructor: (options) ->
+    console.log('hi');
     @destination = options.destination
     $('.login').on 'click', @gotoLogin
     $('.connect-option-email a').on 'click', @gotoSignup
@@ -30,6 +31,7 @@ window.KnodaConnectView = class KnodaConnectView
     $('#user_email').focus()
 
   login: (e) =>
+    console.log 'login'
     e.preventDefault()
     $.ajax
       url: "/signin.json"
@@ -45,7 +47,7 @@ window.KnodaConnectView = class KnodaConnectView
       error: (xhr, status) ->
         $("#knoda_connect .alert").show()
         $("#knoda_connect .alert ul").empty()
-        $('#knoda_connect .alert span').text("Whoa there, we couldn't log you in.  Check your username & password and try again.")
+        $('#knoda_connect .alert .alertText').text("Whoa there, we couldn't log you in.  Check your username & password and try again.")
 
 
   signup: (e) =>
@@ -61,8 +63,8 @@ window.KnodaConnectView = class KnodaConnectView
         if (window.opener)
           window.opener.embedView.afterLogin()
           self.close()
-        else
-          window.location = json.location + "&destination=#{@destination}"
+        #else
+        #  window.location = json.location + "&destination=#{@destination}"
       error: (xhr, status) ->
         $("#knoda_connect .alert").show()
         $("#knoda_connect .alert ul").empty()

@@ -19,10 +19,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <%= render partial: "shared/google_analytics" %>
-    <script>
-      $(function() {
-      });
-    </script>
+    <%= yield :head %>
   </head>
   <body style="background-color:#ffffff;">
     <div id="embed-login-container">
@@ -37,6 +34,12 @@
       self.close()
     <% else %>
       embedLoginView = new EmbedLoginView({container: $('body')})
+    <% end %>
+    <% if params[:close] %>
+      window.opener.view.afterLogin()
+      self.close()
+    <% else %>
+      view = new KnodaConnectView({destination: '<%= @destination || "/predictions" %>'})
     <% end %>
   });
   </script>

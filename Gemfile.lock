@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: 80dd596ec360bbe3db468c7fe611c5b6431c2507
+  revision: 16c2ad5d5f3c110cc01515b0953a8977d1c43ed6
   branch: develop
   specs:
     knoda_core (0.0.1)
@@ -103,8 +103,8 @@ GEM
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
     hike (1.2.3)
-    http (0.5.0)
-      http_parser.rb
+    http (0.6.1)
+      http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
     httparty (0.13.1)
       json (~> 1.8)
@@ -146,14 +146,14 @@ GEM
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     mime-types (1.25.1)
-    mini_portile (0.5.3)
+    mini_portile (0.6.0)
     minitest (5.3.3)
     multi_json (1.10.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     naught (1.0.0)
-    nokogiri (1.6.2)
-      mini_portile (~> 0.5.2)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     oauth (0.4.7)
     oauth2 (0.9.3)
       faraday (>= 0.8, < 0.10)
@@ -222,7 +222,7 @@ GEM
       rails (>= 3.0.7)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    searchkick (0.7.4)
+    searchkick (0.7.5)
       activemodel
       elasticsearch (~> 0.4.11)
       hashie
@@ -261,12 +261,12 @@ GEM
       builder (>= 2.1.2)
       jwt (>= 0.1.2)
       multi_json (>= 1.3.0)
-    twitter (5.8.0)
+    twitter (5.9.0)
       addressable (~> 2.3)
       buftok (~> 0.2.0)
       equalizer (~> 0.0.9)
       faraday (~> 0.9.0)
-      http (~> 0.5.0)
+      http (~> 0.6.0)
       http_parser.rb (~> 0.6.0)
       json (~> 1.8)
       memoizable (~> 0.4.0)
