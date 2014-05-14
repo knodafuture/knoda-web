@@ -92,7 +92,7 @@ body{
   background-position: 0 -734px;
   height: 50px;
   line-height: 50px;
-  width: 130px;
+  width: 45px;
 }
 #embed-container {
   .header{
@@ -106,17 +106,17 @@ body{
   }
   .prediction-username {
     .sansRegular;
-    font-size: 24px;
-    padding-left:20px;
+    font-size: 18px;
+    padding-left:10px;
     line-height:50px;
   }
   .prediction-body, .prediction-meta {
     .sansLight;
-    padding-left:10px;
-    margin-bottom:10px;
+    padding-left:5px;
+    margin-bottom:5px;
   }
   .prediction-body {
-    font-size: 18px;
+    font-size: 14px;
   }
   .prediction-meta {
     font-size: 12px;
@@ -190,13 +190,13 @@ body{
     text-align: center;
     .sansLight;
     line-height: @action-height;
-    font-size: 18px;
+    font-size: 16px;
     .border-bottom-radius(10px)
   }
   .tally {
     .agree, .disagree {
-      font-size: 24px;
-      line-height: 60px;
+      font-size: 18px;
+      line-height: 30px;
     }
     .agree {
       color: @green-knoda-light
@@ -206,8 +206,8 @@ body{
     }
     .percentage {
       color: @green-knoda-dark;
-      font-size: 36px;
-      line-height: 36px;
+      font-size: 18px;
+      line-height: 18px;
     }
   }
 }
@@ -224,8 +224,37 @@ body{
 }
 
 /* Small devices (tablets, 768px and up) */
-@media (min-width: @screen-sm-min) {
+@media (min-width: 500px) {
   #embed-container {
+    .prediction-username {
+      font-size: 24px;
+      padding-left:20px;
+    }
+    .prediction-body, .prediction-meta {
+      .sansLight;
+      padding-left:10px;
+      margin-bottom:10px;
+    }
+    .prediction-body {
+      font-size: 18px;
+    }
+    .tally {
+      .agree, .disagree {
+        font-size: 24px;
+        line-height: 60px;
+      }
+      .percentage {
+        color: @green-knoda-dark;
+        font-size: 36px;
+        line-height: 36px;
+      }
+    }
+    .call-to-action {
+      font-size: 18px;
+    }
+    .logo {
+      width: 130px;
+    }
   }
 }
 
