@@ -54,7 +54,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 
 	def after_sign_in_path_for(resource)
-		redirect_path
+		redirect_path({})
 	end
 
 private
@@ -74,7 +74,7 @@ private
 			if self.resource.errors.include?(:email)
 				h[:error] = "This email address is already registered. If you own this account, please login and connect to Facebook or Twitter in your profile."
 			end
-			redirect_to "#{redirect_path}?#{h.to_param}"
+			redirect_to "#{redirect_path(h)}"
 		else
 			sign_in_and_redirect @user, :event => :authentication
 		end
@@ -96,17 +96,19 @@ private
 			if self.resource.errors.include?(:email)
 				h[:error] = "This email address is already registered. If you own this account, please login and connect to Facebook or Twitter in your profile."
 			end
-			redirect_to "#{redirect_path}?#{h.to_param}"
+			redirect_to "#{redirect_path(h)}"
 		else
 			sign_in_and_redirect @user, :event => :authentication
 		end
 	end
 
-	def redirect_path
+	def redirect_path(h)
 		if request.env['omniauth.params']['embed']
-			return '/embed-login?close=true'
+			h[:close] = 'true'
+			return "/embed-login?#{h.to_param}"
 		else
-			return request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+			url = request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+			return "url?#{h.to_param}"
 		end
 	end
 end

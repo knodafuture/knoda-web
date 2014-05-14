@@ -28,60 +28,11 @@
     <div id="embed-login-container">
       <div class="container">
         <%= render partial: "shared/knoda_connect.html.erb", locals: {popup: true}%>
-        <!--<div class="row header">
-          <div class="col-xs-2"><div class="back pull-left" style="display:none;"></div></div>
-          <div class="col-xs-8"><div class="logo"></div></div>
-          <div class="col-xs-2"></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="connect-options">
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="connect-option connect-option-email">
-                    <a><span class="btn-email">Sign up with Email</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="connect-option connect-option-facebook">
-                    <a href="<%= user_omniauth_authorize_path(:facebook, display: 'popup', embed: true)%>"><span class="btn-facebook">Sign in with Facebook</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="connect-option connect-option-twitter">
-                    <a href="<%= user_omniauth_authorize_path(:twitter, embed: true)%>"><span class="btn-twitter">Sign in with Twitter</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12">
-                    <a class="login pull-right">Knoda User?  Login</a>
-                </div>
-              </div>
-            </div>
-            <div class="signup-page" style="display:none;">
-              <p>Text goes here</p>
-              <%= render partial: "shared/signup.html.erb", locals: {input_size: 'input-lg'} %>
-            </div>
-            <div class="facebook-page" style="display:none;">
-            </div>
-            <div class="twitter-page" style="display:none;">
-            </div>
-            <div class="login-page" style="display:none;">
-              <%= render partial: "shared/login.html.erb" , locals: {input_size: ''} %>
-            </div>
-          </div>
-        </div>
-      </div>-->
       </div>
     </div>
   <script>
   $(function() {
-    <% if params[:close] %>
+    <% if params[:close] and not params[:error] %>
       window.opener.embedView.afterLogin()
       self.close()
     <% else %>
