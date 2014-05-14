@@ -1,5 +1,6 @@
 window.KnodaConnectView = class KnodaConnectView
   constructor: (options) ->
+    @destination = options.destination
     $('.login').on 'click', @gotoLogin
     $('.connect-option-email a').on 'click', @gotoSignup
     $("#new_user").on "submit", @signup
@@ -35,10 +36,17 @@ window.KnodaConnectView = class KnodaConnectView
       data: $("#login_form").serialize()
       type: "POST"
       success: (json, status) =>
-        window.opener.embedView.afterLogin()
-        self.close()
+        ga "send", "event", "users", "login"
+        if (window.opener)
+          window.opener.embedView.afterLogin()
+          self.close()
+        else
+          window.location = "#{@destination}"
       error: (xhr, status) ->
-        $("#login_form .alert").show()
+        $("#knoda_connect .alert").show()
+        $("#knoda_connect .alert ul").empty()
+        $('#knoda_connect .alert span').text("Whoa there, we couldn't log you in.  Check your username & password and try again.")
+
 
   signup: (e) =>
     e.preventDefault()
@@ -49,10 +57,15 @@ window.KnodaConnectView = class KnodaConnectView
       type: "POST"
       dataType: "json"
       success: (json, status) =>
-        window.opener.embedView.afterLogin()
-        self.close()
+        ga "send", "event", "users", "signup"
+        if (window.opener)
+          window.opener.embedView.afterLogin()
+          self.close()
+        else
+          window.location = json.location + "&destination=#{@destination}"
       error: (xhr, status) ->
-        $("#new_user .alert").show()
-        $("#new_user .alert ul").empty()
+        $("#knoda_connect .alert").show()
+        $("#knoda_connect .alert ul").empty()
+        $('#knoda_connect .alert .alertText').text("Hold on, your registration isn't ready yet.")
         for x of xhr.responseJSON.errors
-          $("#new_user .alert ul").append "<li>" + x + " " + xhr.responseJSON.errors[x][0]
+          $("#knoda_connect .alert ul").append "<li>" + x + " " + xhr.responseJSON.errors[x][0]

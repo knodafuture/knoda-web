@@ -21,17 +21,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 				end
 			end
 		else
-			@user = User.find_or_create_from_social(
-			{
-				provider_name: auth.provider,
-				provider_id: auth.uid,
-				access_token: auth.credentials.token,
-				access_token_secret: auth.credentials.secret,
-				username: auth.info.nickname,
-				image: auth.info.image,
-				provider_account_name: auth.info.nickname
-			})
-			sign_in_and_redirect @user, :event => :authentication
+			twitter_new(auth)
 		end
 	end
 
@@ -58,24 +48,65 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 					end
 				end
 			else
-	  		@user = User.find_or_create_from_social(
-	    	{
-		      provider_name: auth.provider,
-		      provider_id: auth.uid,
-		      access_token: auth.credentials.token,
-		      email: auth.info.email,
-		      username: auth.info.first_name + auth.info.last_name,
-		      image: auth.info.image,
-					provider_account_name: auth.info.email
-		    })
-	  		sign_in_and_redirect @user, :event => :authentication
+				facebook_new(auth)
 			end
   	end
+
+
 	def after_sign_in_path_for(resource)
-		if request.env['omniauth.params']['embed']
-			'/embed-login?close=true'
+		redirect_path
+	end
+
+private
+	def facebook_new(auth)
+		@user = User.find_or_create_from_social(
+		{
+			provider_name: auth.provider,
+			provider_id: auth.uid,
+			access_token: auth.credentials.token,
+			email: auth.info.email,
+			username: auth.info.first_name + auth.info.last_name,
+			image: auth.info.image,
+			provider_account_name: auth.info.email
+		})
+		if @user.errors and @user.errors.count > 0
+			h = {}
+			if self.resource.errors.include?(:email)
+				h[:error] = "This email address is already registered. If you own this account, please login and connect to Facebook or Twitter in your profile."
+			end
+			redirect_to "#{redirect_path}?#{h.to_param}"
 		else
-			request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+			sign_in_and_redirect @user, :event => :authentication
+		end
+	end
+
+	def twitter_new(auth)
+		@user = User.find_or_create_from_social(
+		{
+			provider_name: auth.provider,
+			provider_id: auth.uid,
+			access_token: auth.credentials.token,
+			access_token_secret: auth.credentials.secret,
+			username: auth.info.nickname,
+			image: auth.info.image,
+			provider_account_name: auth.info.nickname
+		})
+		if @user.errors and @user.errors.count > 0
+			h = {}
+			if self.resource.errors.include?(:email)
+				h[:error] = "This email address is already registered. If you own this account, please login and connect to Facebook or Twitter in your profile."
+			end
+			redirect_to "#{redirect_path}?#{h.to_param}"
+		else
+			sign_in_and_redirect @user, :event => :authentication
+		end
+	end
+
+	def redirect_path
+		if request.env['omniauth.params']['embed']
+			return '/embed-login?close=true'
+		else
+			return request.env['omniauth.origin'] || stored_location_for(resource) || root_path
 		end
 	end
 end

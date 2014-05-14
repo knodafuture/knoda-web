@@ -1,7 +1,4 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:id => 'login_form', :style => 'width:100%'}) do |f| %>
-  <div class="alert alert-danger" style="display:none">
-    <p>Whoa there, we couldn't log you in.  Check your username & password and try again.</p>
-  </div>
   <div class="form-group">
     <%= f.text_field :login, :autofocus => true, :class => "form-control #{input_size}", :placeholder => 'email address or username' %>
   </div>
@@ -9,4 +6,4 @@
     <%= f.password_field :password, :class => "form-control #{input_size}", :placeholder => 'password'%>
   </div>
   <button type="submit" class="btn btn-success login">Sign In</button>
-<% end %>    
+<% end %>
