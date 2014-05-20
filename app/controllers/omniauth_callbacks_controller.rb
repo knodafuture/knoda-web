@@ -108,7 +108,7 @@ private
 			return "/embed-login?#{h.to_param}"
 		else
 			url = request.env['omniauth.origin'] || stored_location_for(resource) || root_path
-			return "url?#{h.to_param}"
+			return "#{url}?#{h.to_param}"
 		end
 	end
 end
