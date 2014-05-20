@@ -18,11 +18,7 @@
             <% else %>
               <a class="tsb" href="https://twitter.com/intent/tweet?text=<%=u(prediction.body)%>&tw_p=tweetbutton&url=<%= u(prediction.short_url)%>&via=KNODAfuture" target="_new" data-toggle="tooltip" data-placement="bottom" title="Share on Twitter"></a>
             <% end %>
-            <% if current_user.facebook_account != nil %>
-              <a class="fsb" id="facebook-share-button" data-prediction-id="<%= prediction.id %>" data-toggle="tooltip" data-placement="bottom" title="Share on Facebook"></a>
-            <% else %>
-              <a class="fsb" href="https://www.facebook.com/sharer/sharer.php?app_id=225565977626604&sdk=joey&u=<%= u(prediction.short_url)%>" target="_new" data-toggle="tooltip" data-placement="bottom" title="Share on Facebook"></a>
-            <% end %>
+            <a class="fsb" href="https://www.facebook.com/sharer/sharer.php?app_id=225565977626604&sdk=joey&u=<%= u(prediction.short_url)%>" target="_new" data-toggle="tooltip" data-placement="bottom" title="Share on Facebook"></a>
             <a class="btn-share-embed esb" data-toggle="tooltip" data-placement="bottom" title="Embed on Your Website or Blog"></a>
           </div>
         </div>
