@@ -9,11 +9,11 @@ module KnodaWeb
     config.paths['db/migrate'] = KnodaCore::Engine.paths['db/migrate'].existent
     config.action_dispatch.default_headers['X-Frame-Options'] = "GOFORIT"
     config.knoda_web_url = ENV['KNODA_WEB_URL'] || 'http://www.knoda.com'
-    
+
     config.action_mailer.default_url_options = { :host => config.knoda_web_url }
 
-    ENV['ELASTICSEARCH_URL'] = ENV['SEARCHBOX_URL'] || 'http://localhost:9200'    
-    
+    ENV['ELASTICSEARCH_URL'] = ENV['SEARCHBOX_URL'] || 'http://localhost:9200'
+
     config.allowRobots = ENV['ALLOW_ROBOTS'] || false
 
     config.analytics_enabled = ENV['ANALYTICS_ENABLED'] || false
@@ -46,5 +46,16 @@ module KnodaWeb
         false
       end
     end
+    config.paperclip_defaults = {
+      :storage => :s3,
+      :s3_credentials => {
+        :bucket => ENV['S3_BUCKET_NAME'],
+        :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+        :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+      }
+    }
+    puts config.paperclip_defaults
+    Paperclip::Attachment.default_options[:url] = ':s3_domain_url'
+    Paperclip::Attachment.default_options[:path] = '/:class/:attachment/:id_partition/:style/:filename'
   end
 end

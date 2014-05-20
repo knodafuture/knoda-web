@@ -1,7 +1,7 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: 16c2ad5d5f3c110cc01515b0953a8977d1c43ed6
-  branch: develop
+  revision: b743385c5e3f4d2afc6707cb06b0773c0488c1a9
+  branch: master
   specs:
     knoda_core (0.0.1)
       authority (= 2.10.0)
@@ -79,7 +79,7 @@ GEM
     coffee-script-source (1.7.0)
     commonjs (0.2.7)
     connection_pool (2.0.0)
-    dalli (2.7.1)
+    dalli (2.7.2)
     devise (3.0.0.rc)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -147,8 +147,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     mime-types (1.25.1)
     mini_portile (0.6.0)
-    minitest (5.3.3)
-    multi_json (1.10.0)
+    minitest (5.3.4)
+    multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     naught (1.0.0)
@@ -213,7 +213,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
-    rake (10.3.1)
+    rake (10.3.2)
     redis (3.0.7)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
@@ -236,7 +236,7 @@ GEM
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     simple_oauth (0.2.0)
-    sitemap_generator (5.0.2)
+    sitemap_generator (5.0.4)
       builder
     sprockets (2.12.1)
       hike (~> 1.2)
