@@ -62,8 +62,8 @@ window.KnodaConnectView = class KnodaConnectView
         if (window.opener)
           window.opener.embedView.afterLogin()
           self.close()
-        #else
-        #  window.location = json.location + "&destination=#{@destination}"
+        else
+          window.location = json.location + "&destination=#{@destination}"
       error: (xhr, status) ->
         $("#knoda_connect .alert").show()
         $("#knoda_connect .alert ul").empty()
