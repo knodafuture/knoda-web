@@ -30,16 +30,16 @@
               <% if not @user.facebook_account %>
                 <a href="<%= user_omniauth_authorize_path(:facebook)%>"><img src="<%= image_path('icons/social/share/facebook_share.png') %>"></a>
               <% else %>
-                <img src="<%= image_path('icons/social/share/facebook_share_active.png') %>" />
-                <a class="social-account-destroy" data-id="<%=@user.facebook_account.id%>">Disconnect</a>
+                <img src="<%= image_path('icons/social/share/facebook_share_active.png') %>" /><%= @user.facebook_account.provider_account_name %>
+                <a class="btn btn-danger btn-xs social-account-destroy" data-id="<%=@user.facebook_account.id%>">Disconnect</a>
               <% end %>
             </div>
             <div style="padding-top:10px">
               <% if not @user.twitter_account %>
                 <a href="<%= user_omniauth_authorize_path(:twitter)%>"><img src="<%= image_path('icons/social/share/twitter_share.png') %>"></a>
               <% else %>
-                <img src="<%= image_path('icons/social/share/twitter_share_active.png') %>" />
-                <a class="social-account-destroy" data-id="<%=@user.twitter_account.id%>">Disconnect</a>
+                <img src="<%= image_path('icons/social/share/twitter_share_active.png') %>" /><%= @user.twitter_account.provider_account_name %>
+                <a class="btn btn-danger btn-xs social-account-destroy" data-id="<%=@user.twitter_account.id%>">Disconnect</a>
               <% end %>
             </div>
             </div>

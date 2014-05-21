@@ -51,7 +51,7 @@ window.KnodaConnectView = class KnodaConnectView
 
   signup: (e) =>
     e.preventDefault()
-    #startLoading()
+    startLoading()
     $.ajax
       url: "/users.json"
       data: $("#new_user").serialize()
