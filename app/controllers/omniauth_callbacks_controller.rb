@@ -2,7 +2,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	def twitter
 		auth = request.env["omniauth.auth"]
 		if user_signed_in?
-			a = current_user.social_accounts.create({
+			@social_account = current_user.social_accounts.create({
 				:provider_name => auth.provider,
 				:provider_id => auth.uid,
 				:access_token => auth.credentials.token,
@@ -13,8 +13,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 				@provider_name = auth.provider
 				render "popup", layout: false
 			else
-				if a.errors
-					h = { :error => a.errors['user_facing'][0]}
+				if @social_account.errors
+					h = { :error => @social_account.errors['user_facing'][0]}
 					redirect_to "/users/me?#{h.to_param}"
 				else
 					redirect_to "/users/me"
@@ -25,32 +25,31 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 		end
 	end
 
-  	def facebook
-  		auth = request.env["omniauth.auth"]
-			if user_signed_in?
-				a = current_user.social_accounts.create({
-					:provider_name => auth.provider,
-					:provider_id => auth.uid,
-					:access_token => auth.credentials.token,
-					:access_token_secret => auth.credentials.secret,
-					:provider_account_name => auth.info.nickname
-				})
-				if request.env['omniauth.params']['popup']
-					@provider_name = auth.provider
-					@social_account = a
-					render "popup", layout: false
-				else
-					if a.errors
-						h = { :error => a.errors['user_facing'][0]}
-						redirect_to "/users/me?#{h.to_param}"
-					else
-						redirect_to "/users/me"
-					end
-				end
+	def facebook
+		auth = request.env["omniauth.auth"]
+		if user_signed_in?
+			@social_account = current_user.social_accounts.create({
+				:provider_name => auth.provider,
+				:provider_id => auth.uid,
+				:access_token => auth.credentials.token,
+				:access_token_secret => auth.credentials.secret,
+				:provider_account_name => auth.info.nickname
+			})
+			if request.env['omniauth.params']['popup']
+				@provider_name = auth.provider
+				render "popup", layout: false
 			else
-				facebook_new(auth)
+				if @social_account.errors
+					h = { :error => @social_account.errors['user_facing'][0]}
+					redirect_to "/users/me?#{h.to_param}"
+				else
+					redirect_to "/users/me"
+				end
 			end
-  	end
+		else
+			facebook_new(auth)
+		end
+	end
 
 
 	def after_sign_in_path_for(resource)

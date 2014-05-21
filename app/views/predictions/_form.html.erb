@@ -67,10 +67,11 @@
   facebook_account = JSON.parse("<%= escape_javascript(current_user.facebook_account.to_json.html_safe) %>")
   <% end %>
   $(function() {
+    view = new window.PredictionCreateView()
     <% if @default_group %>
       $('#new_prediction .group_id > option[value=<%=@default_group.id%>]').prop('selected', 'selected')
+      view.disallowShare()
     <% end %>
-    view = new window.PredictionCreateView()
     window.auth_delegate = view
   });
 </script>

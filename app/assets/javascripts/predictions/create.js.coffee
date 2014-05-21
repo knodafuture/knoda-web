@@ -15,6 +15,19 @@ window.PredictionCreateView = class PredictionCreateView
     $("#new_prediction").on "submit", @submitPrediction
     $("input[name=prediction_resolution_date_time], input[name=prediction_resolution_date_date], input[name=prediction_expires_at_time], input[name=prediction_expires_at_date]").on "change", @changeDate
     $("textarea").maxlength alwaysShow: true
+    $('.group_id').on 'change', =>
+      gid = $('.group_id option:selected').val()
+      if gid
+        @disallowShare()
+      else
+        @allowShare()
+
+
+  allowShare: =>
+    $('#new_prediction .prediction-share').show()
+
+  disallowShare: =>
+    $('#new_prediction .prediction-share').hide()
 
 
   shareTwitter: (e) =>
@@ -89,9 +102,12 @@ window.PredictionCreateView = class PredictionCreateView
       dataType: "json"
       success: (json) =>
         @prediction = json
-        console.log @prediction
-        startLoading()
-        @sharePrediction =>
+        gid = $('.group_id option:selected').val()
+        if not gid
+          startLoading()
+          @sharePrediction =>
+            window.location.reload()
+        else
           window.location.reload()
 
   sharePrediction: (onComplete) =>
