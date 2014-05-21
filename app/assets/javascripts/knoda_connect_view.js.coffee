@@ -1,6 +1,5 @@
 window.KnodaConnectView = class KnodaConnectView
   constructor: (options) ->
-    console.log('hi');
     @destination = options.destination
     $('.login').on 'click', @gotoLogin
     $('.connect-option-email a').on 'click', @gotoSignup
@@ -14,6 +13,7 @@ window.KnodaConnectView = class KnodaConnectView
     $('.facebook-page').hide()
     $('.twitter-page').hide()
     $('.login-page').hide()
+    $("#knoda_connect .alert").hide()
 
   gotoLogin: =>
     $('.connect-options').hide()
@@ -31,7 +31,6 @@ window.KnodaConnectView = class KnodaConnectView
     $('#user_email').focus()
 
   login: (e) =>
-    console.log 'login'
     e.preventDefault()
     $.ajax
       url: "/signin.json"
@@ -52,7 +51,7 @@ window.KnodaConnectView = class KnodaConnectView
 
   signup: (e) =>
     e.preventDefault()
-    #startLoading()
+    startLoading()
     $.ajax
       url: "/users.json"
       data: $("#new_user").serialize()
