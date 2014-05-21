@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: b743385c5e3f4d2afc6707cb06b0773c0488c1a9
+  revision: 5b9bbff5ad96937bff74c6a0deda5afcc5231fa6
   branch: master
   specs:
     knoda_core (0.0.1)
@@ -222,7 +222,7 @@ GEM
       rails (>= 3.0.7)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    searchkick (0.7.5)
+    searchkick (0.7.6)
       activemodel
       elasticsearch (~> 0.4.11)
       hashie

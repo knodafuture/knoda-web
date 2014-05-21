@@ -59,7 +59,7 @@
           <% if @prediction.is_expired? && @prediction.is_closed? %>
             <div class="col-xs-6 center resolved">
               <%= display_owner_result_outcome_icon(@prediction) %>
-              <p><%= @prediction.user.username %> <% if @prediction.outcome == true %>Won<%else%>Lost<%end%>!</p>
+              <p class="outcome-text"><%= @prediction.user.username %> <% if @prediction.outcome == true %>Won<%else%>Lost<%end%>!</p>
             </div>
           <% else %>
             <div class="col-xs-6 center "><span class="percentage"><%= @prediction.agree_percentage %>%</span><p class="percentage-label">Agree</p></div>
