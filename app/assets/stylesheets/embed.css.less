@@ -184,12 +184,9 @@ body{
       position:absolute;
       left: 50%;
       right: 50%;
-      margin-left: -15px;
-      margin-top: 10px;
-      .badge {
-        background-color: @green-knoda-light;
-        border: 2px solid white;
-      }
+      margin-left: -12px;
+      background: image-url("embed/embed-sprite.png") no-repeat center left;
+      background-position: 0 -569px; width: 24px; height: 58px;
     }
   }
   .call-to-action {
@@ -307,6 +304,9 @@ body{
       height: @action-height;
       .btn-agree, .btn-disagree {
         line-height: @action-height;
+      }
+      .sep {
+        background-position: 0 -564px; width: 24px; height: 58px;
       }
     }
   }

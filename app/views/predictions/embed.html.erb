@@ -68,11 +68,11 @@
         </div>
         <% if (current_user == nil || current_user.id != @prediction.user_id) && !@prediction.is_expired? && !@prediction.is_closed? %>
         <div class="row action-buttons" style="position:relative;">
-          <div class="sep"><span class="badge">or</span></div>
-          <div class="col-xs-6" style="border-right:1px solid white;">
+          <div class="sep"></div>
+          <div class="col-xs-6">
             <a class="btn btn-success btn-agree <%= embed_active_challenge(@prediction, 'agree') %>">Agree</a>
           </div>
-          <div class="col-xs-6"  style="border-left:1px solid white;">
+          <div class="col-xs-6">
             <a class="btn btn-success btn-disagree <%= embed_active_challenge(@prediction, 'disagree') %>">Disagree</a>
           </div>
         </div>
