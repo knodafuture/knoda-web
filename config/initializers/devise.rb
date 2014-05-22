@@ -5,8 +5,8 @@ Devise.setup do |config|
   config.mailer_sender = address.format
   require "omniauth-twitter"
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
-  config.omniauth :twitter, Rails.application.config.twitter_key, Rails.application.config.twitter_secret
-  config.omniauth :facebook, Rails.application.config.facebook_app_id, Rails.application.config.facebook_app_secret, { :scope => 'publish_stream,publish_actions,email,read_stream,offline_access'}
+  config.omniauth :twitter, Rails.application.config.twitter_key, Rails.application.config.twitter_secret, {:image_size => 'original'}
+  config.omniauth :facebook, Rails.application.config.facebook_app_id, Rails.application.config.facebook_app_secret, { :scope => 'publish_stream,publish_actions,email,read_stream,offline_access', :image_size => {:width => 344, :height => 344}}
   require 'devise/orm/active_record'
   config.case_insensitive_keys = [ :email ]
   config.strip_whitespace_keys = [ :email, :username ]

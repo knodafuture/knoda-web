@@ -6,6 +6,10 @@ window.KnodaConnectView = class KnodaConnectView
     $("#new_user").on "submit", @signup
     $("#login_form").on "submit", @login
     $('.back').on 'click', @gotoOptions
+    $('.btn-facebook').on 'click', =>
+      startLoading() if startLoading
+    $('.btn-twitter').on 'click', =>
+      startLoading() if startLoading
 
   gotoOptions: =>
     $('.connect-options').show()
@@ -32,6 +36,7 @@ window.KnodaConnectView = class KnodaConnectView
 
   login: (e) =>
     e.preventDefault()
+    startLoading() if startLoading
     $.ajax
       url: "/signin.json"
       data: $("#login_form").serialize()
@@ -44,6 +49,7 @@ window.KnodaConnectView = class KnodaConnectView
         else
           window.location = "#{@destination}"
       error: (xhr, status) ->
+        stopLoading() if stopLoading
         $("#knoda_connect .alert").show()
         $("#knoda_connect .alert ul").empty()
         $('#knoda_connect .alert .alertText').text("Whoa there, we couldn't log you in.  Check your username & password and try again.")
@@ -51,7 +57,7 @@ window.KnodaConnectView = class KnodaConnectView
 
   signup: (e) =>
     e.preventDefault()
-    startLoading()
+    startLoading() if startLoading
     $.ajax
       url: "/users.json"
       data: $("#new_user").serialize()
@@ -65,6 +71,7 @@ window.KnodaConnectView = class KnodaConnectView
         else
           window.location = json.location + "&destination=#{@destination}"
       error: (xhr, status) ->
+        stopLoading() if stopLoading
         $("#knoda_connect .alert").show()
         $("#knoda_connect .alert ul").empty()
         $('#knoda_connect .alert .alertText').text("Hold on, your registration isn't ready yet.")
