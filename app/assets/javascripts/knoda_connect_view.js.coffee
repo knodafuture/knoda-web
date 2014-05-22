@@ -25,6 +25,7 @@ window.KnodaConnectView = class KnodaConnectView
     $('.facebook-page').hide()
     $('.twitter-page').hide()
     $('.login-page').show()
+    $('#user_login').focus()
 
   gotoSignup: =>
     $('.connect-options').hide()
