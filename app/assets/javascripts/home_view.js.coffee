@@ -17,7 +17,6 @@ window.HomeView = class HomeView
 
   simulateTyping: () =>
     element = $('#step1Text')
-    console.log 'do it'
     element.empty()
     characters = "I will beat Carlos in Fantasy Football this week by at least 30 points."
     for num in [0..(characters.length-1)]
