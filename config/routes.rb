@@ -3,8 +3,12 @@ KnodaWeb::Application.routes.draw do
   get 'start' => 'home#start'
   get 'thebuzz', to: redirect('/')
   get '1mc', to: redirect('/')
-  
- devise_for :users, :controllers => {:sessions => 'sessions'}, :skip => [:sessions] do
+  get 'embedDemo' => 'home#embedDemo'
+  get 'socialDemo' => 'home#socialDemo'
+  get 'embed-login' => 'home#embed_login'
+
+
+ devise_for :users, :controllers => {:sessions => 'sessions', :omniauth_callbacks => "omniauth_callbacks"}, :skip => [:sessions] do
     get '/'   => "home#index",       :as => :new_user_session
     post '/signin'  => 'sessions#create',    :as => :user_session
     get '/signout'  => 'sessions#destroy',   :as => :destroy_user_session
@@ -18,6 +22,9 @@ KnodaWeb::Application.routes.draw do
       get 'share_dialog'
       get 'comments'
       post 'bs'
+      post 'facebook_share'
+      post 'twitter_share'
+      get 'embed'
     end
   end
   resources :challenges
@@ -57,7 +64,12 @@ KnodaWeb::Application.routes.draw do
   end
   resources :invitations
   resources :memberships
-  
+
+  resources :twitter
+  resources :facebook
+
+  resources :social_accounts
+
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'
   get 'terms' => 'home#terms'

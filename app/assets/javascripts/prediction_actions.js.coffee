@@ -175,6 +175,19 @@ window.bindAll = () ->
     else
       alert("Hold on, this is a private group prediction. You won't be be able to share it with the world.")
 
+  $('#twitter-share-button').click (e) ->
+    startLoading()
+    $.ajax
+      type: 'POST'
+      url: "/tweets"
+      data:
+        prediction_id: predictionId 
+      success: (section2) ->
+        console.log "woo!"
+      error: (error) ->
+        console.log error
+      complete: ->
+        stopLoading();
 
 $ ->
   bindAll()

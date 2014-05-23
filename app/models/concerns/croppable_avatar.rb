@@ -1,3 +1,4 @@
+require "open_uri_redirections"
 module CroppableAvatar extend ActiveSupport::Concern
   included do
     has_attached_file :avatar, :styles => { :big => ["344х344"], :small => ["100x100"], :thumb => ["40x40"]}, :processors => [:cropper], :default_url => ""
@@ -18,6 +19,10 @@ module CroppableAvatar extend ActiveSupport::Concern
     self.avatar = File.open(path)
   end     
 
+  def avatar_from_url(url)
+    self.avatar = URI.parse(process_uri(url))
+  end      
+
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
@@ -35,6 +40,16 @@ module CroppableAvatar extend ActiveSupport::Concern
       }
     else
       nil
+    end
+  end
+
+  private
+
+  def process_uri(uri)
+    require 'open-uri'
+    require 'open_uri_redirections'
+    open(uri, :allow_redirections => :safe) do |r|
+      r.base_uri.to_s
     end
   end        
 end  

@@ -16,6 +16,12 @@ gem 'authority', '~> 2.10.0'
 gem 'searchkick', '~> 0.7.1'
 gem 'jcrop-rails-v2', '~> 0.9.12.3'
 gem 'sitemap_generator', '~> 5.0.2'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook', '~> 1.6.0'
+gem 'twitter'
+gem 'open_uri_redirections'
+gem "koala", "~> 1.8.0rc1"
+gem "jwt", "0.1.11"
 
 group :production do
   gem 'rails_12factor'
@@ -29,7 +35,6 @@ gem 'simple_form', '~> 3.0.2'
 gem "browser_detect"
 gem 'rest-client', '1.6.7'
 gem 'mandrill_mailer', '~> 0.4.0'
-gem 'sucker_punch', '~> 1.0.3'
 gem 'sidekiq', '3.0.2'
 
 gem 'knoda_core', :git => "https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git", :branch => 'master'

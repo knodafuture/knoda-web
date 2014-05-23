@@ -13,7 +13,7 @@ class HomeController < ApplicationController
       else
         @scoredPredictions = ScoredPrediction.all.to_a
         Rails.cache.write("scoredPredictions_home", @scoredPredictions, timeToLive: 1.hours)
-      end          
+      end
       render :layout => 'home'
     end
   end
@@ -44,6 +44,20 @@ class HomeController < ApplicationController
     rescue
       redirect_to '/'
     end
+  end
+
+  def embedDemo
+    @prediction1 = Prediction.order('RANDOM()').first()
+    @prediction2 = Prediction.where(:is_closed => true).order('RANDOM()').first()
+    render :layout => false
+  end
+
+  def socialDemo
+    render :layout => false
+  end
+
+  def embed_login
+    render :layout => false
   end
 
   private

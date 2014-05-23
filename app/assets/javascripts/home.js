@@ -18,6 +18,7 @@
 //= require jquery-scrollto
 //= require prediction_slider
 //= require home_view
+//= require knoda_connect_view
 // Force recompile
 
 startLoading = function() {

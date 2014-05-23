@@ -27,4 +27,7 @@ KnodaWeb::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   config.knoda_web_url = 'http://localhost:3001'
+  Sidekiq.configure_client do |config|
+    config.redis = { size: 1, namespace: 'sidekiq-knoda' }
+  end
 end

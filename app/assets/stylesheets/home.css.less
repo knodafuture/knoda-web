@@ -53,6 +53,9 @@
 @import "twitter/bootstrap/responsive-utilities";
 @import "font";
 
+@import "knoda-connect";
+@import "loading";
+
 .center {
   text-align: center;
 }
@@ -60,18 +63,14 @@
   text-align: left;
 }
 
-
-
 #home-container {
-  .btn.signup, .btn.login, .btn.start {
+  .btn.start{
     width: 100%;
     .sansLight;
     background-color: @green-knoda-dark;
     color: #ffffff;
     font-size: 1.25em;
     line-height: 2em;
-  }
-  .btn.start{
     max-width: 250px;
   }
   #section-1, #section-2, #section-3, #section-4 {
@@ -80,7 +79,7 @@
   #section-1 {
     background-color: @green-knoda-light;
     .invitation-text {
-      text-align:left;
+      text-align:center;
       .group-name {
         color: @green-knoda-dark;
         .sansRegular;
@@ -93,7 +92,7 @@
       color: @green-knoda-dark;
     }
     p {
-      color: @white;  
+      color: @white;
       .sansLight;
       font-size: 15px;
     }
@@ -101,7 +100,6 @@
       a, img {
         .sansRegular;
         color: @green-knoda-dark;
-        font-size: 12px;
         padding: 10px 5px;
         text-decoration: none;
         text-transform: uppercase;
@@ -119,7 +117,7 @@
       }
       a {
         .sansRegular;
-        color: @green-knoda-dark;
+        color: @white;
         text-decoration: none;
         cursor: pointer;
         &.active {
@@ -140,15 +138,6 @@
           color: @green-knoda-dark;
         }
       }
-      .alert-danger {
-        background-color: @white;
-        border: 1px solid @gray-knoda;
-        color: #a94442;
-        text-align: left;
-        p {
-          color: #a94442;
-        }
-      }
     }
     .home-prediction {
       display:none;
@@ -166,7 +155,7 @@
             color: @green-knoda-dark;
           }
           .body {
-            color: @white;  
+            color: @white;
           }
           min-height: 25px;
         }
@@ -175,7 +164,7 @@
           font-size: 10px;
         }
       }
-    }    
+    }
   }
   #section-2 {
     .sansLight;
@@ -269,7 +258,7 @@
     }
     .how3Number {
       .img-retina("home/howitworks/circle_icon3.png", "home/howitworks/circle_icon3@2x.png", 70px, 70px);
-    }   
+    }
     #step1Text {
       font-family: 'Roboto', sans-serif;
       font-weight:300;
@@ -325,18 +314,18 @@
         }
         .date, .explainer {
           font-size: 16px;
-        }   
+        }
         img {
           width: 100px;
-        }     
+        }
       }
     }
-    #section-3 {       
+    #section-3 {
     }
     #section-4 {
       height: 600px;
     }
-  }  
+  }
 }
 
 /* Medium devices (desktops, 992px and up) */
@@ -351,7 +340,7 @@
         }
         .date, .explainer {
           font-size: 20px;
-        }        
+        }
       }
     }
     #section-3 {
@@ -360,9 +349,9 @@
       }
       .howStepRow {
         margin-bottom: 60px;
-      }  
+      }
     }
-  }  
+  }
 }
 
 /* Large devices (large desktops, 1200px and up) */
@@ -379,5 +368,5 @@
   }
   .container {
     width: 1200px;
-  }  
+  }
 }

@@ -1,0 +1,327 @@
+// Core variables and mixins
+@import "twitter/bootstrap/variables";
+@import "variables";
+@import "twitter/bootstrap/mixins";
+@import "overrides/mixins";
+
+// Reset
+@import "twitter/bootstrap/normalize";
+@import "twitter/bootstrap/print";
+
+// Core CSS
+@import "twitter/bootstrap/scaffolding";
+@import "twitter/bootstrap/type";
+@import "twitter/bootstrap/code";
+@import "twitter/bootstrap/grid";
+@import "twitter/bootstrap/tables";
+@import "twitter/bootstrap/forms";
+@import "twitter/bootstrap/buttons";
+
+// Components
+@import "twitter/bootstrap/component-animations";
+//@import "overrides/glyphicons";
+//@import "twitter/bootstrap/dropdowns";
+//@import "twitter/bootstrap/button-groups";
+//@import "twitter/bootstrap/input-groups";
+//@import "twitter/bootstrap/navs";
+//@import "twitter/bootstrap/navbar";
+//@import "twitter/bootstrap/breadcrumbs";
+//@import "twitter/bootstrap/pagination";
+//@import "twitter/bootstrap/pager";
+//@import "twitter/bootstrap/labels";
+@import "twitter/bootstrap/badges";
+//@import "twitter/bootstrap/jumbotron";
+//@import "twitter/bootstrap/thumbnails";
+//@import "twitter/bootstrap/alerts";
+@import "twitter/bootstrap/progress-bars";
+.progress {
+  overflow: hidden;
+  height: 5px;
+  margin-bottom: 10px;
+  background-color: @progress-bg;
+  border-radius: @border-radius-base;
+  .box-shadow(inset 0 1px 2px rgba(0,0,0,.1));
+}
+//@import "twitter/bootstrap/media";
+//@import "twitter/bootstrap/list-group";
+//@import "twitter/bootstrap/panels";
+//@import "twitter/bootstrap/wells";
+//@import "twitter/bootstrap/close";
+
+// Components w/ JavaScript
+@import "twitter/bootstrap/modals";
+//@import "overrides/modals";
+//@import "twitter/bootstrap/tooltip";
+//@import "twitter/bootstrap/popovers";
+//@import "twitter/bootstrap/carousel";
+
+// Utility classes
+@import "twitter/bootstrap/utilities";
+@import "twitter/bootstrap/responsive-utilities";
+@import "font";
+@import "knoda-connect";
+
+@action-height: 40px;
+@action-height-xs: 30px;
+
+.center {
+  text-align: center;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.modal-dialog {
+  width: 100%;
+  max-width: 640px;
+  margin: 0px auto;
+}
+body{
+  padding-left: 0px;
+  padding-right: 0px;
+  width:90%;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.container{
+  padding:0px;
+  width: auto;
+}
+.logo {
+  background: image-url("embed/embed-sprite.png") no-repeat center left;
+  background-size: 65px 432px;
+  background-position: 0 -367px;
+  height: 25px;
+  line-height: 50px;
+  width: 22px;
+}
+#embed-container {
+  .header{
+    height:25px;
+    background-color:@gray-knoda;
+    .border-top-radius(10px);
+    img {
+      display:inline-block;
+      height: 25px;
+    }
+  }
+  .row {
+    border-left: 1px solid @gray-knoda;
+    border-right: 1px solid @gray-knoda;
+  }
+  .prediction-username {
+    .sansRegular;
+    font-size: 18px;
+    padding-left:10px;
+    line-height:25px;
+    margin-bottom: 0px;
+  }
+  .prediction-body, .prediction-meta {
+    .sansLight;
+    padding-left:5px;
+    margin-bottom:5px;
+    margin-top: 5px;
+  }
+  .prediction-body {
+    margin-bottom: 0px;
+    font-size: 12px;
+  }
+  .prediction-meta {
+    font-size: 10px;
+    color: @green-knoda-light;
+  }
+  .resolved {
+    img {
+      width: 18px;
+    }
+    p {
+      margin: 2px;
+    }
+  }
+  .agree_vote_marker, .disagree_vote_marker {
+    background: image-url("embed/embed-sprite.png") no-repeat center left;
+    display:inline-block;
+    width: 18px;
+    height: 32px;
+    background-size: 9px 16px;
+  }
+  .agree_vote_marker {
+    background-position: 0 0;
+  }
+  .disagree_vote_marker {
+    background-position: 0 -228px;
+  }
+  .action-buttons {
+    border: 0px;
+    height: @action-height;
+    div.col-xs-6 {
+      margin: 0px;
+      padding: 0px;
+    }
+    .btn-agree, .btn-disagree {
+      border:0px;
+      padding:0px;
+      margin:0px;
+      display: inline-block;
+      text-align:center;
+      text-decoration:none;
+      width: 100%;
+      line-height: @action-height-xs;
+
+      //.border-bottom-radius(10px);
+    }
+    .btn-agree {
+      border-bottom-left-radius: 10px;
+    }
+    .btn-disagree {
+      border-bottom-right-radius: 10px;
+    }
+    .sep {
+      z-index: 2;
+      position:absolute;
+      left: 50%;
+      right: 50%;
+      margin-left: -12px;
+      background: image-url("embed/embed-sprite.png") no-repeat center left;
+      background-position: 0 -569px; width: 24px; height: 58px;
+    }
+  }
+  .call-to-action {
+    cursor: pointer;
+    height: @action-height-xs;
+    background-color: @green-knoda-light;
+    color: @white;
+    text-align: center;
+    .sansLight;
+    line-height: @action-height-xs;
+    font-size: 14px;
+    .border-bottom-radius(10px)
+  }
+  .tally {
+    .agree, .disagree {
+      font-size: 18px;
+      line-height: 30px;
+    }
+    .agree {
+      color: @green-knoda-light
+    }
+    .disagree {
+      color: @red-knoda;
+    }
+    .percentage {
+      color: @green-knoda-dark;
+      font-size: 16px;
+      line-height: 16px;
+    }
+    .percentage-label {
+      color: @green-knoda-dark;
+      font-size: 12px;
+      margin: 0px;
+    }
+    .outcome-text {
+      font-size: 12px;
+      color: @green-knoda-dark;
+    }
+  }
+}
+
+.sprite-lost_icon{ background-position: 0 -469px; width: 36px; height: 36px; }
+.sprite-or_divider{ background-position: 0 -555px; width: 24px; height: 58px; }
+.sprite-won_icon{ background-position: 0 -830px; width: 44px; height: 34px; }
+
+#embed-login-container {
+  max-width: 320px;
+  .container {
+    max-width: 320px;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 500px) {
+  #embed-container {
+    .header{
+      height:50px;
+      img {
+        height: 50px;
+      }
+    }
+    .prediction-username {
+      font-size: 24px;
+      padding-left:20px;
+      line-height: 50px;
+    }
+    .prediction-body, .prediction-meta {
+      .sansLight;
+      padding-left:10px;
+      margin-bottom:10px;
+      margin-top: 10px;
+    }
+    .prediction-body {
+      font-size: 18px;
+      margin-bottom:10px;
+    }
+    .prediction-meta {
+      font-size: 12px;
+    }
+    .resolved {
+      img {
+        width: 36px;
+      }
+    }
+    .tally {
+      .agree, .disagree {
+        font-size: 24px;
+        line-height: 60px;
+      }
+      .percentage {
+        color: @green-knoda-dark;
+        font-size: 36px;
+        line-height: 36px;
+      }
+      .percentage-label {
+        font-size: 14px;
+      }
+      .outcome-text {
+        font-size: 16px;
+        color: @green-knoda-dark;
+      }
+    }
+    .call-to-action {
+      font-size: 18px;
+      height: @action-height;
+      line-height: @action-height;
+    }
+    .logo {
+      width: 130px;
+      height: 50px;
+      background-position: 0 -734px;
+      background-size: 130px 864px;
+    }
+    .action-buttons {
+      height: @action-height;
+      .btn-agree, .btn-disagree {
+        line-height: @action-height;
+      }
+      .sep {
+        background-position: 0 -564px; width: 24px; height: 58px;
+      }
+    }
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) {
+  #embed-container {
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) {
+  #embed-container {
+  }
+}
+
+/* Buttons will be a 4px border radius */

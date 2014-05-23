@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: d3a5f05ee76922da3cae5ea919fcf6e5a4a089f2
+  revision: 5b9bbff5ad96937bff74c6a0deda5afcc5231fa6
   branch: master
   specs:
     knoda_core (0.0.1)
@@ -49,6 +49,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (5.0.1.20140414130214)
     authority (2.10.0)
       activesupport (>= 3.0.0)
@@ -61,6 +62,7 @@ GEM
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
     browser_detect (0.0.5)
+    buftok (0.2.0)
     builder (3.2.2)
     celluloid (0.15.2)
       timers (~> 1.1.0)
@@ -77,7 +79,7 @@ GEM
     coffee-script-source (1.7.0)
     commonjs (0.2.7)
     connection_pool (2.0.0)
-    dalli (2.7.1)
+    dalli (2.7.2)
     devise (3.0.0.rc)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -91,6 +93,7 @@ GEM
     elasticsearch-transport (0.4.11)
       faraday
       multi_json
+    equalizer (0.0.9)
     erubis (2.7.0)
     excon (0.33.0)
     execjs (2.0.2)
@@ -100,6 +103,9 @@ GEM
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
     hike (1.2.3)
+    http (0.6.1)
+      http_parser.rb (~> 0.6.0)
+    http_parser.rb (0.6.0)
     httparty (0.13.1)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -110,9 +116,13 @@ GEM
       multi_json (~> 1.2)
     jcrop-rails-v2 (0.9.12.3)
     json (1.8.1)
-    jwt (0.1.13)
+    jwt (0.1.11)
       multi_json (>= 1.5)
     kgio (2.9.2)
+    koala (1.8.0)
+      addressable
+      faraday
+      multi_json
     less (2.5.0)
       commonjs (~> 0.2.7)
     less-rails (2.5.0)
@@ -133,21 +143,37 @@ GEM
       activesupport
       mandrill-api (~> 1.0.9)
     memcachier (0.0.2)
+    memoizable (0.4.2)
+      thread_safe (~> 0.3, >= 0.3.1)
     mime-types (1.25.1)
-    mini_portile (0.5.3)
-    minitest (5.3.3)
-    multi_json (1.10.0)
+    mini_portile (0.6.0)
+    minitest (5.3.4)
+    multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    nokogiri (1.6.1)
-      mini_portile (~> 0.5.0)
+    naught (1.0.0)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     oauth (0.4.7)
+    oauth2 (0.9.3)
+      faraday (>= 0.8, < 0.10)
+      jwt (~> 0.1.8)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
     omniauth (1.2.1)
       hashie (>= 1.2, < 3)
       rack (~> 1.0)
+    omniauth-facebook (1.6.0)
+      omniauth-oauth2 (~> 1.1)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
+    omniauth-oauth2 (1.1.2)
+      faraday (>= 0.8, < 0.10)
+      multi_json (~> 1.3)
+      oauth2 (~> 0.9.3)
+      omniauth (~> 1.2)
     omniauth-twitter (1.0.1)
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
@@ -187,7 +213,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
-    rake (10.3.1)
+    rake (10.3.2)
     redis (3.0.7)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
@@ -196,7 +222,7 @@ GEM
       rails (>= 3.0.7)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    searchkick (0.7.4)
+    searchkick (0.7.6)
       activemodel
       elasticsearch (~> 0.4.11)
       hashie
@@ -209,7 +235,8 @@ GEM
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    sitemap_generator (5.0.2)
+    simple_oauth (0.2.0)
+    sitemap_generator (5.0.4)
       builder
     sprockets (2.12.1)
       hike (~> 1.2)
@@ -220,8 +247,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sucker_punch (1.0.5)
-      celluloid (~> 0.15.2)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -236,6 +261,17 @@ GEM
       builder (>= 2.1.2)
       jwt (>= 0.1.2)
       multi_json (>= 1.3.0)
+    twitter (5.9.0)
+      addressable (~> 2.3)
+      buftok (~> 0.2.0)
+      equalizer (~> 0.0.9)
+      faraday (~> 0.9.0)
+      http (~> 0.6.0)
+      http_parser.rb (~> 0.6.0)
+      json (~> 1.8)
+      memoizable (~> 0.4.0)
+      naught (~> 1.0)
+      simple_oauth (~> 0.2.0)
     tzinfo (1.1.0)
       thread_safe (~> 0.1)
     uglifier (2.5.0)
@@ -262,10 +298,15 @@ DEPENDENCIES
   heroku-deflater (~> 0.5.3)
   jbuilder (= 2.0.6)
   jcrop-rails-v2 (~> 0.9.12.3)
+  jwt (= 0.1.11)
   knoda_core!
+  koala (~> 1.8.0rc1)
   less-rails (~> 2.5.0)
   mandrill_mailer (~> 0.4.0)
   memcachier
+  omniauth-facebook (~> 1.6.0)
+  omniauth-twitter
+  open_uri_redirections
   paperclip (~> 4.1.1)
   pg (= 0.17.1)
   rails (= 4.1.0)
@@ -275,7 +316,7 @@ DEPENDENCIES
   sidekiq (= 3.0.2)
   simple_form (~> 3.0.2)
   sitemap_generator (~> 5.0.2)
-  sucker_punch (~> 1.0.3)
   therubyracer
+  twitter
   uglifier (~> 2.5.0)
   unicorn

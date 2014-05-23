@@ -4,16 +4,16 @@
  */
 
 #avatarSelection {
-	margin-top: 50px;
+  margin-top: 50px;
 }
 
 .content {
-	font-family: 'Open Sans', sans-serif;
-	color: #666;
+  font-family: 'Open Sans', sans-serif;
+  color: #666;
 }
 
 .panel-group .panel + .panel {
-	margin-top: 0px;
+  margin-top: 0px;
 }
 
 /* !HTML5 Date polyfill | Jonathan Stipe | https://github.com/jonstipe/date-polyfill */

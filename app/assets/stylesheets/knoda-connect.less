@@ -1,0 +1,110 @@
+.alert-danger {
+  background-color: @white;
+  border: 1px solid @gray-knoda;
+  color: #a94442;
+  text-align: left;
+  width: 300px;
+  margin: 0px auto;
+  span {
+    color: #a94442;
+  }
+}
+.btn.signup, .btn.login, .btn.start {
+  width: 100%;
+  .sansLight;
+  background-color: @green-knoda-dark;
+  color: #ffffff;
+  font-size: 1.25em;
+  line-height: 1.5em;
+}
+.connect-options, .signup-page, .facebook-page, .twitter-page, .login-page {
+  padding-top: 15px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  .back {
+    //line-height: 50px;
+    //background: image-url("embed/embed-sprite.png") no-repeat center left;
+    //width: 18px;
+    //height: 50px;
+  }
+  .back {
+    padding-left:2px;
+    background-position: 0 -74px;
+  }
+  .login {
+    padding-right: 4px;
+  }
+  button.signup, button.login {
+    margin-bottom: 15px;
+    .border-bottom-radius(4px);
+    .border-top-radius(4px);
+  }
+  input {
+    &:-moz-placeholder            { .sansLight } // Firefox 4-18
+    &::-moz-placeholder           { .sansLight } // Firefox 19+
+    &:-ms-input-placeholder       { .sansLight } // Internet Explorer 10+
+    &::-webkit-input-placeholder  { .sansLight } // Safari and Chrome
+  }
+}
+.connect-options {
+  .connect-option {
+    cursor: pointer;
+    background-color: @green-knoda-dark;
+    margin: 0px auto 15px auto;
+    padding: 0px;
+    width: 300px;
+    height: 50px;
+    border: 1px solid @gray-dark;
+    .border-bottom-radius(4px);
+    .border-top-radius(4px);
+    a {
+      background: image-url("embed/embed-sprite.png") no-repeat center left;
+      color: @white;
+      text-decoration: none;
+      display: inline-block;
+      height: 50px;
+      width: 300px;
+    }
+    span {
+      margin-left: 50px;
+      line-height: 49px;
+      display: inline-block;
+      font-size: 1.25em;
+      .sansLight;
+      padding-left: 10px;
+      width: 300px;
+      color: @white;
+      text-align: left;
+    }
+  }
+  .connect-option-email {
+    border: 1px solid #134524;
+    a {
+      background-position: 14px -298px;
+    }
+    span {
+      border-left: 1px solid #134524;
+    }
+  }
+  .connect-option-facebook {
+    background-color: #3B5998;
+    border: 1px solid #1F396F;
+    a {
+      background-position: 15px -379px;
+    }
+    span {
+      border-left: 1px solid #1F396F;
+    }
+  }
+  .connect-option-twitter {
+    background-color: #2BA9E1;
+    border: 1px solid #2892C0;
+    a {
+      background-position: 12px -650px;
+    }
+    span {
+      border-left: 1px solid #2892C0;
+    }
+  }
+}

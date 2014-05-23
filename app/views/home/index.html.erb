@@ -30,7 +30,7 @@
         <a class="" href="#section-3">How it works</a>
         <a class="" href="#section-4">Download</a>
       </div>
-    </div>    
+    </div>
     <div class="row">
       <div class="hidden-xs col-sm-6 col-md-5 col-md-offset-1 hidden-xs">
         <div class="row">
@@ -42,8 +42,8 @@
       </div>
         <div class="row">
           <div class="col-xs-12 appBadges" style="margin-top:20px;">
-            <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>      
-            <a onclick="ga('send', 'event', 'redirect', 'play_store');" href="https://play.google.com/store/apps/details?id=com.knoda.knoda" target="_blank"><%= image_tag("playStoreBadge.png") %></a>          
+            <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
+            <a onclick="ga('send', 'event', 'redirect', 'play_store');" href="https://play.google.com/store/apps/details?id=com.knoda.knoda" target="_blank"><%= image_tag("playStoreBadge.png") %></a>
           </div>
         </div>
       </div>
@@ -51,24 +51,8 @@
         <% if (@groupInvitation) %>
           <p class="invitation-text">
             <%= @owner.username %> has invited you to join the group <span class="group-name"><%= @group.name %></span> on Knoda.<br />To accept the invitation, login or create an account.</p>
-        <% end %>        
-        <div class="row tab-links">
-          <div class="col-xs-12">
-            <div style="max-width:300px;margin-left: auto;margin-right: auto;text-align:left;">
-              <a class="tab-btn-signup active">SIGN UP</a> | <a class="tab-btn-login">LOGIN</a>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="tab-signup">
-              <%= render partial: "shared/signup.html.erb"%>
-            </div>
-            <div class="tab-login" style="display:none">
-              <%= render partial: "shared/login.html.erb"%>
-            </div>
-          </div>
-        </div>
+        <% end %>
+        <%= render partial: "shared/knoda_connect.html.erb", locals: {popup: false}%>
       </div>
     </div>
     <div class="row hidden-xs" style="margin-bottom:20px;margin-top:100px;">
@@ -88,7 +72,7 @@
                   <span><%= display_close_status(p) %>| <%= p.agree_percentage %>% agree</span>
                 </div></div>
               </div>
-            </div>            
+            </div>
           <% end %>
         </div>
       </div>
@@ -96,13 +80,13 @@
     <div class="row visible-xs center" style="margin: 20px 0px">
       <div class="col-xs-12 appBadges">
         <div style="margin-bottom: 10px;">
-          <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>      
+          <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
         </div>
         <div>
-          <a onclick="ga('send', 'event', 'redirect', 'play_store');" href="https://play.google.com/store/apps/details?id=com.knoda.knoda" target="_blank"><%= image_tag("playStoreBadge.png") %></a>          
+          <a onclick="ga('send', 'event', 'redirect', 'play_store');" href="https://play.google.com/store/apps/details?id=com.knoda.knoda" target="_blank"><%= image_tag("playStoreBadge.png") %></a>
         </div>
       </div>
-    </div>    
+    </div>
   </div>
 </div>
 <div id="section-2">
@@ -118,7 +102,7 @@
       <div class="item active">
         <div class="focal-point left-0 down-0">
           <div id="history1"><%= image_tag('home/history/namath_img_lg.jpg') %></div>
-        </div>    
+        </div>
         <div class="carousel-caption">
           <%= image_tag('home/history/avatars/namath.png') %>
           <p class="date">January 12, 1969</p>
@@ -140,7 +124,7 @@
       <div class="item">
         <div class="focal-point left-0 down-0">
           <div id="history3"><%= image_tag('home/history/bitcoin_img_lg.jpg') %></div>
-        </div>    
+        </div>
         <div class="carousel-caption">
           <%= image_tag('home/history/avatars/bitcoin.png') %>
           <p class="date">February 5, 2014</p>
@@ -151,7 +135,7 @@
       <div class="item">
         <div class="focal-point left-0 down-0">
           <div id="history4"><%= image_tag('home/history/goldenglobes_img_lg.jpg') %></div>
-        </div>    
+        </div>
         <div class="carousel-caption">
           <%= image_tag('home/history/avatars/goldenglobes.png') %>
           <p class="date">January 13, 2013</p>
@@ -162,14 +146,14 @@
       <div class="item">
         <div class="focal-point left-0 down-0">
           <div id="history5"><%= image_tag('home/history/stockmkt_img_lg.jpg') %></div>
-        </div>    
+        </div>
         <div class="carousel-caption">
           <%= image_tag('home/history/avatars/stockmkt.png') %>
           <p class="date">October 26, 1929</p>
           <h3>"Stock prices have reached what seems to be a permanently high plateau."</h3>
           <p class="explainer">Economist Irving Fisher, 3 days before the stock market crash that triggered the Great Depression</p>
         </div>
-      </div>            
+      </div>
     </div>
     <a class="left carousel-control" href="#myCarousel" data-slide="prev"></a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next"></a>
@@ -198,7 +182,7 @@
           <p id="step1Text" style="position:absolute;top:6px;left:100px;width:250px;text-align:left;left: 50%;right: 50%;margin-left: -110px;"></p>
         </div>
       </div>
-    </div>  
+    </div>
     <div class="row howStepRow">
       <div class="col-xs-12 col-md-2 col-lg-1 col-lg-offset-1">
         <div class="how2Number"></div>
@@ -214,7 +198,7 @@
       <div class="col-xs-12 col-md-5">
         <div id="StageTwo" class="EDGE-136483370" style="margin-left:auto;margin-right:auto;text-align:center;"></div>
       </div>
-    </div>  
+    </div>
     <div class="row howStepRow">
       <div class="col-xs-12 col-md-2 col-lg-1 col-lg-offset-1">
         <div class="how3Number"></div>
@@ -230,7 +214,7 @@
       <div class="col-xs-12 col-md-5">
         <div id="StageOne" class="EDGE-160599758" style="margin-left:auto;margin-right:auto;text-align:center;"></div>
       </div>
-    </div>            
+    </div>
   </div>
 </div>
 <div id="section-4">
@@ -240,8 +224,8 @@
     </div></div>
     <div class="row"><div class="col-xs-12">
       <a href="/start" class="btn btn-primary start">Get Started</a>
-    </div></div> 
-  </div> 
+    </div></div>
+  </div>
 </div>
 <div id="footer">
   <div class="container-fluid">
@@ -249,7 +233,7 @@
     <div class="col-xs-12 hidden-sm hidden-md hidden-lg" style="margin:5px 0px;">
       <a href="http://twitter.com/KNODAfuture" target="_blank"><%= image_tag("icons/social/twitter_icon.png") %></a>
       <a href="http://facebook.com/KNODAfuture" target="_blank"><%= image_tag("icons/social/facebook_icon.png") %></a>
-    </div>    
+    </div>
     <div class="col-xs-12">
       <span class="hidden-xs"><a href="#section-1" style="cursor:default;text-decoration:none;">Knoda, LLC &copy; 2014</a></span>
       <span><a href="/about">About</a></span>
@@ -285,6 +269,6 @@ $(function() {
     $('#history3').html("<%= escape_javascript(image_tag('home/history/bitcoin_img_md.jpg')) %>")
     $('#history4').html("<%= escape_javascript(image_tag('home/history/goldenglobes_img_md.jpg')) %>")
     $('#history5').html("<%= escape_javascript(image_tag('home/history/stockmkt_img_md.jpg')) %>")
-  } 
+  }
 });
-</script>  
+</script>

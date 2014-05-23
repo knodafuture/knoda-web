@@ -22,6 +22,8 @@
 //= require plupload.full.min
 //= require moment-with-langs.min
 //= require bootstrap-maxlength.min
+//= require async
+//= require predictions/create
 // Force recompile
 
 startLoading = function() {
@@ -30,31 +32,7 @@ startLoading = function() {
 
 stopLoading = function() {
 	$('.loading-overlay').hide();
-};	
-
-
-var createPrediction;
-
-createPrediction = function() {
-  startLoading()
-  return $.ajax({
-    url: "/predictions.json",
-    data: $('#new_prediction').serialize(),
-    type: "POST",
-    dataType: "json",
-    success: function(json) {
-      startLoading()
-      return window.location.reload();
-    },
-    error: function(xhr, status) {
-      return console.log("Sorry, there was a problem!");
-    },
-    complete: function(xhr, status) {
-      return console.log("The request is complete!");
-    }
-  });
 };
-
 
 function getUrlVars()
 {
