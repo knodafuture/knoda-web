@@ -1,5 +1,5 @@
 <script>
-<% if @social_account.errors %>
+<% if @social_account.errors.size() > 0 %>
   if(window.opener.auth_delegate && window.opener.auth_delegate.onSocialConnectError) {
     var msg = '<%= @social_account.errors['user_facing'][0] %>';
     msg = msg.replace('account', '<%= @provider_name%> account')
