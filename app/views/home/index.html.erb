@@ -271,4 +271,7 @@ $(function() {
     $('#history5').html("<%= escape_javascript(image_tag('home/history/stockmkt_img_md.jpg')) %>")
   }
 });
+
+alert(FlurryAgent.logEvent("LANDING"));
+
 </script>

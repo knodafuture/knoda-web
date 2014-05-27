@@ -16,7 +16,7 @@ module KnodaWeb
 
     config.allowRobots = ENV['ALLOW_ROBOTS'] || false
 
-    config.analytics_enabled = ENV['ANALYTICS_ENABLED'] || false
+    config.analytics_enabled = ENV['ANALYTICS_ENABLED'] || true
     config.lucky_orange_enabled = ENV['LUCKY_ORANGE_ENABLED'] || false
     config.assets.debug = true
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')

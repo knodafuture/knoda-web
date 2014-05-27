@@ -9,6 +9,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 				:access_token_secret => auth.credentials.secret,
 				:provider_account_name => auth.info.nickname
 			})
+
 			if request.env['omniauth.params']['popup']
 				@provider_name = auth.provider
 				render "popup", layout: false
@@ -90,6 +91,13 @@ private
 			image: auth.info.image,
 			provider_account_name: auth.info.nickname
 		})
+		#Checks to see if the user is just logging in or has jsut signed up
+		if (@user.created_at <= (Time.now - 1.min))
+			signup = false
+		else
+			signup = true
+		end
+
 		if @user.errors and @user.errors.count > 0
 			h = {}
 			if self.resource.errors.include?(:email)
@@ -97,7 +105,7 @@ private
 			end
 			redirect_to "#{redirect_path(h)}"
 		else
-			sign_in_and_redirect @user, :event => :authentication
+			sign_in_and_redirect @user, :event => :authentication, :signup => signup
 		end
 	end
 

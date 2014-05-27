@@ -1,0 +1,13 @@
+
+  <script type="text/javascript" src="https://cdn.flurry.com/js/flurry.js"></script>
+  <script>
+    <% if Rails.application.config.analytics_enabled == 'true' %>
+        FlurryAgent.startSession("G8N42VKCPPW6TSKBTGDK");
+        FlurryAgent.setUserId('<%= current_user.id %>');
+      <% else %>
+        FlurryAgent.startSession("G8N42VKCPPW6TSKBTGDK");
+        <% if current_user %>
+          FlurryAgent.setUserId('<%= current_user.id %>');
+          <% end %>
+      <% end %>
+    </script>
