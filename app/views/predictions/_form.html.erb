@@ -49,7 +49,7 @@
     </div>
     <div class="modal-footer">
       <span class="prediction-share">
-      <!--<a class="share-facebook pull-left" href="<%= user_omniauth_authorize_path(:facebook, display:'popup', popup: true)%>"></a>-->
+      <a class="share-facebook pull-left" href="<%= user_omniauth_authorize_path(:facebook, display:'popup', popup: true)%>"></a>
       <a class="share-twitter pull-left" href="<%= user_omniauth_authorize_path(:twitter, popup: true)%>"></a>
       </span>
       <%= f.button :submit , :class => 'btn btn-success' %>
