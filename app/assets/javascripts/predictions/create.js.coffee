@@ -101,6 +101,7 @@ window.PredictionCreateView = class PredictionCreateView
       type: "POST"
       dataType: "json"
       success: (json) =>
+        alert(FlurryAgent.logEvent("CREATE_PREDICTION_SUCCESS"))
         @prediction = json
         gid = $('.group_id option:selected').val()
         if not gid
