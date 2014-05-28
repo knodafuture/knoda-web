@@ -1,6 +1,9 @@
 // Core variables and mixins
 @import "twitter/bootstrap/variables";
 @import "variables";
+//@gridGutterWidth:         0px;
+//@gridGutterWidth1200:     0px;
+//@gridGutterWidth768:      0px;
 @import "twitter/bootstrap/mixins";
 @import "overrides/mixins";
 
@@ -37,10 +40,13 @@
 .progress {
   overflow: hidden;
   height: 5px;
-  margin-bottom: 10px;
+  margin: 0px;
   background-color: @progress-bg;
   border-radius: @border-radius-base;
   .box-shadow(inset 0 1px 2px rgba(0,0,0,.1));
+}
+.progress-bar {
+  line-height: 16px;
 }
 //@import "twitter/bootstrap/media";
 //@import "twitter/bootstrap/list-group";
@@ -121,7 +127,6 @@ body{
   }
   .prediction-body, .prediction-meta {
     .sansLight;
-    padding-left:5px;
     margin-bottom:5px;
     margin-top: 5px;
   }
@@ -156,7 +161,7 @@ body{
   }
   .action-buttons {
     border: 0px;
-    height: @action-height;
+    height: @action-height-xs;
     div.col-xs-6 {
       margin: 0px;
       padding: 0px;
@@ -201,6 +206,7 @@ body{
     .border-bottom-radius(10px)
   }
   .tally {
+    margin-top: 5px;
     .agree, .disagree {
       font-size: 18px;
       line-height: 30px;
@@ -309,6 +315,9 @@ body{
         background-position: 0 -564px; width: 24px; height: 58px;
       }
     }
+  }
+  .progress-bar {
+    line-height: 20px;
   }
 }
 

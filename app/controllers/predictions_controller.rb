@@ -20,6 +20,7 @@ class PredictionsController < AuthenticatedController
 
   def embed
     @user = current_user
+    response.headers["X-XSS-Protection"] = "0"
     render 'embed', :layout => false
   end
 

@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: 5b9bbff5ad96937bff74c6a0deda5afcc5231fa6
+  revision: f410807db78d5c1adfeb89aca2e74c1b6e877adf
   branch: master
   specs:
     knoda_core (0.0.1)
@@ -96,7 +96,7 @@ GEM
     equalizer (0.0.9)
     erubis (2.7.0)
     excon (0.33.0)
-    execjs (2.0.2)
+    execjs (2.1.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     hashie (2.1.1)
@@ -138,7 +138,7 @@ GEM
     mandrill-api (1.0.51)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
-    mandrill_mailer (0.4.5)
+    mandrill_mailer (0.4.6)
       actionpack
       activesupport
       mandrill-api (~> 1.0.9)
@@ -251,7 +251,7 @@ GEM
       libv8 (~> 3.16.14.0)
       ref
     thor (0.19.1)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
     tilt (1.4.1)
     timers (1.1.0)
     treetop (1.4.15)
@@ -272,7 +272,7 @@ GEM
       memoizable (~> 0.4.0)
       naught (~> 1.0)
       simple_oauth (~> 0.2.0)
-    tzinfo (1.1.0)
+    tzinfo (1.2.0)
       thread_safe (~> 0.1)
     uglifier (2.5.0)
       execjs (>= 0.3.0)

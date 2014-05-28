@@ -5,6 +5,8 @@ window.EmbedView = class EmbedView
     $('.call-to-action').on 'click', @gotoKnoda
     $('.btn-agree').on 'click', @agree
     $('.btn-disagree').on 'click', @disagree
+    if (($('body').height() - 20) > $(window).height())
+      $('.prediction-meta').remove()
   bindModal: (e) =>
     @container.find('.tab-btn-signup').click =>
       @container.find('.tab-signup').show()
