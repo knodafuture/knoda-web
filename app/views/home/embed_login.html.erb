@@ -34,16 +34,19 @@
     stopLoading = function() {
     };
     <% if params[:close] and not params[:error] %>
-      window.opener.embedView.afterLogin()
+      window.opener.view.afterLogin({ANALYTICS_EVENT : '<%= params[:ANALYTICS_EVENT] %>', user_id: '<%= current_user.id %>'})
       self.close()
     <% else %>
-      embedLoginView = new EmbedLoginView({container: $('body')})
-    <% end %>
-    <% if params[:close] %>
-      window.opener.view.afterLogin()
-      self.close()
-    <% else %>
-      view = new KnodaConnectView({destination: '<%= @destination || "/predictions" %>'})
+      <% if params[:error] %>
+        if (window.opener.view.afterError) {
+          window.opener.view.afterError('<%= params[:error] %>')
+          self.close()
+        } else {
+          new KnodaConnectView({destination: '<%= @destination || "/predictions" %>', popup: true})
+        }
+      <% else %>
+        new KnodaConnectView({destination: '<%= @destination || "/predictions" %>', popup: true})
+      <% end %>
     <% end %>
   });
   </script>

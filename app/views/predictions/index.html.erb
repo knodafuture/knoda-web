@@ -2,9 +2,6 @@
   <%= javascript_include_tag "predictions" %>
 	<%= javascript_include_tag 'prediction_actions' %>
 <% end %>
-
-<script> FlurryAgent.logEvent('<%= params[:ANALYTICS_EVENT] %>'); </script>
-
 <div class="row">
 	<div class="panel-group col-lg-12 col-md-12 col-sm-12 col-xs-12" id="predictionsList">
 	    <% @predictions.each do |i| %>
