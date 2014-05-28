@@ -43,6 +43,7 @@ window.KnodaConnectView = class KnodaConnectView
       data: $("#login_form").serialize()
       type: "POST"
       success: (json, status) =>
+        FlurryAgent.logEvent("LOGIN_EMAIL")
         ga "send", "event", "users", "login"
         if (window.opener)
           window.opener.embedView.afterLogin()
@@ -65,6 +66,7 @@ window.KnodaConnectView = class KnodaConnectView
       type: "POST"
       dataType: "json"
       success: (json, status) =>
+        FlurryAgent.logEvent("SIGNUP_EMAIL")
         ga "send", "event", "users", "signup"
         if (window.opener)
           window.opener.embedView.afterLogin()

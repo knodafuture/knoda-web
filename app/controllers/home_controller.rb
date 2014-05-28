@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   def index
     if user_signed_in?
       if current_user.avatar?
-        redirect_to :controller => 'predictions', :action => 'index'
+        redirect_to :controller => 'predictions', :action => 'index', :params => params
       else
         redirect_to "/users/me/avatar"
       end
