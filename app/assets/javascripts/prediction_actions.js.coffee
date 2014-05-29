@@ -14,11 +14,11 @@ createChallenge = (prediction_id, agree) ->
         el.find(".disagree").removeClass('active')
       else
         el.find(".agree").removeClass('active')
-        el.find(".disagree").addClass('active')   
+        el.find(".disagree").addClass('active')
       el.find(".agree-percentage").text(json.prediction_agree_percent)
       if el.find('.disagreeUsersList').length > 0
         loadTally(el, prediction_id)
-      window.badges.checkAndShow() 
+      window.badges.checkAndShow()
 
 
 comment = (prediction_id, text) ->
@@ -32,11 +32,12 @@ comment = (prediction_id, text) ->
         text : text
       type: "POST"
       success: (comments) ->
+        FlurryAgent.logEvent("CREATE_COMMENT")
         el = $(".predictionContainer[data-prediction-id=#{prediction_id}]")
         el.find(".comments-content").html(comments);
         unbindAll()
         bindAll()
-        stopLoading()    
+        stopLoading()
 
 close = (prediction_id, outcome) ->
   startLoading()
@@ -44,12 +45,12 @@ close = (prediction_id, outcome) ->
     type: 'POST'
     url: "/predictions/#{prediction_id}/close.html"
     data:
-      prediction : 
+      prediction :
         outcome: outcome
       authenticity_token : $('meta[name=csrf-token]').attr('content')
     success: (section2) ->
       el = $(".predictionContainer[data-prediction-id=#{prediction_id}]")
-      el.find(".section-2").html(section2);    
+      el.find(".section-2").html(section2);
       if outcome
         el.find('.myChallenge').html("<span class='pull-right won-lost-indicator won'>W</span>")
       else
@@ -73,7 +74,7 @@ loadTally = (el, prediction_id) ->
       success: (html) ->
         el.find('.tally-content').html(html)
       complete: (xhr, status) ->
-        stopLoading();        
+        stopLoading();
 
 loadComments = (el, prediction_id) ->
     $.ajax
@@ -109,7 +110,7 @@ window.unbindAll = () ->
 window.bindAll = () ->
   $('#sharePrediction').on 'hidden.bs.modal', ->
     $(this).removeData();
-  $('textarea').maxlength 
+  $('textarea').maxlength
     alwaysShow: true
 
   $('.yes').click (e) ->
@@ -129,17 +130,17 @@ window.bindAll = () ->
     e.preventDefault()
     predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
     createChallenge(predictionId, true)
-    
+
   $('.disagree').click (e) ->
     e.preventDefault()
     predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
     createChallenge(predictionId, false)
-    
+
 
   $('.addCommentButton').click (e) ->
     el = $(e.target).parents('.predictionContainer')
     comment(el.attr('data-prediction-id'), el.find('.addCommentForm textarea').val())
-    e.preventDefault()      
+    e.preventDefault()
 
   $('a.comments, .commentsText').click (e) ->
     e.preventDefault()
@@ -155,7 +156,7 @@ window.bindAll = () ->
     el.find('.tally-content').show()
     el.find('.comments-content').hide()
     el.find('a.tally').addClass('active')
-    el.find('a.comments').removeClass('active')    
+    el.find('a.comments').removeClass('active')
     prediction_id = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
     startLoading();
     loadTally(el, prediction_id);
@@ -181,7 +182,7 @@ window.bindAll = () ->
       type: 'POST'
       url: "/tweets"
       data:
-        prediction_id: predictionId 
+        prediction_id: predictionId
       success: (section2) ->
         console.log "woo!"
       error: (error) ->

@@ -1,6 +1,7 @@
 <% content_for :head do %>
   <%= javascript_include_tag "predictions" %>
 	<%= javascript_include_tag 'prediction_actions' %>
+  <script>FlurryAgent.logEvent("HOME_FEED");</script>
 <% end %>
 <div class="row">
 	<div class="panel-group col-lg-12 col-md-12 col-sm-12 col-xs-12" id="predictionsList">

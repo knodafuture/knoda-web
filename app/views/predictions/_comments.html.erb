@@ -8,15 +8,15 @@
       		<% end %>
 	        <div class="col-md-1 myChallenge pull-right">
 	          <%= display_challenge_icon_for_comment(i) %>
-	        </div>			
+	        </div>
 		</div>
 		<div class="row" style="padding: 10px;padding-bottom:0px">
 			<div style="margin-left:20px"><p><%= i.text %></p></div>
 		</div>
 		<div class="row commentInfoLine2" style="border-bottom: 1px solid #efefef;padding:10px;padding-top:0px;">
 			<div style="margin-left:20px"><p>made <%= distance_of_time_in_words_to_now(i.created_at) %> ago</p></div>
-		</div>		
-	<% end %> 
+		</div>
+	<% end %>
 	<form class="addCommentForm">
 	  <div class="form-group">
 	  	<div class="row">
@@ -24,7 +24,7 @@
 	    		<textarea name="text" class="form-control" placeholder="Add a Comment" maxlength="300"></textarea>
 	    	</div>
 	    	<div class="col-xs-12 col-sm-2">
-	    		<a class="addCommentButton btn btn-lg btn-success" style="margin-top:5px;">POST</a> 
+	    		<a class="addCommentButton btn btn-lg btn-success" style="margin-top:5px;">POST</a>
 	    	</div>
 		</div>
 	  </div>

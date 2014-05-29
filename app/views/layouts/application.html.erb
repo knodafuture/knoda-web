@@ -20,9 +20,10 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <%= render partial: "shared/flurry_analytics" %>
     <%= yield :head %>
     <%= render partial: "shared/google_analytics" %>
-    <%= render partial: "shared/flurry_analytics" %>
+
     <% if params[:new_user] %>
       <!-- Facebook Conversion Code for Registration -->
       <script type="text/javascript">
