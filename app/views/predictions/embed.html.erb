@@ -89,10 +89,10 @@
     </div>
   <script>
   $(function() {
-    embedView = new EmbedView({container: $('body')})
-    embedView.prediction = JSON.parse("<%= escape_javascript(@prediction.to_json.html_safe) %>")
+    view = new EmbedView({container: $('body')})
+    view.prediction = JSON.parse("<%= escape_javascript(@prediction.to_json.html_safe) %>")
     <% if current_user %>
-    embedView.userId = <%= current_user.id %>
+    view.userId = <%= current_user.id %>
     <% end %>
   });
   </script>

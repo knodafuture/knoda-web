@@ -1,12 +1,7 @@
 <% content_for :head do %>
   <script>
   $(function() {
-    <% if params[:close] %>
-      window.opener.view.afterLogin()
-      self.close()
-    <% else %>
-      view = new KnodaConnectView({destination: '<%= @destination || "/predictions" %>'})
-    <% end %>
+      window.connectView = new KnodaConnectView({destination: '<%= @destination || "/predictions" %>', popup: <%= popup %> })
   });
   </script>
 <% end %>
@@ -29,22 +24,14 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="connect-option connect-option-facebook">
-          <% if popup %>
             <a href="<%= user_omniauth_authorize_path(:facebook, display: 'popup', embed: true)%>"><span class="btn-facebook">Sign in with Facebook</span></a>
-          <% else %>
-            <a href="<%= user_omniauth_authorize_path(:facebook)%>"><span class="btn-facebook">Sign In with Facebook</span></a>
-          <% end %>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
         <div class="connect-option connect-option-twitter">
-          <% if popup %>
           <a href="<%= user_omniauth_authorize_path(:twitter, embed: true)%>"><span class="btn-twitter">Sign in with Twitter</span></a>
-          <% else %>
-            <a href="<%= user_omniauth_authorize_path(:twitter)%>"><span class="btn-twitter">Sign In with Twitter</span></a>
-          <% end %>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ window.EmbedView = class EmbedView
     $('.btn-disagree').on 'click', @disagree
     if (($('body').height() - 20) > $(window).height())
       $('.prediction-meta').remove()
+
   bindModal: (e) =>
     @container.find('.tab-btn-signup').click =>
       @container.find('.tab-signup').show()
@@ -42,19 +43,28 @@ window.EmbedView = class EmbedView
     if @userId
       @createChallenge(@prediction.id, true)
     else
-      @afterLogin = =>
+      @afterLogin = (options)=>
         @createChallenge(@prediction.id, true)
+        @logAnalytics(options)
       @showModal()
 
   disagree: =>
     if @userId
       @createChallenge(@prediction.id, false)
     else
-      @afterLogin = =>
+      @afterLogin = (options) =>
         @createChallenge(@prediction.id, false)
+        @logAnalytics(options)
       @showModal()
 
   showModal: =>
-    window.open('/embed-login', 'windowName', 'height=300,width=325;status=0;toolbar=0;location=0;menubar=0;directories=0')
+    window.view2 = {hi: 'hi'}
+    height = 300
+    width = 325
+    left = ($(window).width()/2)-(width/2);
+    top = ($(window).height()/2)-(height/2);
+    window.open("/embed-login", 'windowName', "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=#{width}, height=#{height}, top=#{top}, left=#{left}")
 
-window.EmbedLoginView = class EmbedLoginView
+  logAnalytics: (options) =>
+    FlurryAgent.setUserId(options.user_id);
+    FlurryAgent.logEvent(options.ANALYTICS_EVENT);
