@@ -1,6 +1,7 @@
 <% content_for :head do %>
   <%= javascript_include_tag "history" %>
 	<%= javascript_include_tag 'prediction_actions' %>
+  <script>FlurryAgent.logEvent("HISTORY");</script>
 <% end %>
 <div class="panel-group" id="historyList">
 	  <% @challenges.each do |i| %>

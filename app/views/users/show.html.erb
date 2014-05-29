@@ -1,6 +1,7 @@
 <% content_for :head do %>
   <%= javascript_include_tag 'users/show' %>
   <%= javascript_include_tag 'users/show_view' %>
+  <script>FlurryAgent.logEvent("PROFILE_SCREEN");</script>
 <% end %>
 <div class="userContainer" data-user-id="<%= @user.id%>">
   <%= render partial: "users/stats", locals: {user: @user} %>

@@ -65,6 +65,7 @@ callBS = (prediction_id) ->
       url: "/predictions/#{prediction_id}/bs.json"
       dataType: "json"
       success: (json) ->
+        FlurryAgent.logEvent("BS_BUTTON_TAPPED")
         window.location.reload()
 
 loadTally = (el, prediction_id) ->
@@ -130,11 +131,13 @@ window.bindAll = () ->
     e.preventDefault()
     predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
     createChallenge(predictionId, true)
+    FlurryAgent.logEvent("AGREE_BUTTON_TAPPED")
 
   $('.disagree').click (e) ->
     e.preventDefault()
     predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
     createChallenge(predictionId, false)
+    FlurryAgent.logEvent("DISAGREE_BUTTON_TAPPED")
 
 
   $('.addCommentButton').click (e) ->
