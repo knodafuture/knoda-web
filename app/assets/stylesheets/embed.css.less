@@ -175,8 +175,9 @@ body{
       text-decoration:none;
       width: 100%;
       line-height: @action-height-xs;
-
-      //.border-bottom-radius(10px);
+      &:embed-active {
+        background-color: @green-knoda-dark !important;
+      }
     }
     .btn-agree {
       border-bottom-left-radius: 10px;
