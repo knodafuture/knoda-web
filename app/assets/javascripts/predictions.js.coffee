@@ -2,6 +2,7 @@ $ ->
   $('.collapse').collapse(
     toggle: false
   )
+
   currentOffset = 0
   pageSize = 25
   loading = false
