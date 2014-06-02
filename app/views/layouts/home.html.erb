@@ -20,6 +20,7 @@
     <![endif]-->
     <%= yield :head %>
     <%= render partial: "shared/google_analytics" %>
+    <%= render partial: "shared/flurry_analytics" %>
     <script>
       $(function() {
         if (($('.full-height-content').height()) < $(window).height() - 160) {

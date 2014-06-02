@@ -9,13 +9,14 @@ window.GroupsView = class GroupsView
       type: "POST"
       dataType: "json"
       success: (json) ->
+        FlurryAgent.logEvent("CREATE_GROUP_SUCCESS")
         startLoading()
         window.location = "/groups/#{json.id}/settings"
   removeInvitee: (e) =>
     @invitees.splice @invitees.indexOf($(e.currentTarget).data('u')), 1
     $(e.currentTarget).unbind().parent().remove()
 
-  addInvitee: (user) ->     
+  addInvitee: (user) ->
     if user.username
       labelText = user.username
     else
@@ -39,8 +40,8 @@ window.GroupsView = class GroupsView
             <p style=\"text-overflow:ellipsis;overflow:auto;font-size:0.75em\">#{m.username}</p>
           </div>
         </div>"
-        l.data('d', m)        
-        return l  
+        l.data('d', m)
+        return l
       q = $('#query').val()
       if (q.length > 2)
         $.ajax
@@ -83,9 +84,9 @@ window.GroupsView = class GroupsView
     $('#query').keyup (e) =>
       @search(e)
   isEmail: (email) ->
-    /.+@.+\..+([\s,;]){1,1}/i.test email  
+    /.+@.+\..+([\s,;]){1,1}/i.test email
 
-window.JoinGroupView = class JoinGroupView 
+window.JoinGroupView = class JoinGroupView
   constructor: (group_id, code) ->
     @group_id = group_id
     @code = code
@@ -96,11 +97,11 @@ window.JoinGroupView = class JoinGroupView
     $.ajax
       url: "/memberships.json"
       type: "POST"
-      data: 
-        membership : 
+      data:
+        membership :
           group_id : @group_id
-          code: @code        
-        authenticity_token : $('meta[name=csrf-token]').attr('content')      
+          code: @code
+        authenticity_token : $('meta[name=csrf-token]').attr('content')
       dataType: "json"
       success: (x) =>
         window.location = "/groups/#{@group_id}"
@@ -114,8 +115,8 @@ window.GroupSettingsView = class GroupSettingsView
         $.ajax
           url: "/memberships/#{$(e.currentTarget).attr('data-membership-id')}.json"
           type: "DELETE"
-          data: 
-            authenticity_token : $('meta[name=csrf-token]').attr('content')              
+          data:
+            authenticity_token : $('meta[name=csrf-token]').attr('content')
           success: (x) =>
             $(e.currentTarget).parents('tr').remove()
     $('body')
@@ -128,7 +129,7 @@ window.GroupSettingsView = class GroupSettingsView
           if $this.data('before') isnt $this.html()
               $this.data 'before', $this.html()
               $this.trigger('change')
-          return $this   
+          return $this
       .on 'keydown', '[contenteditable]', (e) ->
         $this = $(this)
         if(e.which == 13)
@@ -142,7 +143,7 @@ window.GroupSettingsView = class GroupSettingsView
           return true
         if $(e.currentTarget).hasClass('name') and @el.find('.name').text().length > 30
           return false
-        if $(e.currentTarget).hasClass('description') and @el.find('.description').text().length > 140        
+        if $(e.currentTarget).hasClass('description') and @el.find('.description').text().length > 140
           return false
         return true
     @el.find('.group-editable').change (e) =>
@@ -152,7 +153,7 @@ window.GroupSettingsView = class GroupSettingsView
         url: "/groups/#{@group_id}.json"
         type: "PUT"
         data:
-          authenticity_token : $('meta[name=csrf-token]').attr('content')    
+          authenticity_token : $('meta[name=csrf-token]').attr('content')
           group:
             name : @el.find('.name').text()
             description: @el.find('.description').text()
@@ -162,8 +163,8 @@ window.GroupSettingsView = class GroupSettingsView
         $.ajax
           url: "/memberships/#{$(e.currentTarget).attr('data-membership-id')}.json"
           type: "DELETE"
-          data: 
-            authenticity_token : $('meta[name=csrf-token]').attr('content')              
+          data:
+            authenticity_token : $('meta[name=csrf-token]').attr('content')
           success: (x) =>
             window.location = "/groups"
     $('#groups-inviteUsers').on 'shown.bs.modal', ->
@@ -175,6 +176,7 @@ window.GroupSettingsView = class GroupSettingsView
       $('#groups-shareLink .share-url').focus().select()
 
 window.GroupPredictionListView = class GroupPredictionListView
+  FlurryAgent.logEvent("GROUP_PREDICITION_LIST")
   currentOffset : 0
   pageSize : 25
   loading : false
@@ -196,8 +198,7 @@ window.GroupPredictionListView = class GroupPredictionListView
           unbindAll()
           bindAll()
           @loading = false
-          stopLoading()  
+          stopLoading()
   shouldLoadAnotherPage: =>
     predictionsOnScreen = $('#predictionsList').children('.predictionContainer').length
     ($(window).scrollTop() + $(window).height()) is $(document).height() and not @loading and predictionsOnScreen >= (@pageSize * (@currentOffset+1))
-        

@@ -26,3 +26,12 @@ window.HomeView = class HomeView
     setTimeout ->
       element.text(element.text() + character)
     , delay
+
+  afterLogin: (options) =>
+    FlurryAgent.setUserId(options.user_id);
+    FlurryAgent.logEvent(options.ANALYTICS_EVENT);
+    window.location = "#{@destination || '/predictions'}"
+
+  afterError: (error) =>
+    if connectView
+      connectView.showError(error)

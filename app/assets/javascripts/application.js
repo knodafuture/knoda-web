@@ -49,6 +49,9 @@ function getUrlVars()
 
 $(function() {
   $('.full-height-content').height($(window).height() - 50)
+	$('#createPredictionModal').on('show.bs.modal', function(e) {
+		FlurryAgent.logEvent("CREATE_PREDICTION_START");
+	})
 });
 
 if (!Array.prototype.indexOf) {

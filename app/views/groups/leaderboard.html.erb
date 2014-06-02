@@ -1,11 +1,20 @@
 <div id="groups-leaderboard">
-  <%= render partial: "groups/header", locals: {group: @group} %> 
+  <%= render partial: "groups/header", locals: {group: @group} %>
   <div  class="limit-size-small">
   <div class="row" style="margin: 5px 0px;">
       <ul class="nav nav-pills col-xs-12" style="text-align:left;">
         <li <% if !params[:board] %>class="active"<%end %>><a href="/groups/<%= @group.id %>/leaderboard">Last 7 Days</a></li>
-        <li <% if params[:board] == 'monthly' %>class="active"<%end %>><a href="/groups/<%= @group.id %>/leaderboard?board=monthly">Last 30 Days</a></li>
+          <% if !params[:board] %>
+            <script>FlurryAgent.logEvent("GROUP_LEADERBOARD_WEEKLY");</script>
+          <% end %>
+        <li <% if params[:board] == 'monthly' %> class="active"<%end %>><a href="/groups/<%= @group.id %>/leaderboard?board=monthly">Last 30 Days</a></li>
+          <% if params[:board] == 'monthly' %>
+            <script>FlurryAgent.logEvent("GROUP_LEADERBOARD_MONTHLY");</script>
+          <% end %>
         <li <% if params[:board] == 'alltime' %>class="active"<%end %>><a href="/groups/<%= @group.id %>/leaderboard?board=alltime">All Time</a></li>
+          <% if params[:board] == 'alltime' %>
+            <script>FlurryAgent.logEvent("GROUP_LEADERBOARD_ALLTIME");</script>
+          <% end %>
       </ul>
   </div>
   <div class="row">

@@ -254,7 +254,7 @@
 </div>
 <script>
 $(function() {
-  homeView = new HomeView({container: $('#home-container'), destination: '<%= @destination || "/predictions" %>'})
+  view = new HomeView({container: $('#home-container'), destination: '<%= @destination || "/predictions" %>'})
   psv = new PredictionSliderView({container: $('.prediction-slider')});
   w = $(window).width()
   if (w < 750) {
@@ -271,4 +271,7 @@ $(function() {
     $('#history5').html("<%= escape_javascript(image_tag('home/history/stockmkt_img_md.jpg')) %>")
   }
 });
+
+FlurryAgent.logEvent("LANDING");
+
 </script>

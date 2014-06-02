@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/png" href="<%= image_path('favicon.png') %>" />
-    <link rel="shortcut icon" type="image/png" href="<%= image_path('favicon.png') %>" />        
+    <link rel="shortcut icon" type="image/png" href="<%= image_path('favicon.png') %>" />
     <link href='http://fonts.googleapis.com/css?family=Krona+One' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery.ui.all.css">
@@ -18,10 +18,12 @@
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>  
-    <![endif]-->    
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <%= render partial: "shared/flurry_analytics" %>
     <%= yield :head %>
     <%= render partial: "shared/google_analytics" %>
+
     <% if params[:new_user] %>
       <!-- Facebook Conversion Code for Registration -->
       <script type="text/javascript">
@@ -37,8 +39,8 @@
       ref.parentNode.insertBefore(fpw, ref);
       })();
       </script>
-      <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/offsite_event.php?id=6012075669456&amp;value=0.01&amp;currency=USD" /></noscript>    
-    <% end %>    
+      <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/offsite_event.php?id=6012075669456&amp;value=0.01&amp;currency=USD" /></noscript>
+    <% end %>
   </head>
 
   <body>
@@ -65,15 +67,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>          
-        </div>        
+          </button>
+        </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li >
               <a class="home <% if params[:controller] == 'predictions' %> active <% end %>" href="/predictions" title="Home">
                 <span class="collapseText">Home</span>
               </a>
-            </li>            
+            </li>
             <li >
               <a class="history <% if params[:controller] == 'history' %> active <% end %>" href="/history" title="History">
                 <span class="collapseText">History</span>
@@ -93,8 +95,8 @@
               <a class="groups <% if params[:controller] == 'groups' %> active <% end %>"href="/groups" title="Groups">
                 <span class="collapseText">Groups</span>
               </a>
-            </li>            
-          </ul>                            
+            </li>
+          </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:0px">
@@ -108,7 +110,7 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li>  
+            <li>
               <a class="predict" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new<% if @group %>?group_id=<%=@group.id%><% end %>" title="Make a prediction">
                 <span class="collapseText">Predict</span>
               </a>
@@ -118,22 +120,23 @@
                 <span class="collapseText">Search</span>
               </a>
             </li>
-          </ul>  
+          </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/users/me"><span class="collapseText">My Account</span></a></li>
             <li><a href="/signout"><span class="collapseText">Log Out</span></a></li>
-          </ul>                                    
+          </ul>
         </div>
       </div>
-    </header>    
+    </header>
     <div class="content container" id="<%= controller_name%>-<%= action_name %>-container">
       <%= yield %>
-    </div> 
+    </div>
     <div class="modal fade" id="createPredictionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     </div>
     <div class="modal fade" id="sharePrediction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    </div>    
+    </div>
     <div id="badge-modal-container">
     </div>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   </body>
 </html>

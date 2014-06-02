@@ -1,6 +1,7 @@
+<script>FlurryAgent.logEvent("ACTIVITY_FEED");</script>
 <div class="row">
 	<table class="table table-bordered">
-	  <% @activities.each do |i| %>	  	
+	  <% @activities.each do |i| %>
 	    <tr <% if not i.seen %> style="background-color:#efefef" <% end%>>
 	    	<td><%= image_tag(activity_icon(i)) %></td>
 	    	<td>

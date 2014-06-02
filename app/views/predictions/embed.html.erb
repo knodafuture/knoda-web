@@ -19,6 +19,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <%= render partial: "shared/google_analytics" %>
+    <%= render partial: "shared/flurry_analytics" %>
     <script>
       $(function() {
       });
@@ -94,10 +95,10 @@
     </div>
   <script>
   $(function() {
-    embedView = new EmbedView({container: $('body')})
-    embedView.prediction = JSON.parse("<%= escape_javascript(@prediction.to_json.html_safe) %>")
+    view = new EmbedView({container: $('body')})
+    view.prediction = JSON.parse("<%= escape_javascript(@prediction.to_json.html_safe) %>")
     <% if current_user %>
-    embedView.userId = <%= current_user.id %>
+    view.userId = <%= current_user.id %>
     <% end %>
   });
   </script>

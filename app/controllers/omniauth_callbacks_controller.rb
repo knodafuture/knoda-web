@@ -9,6 +9,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 				:access_token_secret => auth.credentials.secret,
 				:provider_account_name => auth.info.nickname
 			})
+
 			if request.env['omniauth.params']['popup']
 				@provider_name = auth.provider
 				render "popup", layout: false
@@ -68,6 +69,7 @@ private
 			image: auth.info.image,
 			provider_account_name: auth.info.email
 		})
+
 		if @user.errors and @user.errors.count > 0
 			h = {}
 			if self.resource.errors.include?(:email)
@@ -75,6 +77,12 @@ private
 			end
 			redirect_to "#{redirect_path(h)}"
 		else
+			#Checks to see if the user is just logging in or has just signed up.
+			if (@user.created_at <= (Time.now - 1.minutes))
+				@flogin = true
+			else
+				@fsignup = true
+			end
 			sign_in_and_redirect @user, :event => :authentication
 		end
 	end
@@ -90,6 +98,13 @@ private
 			image: auth.info.image,
 			provider_account_name: auth.info.nickname
 		})
+
+		if (@user.created_at <= (Time.now - 1.minutes))
+			@signup = false
+		else
+			@signup = true
+		end
+
 		if @user.errors and @user.errors.count > 0
 			h = {}
 			if self.resource.errors.include?(:email)
@@ -101,13 +116,32 @@ private
 		end
 	end
 
-	def redirect_path(h)
+	def redirect_path(redirect_options)
+		h = add_analytics(redirect_options)
 		if request.env['omniauth.params']['embed']
-			h[:close] = 'true'
-			return "/embed-login?#{h.to_param}"
+			redirect_options[:close] = 'true'
+			return "/embed-login?#{redirect_options.to_param}"
 		else
 			url = request.env['omniauth.origin'] || stored_location_for(resource) || root_path
-			return "#{url}?#{h.to_param}"
+			return "#{url}?#{redirect_options.to_param}"
 		end
 	end
+
+	def add_analytics(h)
+		if (@signup)
+			h[:ANALYTICS_EVENT] = "SIGNUP_TWITTER"
+		end
+		if (!@signup)
+			h[:ANALYTICS_EVENT] = "LOGIN_TWITTER"
+		end
+		if (@fsignup)
+			h[:ANALYTICS_EVENT] = "SIGNUP_FACEBOOK"
+		end
+		if (@flogin)
+			h[:ANALYTICS_EVENT] = "LOGIN_FACEBOOK"
+		end
+
+		return h
+	end
+
 end
