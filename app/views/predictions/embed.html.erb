@@ -12,6 +12,7 @@
     <link rel="shortcut icon" type="image/png" href="<%= image_path('favicon.png') %>" />
     <%= stylesheet_link_tag "application-embed" %>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://knoda.s3.amazonaws.com/embed-assets/pym.js"></script>
     <%= javascript_include_tag "embed" %>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -20,10 +21,6 @@
     <![endif]-->
     <%= render partial: "shared/google_analytics" %>
     <%= render partial: "shared/flurry_analytics" %>
-    <script>
-      $(function() {
-      });
-    </script>
     <style type="text/css">
       .btn-agree.active, .btn-disagree.active {
         background-color: #255b38;
@@ -31,7 +28,7 @@
       }
     </style>
   </head>
-  <body style="background-color:#ffffff;">
+  <body style="background-color:transparent">
     <div id="embed-container">
       <div class="container">
         <div class="row header">
@@ -51,7 +48,7 @@
             <p class="prediction-meta">made <%= distance_of_time_in_words_to_now(@prediction.created_at) %> ago on <span style="font-weight:400">Knoda.com</span></p>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="border:0">
           <div class="progress">
             <div class="progress-bar progress-bar-success" style="width: <%= @prediction.agree_percentage %>%">
               <span class="sr-only"><%= @prediction.agree_percentage %>% Agree</span>
@@ -100,6 +97,7 @@
     <% if current_user %>
     view.userId = <%= current_user.id %>
     <% end %>
+    var pymChild = new pym.Child();
   });
   </script>
   </body>

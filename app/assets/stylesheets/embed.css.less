@@ -70,6 +70,10 @@
 @action-height: 40px;
 @action-height-xs: 30px;
 
+html {
+  max-width: 640px;
+}
+
 .center {
   text-align: center;
 }
@@ -105,6 +109,11 @@ body{
   width: 22px;
 }
 #embed-container {
+  .row {
+    border-left: 1px solid @gray-knoda;
+    border-right: 1px solid @gray-knoda;
+    background-color: #fff;
+  }
   .header{
     height:25px;
     background-color:@gray-knoda;
@@ -113,10 +122,6 @@ body{
       display:inline-block;
       height: 25px;
     }
-  }
-  .row {
-    border-left: 1px solid @gray-knoda;
-    border-right: 1px solid @gray-knoda;
   }
   .prediction-username {
     .sansRegular;
@@ -204,10 +209,12 @@ body{
     .sansLight;
     line-height: @action-height-xs;
     font-size: 14px;
-    .border-bottom-radius(10px)
+    .border-bottom-radius(10px);
+    border-left-width: 0px;
+    border-right-width: 0px
   }
   .tally {
-    margin-top: 5px;
+    padding-top: 5px;
     .agree, .disagree {
       font-size: 18px;
       line-height: 30px;
@@ -308,6 +315,7 @@ body{
       background-size: 130px 864px;
     }
     .action-buttons {
+      background: transparent;
       height: @action-height;
       .btn-agree, .btn-disagree {
         line-height: @action-height;

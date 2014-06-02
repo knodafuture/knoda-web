@@ -1,4 +1,4 @@
-<div style="text-align:center;">
+<!--<div style="text-align:center;">
   <iframe src="/predictions/1/embed" width="320" height="180" frameborder="0"></iframe>
 </div>
 
@@ -12,4 +12,20 @@
 
 <div style="text-align:center;">
   <iframe src="/predictions/<%= @prediction2.id %>/embed" width="320" height="180" frameborder="0"></iframe>
+</div>-->
+<div style="background-color:green">
+  <div style="text-align:center;" id="prediction<%= @prediction2.id%>">
+  </div>
+  <br />
+  <div style="text-align:center;" id="prediction<%= @prediction1.id%>">
+  </div>
+  <br />
+  <div style="text-align:center;width: 400px;" id="prediction<%= @prediction2.id%>_small"></div>
+  <br />
 </div>
+<script src="http://knoda.s3.amazonaws.com/embed-assets/knoda-embed.js?v1"></script>
+<script>
+  new knoda().Embed('<%= @prediction2.id %>')
+  new knoda().Embed('<%= @prediction1.id %>')
+  new knoda().Embed('<%= @prediction2.id %>', {container: "prediction<%= @prediction2.id%>_small"})
+</script>
