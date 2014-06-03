@@ -93,7 +93,9 @@ window.updatePrediction = (prediction_id, body) ->
     dataType: "json"
     data: body
     success: (json) ->
+      FlurryAgent.logEvent("UNFINISHED_BUTTON_TAPPED")
       window.location.reload()
+
 
 window.unbindAll = () ->
   $('.yes').unbind()
@@ -126,6 +128,7 @@ window.bindAll = () ->
 
   $('.remind').click (e) ->
     e.preventDefault()
+
 
   $('.agree').click (e) ->
     e.preventDefault()
