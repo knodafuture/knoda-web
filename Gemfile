@@ -13,7 +13,7 @@ gem 'aws-sdk', '1.38.0'
 
 gem 'devise', '3.0.0.rc'
 gem 'authority', '~> 2.10.0'
-gem 'searchkick', '~> 0.7.1'
+gem 'searchkick', '~> 0.7.6'
 gem 'jcrop-rails-v2', '~> 0.9.12.3'
 gem 'sitemap_generator', '~> 5.0.2'
 gem 'omniauth-twitter'
