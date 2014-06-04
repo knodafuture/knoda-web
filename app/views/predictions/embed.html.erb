@@ -34,7 +34,12 @@
         <div class="row header">
           <div class="col-xs-12">
             <img src="<%= avatar_small(@prediction.user) %>" class="pull-left" />
-            <p class="pull-left prediction-username"><%= @prediction.user.username %></p>
+            <p class="pull-left prediction-username">
+              <%= @prediction.user.username %>
+              <% if @prediction.user.verified_account %>
+                <%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
+              <% end %>
+            </p>
             <span class="pull-right logo"></span>
           </div>
         </div>
