@@ -24,14 +24,14 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="connect-option connect-option-facebook">
-            <a href="<%= user_omniauth_authorize_path(:facebook, display: 'popup', embed: true)%>"><span class="btn-facebook">Sign in with Facebook</span></a>
+            <a href="<%= user_omniauth_authorize_path(:facebook, display: 'popup', popup_window: true, signup_source: signup_source)%>"><span class="btn-facebook">Sign in with Facebook</span></a>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
         <div class="connect-option connect-option-twitter">
-          <a href="<%= user_omniauth_authorize_path(:twitter, embed: true)%>"><span class="btn-twitter">Sign in with Twitter</span></a>
+          <a href="<%= user_omniauth_authorize_path(:twitter, popup_window: true)%>"><span class="btn-twitter">Sign in with Twitter</span></a>
         </div>
       </div>
     </div>

@@ -46,13 +46,19 @@ class UsersController < ApplicationController
   end
 
   def create
+    puts "wildly"
+    puts request.env
+    request.env.each do |h|
+      puts h
+    end
     @user = User.new(user_params)
     if @user.save
+      UserEvent.new(:user_id => @user.id, :name => 'SIGNUP', :platform => 'WEB').save #NEED TO DISTINGUISH BETWEEN WEB & EMBED, JUST LIKE SOCIAL
       sign_in :user, @user
       if params[:user][:avatar].blank?
         return render :json => {:success => true, :location => '/users/me/avatar?new_user=true'}
       else
-        return render :json => {:success => true, :location => '/users/me/crop?new_user=true'} 
+        return render :json => {:success => true, :location => '/users/me/crop?new_user=true'}
       end
     else
       return render :json => {:success => false, :errors => @user.errors}, :status => 400
@@ -83,7 +89,7 @@ class UsersController < ApplicationController
         format.html { render :action => 'edit'}
       end
     end
-  end  
+  end
 
   # DELETE /users/1
   # DELETE /users/1.json
@@ -103,7 +109,7 @@ class UsersController < ApplicationController
     else
       render :json => @user.errors, :status => :bad_request
     end
-  end  
+  end
 
   def autocomplete
     @users = User.search(params[:query], fields: [{:username => :text_start}], limit: 10)

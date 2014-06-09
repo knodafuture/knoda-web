@@ -59,6 +59,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 private
 	def facebook_new(auth)
+		puts "blah"
+		request.env['omniauth.params'].each do | x|
+			puts x
+		end
 		@user = User.find_or_create_from_social(
 		{
 			provider_name: auth.provider,
@@ -67,7 +71,8 @@ private
 			email: auth.info.email,
 			username: auth.info.first_name + auth.info.last_name,
 			image: auth.info.image,
-			provider_account_name: auth.info.email
+			provider_account_name: auth.info.email,
+			signup_source: request.env['omniauth.params']['signup_source']
 		})
 
 		if @user.errors and @user.errors.count > 0
@@ -96,7 +101,8 @@ private
 			access_token_secret: auth.credentials.secret,
 			username: auth.info.nickname,
 			image: auth.info.image,
-			provider_account_name: auth.info.nickname
+			provider_account_name: auth.info.nickname,
+			signup_source: request.env['omniauth.params']['signup_source']
 		})
 
 		if (@user.created_at <= (Time.now - 1.minutes))
@@ -118,7 +124,7 @@ private
 
 	def redirect_path(redirect_options)
 		h = add_analytics(redirect_options)
-		if request.env['omniauth.params']['embed']
+		if request.env['omniauth.params']['popup_window']
 			redirect_options[:close] = 'true'
 			return "/embed-login?#{redirect_options.to_param}"
 		else
