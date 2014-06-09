@@ -46,11 +46,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    puts "wildly"
-    puts request.env
-    request.env.each do |h|
-      puts h
-    end
     @user = User.new(user_params)
     if @user.save
       UserEvent.new(:user_id => @user.id, :name => 'SIGNUP', :platform => 'WEB').save #NEED TO DISTINGUISH BETWEEN WEB & EMBED, JUST LIKE SOCIAL
