@@ -73,7 +73,7 @@ window.KnodaConnectView = class KnodaConnectView
         FlurryAgent.logEvent("SIGNUP_EMAIL")
         ga "send", "event", "users", "signup"
         if (window.opener)
-          window.opener.view.afterLogin()
+          window.opener.view.afterLogin({user_id: json.user.id})
           self.close()
         else
           window.location = json.location + "&destination=#{@destination}"
@@ -95,4 +95,4 @@ window.KnodaConnectView = class KnodaConnectView
   showError: (error) =>
     $("#knoda_connect .alert").show()
     $("#knoda_connect .alert ul").empty()
-    $('#knoda_connect .alert .alertText').text(error)    
+    $('#knoda_connect .alert .alertText').text(error)

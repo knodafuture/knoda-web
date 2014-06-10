@@ -3,7 +3,7 @@
   <%= javascript_include_tag "groups" %>
 <% end %>
 
-<%= render partial: "groups/header", locals: {group: @group} %> 
+<%= render partial: "groups/header", locals: {group: @group} %>
 
 <%if @predictions.size == 0 %>
 <div class="row empty-state">
@@ -23,7 +23,6 @@
 
 <script>
   $(function() {
-    console.log($('#predictionsList'))
     new window.GroupPredictionListView({group_id : <%= @group.id %> })
   });
 </script>

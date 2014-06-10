@@ -1,9 +1,17 @@
 <script type="text/javascript" src="https://cdn.flurry.com/js/flurry.js"></script>
-  <script>
-    <% if Rails.application.config.analytics_enabled == 'true' %>
-        FlurryAgent.startSession("G8N42VKCPPW6TSKBTGDK");
-        <% if current_user %>
-          FlurryAgent.setUserId('<%= current_user.id %>');
-        <% end %>
+<script>
+<% if Rails.application.config.analytics_enabled == 'true' %>
+    FlurryAgent.startSession("G8N42VKCPPW6TSKBTGDK");
+    <% if current_user %>
+      FlurryAgent.setUserId('<%= current_user.id %>');
     <% end %>
-    </script>
+<% else %>
+  window.FlurryAgent = {}
+  window.FlurryAgent.logEvent = function(x) {
+    console.log('FLURRY DEBUG: logEvent - ' + x);
+  }
+  window.FlurryAgent.setUserId = function(x) {
+    console.log('FLURRY DEBUG: setUserId - ' + x);
+  }
+<% end %>
+</script>

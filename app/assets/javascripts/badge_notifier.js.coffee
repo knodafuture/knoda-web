@@ -4,7 +4,7 @@ window.badges = {
       type: "GET"
       url: "/badges?unseen=true&modal=true"
       success: (content) ->
-        $('#badge-modal-container').html(content)  
+        $('#badge-modal-container').html(content)
 
   checkBadges : (options) ->
     $.ajax
@@ -12,14 +12,13 @@ window.badges = {
       url: "/badges.json?unseen=true"
       success: (content) ->
         if content.length > 0
-          options.onUnseen()        
+          options.onUnseen()
 
   checkAndShow : ->
-    @checkBadges 
+    @checkBadges
       onUnseen: =>
-        @showUnseenBadges()          
+        @showUnseenBadges()
 }
 
 $ ->
-  console.log badges
   do badges.checkAndShow
