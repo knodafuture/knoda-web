@@ -59,10 +59,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 private
 	def facebook_new(auth)
-		puts "blah"
-		request.env['omniauth.params'].each do | x|
-			puts x
-		end
 		@user = User.find_or_create_from_social(
 		{
 			provider_name: auth.provider,

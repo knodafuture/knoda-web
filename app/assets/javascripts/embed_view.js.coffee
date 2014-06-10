@@ -66,5 +66,6 @@ window.EmbedView = class EmbedView
     window.open("/embed-login", 'windowName', "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=#{width}, height=#{height}, top=#{top}, left=#{left}")
 
   logAnalytics: (options) =>
-    FlurryAgent.setUserId(options.user_id);
-    FlurryAgent.logEvent(options.ANALYTICS_EVENT);
+    if options
+      FlurryAgent.setUserId(options.user_id) if options.user_id
+      FlurryAgent.logEvent(options.ANALYTICS_EVENT) if options.ANALYTICS_EVENT

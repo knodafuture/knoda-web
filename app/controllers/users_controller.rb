@@ -48,12 +48,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      UserEvent.new(:user_id => @user.id, :name => 'SIGNUP', :platform => 'WEB').save #NEED TO DISTINGUISH BETWEEN WEB & EMBED, JUST LIKE SOCIAL
+      UserEvent.new(:user_id => @user.id, :name => 'SIGNUP', :platform => extra_create_params['signup_source']).save
       sign_in :user, @user
       if params[:user][:avatar].blank?
-        return render :json => {:success => true, :location => '/users/me/avatar?new_user=true'}
+        return render :json => {:success => true, :location => '/users/me/avatar?new_user=true', :user => @user}
       else
-        return render :json => {:success => true, :location => '/users/me/crop?new_user=true'}
+        return render :json => {:success => true, :location => '/users/me/crop?new_user=true', :user => @user}
       end
     else
       return render :json => {:success => false, :errors => @user.errors}, :status => 400
@@ -126,5 +126,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.required(:user).permit(:email, :username, :password, :password_confirmation, :avatar,:crop_x, :crop_y, :crop_w, :crop_h)
+    end
+
+    def extra_create_params
+      params.permit(:signup_source)
     end
 end

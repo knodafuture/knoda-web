@@ -3,7 +3,6 @@ HTML5 Date polyfill | Jonathan Stipe | https://github.com/jonstipe/date-polyfill
 ###
 (($) ->
   $.fn.inputDate = ->
-    console.log 'hi'
     readDate = (d_str) ->
       if /^\d{4,}-\d\d-\d\d$/.test d_str
         matchData = /^(\d+)-(\d+)-(\d+)$/.exec d_str
@@ -138,7 +137,7 @@ HTML5 Date polyfill | Jonathan Stipe | https://github.com/jonstipe/date-polyfill
       dateBtn = document.createElement 'button'
       $dateBtn = $ dateBtn
       $dateBtn.addClass 'date-datepicker-button'
-      
+
       $this.replaceWith hiddenField
       $calendarContainer.insertAfter hiddenField
       $dateBtn.appendTo calendarContainer
