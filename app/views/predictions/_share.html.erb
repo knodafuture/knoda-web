@@ -29,12 +29,7 @@
       </div>
       <div class="row embed-code" style="display:none;">
         <div class="col-xs-12" style="text-align:left;padding-top: 50px;">
-          <textarea id="code-js" class="form-control" style="font-size: 0.75em; height: 100px;">
-<!-- Place the following tag in your page where you want the prediction to appear -->
-<div id="prediction<%= prediction.id %>"></div>
-<script src="https://knoda.s3.amazonaws.com/embed-assets/knoda-embed-1.0.0.min.js"></script>
-<script>new knoda().Embed('<%= prediction.id %>')</script>
-          </textarea>
+          <textarea id="code-js" class="form-control" style="font-size: 0.75em; height: 100px;"><!-- Place the following tag in your page where you want the prediction to appear --><div id="prediction<%= prediction.id %>"></div><script src="https://knoda.s3.amazonaws.com/embed-assets/knoda-embed-1.0.0.min.js"></script><script>new knoda().Embed('<%= prediction.id %>')</script></textarea>
           <textarea id="code-iframe" class="form-control" style="font-size: 0.75em; height: 100px;display:none;">
 <iframe src="<%= Rails.application.config.knoda_web_url %>/predictions/<%= prediction.id %>/embed" width="640" height="360" frameborder="0"></iframe>
           </textarea>
