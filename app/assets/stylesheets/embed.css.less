@@ -14,9 +14,9 @@
 // Core CSS
 @import "twitter/bootstrap/scaffolding";
 @import "twitter/bootstrap/type";
-@import "twitter/bootstrap/code";
+//@import "twitter/bootstrap/code";
 @import "twitter/bootstrap/grid";
-@import "twitter/bootstrap/tables";
+//@import "twitter/bootstrap/tables";
 @import "twitter/bootstrap/forms";
 @import "twitter/bootstrap/buttons";
 
@@ -32,7 +32,7 @@
 //@import "twitter/bootstrap/pagination";
 //@import "twitter/bootstrap/pager";
 //@import "twitter/bootstrap/labels";
-@import "twitter/bootstrap/badges";
+//@import "twitter/bootstrap/badges";
 //@import "twitter/bootstrap/jumbotron";
 //@import "twitter/bootstrap/thumbnails";
 //@import "twitter/bootstrap/alerts";
@@ -55,7 +55,7 @@
 //@import "twitter/bootstrap/close";
 
 // Components w/ JavaScript
-@import "twitter/bootstrap/modals";
+//@import "twitter/bootstrap/modals";
 //@import "overrides/modals";
 //@import "twitter/bootstrap/tooltip";
 //@import "twitter/bootstrap/popovers";
@@ -75,6 +75,10 @@ html {
   overflow: auto;
 }
 
+body {
+  background-color:transparent;
+}
+
 .center {
   text-align: center;
 }
@@ -84,11 +88,11 @@ html {
 .right {
   text-align: right;
 }
-.modal-dialog {
+/*.modal-dialog {
   width: 100%;
   max-width: 640px;
   margin: 0px auto;
-}
+}*/
 body{
   padding-left: 0px;
   padding-right: 0px;
@@ -171,6 +175,7 @@ body{
     background-position: 0 -228px;
   }
   .action-buttons {
+    position:relative;
     border: 0px;
     height: @action-height-xs;
     div.col-xs-6 {
