@@ -12,7 +12,6 @@ $ ->
           url: "/history?offset=#{currentOffset+pageSize}&limit=#{pageSize}"
           type: "GET"
           success: (x) ->
-            alert(FlurryAgent.logEvent("HISTORY"))
             currentOffset = currentOffset + pageSize
             container.append($(x))
             loading = false
