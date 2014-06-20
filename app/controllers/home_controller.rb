@@ -49,6 +49,7 @@ class HomeController < ApplicationController
   def embedDemo
     @prediction1 = Prediction.order('RANDOM()').first()
     @prediction2 = Prediction.where(:is_closed => true).order('RANDOM()').first()
+    @prediction3 = Prediction.where(:is_closed => false).order('RANDOM()').first()
     render :layout => false
   end
 
