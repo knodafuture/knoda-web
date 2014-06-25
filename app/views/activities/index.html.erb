@@ -1,17 +1,53 @@
 <script>FlurryAgent.logEvent("ACTIVITY_FEED");</script>
+	<nav class="navbar navbar-inner navbar-static-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header.center">
+				<ul class="nav nav.actfeed nav-justified">
+					<li class="active"><a href="#All" data-toggle="tab">All</a></li>
+					<li><a  href="#Commentss" data-toggle="tab">Comments</a></li>
+					<li><a  href="#Expired" data-toggle="tab">Expired</a></li>
+					<li><a  href="#Invites" data-toggle="tab">Invites</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+<div class="tab-content">
+	<div id="All" class="tab-pane fade in active">
+			<div class="row">
+				<table class="table table-hover">
+					<% @activities.each do |i| %>
+						<%= render partial: "activities/activity", locals: {activity: i} %>
+					<% end %>
+				</table>
+			</div>
+	</div>
+	<div id="Commentss" class="tab-pane fade">
+<div class="row">
+	<table class="table table-hover">
+		<% @activities.where(:activity_type=>"COMMENT").each do |i| %>
+			<%= render partial: "activities/activity", locals: {activity: i} %>
+				<% end %>
+			</table>
+		</div>
+	</div>
+	<div id="Expired" class="tab-pane fade">
+		<div class="row">
+			<table class="table table-hover">
+				<% @activities.where(:activity_type=>"EXPIRED").each do |i| %>
+					<%= render partial: "activities/activity", locals: {activity: i} %>
+				<% end %>
+			</table>
+				</div>
+	</div>
+	<div id="Invites" class="tab-pane fade">
 <div class="row">
 	<table class="table table-bordered">
-	  <% @activities.each do |i| %>
-	    <tr <% if not i.seen %> style="background-color:#efefef" <% end%>>
-	    	<td><%= image_tag(activity_icon(i)) %></td>
-	    	<td>
-	    		<% if i.activity_type == 'INVITATION' %>
-	    			<a href="/groups/join?code=<%= i.invitation_code %>"><%= i.invitation_sender %> has invited you to join the group "<%=i.invitation_group_name %>"</a>
-	    		<% else %>
-	    			<a href="/predictions/<%= i.prediction_id %>"><%= i.title %> "<%= i.prediction_body %>"</a>
-	    		<% end %>
-	    	</td>
-	    </tr>
-	  <% end %>
-	</table>
+		<% @activities.where(:activity_type=>"INVITATION").each do |i| %>
+			<%= render partial: "activities/activity", locals: {activity: i} %>
+					<% end %>
+				</table>
+		</div>
+	</div>
+	</div>
 </div>

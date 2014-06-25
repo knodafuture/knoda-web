@@ -1,0 +1,15 @@
+<tr <% if not activity.seen %> style="background-color:#efefef" <% end%>>
+	<td><img class="img-rounded"><%= image_tag(activity_icon(activity)) %></img></td>
+	<td id="actfeed">
+		<% if activity.activity_type == 'INVITATION' %>
+			<a href="/groups/join?code=<%= activity.invitation_code %>"><%= activity.invitation_sender %> has invited you to join the group "<%=activity.invitation_group_name %>"</a>
+			<% elsif activity.activity_type == 'EXPIRED' %>
+				<a href="/predictions/<%= activity.prediction_id %>"><strong><%= activity.title %></strong> "<%= activity.prediction_body %>"</a>
+				<% elsif activity.activity_type == 'COMMENT' %>
+					<a href="/predictions/<%= activity.prediction_id %>"><strong><%= activity.title %></strong> "<%= activity.comment_body %>"</a>
+		<% else %>
+			<a href="/predictions/<%= activity.prediction_id %>"><strong><%= activity.title %></strong> "<%= activity.prediction_body %>"</a>
+		<% end %>
+
+	</td>
+</tr>

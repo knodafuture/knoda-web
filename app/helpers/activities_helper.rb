@@ -8,10 +8,10 @@ module ActivitiesHelper
       when 'COMMENT'
         "icons/ActivityCommentIcon.png"
       when 'EXPIRED'
-        "icons/ActivityExpiredIcon.png"
+        avatar_small(activity.user)
       when "INVITATION"
         "icons/activity/activity_groups_icon.png"
-    end  	
+    end
   end
 
 end
