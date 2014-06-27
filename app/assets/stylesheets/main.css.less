@@ -384,17 +384,54 @@ h3 {
 		}
 	}
 }
-actfeed {
+#actfeed {
 	strong {
-	color: #666666
+	p: #666666;
 	}
 }
 
 td {
-	img {
+	#img {
 		border-radius:100%;
+		width:24px;
+		height:24px;
 	}
 }
+.settlebutton{
+	border-radius:2px;
+	color:#FE3232;
+	background-color:#FFE1E1;
+	border-color:#FE3232;
+	position:relative;
+	float: none;
+	padding-left:50px;
+	padding-right:50px;
+	&:hover {
+		border-radius:3px;
+		color:#FFE1E1;
+		background-color:#FE3232;
+		border-color:#FE3232;
+	}
+}
+
+.bragbutton {
+	border-radius:2px;
+	color:@green-knoda-light;
+	background-color:#EBF5DE;
+	border-color:@green-knoda-light;
+	position:relative;
+	left:50%;
+	right:50%;
+	padding-left:50px;
+	padding-right:50px;
+	&:hover {
+		border-radius:3px;
+		color:#EBF5DE;
+		background-color:@green-knoda-light;
+		border-color:@green-knoda-light;
+	}
+}
+
 //
 .avatar_small {
 	height: 100px;
