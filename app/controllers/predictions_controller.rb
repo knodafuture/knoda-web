@@ -156,12 +156,12 @@ class PredictionsController < AuthenticatedController
   end
 
   def facebook_share
-    FacebookWorker.perform_in(5.seconds, current_user.id,@prediction.id)
+    FacebookWorker.perform_in(5.seconds, current_user.id,@prediction.id, false)
     head :no_content
   end
 
   def twitter_share
-    TwitterWorker.perform_in(5.seconds, current_user.id,@prediction.id)
+    TwitterWorker.perform_in(5.seconds, current_user.id,@prediction.id, false)
     head :no_content
   end
 
