@@ -2,9 +2,9 @@ module ActivitiesHelper
   def activity_icon(activity)
 	case (activity.activity_type)
       when 'LOST'
-        avatar_small(activity.user)
+        activity.image_url
       when 'WON'
-        avatar_small(activity.user)
+          activity.image_url
       when 'COMMENT'
         "icons/ActivityCommentIcon.png"
       when 'EXPIRED'

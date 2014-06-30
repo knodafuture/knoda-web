@@ -1,14 +1,51 @@
 <tr <% if not activity.seen %> style="background-color:#efefef" <% end%>>
-	<td id="img"><img class="img-rounded"><%= image_tag(activity_icon(activity)) %></img></td>
+	<td id = "imgid" align="center"><img class="img-rounded"><%= image_tag(activity_icon(activity)) %></img></td>
 	<td id="actfeed">
+
 		<% if activity.activity_type == 'INVITATION' %>
-			<p><%= activity.invitation_sender %> has invited you to join the group "<%=activity.invitation_group_name %>"</p><button href="/groups/join?code=<%= activity.invitation_code %>"></button>
+			<p><%= activity.invitation_sender %> has invited you to join a group</p><td><button onclick="location.href='/groups/join?code=<%= activity.invitation_code %>'">Join "<%=activity.invitation_group_name %>"</button></td>
+
+
 			<% elsif activity.activity_type == 'EXPIRED' %>
-				<p class="text-center"><strong><%= activity.title %></strong> "<%= activity.prediction_body %>"</p><button href="/predictions/<%= activity.prediction_id %>" type="button" class="settlebutton btn btn-default text-center" style="text-align: center;">Let's Settle It!</button>
+				<div class="outer">
+					<p class="text-center">
+						<strong><%= activity.title %>
+						</strong>"<%= activity.prediction_body %>"
+					</p>
+						<div class ="centerbutton">
+							<button onclick="location.href='/predictions/<%= activity.prediction_id %>'" type="button" class="settlebutton btn btn-default text-center">Let's Settle It!
+							</button>
+							</div>
+							</div>
+
+
 				<% elsif activity.activity_type == 'COMMENT' %>
-					<a href="/predictions/<%= activity.prediction_id %>"><strong><%= activity.title %></strong> "<%= activity.comment_body %>"</a>
+					<div class="outer">
+						<p class="text-center">
+							<strong><%= activity.title %>
+							</strong>
+						</p>
+							<div class ="centerbutton">
+								<button onclick="location.href='/predictions/<%= activity.prediction_id %>'" type="button" class="commentbutton btn btn-default text-center">"<%= activity.comment_body %>"
+								</button>
+							</div>
+						</div>
 		<% else %>
-			<a href="/predictions/<%= activity.prediction_id %>"><strong><%= activity.title %></strong> "<%= activity.prediction_body %>"</a>
+			<div class="outer">
+				<p class="text-center">
+					<strong>
+						<%= activity.title %>
+					</strong>
+				</p>
+				<p class="text-center">
+					"<%= activity.prediction_body %>"
+				</p>
+				<div class="centerbutton">
+					<button onclick="locaiton.href='/predictions/<%= activity.prediction_id %>'" type="button" class="bragbutton btn btn-default text-center">
+						Brag
+					</button>
+				</div>
+			</div>
 		<% end %>
 
 	</td>

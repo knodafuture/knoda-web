@@ -390,20 +390,30 @@ h3 {
 	}
 }
 
+#imgid {
+	vertical-align:middle;
+}
+
 td {
-	#img {
+	img {
 		border-radius:100%;
-		width:24px;
-		height:24px;
+		width:25px;
+		height:25px;
+		vertical-align: middle;
+   	text-align: center;
+
 	}
+
+}
+
+.tdimg {
+	vertical-align:middle;
 }
 .settlebutton{
 	border-radius:2px;
 	color:#FE3232;
 	background-color:#FFE1E1;
 	border-color:#FE3232;
-	position:relative;
-	float: none;
 	padding-left:50px;
 	padding-right:50px;
 	&:hover {
@@ -419,11 +429,10 @@ td {
 	color:@green-knoda-light;
 	background-color:#EBF5DE;
 	border-color:@green-knoda-light;
-	position:relative;
-	left:50%;
-	right:50%;
 	padding-left:50px;
 	padding-right:50px;
+	width:185px;
+	height:34px;
 	&:hover {
 		border-radius:3px;
 		color:#EBF5DE;
@@ -432,6 +441,31 @@ td {
 	}
 }
 
+.commentbutton {
+	border_radius:0px;
+	color:#666666;
+	background-color:#EFEFEF;
+	border-color:#DDDADA;
+	padding-left:50px;
+	padding-right:50px;
+	min-height:34px;
+	min-width:185px;
+	&:hover {
+		//color:#EFEFEF;
+		background-color:#DDDADA;
+		border-color:#DDDADA;
+	}
+}
+
+div{
+	.outer {
+	width: 100%;
+  text-align: center;
+	}
+	.centerbutton {
+		display: inline-block;
+	}
+}
 //
 .avatar_small {
 	height: 100px;
