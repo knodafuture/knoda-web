@@ -3,7 +3,7 @@
 		<% if activity.image_url %>
 			<img class="img-circle" src="<%= activity.image_url %>" />
 		<% else %>
-			<%= image_tag(activity_icon(activity), {:class => 'img-circle', :style => 'width: 25px; height:25px'}) %>
+			<%= image_tag(activity_icon(activity), {:class => 'img-circle', :style => 'width: 36px; height:36px'}) %>
 		<% end %>
 	</td>
 	<td id="actfeed">
@@ -26,7 +26,7 @@
 						<p class="line1"><%= activity.title %></p>
 						</div>
 						<div class="popover right in">
-							<div class="arrow" style="top:25%"></div>
+							<div class="arrow" style="top:10px"></div>
 							<div class="popover-content" style="text-align:left;"><a href="/predictions/<%= activity.prediction_id %>">"<%= activity.comment_body %>"</a></div>
 						</div>
 		<% elsif activity.activity_type == 'WON' %>
