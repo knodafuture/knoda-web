@@ -8,11 +8,13 @@
 		<% end %>
 	</td>
 	<td id="actfeed">
-
 		<% if activity.activity_type == 'INVITATION' %>
-			<p><%= activity.invitation_sender %> has invited you to join a group</p><td><button onclick="location.href='/groups/join?code=<%= activity.invitation_code %>'">Join "<%=activity.invitation_group_name %>"</button></td>
-
-
+			<div class="outer">
+				<p><%= activity.invitation_sender %> has invited you to join a group</p>
+				<div class ="centerbutton">
+					<a class="btn-join btn btn-default text-center" href="/groups/join?code=<%= activity.invitation_code %>">Join "<%=activity.invitation_group_name %>"</a>
+				</div>
+			</div>
 			<% elsif activity.activity_type == 'EXPIRED' %>
 				<div class="outer">
 					<p>

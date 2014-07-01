@@ -399,11 +399,17 @@ h3 {
 	.tdimg {
 		vertical-align:middle;
 	}
-	.settlebutton, .bragbutton {
+	.settlebutton, .bragbutton, .btn-join {
+		border-radius:2px;
 		width: 100%;
+		height:34px;
+	}
+	.btn-join {
+		color: @green-knoda-dark;
+		background-color: lighten(@green-knoda-dark, 30%);
+		border-color: @green-knoda-dark;
 	}
 	.settlebutton{
-		border-radius:2px;
 		color:#FE3232;
 		background-color:#FFE1E1;
 		border-color:#FE3232;
@@ -416,11 +422,9 @@ h3 {
 	}
 
 	.bragbutton {
-		border-radius:2px;
 		color:@green-knoda-light;
 		background-color:#EBF5DE;
 		border-color:@green-knoda-light;
-		height:34px;
 		&:hover {
 			border-radius:3px;
 			color:#EBF5DE;
