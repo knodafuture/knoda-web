@@ -1,3 +1,6 @@
+<% content_for :head do %>
+<%= javascript_include_tag 'activity_actions' %>
+<% end %>
 <script>FlurryAgent.logEvent("ACTIVITY_FEED");</script>
 <div  class="limit-size-small">
 <div class="row" style="margin: 5px 0px;">
