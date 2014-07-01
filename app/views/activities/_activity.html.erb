@@ -9,21 +9,21 @@
 	</td>
 	<td id="actfeed">
 		<% if activity.activity_type == 'INVITATION' %>
-			<div class="outer">
+			<div class="activity-item">
 				<p><strong>Hey-O! <%= activity.invitation_sender %> has invited you to join a group</strong></p>
 				<div class ="centerbutton">
 					<a class="btn-join btn btn-default text-center" href="/groups/join?code=<%= activity.invitation_code %>">Join "<%=activity.invitation_group_name %>"</a>
 				</div>
 			</div>
 			<% elsif activity.activity_type == 'EXPIRED' %>
-				<div class="outer">
+				<div class="activity-item">
 					<p class="line1"><%= activity.title %> "<%= activity.prediction_body %>"</p>
 						<div class ="centerbutton">
 							<a href="/predictions/<%= activity.prediction_id %>" class="settlebutton btn btn-default text-center">Let's Settle It!</a>
 						</div>
 					</div>
 				<% elsif activity.activity_type == 'COMMENT' %>
-					<div class="outer">
+					<div class="activity-item">
 						<p class="line1"><%= activity.title %></p>
 						</div>
 						<div class="popover right in">
@@ -31,7 +31,7 @@
 							<div class="popover-content" style="text-align:left;"><a href="/predictions/<%= activity.prediction_id %>">"<%= activity.comment_body %>"</a></div>
 						</div>
 		<% elsif activity.activity_type == 'WON' %>
-			<div class="outer">
+			<div class="activity-item">
 				<p class="line1"><%= activity.title %></p>
 				<p>"<%= activity.prediction_body %>"</p>
 				<div class="centerbutton">
@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			<% else %>
-				<div class="outer">
+				<div class="activity-item">
 					<p class="line1"><%= activity.title %></p>
 					<p>"<%= activity.prediction_body %>"</p>
 				</div>
