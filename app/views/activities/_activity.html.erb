@@ -15,7 +15,7 @@
 
 			<% elsif activity.activity_type == 'EXPIRED' %>
 				<div class="outer">
-					<p class="text-center">
+					<p>
 						<strong><%= activity.title %>
 						</strong>"<%= activity.prediction_body %>"
 					</p>
@@ -24,11 +24,9 @@
 							</button>
 							</div>
 							</div>
-
-
 				<% elsif activity.activity_type == 'COMMENT' %>
 					<div class="outer">
-						<p class="text-center">
+						<p>
 							<strong><%= activity.title %>
 							</strong>
 						</p>
@@ -39,12 +37,12 @@
 						</div>
 		<% else %>
 			<div class="outer">
-				<p class="text-center">
+				<p>
 					<strong>
 						<%= activity.title %>
 					</strong>
 				</p>
-				<p class="text-center">
+				<p>
 					"<%= activity.prediction_body %>"
 				</p>
 				<div class="centerbutton">
