@@ -4,7 +4,7 @@
 		<% if activity.image_url %>
 			<img class="img-circle" src="<%= activity.image_url %>" />
 		<% else %>
-			<%= image_tag(activity_icon(activity), {:class => 'img-circle'}) %>
+			<%= image_tag(activity_icon(activity), {:class => 'img-circle', :style => 'width: 25px; height:25px'}) %>
 		<% end %>
 	</td>
 	<td id="actfeed">
