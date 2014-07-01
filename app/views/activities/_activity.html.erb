@@ -17,7 +17,7 @@
 			</div>
 			<% elsif activity.activity_type == 'EXPIRED' %>
 				<div class="activity-item">
-					<p class="line1"><%= activity.title %> "<%= activity.prediction_body %>"</p>
+					<p class="line1"><%= activity.title %></p> <p>"<%= activity.prediction_body %>"</p>
 						<div class ="centerbutton">
 							<a href="/predictions/<%= activity.prediction_id %>" class="settlebutton btn btn-default text-center">Let's Settle It!</a>
 						</div>
