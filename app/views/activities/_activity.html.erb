@@ -37,7 +37,7 @@
 							<div class="arrow" style="top:25%"></div>
 							<div class="popover-content" style="text-align:left;"><a href="/predictions/<%= activity.prediction_id %>">"<%= activity.comment_body %>"</a></div>
 						</div>
-		<% else %>
+		<% elsif activity.activity_type == 'WON' %>
 			<div class="outer">
 				<p class="text-center">
 					<strong>
@@ -48,11 +48,22 @@
 					"<%= activity.prediction_body %>"
 				</p>
 				<div class="centerbutton">
-					<button onclick="locaiton.href='/predictions/<%= activity.prediction_id %>'" type="button" class="bragbutton btn btn-default text-center">
+					<button type="button" class="brag-prediction bragbutton btn btn-default text-center" data-prediction-id="<%= activity.prediction_id %>">
 						Brag
 					</button>
 				</div>
 			</div>
+			<% else %>
+				<div class="outer">
+					<p class="text-center">
+						<strong>
+							<%= activity.title %>
+						</strong>
+					</p>
+					<p class="text-center">
+						"<%= activity.prediction_body %>"
+					</p>
+				</div>
 		<% end %>
 
 	</td>

@@ -1,3 +1,6 @@
+<% content_for :head do %>
+<%= javascript_include_tag 'activity_actions' %>
+<% end %>
 <script>FlurryAgent.logEvent("ACTIVITY_FEED");</script>
 	<nav class="navbar navbar-inner navbar-static-top" role="navigation">
 		<div class="container-fluid">
