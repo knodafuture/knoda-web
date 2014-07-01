@@ -1,5 +1,12 @@
+
 <tr <% if not activity.seen %> style="background-color:#efefef" <% end%>>
-	<td id = "imgid" align="center"><img class="img-rounded"><%= image_tag(activity_icon(activity)) %></img></td>
+	<td class="image_url" align="center">
+		<% if activity.image_url %>
+			<img class="img-circle" src="<%= activity.image_url %>" />
+		<% else %>
+			<img class="img-circle" src="http://knoda-test2.s3.amazonaws.com/users/avatars/000/000/011/small/image.jpg?1397777245" />
+		<% end %>
+	</td>
 	<td id="actfeed">
 
 		<% if activity.activity_type == 'INVITATION' %>
@@ -25,10 +32,10 @@
 							<strong><%= activity.title %>
 							</strong>
 						</p>
-							<div class ="centerbutton">
-								<button onclick="location.href='/predictions/<%= activity.prediction_id %>'" type="button" class="commentbutton btn btn-default text-center">"<%= activity.comment_body %>"
-								</button>
-							</div>
+						</div>
+						<div class="popover right in" role="tooltip" style="display: block;position:relative;max-width:300px;">
+							<div class="arrow" style="top:25%"></div>
+							<div class="popover-content" style="text-align:left;"><a href="/predictions/<%= activity.prediction_id %>">"<%= activity.comment_body %>"</a></div>
 						</div>
 		<% else %>
 			<div class="outer">
