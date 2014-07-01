@@ -10,7 +10,7 @@
 	<td id="actfeed">
 		<% if activity.activity_type == 'INVITATION' %>
 			<div class="activity-item">
-				<p><strong>Hey-O! <%= activity.invitation_sender %> has invited you to join a group</strong></p>
+				<p class="line1">Hey-O! <%= activity.invitation_sender %> has invited you to join a group.</p>
 				<div class ="centerbutton">
 					<a class="btn-join btn btn-default text-center" href="/groups/join?code=<%= activity.invitation_code %>">Join "<%=activity.invitation_group_name %>"</a>
 				</div>

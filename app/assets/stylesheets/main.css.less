@@ -370,13 +370,22 @@ h3 {
 		a {
 			text-decoration: none;
 			color: @text-color;
+			.sansLight;
+		}
+		.popover-content {
+			padding: 5px;
 		}
 	}
 	.popover.right .arrow:after {
 		border-right-color: @gray-lighter;
 	}
+	p {
+		margin: 0 0 5px 0;
+		.sansLight;
+	}
 	.line1 {
 		font-weight: 700;
+		font-size: 12px;
 		color: @green-knoda-dark;
 		.won-text {
 			color: @green-knoda-light;
@@ -405,55 +414,41 @@ h3 {
 		vertical-align:middle;
 	}
 	.settlebutton, .bragbutton, .btn-join {
-		border-radius:2px;
+		border-radius:3px;
 		width: 100%;
 		height:34px;
+		.sansRegular;
 	}
 	.btn-join {
-		color: #235C37;
+		color: @green-knoda-dark;
 		background-color: #DEE7E1;
-		border-color: #235C37;
+		border-color: @green-knoda-dark;
+		&:hover {
+			background-color: @green-knoda-dark;
+			color: #DEE7E1;
+			border-color: @green-knoda-dark;
+		}
 	}
 	.settlebutton{
 		color:#FE3232;
 		background-color:#FFE1E1;
 		border-color:#FE3232;
 		&:hover {
-			border-radius:3px;
 			color:#FFE1E1;
 			background-color:#FE3232;
 			border-color:#FE3232;
 		}
 	}
-
 	.bragbutton {
 		color:@green-knoda-light;
 		background-color:#EBF5DE;
 		border-color:@green-knoda-light;
 		&:hover {
-			border-radius:3px;
 			color:#EBF5DE;
 			background-color:@green-knoda-light;
 			border-color:@green-knoda-light;
 		}
 	}
-
-	.commentbutton {
-		border_radius:0px;
-		color:@gray-lighter;
-		background-color:#EFEFEF;
-		border-color:#DDDADA;
-		padding-left:50px;
-		padding-right:50px;
-		min-height:34px;
-		min-width:185px;
-		&:hover {
-			//color:#EFEFEF;
-			background-color:#DDDADA;
-			border-color:#DDDADA;
-		}
-	}
-
 	div{
 		.centerbutton {
 			display: inline-block;
