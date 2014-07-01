@@ -32,7 +32,7 @@
 						</div>
 		<% elsif activity.activity_type == 'WON' %>
 			<div class="activity-item">
-				<p class="line1"><%= activity.title %></p>
+				<p class="line1"><%= raw activity_title(activity) %></p>
 				<p>"<%= activity.prediction_body %>"</p>
 				<div class="centerbutton">
 					<a class="brag-prediction bragbutton btn btn-default text-center" data-prediction-id="<%= activity.prediction_id %>">Brag</a>
@@ -40,7 +40,7 @@
 			</div>
 			<% else %>
 				<div class="activity-item">
-					<p class="line1"><%= activity.title %></p>
+					<p class="line1"><%= raw activity_title(activity) %></p>
 					<p>"<%= activity.prediction_body %>"</p>
 				</div>
 		<% end %>
