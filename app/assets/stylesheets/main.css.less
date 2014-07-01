@@ -341,6 +341,21 @@ h3 {
 }
 
 #activities-index-container {
+	.nav-pills {
+		li > a {
+			.sansRegular;
+			color: @green-knoda-light;
+		}
+		li > a:hover {
+			background-color: transparent;
+			color: @green-knoda-dark;
+		}
+		li.active > a {
+			background-color: transparent;
+			color: @green-knoda-dark;
+			.sansBold;
+		}
+	}
 	tr.unseen {
 		background-color: @gray-knoda;
 	}
@@ -411,8 +426,8 @@ h3 {
 td {
 	img {
 		border-radius:100%;
-		width:75px;
-		height:75px;
+		width:48px;
+		height:48px;
 		vertical-align: middle;
    	text-align: center;
 	}

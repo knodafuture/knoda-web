@@ -1,53 +1,26 @@
 <script>FlurryAgent.logEvent("ACTIVITY_FEED");</script>
-	<nav class="navbar navbar-inner navbar-static-top" role="navigation">
-		<div class="container-fluid">
-			<div class="navbar-header.center">
-				<ul class="nav nav.actfeed nav-justified">
-					<li class="active"><a href="#All" data-toggle="tab">All</a></li>
-					<li><a  href="#Commentss" data-toggle="tab">Comments</a></li>
-					<li><a  href="#Expired" data-toggle="tab">Expired</a></li>
-					<li><a  href="#Invites" data-toggle="tab">Invites</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
-<div class="tab-content">
-	<div id="All" class="tab-pane fade in active">
-			<div class="row">
-				<table class="table table-hover table-bordered">
-					<% @activities.each do |i| %>
-						<%= render partial: "activities/activity", locals: {activity: i} %>
-					<% end %>
-				</table>
-			</div>
-	</div>
-	<div id="Commentss" class="tab-pane fade">
-<div class="row">
-	<table class="table table-hover">
-		<% @activities.where(:activity_type=>"COMMENT").each do |i| %>
-			<%= render partial: "activities/activity", locals: {activity: i} %>
-				<% end %>
-			</table>
-		</div>
-	</div>
-	<div id="Expired" class="tab-pane fade">
-		<div class="row">
-			<table class="table table-hover">
-				<% @activities.where(:activity_type=>"EXPIRED").each do |i| %>
-					<%= render partial: "activities/activity", locals: {activity: i} %>
-				<% end %>
-			</table>
-				</div>
-	</div>
-	<div id="Invites" class="tab-pane fade">
-<div class="row">
-	<table class="table table-bordered">
-		<% @activities.where(:activity_type=>"INVITATION").each do |i| %>
-			<%= render partial: "activities/activity", locals: {activity: i} %>
-					<% end %>
-				</table>
-		</div>
-	</div>
-	</div>
+<div class="row" style="margin: 5px 0px;">
+		<ul class="nav nav-pills col-xs-12" style="text-align:left;">
+			<li <% if !params[:filter] %>class="active"<%end %>><a href="/activities">All</a></li>
+			<li <% if params[:filter] == 'COMMENT' %> class="active"<%end %>><a  href="/activities?filter=COMMENT">Comments</a></li>
+			<li <% if params[:filter] == 'EXPIRED' %> class="active"<%end %>><a  href="/activities?filter=EXPIRED">Expired</a></li>
+			<li <% if params[:filter] == 'INVITATION' %> class="active"<%end %>><a  href="/activities?filter=INVITATION">Invitations</a></li>
+		</ul>
 </div>
+<% if @activities.size == 0 %>
+	<div class="row empty-state">
+		<div class="col-xs-12">
+			<p>Sorry, you don't have any activity to view.<br/>
+				Get things started and <a data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new<% if @group %>?group_id=<%=@group.id%><% end %>" title="Make a prediction">make a prediction</a>.
+			</p>
+		</div>
+	</div>
+<% else %>
+<div class="row">
+	<table class="table table-hover table-bordered">
+		<% @activities.each do |i| %>
+			<%= render partial: "activities/activity", locals: {activity: i} %>
+		<% end %>
+	</table>
+</div>
+<% end %>
