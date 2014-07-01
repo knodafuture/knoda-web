@@ -10,28 +10,21 @@
 	<td id="actfeed">
 		<% if activity.activity_type == 'INVITATION' %>
 			<div class="outer">
-				<p><%= activity.invitation_sender %> has invited you to join a group</p>
+				<p><strong>Hey-O! <%= activity.invitation_sender %> has invited you to join a group</strong></p>
 				<div class ="centerbutton">
 					<a class="btn-join btn btn-default text-center" href="/groups/join?code=<%= activity.invitation_code %>">Join "<%=activity.invitation_group_name %>"</a>
 				</div>
 			</div>
 			<% elsif activity.activity_type == 'EXPIRED' %>
 				<div class="outer">
-					<p>
-						<strong><%= activity.title %>
-						</strong>"<%= activity.prediction_body %>"
-					</p>
+					<p class="line1"><%= activity.title %> "<%= activity.prediction_body %>"</p>
 						<div class ="centerbutton">
-							<button onclick="location.href='/predictions/<%= activity.prediction_id %>'" type="button" class="settlebutton btn btn-default text-center">Let's Settle It!
-							</button>
-							</div>
-							</div>
+							<a href="/predictions/<%= activity.prediction_id %>" class="settlebutton btn btn-default text-center">Let's Settle It!</a>
+						</div>
+					</div>
 				<% elsif activity.activity_type == 'COMMENT' %>
 					<div class="outer">
-						<p>
-							<strong><%= activity.title %>
-							</strong>
-						</p>
+						<p class="line1"><%= activity.title %></p>
 						</div>
 						<div class="popover right in">
 							<div class="arrow" style="top:25%"></div>
@@ -39,32 +32,17 @@
 						</div>
 		<% elsif activity.activity_type == 'WON' %>
 			<div class="outer">
-				<p>
-					<strong>
-						<%= activity.title %>
-					</strong>
-				</p>
-				<p>
-					"<%= activity.prediction_body %>"
-				</p>
+				<p class="line1"><%= activity.title %></p>
+				<p>"<%= activity.prediction_body %>"</p>
 				<div class="centerbutton">
-					<button type="button" class="brag-prediction bragbutton btn btn-default text-center" data-prediction-id="<%= activity.prediction_id %>">
-						Brag
-					</button>
+					<a class="brag-prediction bragbutton btn btn-default text-center" data-prediction-id="<%= activity.prediction_id %>">Brag</a>
 				</div>
 			</div>
 			<% else %>
 				<div class="outer">
-					<p class="text-center">
-						<strong>
-							<%= activity.title %>
-						</strong>
-					</p>
-					<p class="text-center">
-						"<%= activity.prediction_body %>"
-					</p>
+					<p class="line1"><%= activity.title %></p>
+					<p>"<%= activity.prediction_body %>"</p>
 				</div>
 		<% end %>
-
 	</td>
 </tr>
