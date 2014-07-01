@@ -4,7 +4,7 @@
 		<% if activity.image_url %>
 			<img class="img-circle" src="<%= activity.image_url %>" />
 		<% else %>
-			<img class="img-circle" src="http://knoda-test2.s3.amazonaws.com/users/avatars/000/000/011/small/image.jpg?1397777245" />
+			<%= image_tag(activity_icon(activity), {:class => 'img-circle'}) %>
 		<% end %>
 	</td>
 	<td id="actfeed">
