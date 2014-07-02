@@ -22,7 +22,11 @@
     <meta property="og:type"   content="knodafacebook:prediction" />
     <meta property="og:url"    content="<%= request.original_url %>" />
     <meta property="og:title"  content="<%= "#{@prediction.user.username}" %>'s Prediction" />
+    <% if params[:brag] %>
+    <meta property="og:description"  content="<%= params[:prefix] %> <%= @prediction.body%>"/>
+    <% else %>
     <meta property="og:description"  content="<%= @prediction.body%>"/>
+    <% end %>
     <meta property="og:image" content="<%= @prediction.user.avatar_image[:small]%>"/>
 <% end %>
 

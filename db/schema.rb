@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604214107) do
+ActiveRecord::Schema.define(version: 20140627194613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20140604214107) do
     t.text     "invitation_code"
     t.text     "invitation_sender"
     t.text     "invitation_group_name"
+    t.text     "comment_body"
+    t.string   "image_url"
   end
 
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
@@ -129,6 +131,18 @@ ActiveRecord::Schema.define(version: 20140604214107) do
   add_index "memberships", ["user_id", "group_id"], name: "index_memberships_on_user_id_and_group_id", unique: true, using: :btree
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
+  create_table "notification_settings", force: true do |t|
+    t.integer  "user_id"
+    t.string   "setting",                     null: false
+    t.string   "display_name",                null: false
+    t.string   "description",                 null: false
+    t.boolean  "active",       default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notification_settings", ["user_id"], name: "index_notification_settings_on_user_id", using: :btree
+
   create_table "predictions", force: true do |t|
     t.integer  "user_id"
     t.text     "body"
@@ -183,6 +197,14 @@ ActiveRecord::Schema.define(version: 20140604214107) do
 
   add_index "topics", ["name"], name: "index_topics_on_name", unique: true, using: :btree
 
+  create_table "user_events", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name",       null: false
+    t.string   "platform"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: ""
     t.string   "encrypted_password",     default: "",    null: false
@@ -208,6 +230,7 @@ ActiveRecord::Schema.define(version: 20140604214107) do
     t.integer  "streak",                 default: 0
     t.boolean  "verified_account",       default: false
     t.string   "signup_source"
+    t.boolean  "guest_mode",             default: false
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree

@@ -13,7 +13,11 @@ class ActivitiesController < AuthenticatedController
       else
         @activities = current_user.activities.order('created_at desc')
     end
+
+		if params[:filter]
+			@activities = @activities.where(:activity_type => params[:filter])
+		end
     render 'index'
     current_user.activities.update_all(seen: true)
   end
-end  
+end
