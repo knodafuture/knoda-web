@@ -14,8 +14,14 @@
 <% if @activities.size == 0 %>
 	<div class="row empty-state">
 		<div class="col-xs-12">
-			<p>Sorry, you don't have any activity to view.<br/>
+			<p>
+			<% if params[:filter] == 'INVITATION' %>
+				Sorry, you don't have any invitations to view.<br/>
+				<a href="/groups">Create your own group</a> and start predicting with your friends.
+			<% else %>
+				Sorry, you don't have any activity to view.<br/>
 				Get things started and <a data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new<% if @group %>?group_id=<%=@group.id%><% end %>" title="Make a prediction">make a prediction</a>.
+			<% end %>
 			</p>
 		</div>
 	</div>
