@@ -7,41 +7,33 @@
 		<% end %>
 	</td>
 	<td id="actfeed">
+		<div class="activity-item" data-prediction-id="<%= activity.prediction_id %>">
 		<% if activity.activity_type == 'INVITATION' %>
-			<div class="activity-item">
-				<p class="line1">Hey-O! <%= activity.invitation_sender %> has invited you to join a group.</p>
-				<div class ="centerbutton">
-					<a class="btn-join btn btn-default text-center" href="/groups/join?code=<%= activity.invitation_code %>">Join "<%=activity.invitation_group_name %>"</a>
-				</div>
+			<p class="line1">Hey-O! <%= activity.invitation_sender %> has invited you to join a group.</p>
+			<div class ="centerbutton">
+				<a class="btn-join btn btn-default text-center" href="/groups/join?code=<%= activity.invitation_code %>">Join "<%=activity.invitation_group_name %>"</a>
 			</div>
-			<% elsif activity.activity_type == 'EXPIRED' %>
-				<div class="activity-item">
-					<p class="line1"><%= activity.title %></p> <p>"<%= activity.prediction_body %>"</p>
-						<div class ="centerbutton">
-							<a href="/predictions/<%= activity.prediction_id %>" class="settlebutton btn btn-default text-center">Let's Settle It!</a>
-						</div>
-					</div>
-				<% elsif activity.activity_type == 'COMMENT' %>
-					<div class="activity-item">
-						<p class="line1"><%= activity.title %></p>
-						</div>
-						<div class="popover right in">
-							<div class="arrow" style="top:10px"></div>
-							<div class="popover-content" style="text-align:left;"><a href="/predictions/<%= activity.prediction_id %>">"<%= activity.comment_body %>"</a></div>
-						</div>
+		<% elsif activity.activity_type == 'EXPIRED' %>
+			<p class="line1"><%= activity.title %></p> <p>"<%= activity.prediction_body %>"</p>
+			<div class ="centerbutton">
+				<a href="/predictions/<%= activity.prediction_id %>" class="settlebutton btn btn-default text-center">Let's Settle It!</a>
+			</div>
+		<% elsif activity.activity_type == 'COMMENT' %>
+			<p class="line1"><%= activity.title %></p>
+			<div class="popover right in">
+				<div class="arrow" style="top:10px"></div>
+				<div class="popover-content" style="text-align:left;">"<%= activity.comment_body %>"</div>
+			</div>
 		<% elsif activity.activity_type == 'WON' %>
-			<div class="activity-item">
 				<p class="line1"><%= raw activity_title(activity) %></p>
 				<p>"<%= activity.prediction_body %>"</p>
 				<div class="centerbutton">
-					<a class="brag-prediction bragbutton btn btn-default text-center" data-prediction-id="<%= activity.prediction_id %>">Brag</a>
+					<a class="brag-prediction bragbutton btn btn-default text-center">Brag</a>
 				</div>
-			</div>
-			<% else %>
-				<div class="activity-item">
-					<p class="line1"><%= raw activity_title(activity) %></p>
-					<p>"<%= activity.prediction_body %>"</p>
-				</div>
+		<% else %>
+			<p class="line1"><%= raw activity_title(activity) %></p>
+			<p>"<%= activity.prediction_body %>"</p>
 		<% end %>
+		</div>
 	</td>
 </tr>
