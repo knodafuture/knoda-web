@@ -21,7 +21,7 @@
 	</div>
 <% else %>
 <div class="row">
-	<table class="table table-hover table-bordered">
+	<table class="table table-striped" style="border: 1px solid #dddddd;">
 		<% @activities.each do |i| %>
 			<%= render partial: "activities/activity", locals: {activity: i} %>
 		<% end %>
