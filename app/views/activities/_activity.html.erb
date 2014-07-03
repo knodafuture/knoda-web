@@ -27,9 +27,11 @@
 		<% elsif activity.activity_type == 'WON' %>
 				<p class="line1"><%= raw activity_title(activity) %></p>
 				<p>"<%= activity.prediction_body %>"</p>
-				<div class="centerbutton">
-					<a class="brag-prediction bragbutton btn btn-default text-center">Brag</a>
-				</div>
+				<% if activity.shareable %>
+					<div class="centerbutton">
+						<a class="brag-prediction bragbutton btn btn-default text-center">Brag</a>
+					</div>
+				<% end %>
 		<% else %>
 			<p class="line1"><%= raw activity_title(activity) %></p>
 			<p>"<%= activity.prediction_body %>"</p>
