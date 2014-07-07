@@ -113,6 +113,7 @@ class UsersController < ApplicationController
       if current_user.id != x.id
         @users << x
       end
+    end
   end
 
   private
