@@ -107,7 +107,12 @@ class UsersController < ApplicationController
   end
 
   def autocomplete
-    @users = User.search(params[:query], fields: [{:username => :text_start}], limit: 10)
+    @searchResults = User.search(params[:query], fields: [{:username => :text_start}], limit: 10)
+    @users = []
+    @searchResults.each do |x|
+      if current_user.id != x.id
+        @users << x
+      end
   end
 
   private
