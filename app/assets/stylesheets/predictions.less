@@ -1,9 +1,67 @@
 .predictionContainer {
+  .userInfo {
+    height: 47px;
+    a {
+      text-decoration: none;
+    }
+    .userAgrees, .userDisagrees {
+      display:inline-block;
+      height: 22px;
+      width: 24px;
+      padding: 2px;
+      margin-top: 10px;
+    }
+    .userDisagrees {
+      background: image-url("icons/sd/disagree.png") center no-repeat;
+      &.active {
+        background: image-url("icons/sd/disagree_active.png") center no-repeat;
+      }
+    }
+    .userAgrees {
+      background: image-url("icons/sd/agree.png") center no-repeat;
+      &.active {
+        background: image-url("icons/sd/agree_active.png") center no-repeat;
+      }
+    }
+  }
+  .predictionInfoLine2, .commentInfoLine2 {
+    background-color:white; padding: 5px 20px;
+    a {
+      text-decoration:none;
+      color: #77BC1F;
+      font-size: 0.75em;
+    }
+  }
+  .predictionInfoLine2 {
+    padding-bottom: 0px;
+  }
+  .predictionInfoLine3 {
+    .img-retina("icons/group_prediction_badge.png", "icons/group_prediction_badge@2x.png", 13px, 12px);
+    background-color:white; padding: 0px 0px 5px 0px;
+    background-repeat: no-repeat;
+    background-position: 20px 4px;
+    padding-left: 40px;
+    a {
+      color: @green-knoda-dark;
+      .sansBold;
+      font-size: 0.75em;
+      text-decoration: none;
+    }
+  }
+  .commentInfoLine2 {
+    padding-bottom: 0px;
+    p {
+      margin-bottom: 0px;
+      text-decoration:none;
+      color: #77BC1F;
+      font-size: 0.75em;
+    }
+  }
   .username {
     padding: 0.5em;
     font-size: 16px;
     color: #666666;
-    text-decoration: none;    
+    text-decoration: none;
   }
   .predictionInfo {
     .sansLight;
@@ -21,10 +79,10 @@
   div.row.challenge-buttons {
     .center;
     margin: 5px;
-    
+
     .btn-lg {
       width: 49%;
-      .sansLight; 
+      .sansLight;
       font-size: 18px;
     }
     .userAgrees, .userDisagrees {
@@ -68,7 +126,7 @@
       background-image: image-url("icons/sd/action_comment.png");
       &.active, &:active {
         background-image: image-url("icons/sd/action_comment_active.png");
-      }     
+      }
     }
     .tally {
       background-image: image-url("icons/sd/action_tally.png");
@@ -107,7 +165,7 @@
       text-decoration: none;
       cursor: pointer;
       color: @text-color;
-    }               
+    }
   }
   .bs {
     width: 80%;
@@ -134,4 +192,5 @@
       color: @red-knoda
     }
   }
+
 }
