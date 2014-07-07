@@ -33,7 +33,19 @@
 //@import "twitter/bootstrap/jumbotron";
 //@import "twitter/bootstrap/thumbnails";
 //@import "twitter/bootstrap/alerts";
-//@import "twitter/bootstrap/progress-bars";
+@import "twitter/bootstrap/progress-bars";
+.progress {
+  overflow: hidden;
+  height: 5px;
+  margin: 0px;
+  background-color: @progress-bg;
+  border-radius: @border-radius-base;
+  .box-shadow(inset 0 1px 2px rgba(0,0,0,.1));
+}
+.progress-bar {
+  line-height: 16px;
+}
+
 //@import "twitter/bootstrap/media";
 //@import "twitter/bootstrap/list-group";
 //@import "twitter/bootstrap/panels";
@@ -52,13 +64,88 @@
 @import "twitter/bootstrap/responsive-utilities";
 @import "font";
 
+@action-height-xs: 40px;
+
 .center {
   text-align: center;
 }
 
+div {
+  .userInfo {
+    background-color: @gray-knoda;
+  }
+}
 
+
+.logo {
+  background: image-url("embed/embed-sprite.png") no-repeat center left;
+  background-size: 65px 432px;
+  background-position: 0 -367px;
+  height: 25px;
+  line-height: 50px;
+  width: 22px;
+}
+
+.progress-bar {
+  line-height: 20px;
+}
+
+.call-to-action {
+  cursor: pointer;
+  height: @action-height-xs;
+  background-color: @green-light;
+  color: @white;
+  text-align: center;
+  .sansLight;
+  line-height: @action-height-xs;
+  font-size: 14px;
+  .border-bottom-radius(10px);
+  border-left-width: 0px;
+  border-right-width: 0px
+}
+
+.tally {
+  padding-top: 5px;
+  .agree, .disagree {
+    font-size: 18px;
+    line-height: 30px;
+  }
+}
+
+.agree {
+  color: @green-light
+}
+.disagree {
+  color: @red-knoda;
+}
+.percentage {
+  color: @green-dark;
+  font-size: 16px;
+  line-height: 16px;
+}
+.percentage-label {
+  color: @green-dark;
+  font-size: 12px;
+  margin: 0px;
+}
+.outcome-text {
+  font-size: 12px;
+  color: @green-dark;
+}
 
 #home-container {
+  background-color:#FFFFFF;
+  div {
+
+        .predictionInfo {
+          border-left: 1px solid @gray-knoda;
+          border-right: 1px solid @gray-knoda;
+        }
+        .predictionInfoLine2 {
+          border-left: 1px solid @gray-knoda;
+          border-right: 1px solid @gray-knoda;
+        }
+      }
   .header {
     background-color: @green-light;
     color: @green-dark;
@@ -83,7 +170,7 @@
         text-decoration:none;
       }
       .sansRegular;
-    }  
+    }
   }
   .subnav {
     padding: 20px 0px;
@@ -97,7 +184,7 @@
       &.active {
         .sansBold;
       }
-    }  
+    }
   }
   .content {
     .sansLight;
@@ -143,13 +230,13 @@
       text-align:left;
     }
   }
-  }  
+  }
 }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: @screen-md-min) {
   #home-container {
-  }  
+  }
 }
 
 /* Large devices (large desktops, 1200px and up) */

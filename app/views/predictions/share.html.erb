@@ -32,30 +32,52 @@
 
 <%= render "home/prelogin/header"%>
 
-<div class="content container">
-<div class="panel panel-default predictionContainer" data-prediction-id="<%= @prediction.id%>" style="">
-    <div class="panel-heading" style="padding:0px 15px; background-color: #EFEFEF">
-    <div class="row userInfo" style="height:40px">
-        <a href="/users/<%=@prediction.user.username%>">
-          <img src="<%= avatar_small(@prediction.user) %>" style="display:inline-block; height: 40px; width:40px;" />
-          <span class="username"><%=@prediction.user.username %></span>
+<div class="content container full-height-content" style="width: 600px;">
+<div class="panel panel-default predictionContainer" data-prediction-id="<%= @prediction.id%>">
+    <div class="panel-heading" style="padding:0px 10px; background-color: #EFEFEF border-bottom-left-radius:10px; border-bottom-right-radius:15px;">
+    <div class="row userInfo" style="height:40px ">
+        <img src="<%= avatar_small(@prediction.user) %>" class="pull-left" style="display:inline-block; height: 40px; width:40px; margin-right: 10px;" />
+        <h4 class="pull-left prediction-username">
+          <%= @prediction.user.username %>
           <% if @prediction.user.verified_account %>
             <%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
           <% end %>
-        </a>
-        <div class="col-md-3 myChallenge pull-right">
+        </h4>
+  </div>
+    <div class="row predictionInfo" style="background-color:white; font-size:large; padding: 8px 20px;" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=@prediction.id %>">
+      <p><%=@prediction.body %></p>
+    </div>
+    <div class="row predictionInfoLine2" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=@prediction.id %>"style="background-color:white; padding: 5px 20px; color: #77BC1F;">
+      made <%= distance_of_time_in_words_to_now(@prediction.created_at) %> ago
+    <div class="row" style="border:0; margin-left:-20px; margin-right:-20px; margin-top: 5px;">
+      <div style="margin-bottom:10px;" class="progress">
+        <div class="progress-bar progress-bar-success" style="width: <%= @prediction.agree_percentage %>%">
+          <span class="sr-only"><%= @prediction.agree_percentage %>% Agree</span>
         </div>
+        <div class="progress-bar progress-bar-danger" style="width: <%= 100 - @prediction.agree_percentage %>%">
+          <span class="sr-only"><%= 100 - @prediction.agree_percentage %>% Disagree</span>
+        </div>
+      </div>
     </div>
-    <div class="row predictionInfo" style="background-color:white; padding: 8px 20px;" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=@prediction.id %>">
-      <a><%=@prediction.body %></a>
-    </div>
-    <div class="row predictionInfoLine2" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=@prediction.id %>"style="background-color:white; padding: 5px 20px; color: #77BC1F">
-      <%= display_close_status(@prediction) %> | predicted <%= distance_of_time_in_words_to_now(@prediction.created_at) %> ago | <%=@prediction.agree_percentage %>% agree | <%= image_tag("icons/CommentIcon@2x.png") %> <%=@prediction.comments.size %>
+    <div class="row tally">
+      <div style="font-size:24px;" class="col-xs-3 center agree"><%= @prediction.agreed_count %></div>
+      <% if @prediction.is_expired? && @prediction.is_closed? %>
+        <div class="col-xs-6 center resolved">
+          <%= display_owner_result_outcome_icon(@prediction) %>
+          <p class="outcome-text"><%= @prediction.user.username %> <% if @prediction.outcome == true %>Won<%else%>Lost<%end%>!</p>
+        </div>
+      <% else %>
+        <div class="col-xs-6 center "><span style="font-size:36px;" class="percentage"><%= @prediction.agree_percentage %>%</span><p class="percentage-label">Agree</p></div>
+      <% end %>
+      <div style="font-size:24px; class="col-xs-3 center disagree"><%= @prediction.disagreed_count %></div>
     </div>
   </div>
+  <div class="row call-to-action" style="border-bottom-left-radius:10px; border-bottom-right-radius:10px;">
+    <div class="col-xs-12"><a style="font-color:#FFFFFF" href="/">Sign Up or Login to join the conversation.</a></div>
+  </div>
+  </div>
 </div>
-<div class="row" style="text-align:center;margin-top:20px;">
-  <p><a href="/" style="color:white;font-size:1.1em;">Sign Up or Login to join the conversation.</a></p>
+<div><p></p></div>
   <div class="app-badges" style="text-align: center;">
     <a onclick="ga('send', 'event', 'redirect', 'app_store');" href="https://itunes.apple.com/us/app/knoda/id764642995" target="_blank"><%= image_tag("appStoreBadge.png") %></a>
     <a onclick="ga('send', 'event', 'redirect', 'play_store');" href="https://play.google.com/store/apps/details?id=com.knoda.knoda" target="_blank"><%= image_tag("playStoreBadge.png") %></a>
