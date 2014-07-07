@@ -18,7 +18,6 @@ createChallenge = (prediction_id, agree) ->
       el.find(".agree-percentage").text(json.prediction_agree_percent)
       if el.find('.disagreeUsersList').length > 0
         loadTally(el, prediction_id)
-      window.badges.checkAndShow()
 
 
 comment = (prediction_id, text) ->
@@ -56,7 +55,6 @@ close = (prediction_id, outcome) ->
       else
         el.find('.myChallenge').html("<span class='pull-right won-lost-indicator lost'>L</span>")
       stopLoading();
-      window.badges.checkAndShow()
 
 callBS = (prediction_id) ->
   if confirm("Don't be lame. Tell the truth. It's more fun this way. Is this really the wrong outcome?")

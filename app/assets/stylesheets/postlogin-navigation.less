@@ -1,0 +1,176 @@
+header {
+  .header-row-1 {
+    .nav-logo {
+      height: 40px;
+      width: 78px;
+      .img-retina("nav/m_nav_logo.png", "nav/m_nav_logo@2x.png", 78px, 13px);
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    background-color:@green-light;
+    color:#fff;
+    height: 40px;
+    margin:0 0px;
+    .settings, .search {
+      width: 35px;
+      height: 40px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      text-indent: -9999px;
+    }
+    .settings {
+      .img-retina("nav/m_settings.png", "nav/m_settings@2x.png", 26px, 26px);
+    }
+    .search {
+      .img-retina("nav/m_search.png", "nav/m_search@2x.png", 26px, 26px);
+    }
+  }
+  .header-row-2 {
+    background-color:@gray-dark;
+    color:#fff;
+    height: 60px;
+    margin:0 0px;
+    .icon-bar {
+      text-align:center;
+      padding:0px;
+    }
+    .settings, .search {
+      width: 45px;
+      height: 40px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      text-indent: -9999px;
+    }
+    .settings {
+      .img-retina("nav/settings.png", "nav/settings@2x.png", 26px, 26px);
+      &:hover, &:active, &.active {
+        .img-retina("nav/settings_active.png", "nav/settings_active@2x.png", 26px, 26px);
+      }
+    }
+    .search {
+      .img-retina("nav/search.png", "nav/search@2x.png", 26px, 26px);
+      &:hover, &:active, &.active {
+        .img-retina("nav/search_active.png", "nav/search_active@2x.png", 26px, 26px);
+      }
+    }
+  }
+  a {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    color: @gray;
+    text-decoration: none;
+    &:hover, &.active {
+      color: @gray-lightest;
+      text-decoration: none;
+    }
+  }
+  .nav-button {
+    width: 60px;
+    height: 49px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding-top: 24px;
+    text-align: center;
+    &.home {
+      .img-retina("nav/home.png", "nav/home@2x.png", 26px, 26px);
+      &:hover, &:active, &.active {
+        .img-retina("nav/home_active.png", "nav/home_active@2x.png", 26px, 26px);
+      }
+    }
+    &.activities {
+      .img-retina("nav/activity.png", "nav/activity@2x.png", 36px, 26px);
+      &.hasUnseen {
+        .img-retina("nav/activity_notification.png", "nav/activity_notification@2x.png", 36px, 26px);
+        &:hover, &:active, &.active {
+          .img-retina("nav/activity_notification_active.png", "nav/activity_notification_active@2x.png", 36px, 26px);
+        }
+      }
+      &:hover, &:active, &.active {
+        .img-retina("nav/activity_active.png", "nav/activity_active@2x.png", 36px, 26px);
+      }
+    }
+    &.groups {
+      .img-retina("nav/groups.png", "nav/groups@2x.png", 26px, 26px);
+      &:hover, &:active, &.active {
+        .img-retina("nav/groups_active.png", "nav/groups_active@2x.png", 26px, 26px);
+      }
+    }
+    &.profile {
+      .img-retina("nav/profile.png", "nav/profile@2x.png", 26px, 26px);
+      &:hover, &:active, &.active {
+        .img-retina("nav/profile_active.png", "nav/profile_active@2x.png", 26px, 26px);
+      }
+    }
+    &.predict {
+      .img-retina("nav/m_predict.png", "nav/m_predict@2x.png", 26px, 26px);
+      color: @green-light;
+    }
+  }
+  .predict-right {
+    background-color: @green-light;
+    color: @white;
+    height: 34px;
+    line-height: 34px;
+    .border-top-radius(4px);
+    .border-bottom-radius(4px);
+    margin-top: 7px;
+    margin-bottom: 7px;
+    text-align: center;
+    width: 90px;
+    .sansRegular;
+    margin-right: 10px;
+    &:hover {
+      color: @green-dark;
+    }
+  }
+}
+
+
+@media (min-width: @screen-md-min) {
+  body {
+    margin-top:48px;
+  }
+  header {
+    &.navbar{
+      min-height: 48px;
+      height: 48px;
+    }
+    .nav-button {
+      min-width: 100px;
+      height: 49px;
+      background-repeat: no-repeat;
+      background-position: center left;
+      padding-top: 0px;
+      padding-left: 30px;
+      line-height: 53px;
+      text-align: left;
+      &.activities {
+        padding-left: 42px;
+        margin-right: 20px;
+      }
+      &.groups {
+        padding-left: 36px;
+        margin-right: 10px;
+      }
+      &.home {
+        margin-left: 20px;
+      }
+    }
+    .header-row-1 {
+      display:none;
+    }
+    .header-row-2 {
+      .img-retina("nav/nav_logo.png", "nav/nav_logo@2x.png", 78px, 13px);
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 48px;
+      .icon-bar {
+        text-align:left;
+      }
+      .settings, .search {
+        height: 48px;
+      }
+    }
+  }
+}

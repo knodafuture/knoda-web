@@ -5,6 +5,10 @@
 		<% else %>
 			<%= image_tag(activity_icon(activity), {:class => 'img-circle', :style => 'width: 36px; height:36px'}) %>
 		<% end %>
+		<br />
+		<% if not activity.seen %>
+		<div class="unseenMarker"></div>
+		<% end %>
 	</td>
 	<td id="actfeed">
 		<div class="activity-item" data-prediction-id="<%= activity.prediction_id %>">

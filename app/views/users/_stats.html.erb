@@ -1,49 +1,64 @@
-<div class="row">
-  <div class="col-xs-12 col-sm-2">
-    <img src="<%= avatar_small(user) %>" class="avatar_small" /> 
-  </div>
-  <div class="col-xs-12 col-sm-10" >
-    <div class="row" style="height:50px;text-align:center">
-      <div class="col-xs-12 col-sm-6">
-        <div class="row stat-values">
-          <div class="col-xs-6">
-            <%= user.points %>
-          </div>
-          <div class="col-xs-6">
-            <% if (user.won + user.lost) > 0 %>
-              <%= (user.won.fdiv(user.won + user.lost) * 100).round(2) %>%
-            <% else %>
-              0%
-            <% end %>
-          </div>           
-        </div>
-        <div class="row">
-          <div class="col-xs-6">
-            points
-          </div>
-          <div class="col-xs-6">
-            win%          
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        <div class="row stat-values">
-          <div class="col-xs-6">
-            <%= user.streak_as_text %>
-          </div>
-          <div class="col-xs-6">
-            <%= user.won %>-<%= user.lost %>
-          </div>            
-        </div>
-        <div class="row">
-          <div class="col-xs-6">
-            streak
-          </div>
-          <div class="col-xs-6">
-            W/L
-          </div>            
-        </div>
-      </div>                      
+
+<div class="row" style="background-color: #77BC1F;margin:0px;padding-bottom: 10px;">
+  <div class="col-xs-12" >
+    <div class="row">
+      <% user.errors.each do |e| %>
+        <%= e %>
+      <% end %>
+      <% if params[:error] %>
+      <div style="text-align: center;color: red;"><%= params[:error] %></div>
+      <% end %>
     </div>
-  </div>    
-</div>    
+    <div class="row">
+      <div class="col-xs-12 center" style="height:160px;">
+        <h1><%= user.username %></h1>
+        <% if current_user == user %>
+          <div class="stats-social">
+          <% if not user.twitter_account %>
+            <a href="<%= user_omniauth_authorize_path(:twitter)%>"><img src="<%= image_path('icons/social/profile_twitter@2x.png') %>" style="height:34px;width:34px;"></a>
+          <% else %>
+            <a class="social-account-destroy" data-id="<%=@user.twitter_account.id%>"><img src="<%= image_path('icons/social/profile_twitter_active@2x.png') %>" style="height:34px;width:34px;" /></a>
+          <% end %>
+          </div>
+        <% end %>
+        <img src="<%= avatar_small(user) %>" class="avatar_small img-circle avatar-circle"/>
+        <% if current_user == user %>
+          <div class="stats-social">
+            <% if not user.facebook_account %>
+              <a href="<%= user_omniauth_authorize_path(:facebook)%>"><img src="<%= image_path('icons/social/profile_facebook@2x.png') %>" style="height:34px;width:34px;"></a>
+            <% else %>
+              <a class="social-account-destroy" data-id="<%=@user.facebook_account.id%>"><img src="<%= image_path('icons/social/profile_facebook_active@2x.png') %>" style="height:34px;width:34px;"/></a>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-4 col-sm-offset-2 profileStat topLeft center">
+          <div class="stat-value"><%= user.points %></div>
+          <div class="stat-label">POINTS</div>
+          <div class="stats-trophy"></div>
+      </div>
+      <div class="col-xs-6 col-sm-4 profileStat topRight">
+        <div class="stat-value">
+        <% if (user.won + user.lost) > 0 %>
+          <%= (user.won.fdiv(user.won + user.lost) * 100).round(2) %>%
+        <% else %>
+          0%
+        <% end %>
+        </div>
+        <div class="stat-label">WIN %</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-4 col-sm-offset-2 profileStat bottomLeft">
+        <div class="stat-value"><%= user.streak_as_text %></div>
+        <div class="stat-label">STREAK</div>
+      </div>
+      <div class="col-xs-6 col-sm-4 profileStat bottomRight">
+        <div class="stat-value"><%= user.won %>-<%= user.lost %></div>
+        <div class="stat-label">W-L</div>
+      </div>
+    </div>
+  </div>
+</div>

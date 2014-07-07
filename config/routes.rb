@@ -36,14 +36,14 @@ KnodaWeb::Application.routes.draw do
       get 'default_avatar'
       get 'crop'
       post 'avatar_upload'
+      get 'settings'
+      get 'history'
     end
     collection do
       get 'autocomplete'
     end
   end
   resources :comments
-  resources :badges
-  resources :history
   resources :activities
   resources :search
   resources :groups do
