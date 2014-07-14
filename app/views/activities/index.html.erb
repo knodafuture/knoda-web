@@ -2,36 +2,38 @@
 <%= javascript_include_tag 'activity_actions' %>
 <% end %>
 <script>FlurryAgent.logEvent("ACTIVITY_FEED");</script>
-<div  class="limit-size-small">
-<div class="row" style="margin: 5px 0px;">
-		<ul class="nav nav-pills col-xs-12" style="text-align:left;">
-			<li <% if !params[:filter] %>class="active"<%end %>><a href="/activities">All</a></li>
-			<li <% if params[:filter] == 'COMMENT' %> class="active"<%end %>><a  href="/activities?filter=COMMENT">Comments</a></li>
-			<li <% if params[:filter] == 'EXPIRED' %> class="active"<%end %>><a  href="/activities?filter=EXPIRED">Expired</a></li>
-			<li <% if params[:filter] == 'INVITATION' %> class="active"<%end %>><a  href="/activities?filter=INVITATION">Invitations</a></li>
-		</ul>
-</div>
-<% if @activities.size == 0 %>
-	<div class="row empty-state">
-		<div class="col-xs-12">
-			<p>
-			<% if params[:filter] == 'INVITATION' %>
-				Sorry, you don't have any invitations to view.<br/>
-				<a href="/groups">Create your own group</a> and start predicting with your friends.
-			<% else %>
-				Sorry, you don't have any activity to view.<br/>
-				Get things started and <a data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new<% if @group %>?group_id=<%=@group.id%><% end %>" title="Make a prediction">make a prediction</a>.
-			<% end %>
-			</p>
+<div  class="limit-size-small" style="background-color:#fff;">
+	<div class="row" style="margin: 0px;border-left:1px solid #dddddd;border-right:1px solid #dddddd;">
+		<div class="col-xs-12" style="padding:0px;margin:0px;">
+			<ul class="nav nav-pills pull-left" style="text-align:left;">
+				<li <% if !params[:filter] %>class="active"<%end %>><a href="/activities">All</a></li>
+				<li <% if params[:filter] == 'COMMENT' %> class="active"<%end %>><a  href="/activities?filter=COMMENT">Comments</a></li>
+				<li <% if params[:filter] == 'EXPIRED' %> class="active"<%end %>><a  href="/activities?filter=EXPIRED">Expired</a></li>
+				<li <% if params[:filter] == 'INVITATION' %> class="active"<%end %>><a  href="/activities?filter=INVITATION">Invitations</a></li>
+			</ul>
 		</div>
 	</div>
-<% else %>
-<div class="row">
-	<table class="table table-striped" style="border: 1px solid #dddddd;">
-		<% @activities.each do |i| %>
-			<%= render partial: "activities/activity", locals: {activity: i} %>
-		<% end %>
-	</table>
-</div>
-<% end %>
+	<% if @activities.size == 0 %>
+		<div class="row empty-state">
+			<div class="col-xs-12">
+				<p>
+				<% if params[:filter] == 'INVITATION' %>
+					Sorry, you don't have any invitations to view.<br/>
+					<a href="/groups">Create your own group</a> and start predicting with your friends.
+				<% else %>
+					Sorry, you don't have any activity to view.<br/>
+					Get things started and <a data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new<% if @group %>?group_id=<%=@group.id%><% end %>" title="Make a prediction">make a prediction</a>.
+				<% end %>
+				</p>
+			</div>
+		</div>
+	<% else %>
+	<div class="row">
+		<table class="table limit-size-small" style="border: 1px solid #dddddd;background-color: #fff;">
+			<% @activities.each do |i| %>
+				<%= render partial: "activities/activity", locals: {activity: i} %>
+			<% end %>
+		</table>
+	</div>
+	<% end %>
 </div>
