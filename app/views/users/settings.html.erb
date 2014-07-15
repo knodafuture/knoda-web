@@ -116,7 +116,10 @@
             <div style="margin: 35px 0px;">
               <img src="<%= avatar_big(@user) %>" class="avatar_big" />
             </div>
-            <a href="/users/me/avatar" class="btn btn-success btn-lg">Change Avatar</a>
+            <%
+               h = { :destination => '/users/me/settings'}
+            %>
+            <a href="/users/me/avatar?<%= h.to_param %>" class="btn btn-success btn-lg">Change Avatar</a>
           </div>
         </div>
       </div>
