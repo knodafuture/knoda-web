@@ -1,24 +1,47 @@
 
 #activities-index-container {
-  .nav-pills {
-    li > a {
+  .navigation {
+    margin: 0px;
+    border-left:1px solid #dddddd;
+    border-right:1px solid #dddddd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    a {
+      text-decoration: none;
       .sansRegular;
       color: @green-light;
       padding: 10px 10px;
-    }
-    li > a:hover {
-      background-color: transparent;
-      color: @green-dark;
-    }
-    li.active > a {
-      background-color: transparent;
-      color: @green-dark;
-      .sansBold;
+      &:hover, &.active {
+        background-color: transparent;
+        color: @green-dark;
+      }
     }
   }
-  tr.unseen {
-    background-color: @gray-knoda;
+
+  div.activity-image {
+    position: relative;
+    img {
+      border-radius:100%;
+      width:36px;
+      height:36px;
+      vertical-align: middle;
+      text-align: center;
+    }
+    div.unseenMarker {
+       position: absolute;
+       border-radius: 50%;
+       width: 12px;
+       height: 12px;
+       background-color: #96E92B;
+       border: 2px solid #fff;
+       top: 32px;
+       position: absolute;
+       left: 34px;
+    }
   }
+  div.actfeed {
+  }
+
   .activity-item {
     cursor: pointer;
   }
@@ -57,22 +80,6 @@
     .lost-text {
       color: @red;
     }
-  }
-
-  td {
-    position: relative;
-    img {
-      border-radius:100%;
-      width:36px;
-      height:36px;
-      vertical-align: middle;
-      text-align: center;
-    }
-
-  }
-
-  .tdimg {
-    vertical-align:middle;
   }
   .settlebutton, .bragbutton, .btn-join {
     border-radius:3px;
@@ -120,17 +127,6 @@
       width: 100%;
       padding: 5px 5px 10px 0px;
     }
-  }
-  div.unseenMarker {
-     position: absolute;
-	   border-radius: 50%;
-	   width: 12px;
-	   height: 12px;
-     background-color: #96E92B;
-     border: 2px solid #fff;
-     top: 32px;
-     position: absolute;
-     left: 34px;
   }
 }
 

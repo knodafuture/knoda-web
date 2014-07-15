@@ -1,4 +1,49 @@
-<tr>
+<div class="row" style="border: 1px solid #dddddd; border-top: 0px;background-color: #fff;padding-top:10px;padding-bottom:5px;">
+	<div class="col-xs-2 col-sm-1 col-md-1 activity-image center">
+			<% if activity.image_url %>
+				<img class="img-circle" src="<%= activity.image_url %>" />
+			<% else %>
+				<%= image_tag(activity_icon(activity), {:class => 'img-circle', :style => 'width: 36px; height:36px'}) %>
+			<% end %>
+			<br />
+			<% if not activity.seen %>
+			<div class="unseenMarker"></div>
+			<% end %>
+	</div>
+	<div class="col-xs-10 col-sm-11 col-md-11 actfeed">
+		<div class="activity-item" data-prediction-id="<%= activity.prediction_id %>" style="padding-left:10px;">
+			<% if activity.activity_type == 'INVITATION' %>
+				<p class="line1">Hey-O! <%= activity.invitation_sender %> has invited you to join a group.</p>
+				<div class ="centerbutton">
+					<a class="btn-join btn btn-default text-center" href="/groups/join?code=<%= activity.invitation_code %>">Join "<%=activity.invitation_group_name %>"</a>
+				</div>
+			<% elsif activity.activity_type == 'EXPIRED' %>
+				<p class="line1"><%= activity.title %></p> <p>"<%= activity.prediction_body %>"</p>
+				<div class ="centerbutton">
+					<a href="/predictions/<%= activity.prediction_id %>" class="settlebutton btn btn-default text-center">Let's Settle It!</a>
+				</div>
+			<% elsif activity.activity_type == 'COMMENT' %>
+				<p class="line1"><%= activity.title %></p>
+				<div class="popover right in">
+					<div class="arrow" style="top:10px"></div>
+					<div class="popover-content" style="text-align:left;word-wrap: break-word;">"<%= activity.comment_body %>"</div>
+				</div>
+			<% elsif activity.activity_type == 'WON' %>
+					<p class="line1"><%= raw activity_title(activity) %></p>
+					<p>"<%= activity.prediction_body %>"</p>
+					<% if activity.shareable %>
+						<div class="centerbutton">
+							<a class="brag-prediction bragbutton btn btn-default text-center">Brag</a>
+						</div>
+					<% end %>
+			<% else %>
+				<p class="line1"><%= raw activity_title(activity) %></p>
+				<p>"<%= activity.prediction_body %>"</p>
+			<% end %>
+		</div>
+	</div>
+</div>
+<!--<tr>
 	<td class="image_url" align="center">
 		<% if activity.image_url %>
 			<img class="img-circle" src="<%= activity.image_url %>" />
@@ -11,35 +56,6 @@
 		<% end %>
 	</td>
 	<td id="actfeed">
-		<div class="activity-item" data-prediction-id="<%= activity.prediction_id %>">
-		<% if activity.activity_type == 'INVITATION' %>
-			<p class="line1">Hey-O! <%= activity.invitation_sender %> has invited you to join a group.</p>
-			<div class ="centerbutton">
-				<a class="btn-join btn btn-default text-center" href="/groups/join?code=<%= activity.invitation_code %>">Join "<%=activity.invitation_group_name %>"</a>
-			</div>
-		<% elsif activity.activity_type == 'EXPIRED' %>
-			<p class="line1"><%= activity.title %></p> <p>"<%= activity.prediction_body %>"</p>
-			<div class ="centerbutton">
-				<a href="/predictions/<%= activity.prediction_id %>" class="settlebutton btn btn-default text-center">Let's Settle It!</a>
-			</div>
-		<% elsif activity.activity_type == 'COMMENT' %>
-			<p class="line1"><%= activity.title %></p>
-			<div class="popover right in">
-				<div class="arrow" style="top:10px"></div>
-				<div class="popover-content" style="text-align:left;">"<%= activity.comment_body %>"</div>
-			</div>
-		<% elsif activity.activity_type == 'WON' %>
-				<p class="line1"><%= raw activity_title(activity) %></p>
-				<p>"<%= activity.prediction_body %>"</p>
-				<% if activity.shareable %>
-					<div class="centerbutton">
-						<a class="brag-prediction bragbutton btn btn-default text-center">Brag</a>
-					</div>
-				<% end %>
-		<% else %>
-			<p class="line1"><%= raw activity_title(activity) %></p>
-			<p>"<%= activity.prediction_body %>"</p>
-		<% end %>
-		</div>
+
 	</td>
-</tr>
+</tr>-->

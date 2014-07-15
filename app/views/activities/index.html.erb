@@ -3,14 +3,12 @@
 <% end %>
 <script>FlurryAgent.logEvent("ACTIVITY_FEED");</script>
 <div  class="limit-size-small" style="background-color:#fff;">
-	<div class="row" style="margin: 0px;border-left:1px solid #dddddd;border-right:1px solid #dddddd;">
-		<div class="col-xs-12" style="padding:0px;margin:0px;">
-			<ul class="nav nav-pills pull-left" style="text-align:left;">
-				<li <% if !params[:filter] %>class="active"<%end %>><a href="/activities">All</a></li>
-				<li <% if params[:filter] == 'COMMENT' %> class="active"<%end %>><a  href="/activities?filter=COMMENT">Comments</a></li>
-				<li <% if params[:filter] == 'EXPIRED' %> class="active"<%end %>><a  href="/activities?filter=EXPIRED">Expired</a></li>
-				<li <% if params[:filter] == 'INVITATION' %> class="active"<%end %>><a  href="/activities?filter=INVITATION">Invitations</a></li>
-			</ul>
+	<div class="row" style="background-color:#fff;border-bottom: 1px solid #dddddd;">
+		<div class="col-xs-12 navigation">
+			<a class="<% if !params[:filter] %>active<%end %>" href="/activities">All</a>
+			<a class="<% if params[:filter] == 'COMMENT' %>   active <%end%>" href="/activities?filter=COMMENT">Comments</a>
+			<a class="<% if params[:filter] == 'EXPIRED' %>   active <%end %>" href="/activities?filter=EXPIRED">Expired</a>
+			<a class="<% if params[:filter] == 'INVITATION' %>active <%end %>" href="/activities?filter=INVITATION">Invitations</a>
 		</div>
 	</div>
 	<% if @activities.size == 0 %>
@@ -28,12 +26,8 @@
 			</div>
 		</div>
 	<% else %>
-	<div class="row">
-		<table class="table limit-size-small" style="border: 1px solid #dddddd;background-color: #fff;">
-			<% @activities.each do |i| %>
-				<%= render partial: "activities/activity", locals: {activity: i} %>
-			<% end %>
-		</table>
-	</div>
+		<% @activities.each do |i| %>
+			<%= render partial: "activities/activity", locals: {activity: i} %>
+		<% end %>
 	<% end %>
 </div>
