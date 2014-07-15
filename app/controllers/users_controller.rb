@@ -1,29 +1,37 @@
-class UsersController < ApplicationController
+class UsersController < AuthenticatedController
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:create]
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :crop, :default_avatar, :avatar_upload]
+  skip_before_action :unseen_activities, only: [:create]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :crop, :default_avatar, :avatar_upload, :settings, :history]
   skip_before_action :verify_authenticity_token, only: [:avatar_upload]
-
-  # GET /users
-  # GET /users.json
-  def index
-    if params[:agrees_with]
-      @users = User.joins(:challenges).where(challenges: { prediction_id: params[:agrees_with], agree: true})
-    elsif params[:disagrees_with]
-      @users = User.joins(:challenges).where(challenges: { prediction_id: params[:disagrees_with], agree: false})
-    else
-      @users = User.all
-    end
-  end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    if @user != current_user
-      @predictions = @user.predictions.visible_to_user(current_user).latest.offset(param_offset).limit(param_limit).id_lt(param_id_lt)
-      render 'show_public'
+    if params[:history] == 'votes'
+      @predictions = []
+      predictionIds = []
+      challenges = current_user.challenges.picks
+      if param_id_lt
+        challenges = challenges.where('challenges.id < ?', param_id_lt)
+      end
+      challenges = challenges.offset(param_offset).limit(param_limit)
+      challenges.each do |c|
+        predictionIds << c.prediction_id
+      end
+      challengeHash = Hash[predictionIds.map.with_index.to_a]
+      @predictions = Prediction.includes(:challenges, :comments).where(:id => predictionIds).to_a.sort!{|p1,p2| challengeHash[p1.id] <=> challengeHash[p2.id] }
     else
+      @predictions = @user.predictions.order('created_at desc').offset(param_offset).limit(param_limit).id_lt(param_id_lt)
+    end
+    render 'show'
+  end
+
+  def settings
+    if @user != current_user
       render 'show'
+    else
+      render 'settings'
     end
   end
 
@@ -114,6 +122,26 @@ class UsersController < ApplicationController
         @users << x
       end
     end
+  end
+
+  def history
+    if params[:history] == 'votes'
+      @predictions = []
+      predictionIds = []
+      challenges = current_user.challenges.picks
+      if param_id_lt
+        challenges = challenges.where('challenges.id < ?', param_id_lt)
+      end
+      challenges = challenges.offset(param_offset).limit(param_limit)
+      challenges.each do |c|
+        predictionIds << c.prediction_id
+      end
+      challengeHash = Hash[predictionIds.map.with_index.to_a]
+      @predictions = Prediction.includes(:challenges, :comments).where(:id => predictionIds).to_a.sort!{|p1,p2| challengeHash[p1.id] <=> challengeHash[p2.id] }
+    else
+      @predictions = @user.predictions.order('created_at desc').offset(param_offset).limit(param_limit).id_lt(param_id_lt)
+    end
+    render :partial => "predictions/predictions"
   end
 
   private

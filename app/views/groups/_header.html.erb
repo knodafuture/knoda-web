@@ -2,10 +2,10 @@
     <div class="col-xs-12">
       <div style="padding: 10px 0px 0px 0px;">
         <div class="row">
-          <div class="col-xs-12 col-sm-7">
+          <div class="col-xs-12 col-sm-6">
             <span style="position:relative;">
-              <img src="<%= avatar_small(@group) %>" class="avatar_small pull-left" style="margin-right:10px;"/> 
-            </span>            
+              <img src="<%= avatar_small(@group) %>" class="avatar_small pull-left" style="margin-right:10px;"/>
+            </span>
             <% if group.owned_by?(current_user) %>
               <p class="group-editable name" contenteditable="true"><%= group.name %></p>
               <p class="group-editable description" contenteditable="true"><%= group.description %></p>
@@ -15,23 +15,23 @@
             <% end %>
             <% if group.owned_by?(current_user) %>
               <a href="/groups/<%= @group.id%>/avatar" class="change-avatar">Change Avatar</a>
-            <% end %>            
+            <% end %>
           </div>
           <div class="col-xs-12 visible-xs" style="text-align:center;">
             <div style="height: 60px; padding: 10px; margin-bottom: 10px;">
               <a class="btn-predictions <% if params[:action] == 'show' %> active <% end %>" href="/groups/<%= @group.id %>">Predictions</a>
               <a class="btn-rankings <% if params[:action] == 'leaderboard' %> active <% end %>" href="/groups/<%= @group.id %>/leaderboard">Rankings</a>
               <a class="btn-settings <% if params[:action] == 'settings' %> active <% end %>" href="/groups/<%= @group.id %>/settings">Settings</a>
-            </div>              
+            </div>
           </div>
-          <div class="col-sm-5 hidden-xs">
+          <div class="col-sm-6 hidden-xs">
             <div class="pull-right" style="height: 60px; padding: 10px;">
               <a class="btn-predictions <% if params[:action] == 'show' %> active <% end %>" href="/groups/<%= @group.id %>">Predictions</a>
               <a class="btn-rankings <% if params[:action] == 'leaderboard' %> active <% end %>" href="/groups/<%= @group.id %>/leaderboard">Rankings</a>
               <a class="btn-settings <% if params[:action] == 'settings' %> active <% end %>" href="/groups/<%= @group.id %>/settings">Settings</a>
-            </div>              
-          </div>          
+            </div>
+          </div>
         </div>
-      </div>        
+      </div>
     </div>
   </div>

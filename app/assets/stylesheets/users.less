@@ -1,0 +1,64 @@
+@profile-light-green: #A0CE71;
+#users-show-container {
+  padding: 0px;
+}
+.userContainer {
+  h1 {
+    margin-top: 20px;
+    font-family: 'Krona One', sans-serif;
+    font-size: 16px;
+    color: @green-dark;
+    text-transform: uppercase;
+  }
+  .profileStat {
+    text-align:center;
+    padding: 10px;
+    color: @white;
+    .stat-value {
+      font-size: 28px;
+      .sansLight;
+    }
+    .stat-label {
+      .sansRegular;
+      font-size: 10px;
+    }
+    &.topLeft, &.topRight {
+      border-bottom: 1px solid @profile-light-green;
+    }
+    &.topLeft, &.bottomLeft {
+      border-right: 1px solid @profile-light-green;
+    }
+  }
+  .stats-social {
+    display: inline-block;
+    padding: 0px 20px;
+  }
+}
+
+.history-tabs {
+  .sansLight;
+  font-size: 16px;
+  background-color: #77BC1F;
+  margin:0px;
+  padding: 0px 0px 10px 0px;
+  a {
+    text-decoration: none;
+    color: @profile-light-green;
+    &.active, &:hover, &:active {
+      color: @white;
+    }
+  }
+}
+
+.stats-trophy {
+    .img-retina("icons/profile_stats_icon.png", "icons/profile_stats_icon@2x.png", 25px, 25px);
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 35px;
+    width: 35px;
+    position:absolute;
+    right: -18px;
+    bottom: -18px;
+    z-index: 1;
+    background-color: #77BC1F;
+}

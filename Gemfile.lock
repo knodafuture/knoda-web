@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: 1ea9ee1441192b95bd53bdd7f87a23d16ff70266
+  revision: 1a4f150e1386719adc5c6a993722cbc747dd6665
   branch: master
   specs:
     knoda_core (0.0.1)
@@ -73,10 +73,10 @@ GEM
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
-    coffee-script (2.2.0)
+    coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.7.0)
+    coffee-script-source (1.7.1)
     commonjs (0.2.7)
     connection_pool (2.0.0)
     dalli (2.7.2)
@@ -95,11 +95,11 @@ GEM
       multi_json
     equalizer (0.0.9)
     erubis (2.7.0)
-    excon (0.37.0)
+    excon (0.38.0)
     execjs (2.2.1)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
-    hashie (2.1.2)
+    hashie (3.2.0)
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
     hike (1.2.3)
@@ -109,7 +109,7 @@ GEM
     httparty (0.13.1)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    i18n (0.6.9)
+    i18n (0.6.11)
     imgkit (1.4.1)
     jbuilder (2.0.6)
       activesupport (>= 3.0.0, < 5)
@@ -161,8 +161,8 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
-    omniauth (1.2.1)
-      hashie (>= 1.2, < 3)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
       rack (~> 1.0)
     omniauth-facebook (1.6.0)
       omniauth-oauth2 (~> 1.1)

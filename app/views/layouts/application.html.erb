@@ -7,13 +7,12 @@
     <link rel="icon" type="image/png" href="<%= image_path('favicon.png') %>" />
     <link rel="shortcut icon" type="image/png" href="<%= image_path('favicon.png') %>" />
     <link href='http://fonts.googleapis.com/css?family=Krona+One' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery.ui.all.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
     <link href="<%= local_stylesheet_path('application')%>" media="all" rel="stylesheet">
     <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "badge_notifier" %>
     <%= csrf_meta_tags %>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -58,85 +57,58 @@
         </div>
       </div>
     </div>
-    <header class="navbar navbar-default navbar-fixed-top" id="topNav" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="logo" href="/predictions" style="display:inline-block;height: 47px;"><%= image_tag("icons/sd/knoda_header_logo.png") %></a>
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+    <header class="navbar navbar-default navbar-fixed-top" id="topNav" role="navigation" style="height:48px;">
+        <div class="row header-row-1">
+          <div class="col-xs-3">
+            <div class="nav-logo"></div>
+          </div>
+          <div class="col-xs-9" style="padding-right:5px;">
+            <a href="/users/me/settings" class="settings pull-right">Settings</a>
+            <a href="/search" class="search pull-right">Search</a>
+          </div>
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li >
-              <a class="home <% if params[:controller] == 'predictions' %> active <% end %>" href="/predictions" title="Home">
-                <span class="collapseText">Home</span>
-              </a>
-            </li>
-            <li >
-              <a class="history <% if params[:controller] == 'history' %> active <% end %>" href="/history" title="History">
-                <span class="collapseText">History</span>
-              </a>
-            </li>
-            <li>
-              <a class="activity <% if params[:controller] == 'activities' %> active <% end %>" href="/activities" title="Activity"><span class="badge activityBadge"><%= @unseen_activities %></span>
-                <span class="collapseText">Activity</span>
-              </a>
-            </li>
-            <li>
-              <a class="badges <% if params[:controller] == 'badges' %> active <% end %>"href="/badges" title="Badges">
-                <span class="collapseText">Badges</span>
-              </a>
-            </li>
-            <li>
-              <a class="groups <% if params[:controller] == 'groups' %> active <% end %>"href="/groups" title="Groups">
-                <span class="collapseText">Groups</span>
-              </a>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:0px">
-                 <img src="<%= avatar_small(current_user) %>" style="display:inline-block; height: 49px; width:49px;" />
-               </a>
-              <ul class="dropdown-menu">
-                <li><a href="/users/me"><%= current_user.username %></a></li>
-                <li class="divider"></li>
-                <li><a href="/signout">Log Out</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a class="predict" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new<% if @group %>?group_id=<%=@group.id%><% end %>" title="Make a prediction">
-                <span class="collapseText">Predict</span>
-              </a>
-            </li>
-            <li>
-              <a class="search <% if params[:controller] == 'search' %> active <% end %>" href="/search" title="Search">
-                <span class="collapseText">Search</span>
-              </a>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/users/me"><span class="collapseText">My Account</span></a></li>
-            <li><a href="/signout"><span class="collapseText">Log Out</span></a></li>
-          </ul>
+        <div class="row header-row-2">
+          <div class="col-xs-12 col-md-9 col-lg-7 col-lg-offset-1 icon-bar">
+            <a href="/predictions" class="nav-button home predictions">Home</a>
+            <a href="/activities" class="nav-button activities">Activity</a>
+            <a class="nav-button predict hidden-md hidden-lg" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new<% if @group %>?group_id=<%=@group.id%><% end %>" title="Make a prediction">
+              Predict
+            </a>
+            <a href="/groups" class="nav-button groups">Groups</a>
+            <a href="/users/me" class="nav-button profile users">Profile</a>
+          </div>
+          <div class="hidden-xs hidden-sm col-md-3">
+            <a href="/users/me/settings" class="settings pull-right">Settings</a>
+            <a href="/search" class="search pull-right">Search</a>
+            <a class="pull-right predict-right" data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new<% if @group %>?group_id=<%=@group.id%><% end %>" title="Make a prediction">
+              Predict
+            </a>
+          </div>
+        </div>
+    </header>
+
+      <div class="content container" id="<%= controller_name%>-<%= action_name %>-container">
+        <div  class="limit-size-med">
+          <%= yield %>
         </div>
       </div>
-    </header>
-    <div class="content container" id="<%= controller_name%>-<%= action_name %>-container">
-      <%= yield %>
-    </div>
     <div class="modal fade" id="createPredictionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     </div>
     <div class="modal fade" id="sharePrediction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     </div>
-    <div id="badge-modal-container">
-    </div>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <script>
+      var unseenCount = '<%= @unseen_activities %>';
+      var controller = '<%= controller.controller_name %>';
+      var action = '<%= controller.action_name %>';
+      $('header .' + controller).addClass('active')
+      if (controller == 'users' && action == 'settings') {
+          $('header .users').removeClass('active')
+          $('header .settings').addClass('active')
+      }
+      if (unseenCount > 0) {
+        $('header .activities').addClass('hasUnseen')
+      }
+    </script>
   </body>
 </html>

@@ -54,10 +54,9 @@
 @import "loading";
 
 @import "groups";
-@import "badges";
 
 body {
-	margin-top:50px;
+	margin-top:100px;
 }
 
 .btn {
@@ -92,74 +91,6 @@ h3 {
 	font-size: 0.75em;
 }
 
-#topNav {
-	.logo {
-		height: 50px;
-	}
-	li a {
-		padding: 0px;
-		margin: 0px;
-
-	}
-	.home, .history, .activity, .badges, .groups, .search, .predict {
-		background-size: 25px 25px;
-		width: 50px;
-		height: 50px;
-		background-repeat: no-repeat;
-		background-position: center;
-	}
-	.home {
-		.img-retina("icons/sd/nav_home.png", "icons/hd/nav_home.png", 25px, 25px);
-		&.active, &:active {
-			.img-retina("icons/sd/nav_home_active.png", "icons/hd/nav_home_active.png", 25px, 25px);
-		}
-	}
-	.history {
-		.img-retina("icons/sd/nav_history.png", "icons/hd/nav_history.png", 25px, 25px);
-		&.active, &:active {
-			.img-retina("icons/sd/nav_history_active.png", "icons/hd/nav_history_active.png", 25px, 25px);
-		}
-	}
-
-	.activity {
-		.img-retina("icons/sd/nav_activity.png", "icons/hd/nav_activity.png", 25px, 25px);
-		&.active, &:active {
-			.img-retina("icons/sd/nav_activity_active.png", "icons/hd/nav_activity_active.png", 25px, 25px);
-		}
-	}
-
-	.badges {
-		.img-retina("icons/sd/nav_badges.png", "icons/hd/nav_badges.png", 25px, 25px);
-		&.active, &:active {
-			.img-retina("icons/sd/nav_badges_active.png", "icons/hd/nav_badges_active.png", 25px, 25px);
-		}
-	}
-	.groups {
-		.img-retina("icons/nav/nav_groups.png", "icons/nav/nav_groups@2x.png", 25px, 25px);
-		&.active, &:active {
-			.img-retina("icons/nav/nav_groups_active.png", "icons/nav/nav_groups_active@2x.png", 25px, 25px);
-		}
-	}
-	.search {
-		margin-right: 20px;
-		.img-retina("icons/sd/nav_search.png", "icons/hd/nav_search.png", 25px, 25px);
-		&.active, &:active {
-			.img-retina("icons/sd/nav_search_active.png", "icons/hd/nav_search_active.png", 25px, 25px);
-		}
-	}
-	.predict {
-		.img-retina("icons/sd/nav_predict.png", "icons/hd/nav_predict.png", 25px, 25px);
-		&.active, &:active {
-			.img-retina("icons/sd/nav_predict.png", "icons/hd/nav_predict_active.png", 25px, 25px);
-		}
-	}
-	.dropdown-menu {
-		li {
-			padding-left: 10px;
-		}
-	}
-}
-
 #new_prediction {
 	.body {
 		height: 100px;
@@ -175,11 +106,16 @@ h3 {
 }
 
 @import "predictions";
+#predictionsList {
+	padding: 0px;
+}
 
 .stat-values {
 	font-size:2em;
 	margin-top: 15px;
 }
+
+@import "users";
 
 @import "activities";
 
@@ -275,10 +211,9 @@ input[type="date"], input[type="time"] {
 	.img-retina("no_content_image.png", "no_content_image@2x.png", 150px, 150px);
 	text-align:center;
 	height:300px;
-	margin-top: 30px;
-	background-position: center top;
+	background-position: center 30px;
 	background-repeat: no-repeat;
-	padding-top: 155px;
+	padding-top: 185px;
 	.sansLight;
 	a {
 		text-decoration: none;
@@ -289,6 +224,9 @@ input[type="date"], input[type="time"] {
 
 .limit-size-small {
 	max-width:480px;margin: auto;
+}
+.limit-size-med {
+	max-width:640px;margin:auto;
 }
 
 .knoda-green-light {
@@ -365,4 +303,10 @@ input[type="date"], input[type="time"] {
 	.sprite-share_embed2x{ background-position: 0 -110px; width: 120px; height: 120px; }
 	.sprite-share_facebook2x{ background-position: 0 -390px; width: 120px; height: 120px; }
 	.sprite-share_twitter2x{ background-position: 0 -670px; width: 120px; height: 120px; }
+}
+
+@import "postlogin-navigation";
+
+.avatar-circle {
+	border: 1px solid #fff;
 }

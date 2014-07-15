@@ -3,6 +3,8 @@ class HomeController < ApplicationController
   def index
     if user_signed_in?
       if current_user.avatar?
+        params.delete :action
+        params.delete :controller
         redirect_to :controller => 'predictions', :action => 'index', :params => params
       else
         redirect_to "/users/me/avatar"
@@ -74,7 +76,6 @@ class HomeController < ApplicationController
       }
 
       begin
-        puts params
         RestClient.get("http://www.google-analytics.com/collect", params: params, timeout: 4, open_timeout: 4)
         return true
       rescue  RestClient::Exception => rex
