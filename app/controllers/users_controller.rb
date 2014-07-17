@@ -2,7 +2,7 @@ class UsersController < AuthenticatedController
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:create]
   skip_before_action :unseen_activities, only: [:create]
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :crop, :default_avatar, :avatar_upload, :settings, :history]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :crop, :avatar_upload, :settings, :history]
   skip_before_action :verify_authenticity_token, only: [:avatar_upload]
 
   # GET /users/1
@@ -36,7 +36,6 @@ class UsersController < AuthenticatedController
   end
 
   def avatar
-    @avatar_version = 1 + rand(5)
   end
 
   def avatar_upload
@@ -45,16 +44,14 @@ class UsersController < AuthenticatedController
     render :json => {success: false}, :status => :ok
   end
 
-  def default_avatar
-    av = params[:avatar_version] || (1 + rand(5))
-    p = Rails.root.join('app', 'assets', 'images', 'avatars', "avatar_#{av}@2x.png")
-    @user.avatar_from_path p
-    @user.save
-    redirect_to params[:destination]
-  end
-
   def create
     @user = User.new(user_params)
+    if @user.avatar.blank?
+      av = (1 + rand(5))
+      p = Rails.root.join('app', 'assets', 'images', 'avatars', "avatar_#{av}@2x.png")
+      @user.avatar_from_path p
+      @user.save
+    end
     if @user.save
       UserEvent.new(:user_id => @user.id, :name => 'SIGNUP', :platform => extra_create_params['signup_source']).save
       sign_in :user, @user
