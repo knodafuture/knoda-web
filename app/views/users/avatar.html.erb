@@ -3,7 +3,7 @@
   $(document).ready(function() {
     // Custom example logic
     function $(id) {
-      return document.getElementById(id); 
+      return document.getElementById(id);
     }
 
     var uploader = new plupload.Uploader({
@@ -11,14 +11,14 @@
       browse_button : 'pickfiles', // you can pass in id...
       container: $('container'), // ... or DOM Element itself
       max_file_size : '10mb',
-      
-      // Fake server response here 
+
+      // Fake server response here
       // url : '../upload.php',
       url: "/users/me/avatar_upload",
       resize: {
         width: 1000,
         height: 1000
-      },      
+      },
       flash_swf_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/flash/Moxie.cdn.swf',
       silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap',
       filters : [
@@ -45,7 +45,7 @@
   </script>
 <div class="row">
   <div class="col-md-6 col-md-offset-3" style="text-align:center">
-    <%= image_tag("avatars/avatar_#{@avatar_version}@2x.png", :size => "200x200") %>
+    <%= image_tag(avatar_big(@user), :size => "200x200") %>
   </div>
 </div>
 <div class="row" id="avatarSelection">
@@ -53,9 +53,9 @@
 		<div class="col-md-6 col-md-offset-3" style="text-align:center">
       <div id="container">
           <a id="pickfiles" class="useDefault btn btn-success">Choose File</a>
-          <a href="/users/<%= @user.username %>/default_avatar?avatar_version=<%= @avatar_version %>&destination=<%=params[:destination]%>" class="useDefault btn btn-primary">Use Default</a>
-      </div>      
-      
+          <a href="<%= params[:destination] || '/' %>" class="useDefault btn btn-primary">Keep Current</a>
+      </div>
+
     </div>
-    <% end %>    
+    <% end %>
 </div>
