@@ -120,7 +120,13 @@ class GroupsController < AuthenticatedController
   end
 
   def avatar
-    @avatar_version = 1 + rand(5)
+    render "shared/avatar", :locals => {
+        :upload_url => "/groups/#{@group.id}/avatar_upload",
+        :crop_url => "/groups/#{@group.id}/crop",
+        :current_avatar_url => avatar_big(@group),
+        :final_destination => "/groups/#{@group.id}",
+        :noun => 'user'
+      }
   end
 
   def avatar_upload
@@ -130,6 +136,12 @@ class GroupsController < AuthenticatedController
   end
 
   def crop
+    render "shared/crop",
+        :locals => {
+          :resource => @group,
+          :avatar_start_url => "/groups/#{@group.id}/avatar",
+          :update_url => "/groups/#{@group.id}"
+        }
   end
 
   def predictions

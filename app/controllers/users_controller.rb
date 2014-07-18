@@ -36,6 +36,14 @@ class UsersController < AuthenticatedController
   end
 
   def avatar
+  render "shared/avatar",
+      :locals => {
+        :upload_url => "/users/me/avatar_upload",
+        :crop_url => "/users/me/crop?destination=#{params[:destination]}",
+        :current_avatar_url => avatar_big(@user),
+        :final_destination => params[:destination] || '/',
+        :noun => 'profile'
+      }
   end
 
   def avatar_upload
@@ -66,6 +74,12 @@ class UsersController < AuthenticatedController
   end
 
   def crop
+    render "shared/crop",
+        :locals => {
+          :resource => @user,
+          :avatar_start_url => "/users/me/avatar?destination=#{params[:destination]}",
+          :update_url => "/users/me?destination=#{params[:destination]}"
+        }
   end
 
   def update

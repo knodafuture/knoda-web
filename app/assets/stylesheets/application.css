@@ -3,10 +3,6 @@
  *= require jquery.Jcrop
  */
 
-#avatarSelection {
-  margin-top: 50px;
-}
-
 .content {
   font-family: 'Open Sans', sans-serif;
   color: #666;
