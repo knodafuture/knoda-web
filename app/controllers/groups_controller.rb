@@ -125,7 +125,7 @@ class GroupsController < AuthenticatedController
         :crop_url => "/groups/#{@group.id}/crop",
         :current_avatar_url => avatar_big(@group),
         :final_destination => "/groups/#{@group.id}",
-        :noun => 'user'
+        :noun => 'group'
       }
   end
 
