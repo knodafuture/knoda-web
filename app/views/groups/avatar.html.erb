@@ -3,7 +3,7 @@
   $(document).ready(function() {
     // Custom example logic
     function $(id) {
-      return document.getElementById(id); 
+      return document.getElementById(id);
     }
 
     var uploader = new plupload.Uploader({
@@ -15,7 +15,7 @@
       resize: {
         width: 1000,
         height: 1000
-      },      
+      },
       flash_swf_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/flash/Moxie.cdn.swf',
       silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap',
       filters : [
@@ -43,7 +43,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3" style="text-align:center">
     <% if @group.avatar %>
-      <img src="<%= avatar_big(@group) %>" class="avatar_big" style="height:200px;width:200px;"/> 
+      <img src="<%= avatar_big(@group) %>" class="avatar_big" style="height:200px;width:200px;"/>
     <% else %>
       <%= image_tag("avatars/avatar_#{@avatar_version}@2x.png", :size => "200x200") %>
     <% end %>
@@ -54,9 +54,9 @@
 		<div class="col-md-6 col-md-offset-3" style="text-align:center">
       <div id="container">
           <a id="pickfiles" class="useDefault btn btn-success">Choose File</a>
-          <a href="/groups/<%= @group.id %>/default_avatar?avatar_version=<%= @avatar_version %>" class="useDefault btn btn-primary">Skip</a>
-      </div>      
-      
+          <a href="/groups/<%= @group.id %>" class="useDefault btn btn-primary">Keep Current</a>
+      </div>
+
     </div>
-    <% end %>    
+    <% end %>
 </div>

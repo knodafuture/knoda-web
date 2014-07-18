@@ -51,7 +51,6 @@ KnodaWeb::Application.routes.draw do
       get 'settings'
       get 'invite'
       get 'avatar'
-      get 'default_avatar'
       get 'crop'
       post 'avatar_upload'
       get 'share'

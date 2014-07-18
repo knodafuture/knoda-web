@@ -2,7 +2,7 @@ class GroupsController < AuthenticatedController
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:join]
   skip_before_action :unseen_activities, only: [:join]
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :settings, :leaderboard, :invite, :avatar, :crop, :default_avatar, :avatar_upload, :share, :predictions]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :settings, :leaderboard, :invite, :avatar, :crop, :avatar_upload, :share, :predictions]
 
   # GET /groups
   # GET /groups.json
@@ -29,12 +29,12 @@ class GroupsController < AuthenticatedController
     if @group.avatar.blank?
       av = (1 + rand(5))
       p = Rails.root.join('app', 'assets', 'images', 'avatars', "groups_avatar_#{av}@2x.png")
-      @group.avatar_from_path p          
+      @group.avatar_from_path p
       @group.save
     end
-    current_user.memberships.where(:group_id => @group.id).first.update(role: 'OWNER')    
+    current_user.memberships.where(:group_id => @group.id).first.update(role: 'OWNER')
     render :json => @group
-  end  
+  end
 
   def update
     respond_to do |format|
@@ -43,13 +43,13 @@ class GroupsController < AuthenticatedController
         if params[:group][:avatar].blank? and @group.cropping?
           @group.reprocess_avatar
         end
-        format.html { 
+        format.html {
           redirect_to "/groups/#{@group.id}/settings"
         }
         format.json { render json: @group }
       else
         format.json { render json: @group.errors, status: :unprocessable_entity }
-        format.html { 
+        format.html {
           redirect_to "/groups/#{@group.id}/settings"
         }
       end
@@ -67,7 +67,7 @@ class GroupsController < AuthenticatedController
       end
     else
       render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
-    end    
+    end
   end
 
   def settings
@@ -102,10 +102,10 @@ class GroupsController < AuthenticatedController
       else
         @scoredPredictions = ScoredPrediction.all.to_a
         Rails.cache.write("scoredPredictions_home", @scoredPredictions, timeToLive: 1.hours)
-      end         
+      end
       @groupInvitation = true
       render "home/index", :layout => 'home'
-    end    
+    end
   end
 
   def invite
@@ -129,16 +129,8 @@ class GroupsController < AuthenticatedController
     render :json => {success: false}, :status => :ok
   end
 
-  def default_avatar
-    av = params[:avatar_version] || (1 + rand(5))
-    p = Rails.root.join('app', 'assets', 'images', 'avatars', "groups_avatar_#{av}@2x.png")
-    @group.avatar_from_path p
-    @group.save
-    redirect_to "/groups/#{params[:id]}"
-  end  
-
   def crop
-  end  
+  end
 
   def predictions
     @predictions = Prediction.recent.latest.for_group(@group.id)
@@ -146,8 +138,8 @@ class GroupsController < AuthenticatedController
     @predictions = @predictions.offset(param_offset).limit(param_limit)
     if param_offset.to_i > 0
       render :partial => "predictions/predictions"
-    end    
-  end  
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -157,5 +149,5 @@ class GroupsController < AuthenticatedController
 
     def group_params
       params.require(:group).permit(:name, :description, :avatar,:crop_x, :crop_y, :crop_w, :crop_h)
-    end        
+    end
 end
