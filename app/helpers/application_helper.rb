@@ -23,11 +23,11 @@ module ApplicationHelper
     end
   end
 
-  def avatar_big(user)
-    if user.avatar_image
-      return user.avatar_image[:big]
+  def avatar_big(resource)
+    if resource.avatar_image
+      return resource.avatar_image[:big]
     else
-      return image_path('avatars/avatar_1@2x.png')
+      return 'avatars/avatar_1@2x.png'
     end
   end
 
@@ -102,7 +102,7 @@ module ApplicationHelper
         end
       end
     end
-  end  
+  end
 
   def display_close_status(prediction)
     if prediction.expires_at > Time.now

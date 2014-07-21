@@ -4,7 +4,7 @@
   {
     var rx = 100 / coords.w;
     var ry = 100 / coords.h;
-    var ratio = <%= @group.avatar_geometry(:original).width %> / $('.jcrop-holder img').first().width(); 
+    var ratio = <%= @group.avatar_geometry(:original).width %> / $('.jcrop-holder img').first().width();
 
     $('#preview').css({
       width: Math.round(rx * <%= @group.avatar_geometry(:big).width.to_i %>) + 'px',
@@ -42,8 +42,10 @@
     <br />
     <div class="form-group">
       <div class="row">
-        <div class="col-xs-12 col-sm-6"><%= f.submit "Use this image", :class =>'btn btn-success', :style=>"width: 100%" %></div>
-        <div class="col-xs-12 col-sm-6"><a href="/groups/<%= @group.id %>/avatar" class="btn btn-success" style="display:inline-block;width: 100%" >Choose a different image</a></div>
+        <div class="col-xs-12"><%= f.submit "Use this image", :class =>'btn btn-success', :style=>"width: 300px" %></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12"><a href="/groups/<%= @group.id %>/avatar>" class="btn btn-success" style="width: 300px;margin-top:20px;" >Choose a different image</a></div>
       </div>
     </div>
   </div>

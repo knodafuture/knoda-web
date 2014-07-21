@@ -1,0 +1,59 @@
+<script language="Javascript">
+// jQuery not really required, it's here to overcome an inability to pass configuration options to the fiddle remotely
+$(document).ready(function() {
+  // Custom example logic
+  function $(id) {
+    return document.getElementById(id);
+  }
+
+  var uploader = new plupload.Uploader({
+    runtimes : 'html5,flash,silverlight,html4',
+    browse_button : 'pickfiles', // you can pass in id...
+    container: $('container'), // ... or DOM Element itself
+    max_file_size : '10mb',
+    url: "<%= upload_url %>",
+    resize: {
+      width: 1000,
+      height: 1000
+    },
+    flash_swf_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/flash/Moxie.cdn.swf',
+    silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap',
+    filters : [
+      {title : "Image files", extensions : "jpg,jpeg,gif,png"},
+    ],
+    init: {
+      PostInit: function() {
+      },
+
+      FilesAdded: function(up, files) {
+        startLoading();
+        uploader.start();
+      },
+      UploadComplete: function(up, files) {
+        stopLoading();
+        window.location = "<%= crop_url %>"
+      }
+    }
+  });
+
+  uploader.init();
+});
+
+</script>
+<div class="row">
+<div class="col-xs-12" style="text-align:center;margin-top: 10px;">
+  <img src="<%= current_avatar_url %>" class="avatar_big" style="height:200px;width:200px;"/>
+</div>
+</div>
+<div class="row" id="avatarSelection">
+<form accept-charset="UTF-8" enctype="multipart/form-data" method="post">
+  <div id="container">
+    <div class="row" style="text-align:center;margin-top: 10px;">
+      <a id="pickfiles" class="useDefault btn btn-success" style="width:300px">Choose a different <%= noun %> image</a>
+    </div>
+    <div class="row" style="text-align:center;margin-top: 10px;">
+      <a href="<%= final_destination %>" class="useDefault btn btn-primary" style="width:300px">Keep this <%= noun %> image</a>
+    </div>
+  </div>
+</form>
+</div>

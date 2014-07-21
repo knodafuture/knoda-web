@@ -33,7 +33,6 @@ KnodaWeb::Application.routes.draw do
   resources :users do
     member do
       get 'avatar'
-      get 'default_avatar'
       get 'crop'
       post 'avatar_upload'
       get 'settings'
@@ -52,7 +51,6 @@ KnodaWeb::Application.routes.draw do
       get 'settings'
       get 'invite'
       get 'avatar'
-      get 'default_avatar'
       get 'crop'
       post 'avatar_upload'
       get 'share'
