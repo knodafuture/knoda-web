@@ -22,7 +22,7 @@ class UsersController < AuthenticatedController
       challengeHash = Hash[predictionIds.map.with_index.to_a]
       @predictions = Prediction.includes(:challenges, :comments).where(:id => predictionIds).to_a.sort!{|p1,p2| challengeHash[p1.id] <=> challengeHash[p2.id] }
     else
-      @predictions = @user.predictions.order('created_at desc').offset(param_offset).limit(param_limit).id_lt(param_id_lt)
+      @predictions = @user.predictions.visible_to_user(current_user).order('created_at desc').offset(param_offset).limit(param_limit).id_lt(param_id_lt)
     end
     render 'show'
   end
