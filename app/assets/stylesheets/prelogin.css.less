@@ -232,12 +232,31 @@ div {
   }
 }
 
+#share {
+  .percentage {
+    font-size:36px;
+  }
+}
+
 /* Small devices (tablets, 768px and up) */
-@media (min-width: @screen-sm-min) {
+@media (max-width: @screen-sm-min) {
   #home-container {
   .content {
     .app-badges {
       text-align:left;
+    }
+  }
+  }
+
+  #share {
+    p {
+      font-size: 14px;
+    }
+    div{
+
+        font-size:12px;
+    .percentage {
+      font-size: 26px;
     }
   }
   }
@@ -252,5 +271,83 @@ div {
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @screen-lg-min) {
   #home-container {
+  }
+}
+
+@action-height: 40px;
+
+@media (min-width: 500px) {
+  #embed-container {
+    .header{
+      height:50px;
+      img {
+        height: 50px;
+      }
+    }
+    .prediction-username {
+      font-size: 24px;
+      padding-left:20px;
+      line-height: 50px;
+    }
+    .prediction-body, .prediction-meta {
+      .sansLight;
+      padding-left:10px;
+      margin-bottom:10px;
+      margin-top: 10px;
+    }
+    .prediction-body {
+      font-size: 18px;
+      margin-bottom:10px;
+    }
+    .prediction-meta {
+      font-size: 12px;
+    }
+    .resolved {
+      img {
+        width: 36px;
+      }
+    }
+    .tally {
+      .agree, .disagree {
+        font-size: 24px;
+        line-height: 60px;
+      }
+      .percentage {
+        color: @green-dark;
+        font-size: 36px;
+        line-height: 36px;
+      }
+      .percentage-label {
+        font-size: 14px;
+      }
+      .outcome-text {
+        font-size: 16px;
+        color: @green-dark;
+      }
+    }
+    .call-to-action {
+      font-size: 18px;
+      height: @action-height;
+      line-height: @action-height;
+    }
+    .logo {
+      width: 130px;
+      height: 50px;
+      background-position: 0 -734px;
+      background-size: 130px 864px;
+    }
+    .action-buttons {
+      background: transparent;
+      height: @action-height;
+      .btn-agree, .btn-disagree {
+        line-height: @action-height;
+      }
+      .sep {
+        background-position: 0 -564px; width: 24px; height: @action-height;
+      }
+    }
+  }
+  .progress-bar {
+    line-height: 20px;
   }
 }

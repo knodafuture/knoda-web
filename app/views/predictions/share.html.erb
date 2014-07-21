@@ -32,7 +32,7 @@
 
 <%= render "home/prelogin/header"%>
 
-<div class="content container full-height-content" style="width: 600px;">
+<div id="share" class="content container full-height-content" style="max-width: 600px; width: 100%;">
 <div class="panel panel-default predictionContainer" data-prediction-id="<%= @prediction.id%>">
     <div class="panel-heading" style="padding:0px 10px; background-color: #EFEFEF border-bottom-left-radius:10px; border-bottom-right-radius:15px;">
     <div class="row userInfo" style="height:40px ">
@@ -67,7 +67,7 @@
           <p class="outcome-text"><%= @prediction.user.username %> <% if @prediction.outcome == true %>Won<%else%>Lost<%end%>!</p>
         </div>
       <% else %>
-        <div class="col-xs-6 center "><span style="font-size:36px;" class="percentage"><%= @prediction.agree_percentage %>%</span><p class="percentage-label">Agree</p></div>
+        <div class="col-xs-6 center "><span  class="percentage"><%= @prediction.agree_percentage %>%</span><p class="percentage-label">Agree</p></div>
       <% end %>
       <div style="font-size:24px; class="col-xs-3 center disagree"><%= @prediction.disagreed_count %></div>
     </div>
