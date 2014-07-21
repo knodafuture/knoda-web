@@ -81,4 +81,8 @@ KnodaWeb::Application.routes.draw do
       patch 'update_password'
     end
   end
+
+  namespace :admin do
+    get '/' => "home#index"
+  end
 end
