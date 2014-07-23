@@ -19,6 +19,9 @@ window.PredictionCreateView = class PredictionCreateView
         @disallowShare()
       else
         @allowShare()
+    $('.help-text').popover({
+        template: '<div class="popover help" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+      })
 
 
   allowShare: =>

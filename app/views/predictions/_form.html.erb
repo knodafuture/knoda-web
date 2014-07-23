@@ -23,6 +23,14 @@
         <%= f.input_field :tags, :collection => ['SPORTS','ENTERTAINMENT','PERSONAL','BUSINESS','WEATHER', 'POLITICS', 'STOCKS','FUNNY','OTHER'], :class =>'form-control category', :prompt => 'Select a Category' %>
         </div>
         <label for="prediction_expires_at">Voting Ends On...</label>
+        <span class="help-text"
+          data-html="true"
+          data-title="Choosing a Voting Date"
+          data-content="<p>Knoda users will be able to vote on your prediction until this time.</p><p>Make sure to choose a time BEFORE the result of your prediction will be known.</p>"
+          data-trigger="click hover"
+          data-placement="top">
+          What's this?
+          </span>
         <div class="form-group">
           <input type="text" name="prediction[expires_at]" id="prediction_expires_at" style="display:none;"/>
           <div class="row">

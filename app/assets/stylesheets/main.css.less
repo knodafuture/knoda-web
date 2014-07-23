@@ -79,9 +79,6 @@ h3 {
 
 @import "font";
 
-.right {
-	text-align: right;
-}
 .center {
 	text-align: center;
 }
@@ -311,4 +308,25 @@ input[type="date"], input[type="time"] {
 
 .avatar-circle {
 	border: 1px solid #fff;
+}
+
+.help-text {
+	.sansRegular;
+	color: @green-light;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.popover.help {
+	.popover-title {
+		.sansRegular;
+		font-size: 14px;
+		background-color: @green-light;
+		color: @white;
+		text-align:center;
+	}
+	.popover-content {
+		.sansLight;
+		font-size: 14px;
+	}
 }
