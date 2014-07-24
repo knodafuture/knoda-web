@@ -84,5 +84,9 @@ KnodaWeb::Application.routes.draw do
 
   namespace :admin do
     get '/' => "home#index"
+    post '/test_data/prediction' => "test_data#create_prediction"
+    post '/test_data/vote' => "test_data#create_votes"
+    post '/test_data/comment' => "test_data#create_comments"
+
   end
 end
