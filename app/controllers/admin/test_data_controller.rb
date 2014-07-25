@@ -4,6 +4,7 @@ class Admin::TestDataController < Admin::AdminController
     randyBacon = 0
     x = prediction_params
     y = my_params
+    @arr = Array.new
     amount = y[:amount]
     amount = amount.to_i
     amount.times do |p|
@@ -42,9 +43,12 @@ class Admin::TestDataController < Admin::AdminController
       x[:expires_at] = expires
       puts x
       p = Prediction.create(x)
+      @arr << p.id
 
     end
-    redirect_to "/admin"
+    render "admin/home/index"
+    puts "The ids:"
+    puts @arr
   end
 
 
