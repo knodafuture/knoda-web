@@ -52,7 +52,7 @@ class Admin::AdminController < ApplicationController
       u = User.order('random() desc').first
       #CREATECHALLENGE
       v = Challenge.create(:user => u, :prediction_id => predictionid, :agree => agree)
-    end                                 
+    end
   end
 
   def create_comments
@@ -85,8 +85,8 @@ class Admin::AdminController < ApplicationController
 
   protected
     def admin_required
-      authenticate_or_request_with_http_basic do |user_name, password|
-        user_name == 'admin' && password == 'knoda'
+      if not current_user.is_admin?
+        redirect_to '/'
       end
     end
 end
