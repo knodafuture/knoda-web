@@ -1,48 +1,105 @@
 <html>
 <body>
   <h1 class="text-center">Welcome to the Admin Page!</h1>
-  <div class="row">
-    <div class="col-md-4">
-      <%=  form_tag(controller: "test_data", action: "create_prediction", method: "post",) do %>
-      <%= label_tag(:amount, "Amount of Predictions:") %>
-      <%= text_field_tag(:amount) %>
-      <%= label_tag(:mins, "Minutes Until Expire:") %>
-      <%= text_field_tag(:mins) %>
-      <div></div>
-      <%= submit_tag 'Create Predictions' %>
+  <div class="panel-group" id="accordian">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            Create Predictions, Votes, Comments
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse<% if not @arr == nil %>in<% end%>">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-4">
+              <%=  form_tag(controller: "test_data", action: "create_prediction", method: "post",) do %>
+              <%= label_tag(:amount, "Amount of Predictions:") %>
+              <%= text_field_tag(:amount) %>
+              <%= label_tag(:mins, "Minutes Until Expire:") %>
+              <%= text_field_tag(:mins) %>
+              <%= label_tag(:username, "Specify User (if left blank, random user picked):") %>
+              <%= text_field_tag(:username) %>
+              <%= submit_tag 'Create Predictions' %>
 
-      <% end %>
-    </div>
-    <div class="col-md-4">
-      <%=  form_tag(controller: "test_data", action: "create_votes", method: "post",) do %>
-      <%= label_tag(:amount, "Amount of Votes:") %>
-      <%= text_field_tag(:amount) %>
-      <%= label_tag(:yesno, "Enter random, yes, or false") %>
-      <%= text_field_tag(:yesno) %>
-      <%= label_tag(:prediction_id, "Enter prediction id:") %>
-      <%= text_field_tag(:prediction_id) %>
-      <%= submit_tag 'Create Votes' %>
-      <% end %>
-    </div>
+              <% end %>
+            </div>
+            <div class="col-md-4">
+              <%=  form_tag(controller: "test_data", action: "create_votes", method: "post",) do %>
+              <%= label_tag(:amount, "Amount of Votes:") %>
+              <%= text_field_tag(:amount) %>
+              <%= label_tag(:yesno, "Enter random, yes, or false") %>
+              <%= text_field_tag(:yesno) %>
+              <%= label_tag(:prediction_id, "Enter prediction id:") %>
+              <%= text_field_tag(:prediction_id) %>
+              <%= submit_tag 'Create Votes' %>
+              <% end %>
+            </div>
 
-    <div class="col-md-4">
-      <%=  form_tag(controller: "test_data", action: "create_comments", method: "post",) do %>
-      <%= label_tag(:amount, "Amount of Comments:") %>
-      <%= text_field_tag(:amount) %>
-      <%= label_tag(:prediction_id, "Enter prediction id:") %>
-      <%= text_field_tag(:prediction_id) %>
-      <%= submit_tag 'Create Comments' %>
-      <% end %>
-    </div>
-  </div>
+            <div class="col-md-4">
+              <%=  form_tag(controller: "test_data", action: "create_comments", method: "post",) do %>
+              <%= label_tag(:amount, "Amount of Comments:") %>
+              <%= text_field_tag(:amount) %>
+              <%= label_tag(:prediction_id, "Enter prediction id:") %>
+              <%= text_field_tag(:prediction_id) %>
+              <%= submit_tag 'Create Comments' %>
+              <% end %>
+            </div>
+          </div>
 
-  <div class="row text-center">
-    <% if not @arr == nil %>
-    <h4 class="text-center">The Id's from you're create:</h4>
-      <% @arr.each do |f| %>
-      <%= f.to_s %>
-      <% end %>
-    <% end %>
+          <div class="row text-center">
+            <% if not @arr == nil %>
+            <h4 class="text-center">The Id's from you're create:</h4>
+              <% @arr.each do |f| %>
+              <%= f.to_s %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+            Users Lookup
+          </a>
+        </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse <% if not @u == nil %>in<% end%>">
+        <div class="panel-body">
+          <div class="row">
+            <%=  form_tag(controller: "test_data", action: "user_search", method: "post",) do %>
+            <%= label_tag(:searchinput, "Search for user:") %>
+            <%= text_field_tag(:searchinput) %>
+            <%= submit_tag("Search") %>
+            <% end %>
+          </div>
+          <div class="row">
+            <% if not @u == nil %>
+            <h4 class="text-center">The users:</h4>
+              <% @u.each do |f| %>
+              <div class="row">
+                <div class="col-md-3">
+                  Username:
+                </div>
+                <div class = "col-md-3">
+                  <%= f.username %>
+                </div>
+                <div class = "col-md-3">
+                  Email:
+                </div>
+                <div class = "col-md-3">
+                  <%= f.email %>
+                </div>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>

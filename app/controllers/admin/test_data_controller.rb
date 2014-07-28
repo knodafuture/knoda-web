@@ -7,10 +7,18 @@ class Admin::TestDataController < Admin::AdminController
     @arr = Array.new
     amount = y[:amount]
     amount = amount.to_i
+    if y[:username] == nil
+      setUser = true
+    else
+      setUser = false
+      x[:user] = User.where("username like ?", "%#{y[:username]}%").first
+    end
     amount.times do |p|
       #USER
-      u = User.order('random() desc').first
-      x[:user] = u
+      if setUser
+        u = User.order('random() desc').first
+        x[:user] = u
+      end
 
       #CATEGORY
       cat = ['SPORTS']
@@ -113,6 +121,14 @@ class Admin::TestDataController < Admin::AdminController
     redirect_to "/admin"
   end
 
+  def user_search
+    x = search_param
+    name = x[:searchinput]
+    name = name.downcase
+    @u = User.where("username like ?", "%#{name}%")
+    render "admin/home/index"
+  end
+
 
   private
     def prediction_params
@@ -124,12 +140,15 @@ class Admin::TestDataController < Admin::AdminController
     end
 
     def my_params
-      params.permit(:mins, :amount, :yesno)
+      params.permit(:mins, :amount, :yesno, :username)
     end
 
     def comment_params
       params.permit(:user, :prediction_id, :text)
     end
 
+    def search_param
+      params.permit(:searchinput)
+    end
 
 end
