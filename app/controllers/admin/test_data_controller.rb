@@ -7,7 +7,7 @@ class Admin::TestDataController < Admin::AdminController
     @arr = Array.new
     amount = y[:amount]
     amount = amount.to_i
-    if y[:username] == nil
+    if y[:username] == ""
       setUser = true
     else
       setUser = false

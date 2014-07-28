@@ -80,17 +80,23 @@
             <h4 class="text-center">The users:</h4>
               <% @u.each do |f| %>
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">
                   Username:
                 </div>
-                <div class = "col-md-3">
+                <div class = "col-md-2">
                   <%= f.username %>
                 </div>
-                <div class = "col-md-3">
+                <div class = "col-md-2">
                   Email:
                 </div>
-                <div class = "col-md-3">
+                <div class = "col-md-2">
                   <%= f.email %>
+                </div>
+                <div class="col-md-2">
+                  Admin:
+                </div>
+                <div class="col-md-2">
+                  <%= check_box_tag(:roles, "Admin") %>
                 </div>
               </div>
               <% end %>
