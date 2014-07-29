@@ -1,0 +1,15 @@
+<html>
+  <body>
+    <div class="row">
+      <%= form_tag(controller: "contests", action: "create_contest", method: "post") do %>
+
+      <%= label_tag(:name, "Name the contest!") %>
+      <%= text_field_tag(:name) %>
+
+      <%= label_tag(:description, "Description:") %>
+      <%= text_field_tag(:description) %>
+
+      <%= submit_tag 'Create' %>
+      <% end %>
+  </body>
+  </html>

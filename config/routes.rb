@@ -88,6 +88,10 @@ KnodaWeb::Application.routes.draw do
     post '/test_data/vote' => "test_data#create_votes"
     post '/test_data/comment' => "test_data#create_comments"
     post '/test_data/user_search' => "test_data#user_search"
+  end
 
+  namespace :contests do
+    get '/' => "home#index"
+    post '/contests/create' => "contests#create_contest"
   end
 end
