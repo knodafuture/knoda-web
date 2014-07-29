@@ -1,16 +1,64 @@
 <html>
 <body>
-  <h1 class="text-center">Welcome to the Admin Page!</h1>
+  <h1 class="text-center">KNODA Administration Tools</h1>
   <div class="panel-group" id="accordian">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseUsers">
+          Users
+        </a>
+      </h4>
+    </div>
+    <div id="collapseUsers" class="panel-collapse collapse <% if not @u == nil %>in<% end%>">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-12">
+            <%=  form_tag(controller: "test_data", action: "user_search", method: "post",) do %>
+            <%= label_tag(:searchinput, "Search for user:") %>
+            <%= text_field_tag(:searchinput) %>
+            <%= submit_tag("Search") %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row"><div class="col-xs-12">
+          <% if not @u == nil %>
+          <table style="width:100%;">
+            <thead>
+              <tr>
+                <th>username</th>
+                <th>email</th>
+                <th>admin?</th>
+              </tr>
+            </thead>
+            <% @u.each do |f| %>
+            <tr>
+              <td>
+                <%= f.username %>
+              </td>
+              <td>
+                <%= f.email %>
+              </td>
+              <td>
+                <%= check_box_tag(:roles, "Admin") %>
+              </td>
+            </tr>
+            <% end %>
+          <% end %>
+        </table>
+        </div></div>
+      </div>
+    </div>
+    </div>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-            Create Predictions, Votes, Comments
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTestData">
+            Create Test Data (DO NOT USE ON PRODUCTION)
           </a>
         </h4>
       </div>
-      <div id="collapseOne" class="panel-collapse collapse<% if not @arr == nil %>in<% end%>">
+      <div id="collapseTestData" class="panel-collapse collapse<% if not @arr == nil %>in<% end%>">
         <div class="panel-body">
           <div class="row">
             <div class="col-md-4">
@@ -22,7 +70,6 @@
               <%= label_tag(:username, "Specify User (if left blank, random user picked):") %>
               <%= text_field_tag(:username) %>
               <%= submit_tag 'Create Predictions' %>
-
               <% end %>
             </div>
             <div class="col-md-4">
@@ -58,54 +105,6 @@
           </div>
         </div>
       </div>
-      <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-            Users Lookup
-          </a>
-        </h4>
-      </div>
-      <div id="collapseTwo" class="panel-collapse collapse <% if not @u == nil %>in<% end%>">
-        <div class="panel-body">
-          <div class="row">
-            <%=  form_tag(controller: "test_data", action: "user_search", method: "post",) do %>
-            <%= label_tag(:searchinput, "Search for user:") %>
-            <%= text_field_tag(:searchinput) %>
-            <%= submit_tag("Search") %>
-            <% end %>
-          </div>
-          <div class="row">
-            <% if not @u == nil %>
-            <h4 class="text-center">The users:</h4>
-              <% @u.each do |f| %>
-              <div class="row">
-                <div class="col-md-2">
-                  Username:
-                </div>
-                <div class = "col-md-2">
-                  <%= f.username %>
-                </div>
-                <div class = "col-md-2">
-                  Email:
-                </div>
-                <div class = "col-md-2">
-                  <%= f.email %>
-                </div>
-                <div class="col-md-2">
-                  Admin:
-                </div>
-                <div class="col-md-2">
-                  <%= check_box_tag(:roles, "Admin") %>
-                </div>
-              </div>
-              <% end %>
-            <% end %>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </body>
 </html>
