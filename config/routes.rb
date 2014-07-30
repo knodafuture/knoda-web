@@ -93,5 +93,6 @@ KnodaWeb::Application.routes.draw do
   namespace :contests do
     get '/' => "home#index"
     post '/contests/create' => "contests#create_contest"
+    
   end
 end

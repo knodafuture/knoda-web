@@ -1,15 +1,27 @@
-<html>
-  <body>
-    <div class="row">
-      <%= form_tag(controller: "contests", action: "create_contest", method: "post") do %>
+<div id="groups-index" class="limit-size-small" style="background-color:#fff;">
+  <div class="row">
+    <div class="col-xs-12 group-thumb">
+      <div class="thumbnail" style="min-height:105px;">
+        <div class="row">
+          <div class="col-xs-4 col-sm-3">
+              <a class="new-group" href="/contests/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/contests/new" title="Create a new contest" class="pull-left">
+                <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle"  style="width:80px;height:80px;margin:10px;"  />
+              </a>
+          </div>
+          <div class="col-xs-8 col-sm-9">
+              <div class="row row1">
+                <h3>
+                  <a href="/contest/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/contests/new" title="Create a new contest">Create a contest</a>
+                  <p class="smallCaption">Invite your friends, compete, and track bragging rights on the leaderboard</p>
+                </h3>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
 
-      <%= label_tag(:name, "Name the contest!") %>
-      <%= text_field_tag(:name) %>
+  <div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <%= render "contests/new" %>
+  </div>
 
-      <%= label_tag(:description, "Description:") %>
-      <%= text_field_tag(:description) %>
-
-      <%= submit_tag 'Create' %>
-      <% end %>
-  </body>
-  </html>
+  <div class
