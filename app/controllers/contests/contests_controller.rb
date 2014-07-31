@@ -11,24 +11,19 @@ class Contests::ContestsController < ApplicationController
       render "contests/home/index"
   end
 
-<<<<<<< HEAD
+
   def embed
     @user = current_user
     response.headers["X-XSS-Protection"] = "0"
     render 'contests/embed', :layout => false
   end
 
-  def new
-    @contest = Contest.new
-    render layout: false
-=======
+
   def add_prediction
     x = prediction_params
     @prediction = Prediction.new
     @prediction = Prediction.create(x)
-
     render"contests/home/index"
->>>>>>> contests
   end
 
 
