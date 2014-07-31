@@ -2,15 +2,22 @@ class Contests::ContestsController < ApplicationController
   before_filter :admin_required
 
   def create_contest
-      @contest = current_user.contests.create(contests_params)
+      p = contest_params
+      @contest = Contest.new
+      @contest = current_user.contests.create(p)
       #current_user.memberships.where(:contest_id => @contest.id).first.update(role: 'OWNER')
       render "contests/home/index"
   end
 
-  def new
-    @contest = Contest.new
-    render layout: false
+  def add_prediction
+    x = prediction_params
+    @prediction = Prediction.new
+    @prediction = Prediction.create(x)
+
+    render"contests/home/index"
   end
+
+
 
   def avatar
     render "shared/avatar", :locals => {
@@ -51,5 +58,9 @@ class Contests::ContestsController < ApplicationController
     end
     def contests_params
       params.permit(:name, :description, :avatar, :detail_url, :rules_url, :crop_x, :crop_y, :crop_w, :crop_h)
+    end
+
+    def prediciton_params
+      params.permit(:body, :user, :expires_at, :tags, :resolution_date, :contest_id)
     end
 end
