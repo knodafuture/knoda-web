@@ -21,6 +21,9 @@
 // Components
 @import "twitter/bootstrap/component-animations";
 @import "twitter/bootstrap/progress-bars";
+
+@import "font";
+
 .progress {
   overflow: hidden;
   height: 5px;
@@ -80,6 +83,21 @@ body{
 .logo {
 }
 #embed-container {
+  .username {
+    .sansLight;
+    font-size: 14px;
+  }
+  .prediction-body {
+    padding-left:30px;
+    padding-right: 5px;
+    .sansRegular;
+    font-size: 12px;
+  }
+  .prediction-meta {
+    font-size: 10px;
+    color: @green-light;
+    padding-left: 30px;
+  }
 }
 
 #embed-login-container {

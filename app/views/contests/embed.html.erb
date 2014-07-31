@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Knoda lets you predict anything, challenge your friends, and talk some trash.  Make your prediction today." />
     <%= csrf_meta_tags %>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:500,400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
     <link rel="icon" type="image/png" href="<%= image_path('favicon.png') %>" />
     <link rel="shortcut icon" type="image/png" href="<%= image_path('favicon.png') %>" />
     <%= stylesheet_link_tag "application-contest-embed" %>
@@ -24,7 +24,7 @@
     </style>
   </head>
   <body>
-    <div class="container embed-container">
+    <div class="container" id="embed-container">
       <div class="row">
         <div class="col-xs-12">
           <h1><%= @contest.name %></h1>
@@ -48,15 +48,46 @@
             <a>Predictions</a>
             <a>Standings</a>
           </div>
-        <div>
+        </div>
       </div>
-      <% @contest.predictions.each do |p| %>
-      <div class="row">
+      <% @contest.predictions.recent.latest.each do |prediction| %>
+      <div class="row prediction-item" data-prediction-id="<%= prediction.id %>">
         <div class="col-xs-12">
-          <%= p.body %>
-        <div>
+          <img src="<%= avatar_small(prediction.user) %>" style="display:inline-block; height: 25px; width:25px;" class="img-circle" />
+          <span class="username"><%= prediction.user.username %></span>
+          <% if prediction.user.verified_account %>
+            <%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
+          <% end %>
+          <p class="prediction-body"><%= prediction.body %></p>
+          <p class="prediction-meta"><%= voting_ends_on(prediction) %> | 75% agree</p>
+          <div class="row" style="border:0; margin:5px;">
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" style="width: <%= prediction.agree_percentage %>%">
+                <span class="sr-only"><%= prediction.agree_percentage %>% Agree</span>
+              </div>
+              <div class="progress-bar progress-bar-danger" style="width: <%= 100 - prediction.agree_percentage %>%">
+                <span class="sr-only"><%= 100 - prediction.agree_percentage %>% Disagree</span>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin:5px;">
+            <div class="col-xs-12">
+              <a class="btn btn-primary btn-agree <%= embed_active_challenge(prediction, 'agree') %>">Agree</a>
+              <a class="btn btn-primary btn-disagree <%= embed_active_challenge(prediction, 'disagree') %>">Disagree</a>
+            </div>
+          </div>
+        </div>
       </div>
       <% end %>
     </div>
+    <script>
+    $(function() {
+      view = new EmbedView({container: $('body')})
+      <% if current_user %>
+      view.userId = <%= current_user.id %>
+      <% end %>
+      var pymChild = new pym.Child();
+    });
+    </script>
   </body>
 </html>

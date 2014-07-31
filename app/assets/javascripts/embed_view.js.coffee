@@ -1,27 +1,10 @@
 window.EmbedView = class EmbedView
   constructor: (options) ->
-    $('#embed-connect-modal').on 'shown.bs.modal', @bindModal
-    @container = options.container
     $('.call-to-action').on 'click', @gotoKnoda
     $('.btn-agree').on 'click', @agree
     $('.btn-disagree').on 'click', @disagree
     if (($('body').height() - 20) > $(window).height())
       $('.prediction-meta').remove()
-
-  bindModal: (e) =>
-    @container.find('.tab-btn-signup').click =>
-      @container.find('.tab-signup').show()
-      @container.find('.tab-login').hide()
-      @container.find('.tab-btn-login').removeClass('active')
-      @container.find('.tab-btn-signup').addClass('active')
-      @container.find('#user_email').focus()
-    @container.find('.tab-btn-login').click =>
-      @container.find('.tab-login').show()
-      @container.find('.tab-signup').hide()
-      @container.find('.tab-btn-signup').removeClass('active')
-      @container.find('.tab-btn-login').addClass('active')
-      @container.find('#user_login').focus()
-
 
   gotoKnoda: (e) =>
     window.open('http://www.knoda.com', 'windowName')
@@ -39,21 +22,23 @@ window.EmbedView = class EmbedView
         window.location.reload()
         @afterLogin = null
 
-  agree: =>
+  agree: (e) =>
+    prediction_id = $(e.target).parents('.prediction-item').attr('data-prediction-id')
     if @userId
-      @createChallenge(@prediction.id, true)
+      @createChallenge(prediction_id, true)
     else
       @afterLogin = (options)=>
-        @createChallenge(@prediction.id, true)
+        @createChallenge(prediction_id, true)
         @logAnalytics(options)
       @showModal()
 
-  disagree: =>
+  disagree: (e) =>
+    prediction_id = $(e.target).parents('.prediction-item').attr('data-prediction-id')
     if @userId
-      @createChallenge(@prediction.id, false)
+      @createChallenge(prediction_id, false)
     else
       @afterLogin = (options) =>
-        @createChallenge(@prediction.id, false)
+        @createChallenge(prediction_id, false)
         @logAnalytics(options)
       @showModal()
 

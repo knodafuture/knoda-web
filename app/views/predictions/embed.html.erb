@@ -30,7 +30,7 @@
   </head>
   <body>
     <div id="embed-container">
-      <div class="container">
+      <div class="container prediction-item" data-prediction-id="<%= @prediction.id %>">
         <div class="row header">
           <div class="col-xs-12">
             <img src="<%= avatar_small(@prediction.user) %>" class="pull-left" />
@@ -91,7 +91,6 @@
   <script>
   $(function() {
     view = new EmbedView({container: $('body')})
-    view.prediction = JSON.parse("<%= escape_javascript(@prediction.to_json.html_safe) %>")
     <% if current_user %>
     view.userId = <%= current_user.id %>
     <% end %>

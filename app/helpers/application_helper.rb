@@ -173,4 +173,8 @@ module ApplicationHelper
       return false
     end
   end
+
+  def voting_ends_on(prediction)
+    return "Voting closes Sunday at 11:59am"
+  end
 end
