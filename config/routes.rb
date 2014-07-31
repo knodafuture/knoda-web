@@ -82,6 +82,12 @@ KnodaWeb::Application.routes.draw do
     end
   end
 
+  resources :contests do
+    member do
+      get 'embed'
+    end
+  end
+
   namespace :admin do
     get '/' => "home#index"
     post '/test_data/prediction' => "test_data#create_prediction"
