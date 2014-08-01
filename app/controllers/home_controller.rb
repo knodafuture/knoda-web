@@ -63,6 +63,18 @@ class HomeController < ApplicationController
     render :layout => false
   end
 
+  def sitemap
+    AWS.config(
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    )
+    bucket_name = ENV['S3_BUCKET_NAME']
+    s3 = AWS::S3.new
+    key = 'sitemaps/sitemap.xml.gz'
+    blob =  s3.buckets[bucket_name].objects[key].read
+    send_data( blob)
+  end
+
   private
     def server_side(category, action, client_id = '555')
       puts 'code?'
