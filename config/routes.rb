@@ -6,6 +6,7 @@ KnodaWeb::Application.routes.draw do
   get 'embedDemo' => 'home#embedDemo'
   get 'socialDemo' => 'home#socialDemo'
   get 'embed-login' => 'home#embed_login'
+  get 'sitemap.xml.gz' => 'home#sitemap'
 
 
  devise_for :users, :controllers => {:sessions => 'sessions', :omniauth_callbacks => "omniauth_callbacks"}, :skip => [:sessions] do
