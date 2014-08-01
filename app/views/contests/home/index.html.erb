@@ -49,7 +49,7 @@
               <div class="panel-body">
                 <div class="row">
                   <div class="col-xs-6">
-                    <a href="/predictions/new" data-toggle="modal" data-target="#createPredictionModal_contest<%=f.id%>" data-remote="/predictions/new" title="Create a new prediction">Create a prediction</a>
+                    <a href="/predictions/new?contest_id=<%=f.id%>" data-toggle="modal" data-target="#createPredictionModal_contest<%=f.id%>" data-remote="/predictions/new?contest_id=<%=f.id%>" title="Create a new prediction">Create a prediction</a>
                   </div>
                   <div class="col-xs-6">
                     <a>Create a contest stage</a>
@@ -70,6 +70,11 @@
         <div class="col-xs-6">
         <a class="text-center" style="color:gray;";><%= f.rules_url %></a>
         </div>
+      </div>
+      <div class="row">
+        <% f.predictions.each do |z| %>
+        <%= z.body %>
+        <% end %>
       </div>
     </div>
   </div>
