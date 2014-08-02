@@ -32,10 +32,14 @@
       </div>
       </div>
     </div>
+
+    <%= hidden_field_tag :contest_id, "13" %>
+    
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       <%= button_tag( :Submit , :class => 'btn btn-success') %>
     </div>
+
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 <% end %>

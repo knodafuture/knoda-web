@@ -71,7 +71,9 @@ class PredictionsController < AuthenticatedController
   # POST /predictions.json
   def create
     p = prediction_params
+    
     p[:tags] = [p[:tags]]
+    puts "BLAH"
     puts p
     @prediction = current_user.predictions.create(p)
     respond_to do |format|
@@ -173,7 +175,7 @@ class PredictionsController < AuthenticatedController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prediction_params
-      params.require(:prediction).permit(:body, :expires_at, :resolution_date, :tags, :group_id)
+      params.require(:prediction).permit(:body, :expires_at, :resolution_date, :tags, :group_id, :contest_id)
     end
 
     def prediction_close_params
