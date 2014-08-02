@@ -24,7 +24,7 @@
     </style>
   </head>
   <body>
-    <div class="container" id="embed-container">
+    <div class="container" id="embed-container" style="padding:0px 5px;">
       <div class="row">
         <div class="col-xs-12">
           <h1><%= @contest.name %></h1>
@@ -42,43 +42,55 @@
         </div>
       </div>
       <% end %>
-      <div class="row">
+      <div class="row contest-navigation">
         <div class="col-xs-12">
           <div class="btn-group">
-            <a>Predictions</a>
-            <a>Standings</a>
+            <a class="btn btn-default btn-predictions">Predictions</a>
+            <a class="btn btn-default btn-standings">Standings</a>
           </div>
         </div>
       </div>
-      <% @contest.predictions.recent.latest.each do |prediction| %>
-      <div class="row prediction-item" data-prediction-id="<%= prediction.id %>">
-        <div class="col-xs-12">
-          <img src="<%= avatar_small(prediction.user) %>" style="display:inline-block; height: 25px; width:25px;" class="img-circle" />
-          <span class="username"><%= prediction.user.username %></span>
-          <% if prediction.user.verified_account %>
-            <%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
-          <% end %>
-          <p class="prediction-body"><%= prediction.body %></p>
-          <p class="prediction-meta"><%= voting_ends_on(prediction) %> | 75% agree</p>
-          <div class="row" style="border:0; margin:5px;">
-            <div class="progress">
-              <div class="progress-bar progress-bar-success" style="width: <%= prediction.agree_percentage %>%">
-                <span class="sr-only"><%= prediction.agree_percentage %>% Agree</span>
-              </div>
-              <div class="progress-bar progress-bar-danger" style="width: <%= 100 - prediction.agree_percentage %>%">
-                <span class="sr-only"><%= 100 - prediction.agree_percentage %>% Disagree</span>
+      <div class="predictions">
+        <% @contest.predictions.recent.latest.each do |prediction| %>
+        <div class="row prediction-item" data-prediction-id="<%= prediction.id %>">
+          <div class="col-xs-12">
+            <img src="<%= avatar_small(prediction.user) %>" style="display:inline-block; height: 25px; width:25px;" class="img-circle" />
+            <span class="username"><%= prediction.user.username %></span>
+            <% if prediction.user.verified_account %>
+              <%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
+            <% end %>
+            <p class="prediction-body"><%= prediction.body %></p>
+            <p class="prediction-meta"><%= voting_ends_on(prediction) %> | 75% agree</p>
+            <div class="row" style="border:0;">
+              <div class="col-xs-12 progress">
+                <div class="progress-bar progress-bar-success" style="width: <%= prediction.agree_percentage %>%">
+                  <span class="sr-only"><%= prediction.agree_percentage %>% Agree</span>
+                </div>
+                <div class="progress-bar progress-bar-danger" style="width: <%= 100 - prediction.agree_percentage %>%">
+                  <span class="sr-only"><%= 100 - prediction.agree_percentage %>% Disagree</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row" style="margin:5px;">
-            <div class="col-xs-12">
-              <a class="btn btn-primary btn-agree <%= embed_active_challenge(prediction, 'agree') %>">Agree</a>
-              <a class="btn btn-primary btn-disagree <%= embed_active_challenge(prediction, 'disagree') %>">Disagree</a>
+            <div class="row action-buttons">
+              <div class="col-xs-12">
+                <div class="btn-group">
+                  <a class="btn btn-primary btn-agree <%= embed_active_challenge(prediction, 'agree') %>">Agree</a>
+                  <a class="btn btn-primary btn-disagree <%= embed_active_challenge(prediction, 'disagree') %>">Disagree</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <% end %>
       </div>
-      <% end %>
+      <div class="standings" style="display:none">
+        <% Contest.leaderboard(@contest).each do | l | %>
+          <div class="row standings-item">
+            <div class="col-xs-10"><span style="width:25px;display:inline-block;"><%= l[:rank] %></span><img src="<%= l[:avatar_image][:small] %>" class="img-circle" style="height:25px;width:25px;vertical-align:middle;margin-right:5px;"/><%= l[:username] %></div>
+            <div class="col-xs-2 pull-right"><%= l[:won] %> </div>
+          </div>
+        <% end %>
+      </div>
     </div>
     <script>
     $(function() {
@@ -87,6 +99,14 @@
       view.userId = <%= current_user.id %>
       <% end %>
       var pymChild = new pym.Child();
+      $('.btn-predictions').click(function() {
+        $('.standings').hide()
+        $('.predictions').show()
+      });
+    $('.btn-standings').click(function() {
+      $('.standings').show()
+      $('.predictions').hide()
+    });
     });
     </script>
   </body>

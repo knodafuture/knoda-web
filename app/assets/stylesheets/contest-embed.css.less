@@ -1,9 +1,13 @@
 // Core variables and mixins
 @import "twitter/bootstrap/variables";
 @import "variables";
+@grid-gutter-width: 0px;
 //@gridGutterWidth:         0px;
 //@gridGutterWidth1200:     0px;
 //@gridGutterWidth768:      0px;
+@border-radius-base:        5px;
+@border-radius-large:       5px;
+@border-radius-small:       5px;
 @import "twitter/bootstrap/mixins";
 @import "overrides/mixins";
 
@@ -19,6 +23,7 @@
 @import "twitter/bootstrap/buttons";
 
 // Components
+@import "twitter/bootstrap/button-groups";
 @import "twitter/bootstrap/component-animations";
 @import "twitter/bootstrap/progress-bars";
 
@@ -63,11 +68,7 @@ body {
 .right {
   text-align: right;
 }
-/*.modal-dialog {
-  width: 100%;
-  max-width: 640px;
-  margin: 0px auto;
-}*/
+
 body{
   padding-left: 0px;
   padding-right: 0px;
@@ -83,20 +84,49 @@ body{
 .logo {
 }
 #embed-container {
-  .username {
-    .sansLight;
-    font-size: 14px;
+  .contest-navigation {
+    text-align:center;
+    padding: 5px;
+    a {
+      .sansLight;
+      color: @green-light;
+      width: 100px;
+      border-color: @green-light;
+      &.btn {
+        line-height: 1;
+      }
+    }
   }
-  .prediction-body {
-    padding-left:30px;
-    padding-right: 5px;
-    .sansRegular;
-    font-size: 12px;
+  .prediction-item {
+    border-top: 1px solid @gray-lightest;
+    padding-top: 5px;
+    .username {
+      .sansLight;
+      font-size: 14px;
+    }
+    .prediction-body {
+      padding-left:30px;
+      padding-right: 5px;
+      .sansRegular;
+      font-size: 12px;
+    }
+    .prediction-meta {
+      font-size: 10px;
+      color: @green-light;
+      padding-left: 30px;
+    }
+    .action-buttons {
+      margin:5px;
+      text-align:center;
+      a {
+        width: 100px;
+      }
+    }
   }
-  .prediction-meta {
-    font-size: 10px;
-    color: @green-light;
-    padding-left: 30px;
+  .standings {
+    .standings-item {
+      padding: 2px 0px;
+    }
   }
 }
 
