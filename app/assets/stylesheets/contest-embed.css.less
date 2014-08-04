@@ -114,6 +114,7 @@ body {
       width: 50%;
       border-color: @green-light;
       &.btn {
+        .box-shadow(0px 0px 0px);
         line-height: 1;
         &.active, &:active, &:hover {
           background-color: @green-light;
@@ -179,6 +180,10 @@ body {
     }
     .standings-select {
       margin-bottom: 5px;
+      &:focus {
+        .box-shadow(0px 0px 0px);
+        border: 1px solid #cccccc;
+      }
     }
     .standings-container {
       padding-top: 5px;
