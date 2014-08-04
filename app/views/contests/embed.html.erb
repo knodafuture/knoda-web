@@ -24,7 +24,7 @@
     </style>
   </head>
   <body>
-    <div class="container" id="embed-container" style="padding:0px 5px;">
+    <div class="container" id="embed-container">
       <div class="row">
         <div class="col-xs-12">
           <h1><%= @contest.name %></h1>
@@ -45,7 +45,7 @@
       <div class="row contest-navigation">
         <div class="col-xs-12">
           <div class="btn-group">
-            <a class="btn btn-default btn-predictions">Predictions</a>
+            <a class="btn btn-default btn-predictions active">Predictions</a>
             <a class="btn btn-default btn-standings">Standings</a>
           </div>
         </div>
@@ -73,7 +73,7 @@
             </div>
             <div class="row action-buttons">
               <div class="col-xs-12">
-                <div class="btn-group">
+                <div class="btn-group" style="width:100%">
                   <a class="btn btn-primary btn-agree <%= embed_active_challenge(prediction, 'agree') %>">Agree</a>
                   <a class="btn btn-primary btn-disagree <%= embed_active_challenge(prediction, 'disagree') %>">Disagree</a>
                 </div>

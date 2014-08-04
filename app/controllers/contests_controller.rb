@@ -1,14 +1,23 @@
-class Contests::ContestsController < ApplicationController
+class ContestsController < ApplicationController
   #before_filter :admin_required
   skip_before_action :authenticate_user!, only: [:embed]
   before_action :set_contest, only: [:embed]
 
-  def create_contest
+  def admin
+    render "admin", layout: true
+  end
+
+  def new
+    @contest = Contest.new
+    render layout: false
+  end
+
+  def create
       p = contest_params
       @contest = Contest.new
       @contest = current_user.contests.create(p)
       #current_user.memberships.where(:contest_id => @contest.id).first.update(role: 'OWNER')
-      render "contests/home/index"
+      render "admin"
   end
 
 
@@ -65,7 +74,7 @@ class Contests::ContestsController < ApplicationController
       @contest = Contest.find(params[:id])
     end
 
-    def contests_params
+    def contest_params
       params.permit(:name, :description, :avatar, :detail_url, :rules_url, :crop_x, :crop_y, :crop_w, :crop_h)
     end
 

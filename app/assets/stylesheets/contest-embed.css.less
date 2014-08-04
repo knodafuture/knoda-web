@@ -57,6 +57,12 @@ html {
 
 body {
   background-color:transparent;
+  padding-left: 0px;
+  padding-right: 0px;
+  width:100%;
+  max-width: 330px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .center {
@@ -69,21 +75,32 @@ body {
   text-align: right;
 }
 
-body{
-  padding-left: 0px;
-  padding-right: 0px;
-  width:100%;
-  max-width: 330px;
-  margin-left: auto;
-  margin-right: auto;
-}
 .container{
   padding:0px;
   width: auto;
 }
-.logo {
-}
+
 #embed-container {
+  .row {
+    padding:0px 5px;
+  }
+  h1 {
+    .sansRegular;
+    font-size: 24px;
+    text-align: center;
+    margin: 5px;
+    padding: 0px;
+    text-transform: uppercase;
+    color: @green-dark;
+  }
+
+  .description {
+    .sansRegular;
+    font-size: 12px;
+    line-height: 14px;
+    text-align:center;
+    color: @green-dark;
+  }
   .contest-navigation {
     text-align:center;
     padding: 5px;
@@ -94,6 +111,10 @@ body{
       border-color: @green-light;
       &.btn {
         line-height: 1;
+        &.active {
+          background-color: @green-light;
+          color: @white;
+        }
       }
     }
   }
@@ -116,10 +137,21 @@ body{
       padding-left: 30px;
     }
     .action-buttons {
-      margin:5px;
+      margin: 10px 5px;
       text-align:center;
       a {
-        width: 100px;
+        width: 50%;
+        .sansLight;
+        line-height: 1;
+        &.active {
+          background-color: @green-dark !important;
+        }
+        &.btn-agree {
+          border-right: 1px solid @white;
+        }
+        &.btn-disagree {
+          border-left: 1px solid @white;
+        }
       }
     }
   }

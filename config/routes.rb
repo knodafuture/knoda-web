@@ -83,11 +83,14 @@ KnodaWeb::Application.routes.draw do
     end
   end
 
-  #resources :contests do
-  #  member do
-  #    get 'embed'
-  #  end
-  #end
+  resources :contests do
+    collection do
+      get 'admin'
+    end
+    member do
+      get 'embed'
+    end
+  end
 
   namespace :admin do
     get '/' => "home#index"
@@ -97,9 +100,9 @@ KnodaWeb::Application.routes.draw do
     post '/test_data/user_search' => "test_data#user_search"
   end
 
-  namespace :contests do
-    get '/' => "home#index"
-    post '/contests/create' => "contests#create_contest"
-    get '/:id/embed' => 'contests#embed'
-  end
+  #namespace :contests do
+  #  get '/' => "home#index"
+  #  post '/contests/create' => "contests#create_contest"
+  #  get '/:id/embed' => 'contests#embed'
+  #end
 end
