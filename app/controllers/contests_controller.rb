@@ -1,10 +1,21 @@
 class ContestsController < ApplicationController
   #before_filter :admin_required
   skip_before_action :authenticate_user!, only: [:embed]
-  before_action :set_contest, only: [:embed]
+  before_action :set_contest, only: [:embed, :edit, :new_stage]
 
   def admin
     render "admin", layout: true
+  end
+
+  def edit
+    @user = current_user
+    #render "contests/edit"
+  end
+
+  def new_stage
+    x = stage_params
+    @contest_stage = Contest.find(params[:id]).contest_stages.create(x)
+    render layout: false
   end
 
   def new
@@ -14,6 +25,7 @@ class ContestsController < ApplicationController
 
   def create
       p = contest_params
+
       @contest = Contest.new
       @contest = current_user.contests.create(p)
       #current_user.memberships.where(:contest_id => @contest.id).first.update(role: 'OWNER')
@@ -80,5 +92,9 @@ class ContestsController < ApplicationController
 
     def prediciton_params
       params.permit(:body, :user, :expires_at, :tags, :resolution_date, :contest_id)
+    end
+
+    def stage_params
+      params.permit(:name, :sort_order)
     end
 end

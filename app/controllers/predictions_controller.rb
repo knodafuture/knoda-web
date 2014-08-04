@@ -71,7 +71,7 @@ class PredictionsController < AuthenticatedController
   # POST /predictions.json
   def create
     p = prediction_params
-    
+
     p[:tags] = [p[:tags]]
     puts "BLAH"
     puts p

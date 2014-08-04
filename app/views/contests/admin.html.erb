@@ -23,8 +23,8 @@
 
 <div class="row">
   <div class="col-xs-12 group-thumb">
-    <div class="thumbnail" style="min-height:30px;">
-      <h4 class="text-center" style="color:#77BC1F;font-family:Krona One";>Your Contests</h4>
+    <div class="thumbnail" style="min-height:25px;">
+      <h4 class="text-center" style="color:#77BC1F;font-family:Krona One">Your Contests</h4>
     </div>
   </div>
 </div>
@@ -36,50 +36,22 @@
       <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle text-center"  style="width:80px;height:80px;margin:10px;"  />
       </div>
       <div class="row text-center">
-        <div class="panel-group" id="accordian">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse<%= f.id %>" data-parent="#accordion" href="#collapse<%= f.id %>" style="color:#77BC1F; min-height:40px;">
-                  <%= f.name %>
-                </a>
-              </h4>
-            </div>
-            <div id="collapse<%= f.id %>" class="panel-collapse collapse in">
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-xs-4">
-                    <a href="/predictions/new?contestid=<%=f.id%>" data-toggle="modal" data-target="#createPredictionModal_contest<%=f.id%>" data-remote="/predictions/new?contestid=<%=f.id%>" title="Create a new prediction">Create a prediction</a>
-                  </div>
-                  <div class="col-xs-4">
-                    <a>Create a contest stage</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          <a href="/contests/<%=f.id%>/edit"><%= f.name %></a>
       </div>
       <div class="row text-center">
         <h5 class="text-center" style="color:gray;";><%= f.description %></h5>
       </div>
+
       <div class="row text-center">
-        <div class="col-xs-6">
-        <a class="text-center" style="color:gray;";><%= f.detail_url %></a>
-        </div>
-        <div class="col-xs-6">
-        <a class="text-center" style="color:gray;";><%= f.rules_url %></a>
-        </div>
-      </div>
-      <div class="row">
+        <h3>Predictions</h3>
         <% f.predictions.each do |z| %>
-        <%= z.body %>
+        <p><%= z.body %><p>
         <% end %>
       </div>
     </div>
+    </div>
   </div>
 </div>
-<div class="modal fade" id="createPredictionModal_contest<%= f.id %>" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <% end %>
 </div>
   <div class="modal fade" id="createContestModal" tabindex="-1" role="dialog" aria-hidden="true">

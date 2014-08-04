@@ -89,6 +89,8 @@ KnodaWeb::Application.routes.draw do
     end
     member do
       get 'embed'
+      get 'edit'
+      get 'new_stage'
     end
   end
 

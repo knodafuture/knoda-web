@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-xs-12 group-thumb">
+    <div class="thumbnail" style="min-height:200px;">
+      <div class="row text-center">
+      <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle text-center"  style="width:80px;height:80px;margin:10px;"  />
+      </div>
+      <div class="row text-center">
+        <h5 class="text-center" style="color:gray;";><%= @contest.description %></h5>
+      </div>
+      <div class="row text-center">
+        <div class="panel-group" id="accordian">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse" style="color:#77BC1F; min-height:40px;">
+                  <%= @contest.name %>
+                </a>
+              </h4>
+            </div>
+            <div id="collapse" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <a href="/predictions/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createPredictionModal_contest<%=@contest.id%>" data-remote="/predictions/new?contestid=<%=@contest.id%>" title="Create a new prediction">Create a prediction</a>
+                  </div>
+                  <div class="col-xs-6">
+                    <a href="/contest/<%=@contest.id%>/new_stage" data-toggle="modal" data-target="#createStageModal" data-remote="/contests/<%=@contest.id%>/new_stage" title="Create a new stage">Create a contest stage</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-xs-6">
+        <a href="http://<%= @contest.detail_url %>" class="text-center" style="color:gray;";>Details</a>
+        </div>
+      </div>
+      <div class="row text-center">
+        <h3>Predictions</h3>
+        <% @contest.predictions.each do |z| %>
+        <div class="col-xs-2">
+          <%= z.user.username %>
+        </div>
+        <div class="col-xs-10">
+          <%= z.body %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="createPredictionModal_contest<%= @contest.id %>" tabindex="-1" role="dialog" aria-hidden="true"></div>
+</div>
+<div class="modal fade" id="createStageModal" tabindex="-1" role="dialog" aria-hidden="true"></div>
