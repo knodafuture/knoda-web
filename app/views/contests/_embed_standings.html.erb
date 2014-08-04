@@ -1,0 +1,6 @@
+<% leaders.each do | l | %>
+  <div class="row standings-item">
+    <div class="col-xs-10"><span style="width:25px;display:inline-block;"><%= l[:rank] %></span><img src="<%= l[:avatar_image][:small] %>" class="img-circle" style="height:25px;width:25px;vertical-align:middle;margin-right:5px;"/><%= l[:username] %></div>
+    <div class="col-xs-2 pull-right"><%= l[:won] %> </div>
+  </div>
+<% end %>

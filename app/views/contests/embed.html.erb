@@ -84,12 +84,14 @@
         <% end %>
       </div>
       <div class="standings" style="display:none">
-        <% Contest.leaderboard(@contest).each do | l | %>
-          <div class="row standings-item">
-            <div class="col-xs-10"><span style="width:25px;display:inline-block;"><%= l[:rank] %></span><img src="<%= l[:avatar_image][:small] %>" class="img-circle" style="height:25px;width:25px;vertical-align:middle;margin-right:5px;"/><%= l[:username] %></div>
-            <div class="col-xs-2 pull-right"><%= l[:won] %> </div>
+          <select name="standings-select" class="standings-select">
+          <% @contest.contest_stages.each do |s| %>
+            <option value="<%= s.id %>"><%= s.name %></option>
+          <% end %>
+          </select>
+          <div class="standings-container">
+            <%= render partial: "embed_standings.html.erb", locals: {:leaders => Contest.leaderboard(@contest)} %>
           </div>
-        <% end %>
       </div>
     </div>
     <script>
@@ -103,10 +105,20 @@
         $('.standings').hide()
         $('.predictions').show()
       });
-    $('.btn-standings').click(function() {
-      $('.standings').show()
-      $('.predictions').hide()
-    });
+      $('.btn-standings').click(function() {
+        $('.standings').show()
+        $('.predictions').hide()
+      });
+      $('.standings-select').change(function(e) {
+        console.log('hi')
+        $.ajax({
+          url: "/contests/<%= @contest.id %>/embed_standings.html?stage=" + $(e.currentTarget).val(),
+          type: "GET",
+          success: (function(data) {
+            $('.standings-container').html(data)
+          })
+        });
+      })
     });
     </script>
   </body>

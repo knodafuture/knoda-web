@@ -89,6 +89,7 @@ KnodaWeb::Application.routes.draw do
     end
     member do
       get 'embed'
+      get 'embed_standings'
     end
   end
 

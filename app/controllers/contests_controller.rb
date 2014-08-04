@@ -62,6 +62,16 @@ class ContestsController < ApplicationController
         }
   end
 
+  def embed_standings
+    if params[:stage]
+      @leaders = Contest.stage_leaderboard(ContestStage.find(params[:stage]))
+    else
+      @leaders = Contest.leaderboard(@contest)
+    end
+    render :partial => "embed_standings",
+      :locals => {:leaders => @leaders}
+  end
+
   protected
     def admin_required
       if not current_user.is_admin?
