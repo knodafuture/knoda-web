@@ -1,7 +1,7 @@
 class ContestsController < ApplicationController
   #before_filter :admin_required
   skip_before_action :authenticate_user!, only: [:embed]
-  before_action :set_contest, only: [:embed, :edit, :new_stage]
+  before_action :set_contest, only: [:embed, :edit, :new_stage, :embed_standings]
 
   def admin
     render "admin", layout: true
@@ -72,6 +72,16 @@ class ContestsController < ApplicationController
           :avatar_start_url => "/contests/#{@contest.id}/avatar",
           :update_url => "/contests/#{@contests.id}"
         }
+  end
+
+  def embed_standings
+    if params[:stage]
+      @leaders = Contest.stage_leaderboard(ContestStage.find(params[:stage]))
+    else
+      @leaders = Contest.leaderboard(@contest)
+    end
+    render :partial => "embed_standings",
+      :locals => {:leaders => @leaders}
   end
 
   protected

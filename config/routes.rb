@@ -89,8 +89,12 @@ KnodaWeb::Application.routes.draw do
     end
     member do
       get 'embed'
+<<<<<<< HEAD
       get 'edit'
       get 'new_stage'
+=======
+      get 'embed_standings'
+>>>>>>> 72fdb2ec23f547899188c74eb67372b182cccda2
     end
   end
 

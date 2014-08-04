@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: bd0b0443c9010bb976b1a2669dea964745624686
+  revision: d2a525ff48a1e5a957243121969c0794d95e5e1d
   branch: contests
   specs:
     knoda_core (0.0.1)
@@ -95,7 +95,7 @@ GEM
       multi_json
     equalizer (0.0.9)
     erubis (2.7.0)
-    excon (0.38.0)
+    excon (0.39.2)
     execjs (2.2.1)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -215,7 +215,7 @@ GEM
     raindrops (0.13.0)
     rake (10.3.2)
     redis (3.1.0)
-    redis-namespace (1.5.0)
+    redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
     ref (1.0.5)
     render_anywhere (0.0.8)
