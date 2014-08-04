@@ -35,16 +35,18 @@
           <p class="description"><%= @contest.description %></p>
         </div>
       </div>
-      <% if @contest.avatar_image %>
       <div class="row">
-        <div class="col-xs-12">
-          <p>avatar</p>
+        <div class="col-xs-12" style="text-align:center;">
+          <% if @contest.avatar_image %>
+            <p>avatar>
+          <% else %>
+            <img src="http://aengland.s3.amazonaws.com/users/avatars/000/000/001/small/avatar_5_2x.png?1406318499" class="avatar_small img-circle avatar-circle" style="height:36px;width:36px;">
+          <% end %>
         </div>
       </div>
-      <% end %>
       <div class="row contest-navigation">
         <div class="col-xs-12">
-          <div class="btn-group">
+          <div class="btn-group" style="width: 100%;text-align: center;padding: 10px 30px;">
             <a class="btn btn-default btn-predictions active">Predictions</a>
             <a class="btn btn-default btn-standings">Standings</a>
           </div>
@@ -83,12 +85,19 @@
         </div>
         <% end %>
       </div>
-      <div class="standings" style="display:none">
-          <select name="standings-select" class="standings-select">
-          <% @contest.contest_stages.each do |s| %>
-            <option value="<%= s.id %>"><%= s.name %></option>
-          <% end %>
-          </select>
+      <div class="standings" style="display:none;">
+          <div style="text-align:center;">
+            <select name="standings-select" class="form-control input-sm standings-select">
+              <option value="0">Overall Leaders</option>
+              <% @contest.contest_stages.each do |s| %>
+              <option value="<%= s.id %>"><%= s.name %></option>
+              <% end %>
+            </select>
+          </div>
+          <div class="row standings-item-header">
+            <div class="col-xs-10"><span style="width:75px;display:inline-block;">RANK</span>USERNAME</div>
+            <div class="col-xs-2 pull-right right">WINS</div>
+          </div>
           <div class="standings-container">
             <%= render partial: "embed_standings.html.erb", locals: {:leaders => Contest.leaderboard(@contest)} %>
           </div>
@@ -102,23 +111,32 @@
       <% end %>
       var pymChild = new pym.Child();
       $('.btn-predictions').click(function() {
+        $('.btn-standings').removeClass('active')
+        $('.btn-predictions').addClass('active')
         $('.standings').hide()
         $('.predictions').show()
       });
       $('.btn-standings').click(function() {
+        $('.btn-standings').addClass('active')
+        $('.btn-predictions').removeClass('active')
         $('.standings').show()
         $('.predictions').hide()
       });
       $('.standings-select').change(function(e) {
-        console.log('hi')
+        console.log($(e.currentTarget).val());
+        if ($(e.currentTarget).val() > 0) {
+          u = "/contests/<%= @contest.id %>/embed_standings.html?stage=" + $(e.currentTarget).val()
+        } else {
+          u = "/contests/<%= @contest.id %>/embed_standings.html?"
+        }
         $.ajax({
-          url: "/contests/<%= @contest.id %>/embed_standings.html?stage=" + $(e.currentTarget).val(),
+          url: u,
           type: "GET",
           success: (function(data) {
             $('.standings-container').html(data)
           })
         });
-      })
+      });
     });
     </script>
   </body>

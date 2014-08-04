@@ -1,7 +1,7 @@
 class ContestsController < ApplicationController
   #before_filter :admin_required
   skip_before_action :authenticate_user!, only: [:embed]
-  before_action :set_contest, only: [:embed]
+  before_action :set_contest, only: [:embed, :embed_standings]
 
   def admin
     render "admin", layout: true
