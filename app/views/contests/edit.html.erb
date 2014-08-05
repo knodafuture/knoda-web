@@ -6,6 +6,7 @@
       </div>
       <div class="row text-center">
         <h5 class="text-center" style="color:gray;";><%= @contest.description %></h5>
+        <a href="http://<%= @contest.detail_url %>" class="text-center";>Details</a>
       </div>
       <div class="row text-center">
         <div class="panel-group" id="accordian">
@@ -32,17 +33,17 @@
           </div>
         </div>
       </div>
-      <div class="row text-center">
-        <div class="col-xs-6">
-        <a href="http://<%= @contest.detail_url %>" class="text-center" style="color:gray;";>Details</a>
-        </div>
-      </div>
-      <div class="row">
-        <h3>Predictions</h3>
-      <!--  <% @contest.predictions.each do |prediction| %> -->
+      <div class="row col-xs-6">
+        <h3 class="text-center">Predictions</h3>
+
         <%= render 'contests/prediction' %>
-      <!--  <% end %> -->
+
       </div>
+      <div class="row col-xs-6">
+        <h3 class="text-center">Stages</h3>
+
+      </div>
+
     </div>
   </div>
 </div>

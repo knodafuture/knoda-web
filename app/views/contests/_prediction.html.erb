@@ -9,22 +9,9 @@
             <%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
           <% end %>
         </a>
-        <div class="col-md-3 myChallenge pull-right">
-            <% if (current_user.id == prediction.user_id && prediction.is_ready_for_resolution? && !prediction.is_closed?) %>
-              <a data-toggle="collapse" href="#collapse<%= prediction.id %>">
-              <%= image_tag('icons/sd/prediction_alert.png', :class => 'pull-right', :style => "margin-top: 12px") %>
-              </a>
-            <% else %>
-            <%= display_challenge_icon(prediction) %>
-            <%= display_won_lost(prediction) %>
-            <% end %>
-        </div>
     </div>
     <div class="row predictionInfo" style="background-color:white; padding: 8px 20px;">
-      <a data-toggle="collapse" href="#collapse<%= prediction.id %>" style="width:100%;display:inline-block;"><%= prediction.body %></a>
-    </div>
-    <div class="row predictionInfoLine2" data-toggle="collapse" href="#collapse<%= prediction.id %>">
-      <a data-toggle="collapse" href="#collapse<%= prediction.id %>" style="width:100%;display:inline-block;"><%= display_close_status(prediction) %> | predicted <%= distance_of_time_in_words_to_now(prediction.created_at) %> ago | <span class="agree-percentage"><%= prediction.agree_percentage %></span>% agree | <%= image_tag("icons/CommentIcon@2x.png") %> <%= prediction.comments.size %></a>
+      <p style="width:100%;display:inline-block;"><%= prediction.body %></p>
     </div>
     <% if prediction.group %>
     <div class="row predictionInfoLine3">

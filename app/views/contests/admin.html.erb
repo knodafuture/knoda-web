@@ -31,7 +31,7 @@
 <% current_user.contests.each do |f| %>
 <div class="row">
   <div class="col-xs-12 group-thumb">
-    <div class="thumbnail" style="min-height:200px;">
+    <div class="thumbnail" style="min-height:150px;">
       <div class="row text-center">
       <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle text-center"  style="width:80px;height:80px;margin:10px;"  />
       </div>
@@ -40,13 +40,6 @@
       </div>
       <div class="row text-center">
         <h5 class="text-center" style="color:gray;";><%= f.description %></h5>
-      </div>
-
-      <div class="row text-center">
-        <h3>Predictions</h3>
-        <% f.predictions.each do |z| %>
-        <p><%= z.body %><p>
-        <% end %>
       </div>
     </div>
     </div>
