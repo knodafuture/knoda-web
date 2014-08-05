@@ -14,7 +14,7 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-xs-12">
-            <%=  form_tag(controller: "test_data", action: "user_search", method: "post",) do %>
+            <%=  form_tag(controller: "users", action: "search", method: "post",) do %>
             <%= label_tag(:searchinput, "Search for user:") %>
             <%= text_field_tag(:searchinput) %>
             <%= submit_tag("Search") %>

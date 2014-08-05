@@ -100,7 +100,7 @@ KnodaWeb::Application.routes.draw do
     post '/test_data/prediction' => "test_data#create_prediction"
     post '/test_data/vote' => "test_data#create_votes"
     post '/test_data/comment' => "test_data#create_comments"
-    post '/test_data/user_search' => "test_data#user_search"
+    post '/users/search' => "users#search"
   end
 
   #namespace :contests do

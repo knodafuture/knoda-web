@@ -8,6 +8,7 @@ class GroupsController < AuthenticatedController
   # GET /groups.json
   def index
     @groups = current_user.groups
+    @contests = Contest.entered_by_user(current_user.id)
     render 'index'
   end
 

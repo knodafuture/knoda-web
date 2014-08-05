@@ -2,75 +2,112 @@
   <%= javascript_include_tag "groups" %>
 <% end %>
 <div id="groups-index" class="limit-size-small" style="background-color:#fff;">
-  <div class="row">
-    <div class="col-xs-12 group-thumb">
-      <div class="thumbnail" style="min-height:105px;">
-        <div class="row">
-          <div class="col-xs-4 col-sm-3">
-              <a class="new-group" href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/create/new" title="Create a new group" class="pull-left">
-                <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle"  style="width:80px;height:80px;margin:10px;"  />
-              </a>
-          </div>
-          <div class="col-xs-8 col-sm-9">
-              <div class="row row1">
-                <h3>
-                  <a href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/groups/new" title="Create a new group">Create a group</a>
-                  <p class="smallCaption">Invite your friends, compete, and track bragging rights on the leaderboard</p>
-                </h3>
-              </div>
-          </div>
-      </div>
+  <div class="row" style="background-color:#fff;border-bottom: 1px solid #dddddd;">
+    <div class="col-xs-12 navigation">
+      <a class="btn-contests active">My Contests</a>
+      <a class="btn-groups">My Groups</a>
     </div>
   </div>
-
-  <% @groups.each do |i| %>
-    <div class="col-xs-12 group-thumb">
-      <div class="thumbnail">
-        <div class="row">
-          <div class="col-xs-4 col-sm-3">
-            <a href="/groups/<%= i.id %>">
-              <img src="<%= avatar_small(i) %>" class="avatar_small img-circle" style="width:80px;height:80px;margin:10px;" />
-            </a>
-          </div>
-          <div class="col-xs-8 col-sm-9">
-              <div class="row row1" style="padding-bottom:5px;">
-                <h3><a href="/groups/<%= i.id %>"><%= i.name %></a><p class="hidden-xs smallCaption"><%= i.description %></p></h3>
-              </div>
-              <div class="row row2">
-                <div class="col-xs-6 col-sm-4">
-                  <div class="row">
-                    <div class="col-xs-12 statValue">
-                      <%= my_rank(i) %>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-12 statLabel">
-                      <p>rank (<%= group_size(i) %>)</p>
-                    </div>
-                  </div>
+  <div class="row"><div class="col-xs-12 contests-tab-content">
+    <% @contests.each do |i| %>
+      <div class="row contest-item" style="border: 1px solid #dddddd; border-top: 0px;background-color: #fff;padding-top:10px;padding-bottom:5px;">
+      	<div class="col-xs-12 center">
+            <div class="row"><div class="col-xs-12">
+      			     <img class="img-circle" src="http://aengland.s3.amazonaws.com/users/avatars/000/000/001/small/avatar_5_2x.png?1406318499">
+                 <h2><%= i.name %></h2>
+                 <p class="description"><%= i.description %></p>
+            </div></div>
+      	</div>
+      </div>
+    <% end %>
+  </div></div>
+  <div class="groups-tab-content" style="display:none;">
+    <div class="row">
+      <div class="col-xs-12 group-thumb">
+        <div class="thumbnail" style="min-height:105px;">
+          <div class="row">
+            <div class="col-xs-4 col-sm-3">
+                <a class="new-group" href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/create/new" title="Create a new group" class="pull-left">
+                  <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle"  style="width:80px;height:80px;margin:10px;"  />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-9">
+                <div class="row row1">
+                  <h3>
+                    <a href="/groups/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/groups/new" title="Create a new group">Create a group</a>
+                    <p class="smallCaption">Invite your friends, compete, and track bragging rights on the leaderboard</p>
+                  </h3>
                 </div>
-                <div class="col-xs-6 col-xs-4">
-                  <div class="row">
-                    <div class="col-xs-12 statValue">
-                      <%= leader_username(i) %>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-12 statLabel">
-                      <p>7 day leader</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="hidden-xs col-sm-4">
+            </div>
+        </div>
+      </div>
+    </div>
 
+    <% @groups.each do |i| %>
+      <div class="col-xs-12 group-thumb">
+        <div class="thumbnail">
+          <div class="row">
+            <div class="col-xs-4 col-sm-3">
+              <a href="/groups/<%= i.id %>">
+                <img src="<%= avatar_small(i) %>" class="avatar_small img-circle" style="width:80px;height:80px;margin:10px;" />
+              </a>
+            </div>
+            <div class="col-xs-8 col-sm-9">
+                <div class="row row1" style="padding-bottom:5px;">
+                  <h3><a href="/groups/<%= i.id %>"><%= i.name %></a><p class="hidden-xs smallCaption"><%= i.description %></p></h3>
+                </div>
+                <div class="row row2">
+                  <div class="col-xs-6 col-sm-4">
+                    <div class="row">
+                      <div class="col-xs-12 statValue">
+                        <%= my_rank(i) %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12 statLabel">
+                        <p>rank (<%= group_size(i) %>)</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-xs-4">
+                    <div class="row">
+                      <div class="col-xs-12 statValue">
+                        <%= leader_username(i) %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12 statLabel">
+                        <p>7 day leader</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="hidden-xs col-sm-4">
+
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-  <% end %>
+    <% end %>
+    </div>
   </div>
 </div>
 <div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-hidden="true">
 </div>
+<script>
+  $(function() {
+    $('.btn-contests').click(function() {
+      $('.btn-groups').removeClass('active')
+      $('.btn-contests').addClass('active')
+      $('.groups-tab-content').hide()
+      $('.contests-tab-content').show()
+    });
+    $('.btn-groups').click(function() {
+      $('.btn-groups').addClass('active')
+      $('.btn-contests').removeClass('active')
+      $('.groups-tab-content').show()
+      $('.contests-tab-content').hide()
+    });
+  });
+</script>
