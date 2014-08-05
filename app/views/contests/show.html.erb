@@ -1,0 +1,13 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'prediction_actions' %>
+<% end %>
+<%= @contest.name %>
+<%= render partial: "contests/contest", locals: {contest: @contest, collapseState: ''} %>
+<div class="row">
+  <div class="panel-group col-lg-12 col-md-12 col-sm-12 col-xs-12" id="predictionsList">
+      <% @contest.predictions.recent.latest.each do |i| %>
+        <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
+      <% end %>
+  </div>
+</div>
+<ul>

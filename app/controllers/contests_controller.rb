@@ -1,7 +1,7 @@
 class ContestsController < ApplicationController
   #before_filter :admin_required
   skip_before_action :authenticate_user!, only: [:embed]
-  before_action :set_contest, only: [:embed, :edit, :new_stage, :embed_standings]
+  before_action :set_contest, only: [:embed, :edit, :new_stage, :embed_standings, :show]
 
   def admin
     render "admin", layout: true
@@ -10,6 +10,9 @@ class ContestsController < ApplicationController
   def edit
     @user = current_user
     #render "contests/edit"
+  end
+
+  def show
   end
 
   def new_stage
