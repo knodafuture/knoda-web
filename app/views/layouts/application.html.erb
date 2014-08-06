@@ -106,6 +106,9 @@
           $('header .users').removeClass('active')
           $('header .settings').addClass('active')
       }
+      if (controller == 'contests') {
+        $('header .groups').addClass('active')
+      }
       if (unseenCount > 0) {
         $('header .activities').addClass('hasUnseen')
       }
