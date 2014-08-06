@@ -10,7 +10,9 @@
   </div>
   <div class="row"><div class="col-xs-12 contests-tab-content">
     <% @contests.each do |i| %>
-      <%= render partial: "contests/contest", locals: {contest: i, collapseState: ''} %>
+      <a href="/contests/<%= i.id %>">
+        <%= render partial: "contests/contest", locals: {contest: i, collapseState: ''} %>
+      </a>
     <% end %>
   </div></div>
   <div class="groups-tab-content" style="display:none;">
