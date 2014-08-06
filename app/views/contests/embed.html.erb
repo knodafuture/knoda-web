@@ -123,7 +123,6 @@
         $('.predictions').hide()
       });
       $('.standings-select').change(function(e) {
-        console.log($(e.currentTarget).val());
         if ($(e.currentTarget).val() > 0) {
           u = "/contests/<%= @contest.id %>/embed_standings.html?stage=" + $(e.currentTarget).val()
         } else {

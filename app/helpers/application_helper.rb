@@ -177,4 +177,13 @@ module ApplicationHelper
   def voting_ends_on(prediction)
     return "Voting closes Sunday at 11:59am"
   end
+
+  def my_contest_rank(contest)
+    me = Contest.leaderboard(contest).select { |u| u[:user_id] == current_user.id}
+    if me.length > 0
+      return me[0][:rank].to_i.ordinalize
+    else
+      return nil;
+    end
+  end
 end
