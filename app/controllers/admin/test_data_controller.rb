@@ -125,7 +125,7 @@ class Admin::TestDataController < Admin::AdminController
     x = search_param
     name = x[:searchinput]
     name = name.downcase
-    @u = User.where("username like ?", "%#{name}%")
+    @u = User.where("LOWER(username) like ?", "%#{name}%")
     render "admin/home/index"
   end
 
