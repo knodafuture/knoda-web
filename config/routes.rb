@@ -90,10 +90,12 @@ KnodaWeb::Application.routes.draw do
     member do
       get 'embed'
       get 'edit'
-      get 'new_stage'
       get 'embed_standings'
     end
   end
+
+  resources :contest_stages
+  
 
   namespace :admin do
     get '/' => "home#index"

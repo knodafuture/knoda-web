@@ -4,48 +4,48 @@
       <div class="thumbnail" style="min-height:105px;">
         <div class="row">
           <div class="col-xs-4 col-sm-3">
-              <a class="new-contest" href="/contests/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/contests/new" title="Create a new contest" class="pull-left">
-                <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle"  style="width:80px;height:80px;margin:10px;"  />
-              </a>
+            <a class="new-contest" href="/contests/new" data-toggle="modal" data-target="#createGroupModal" data-remote="/contests/new" title="Create a new contest" class="pull-left">
+              <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle"  style="width:80px;height:80px;margin:10px;"  />
+            </a>
           </div>
           <div class="col-xs-8 col-sm-9">
-              <div class="row row1">
-                <h3>
-                  <a href="/contest/new" data-toggle="modal" data-target="#createContestModal" data-remote="/contests/new" title="Create a new contest">Create a contest</a>
-                  <p class="smallCaption">Invite your friends, compete, and track bragging rights on the leaderboard</p>
-                </h3>
-              </div>
+            <div class="row row1">
+              <h3>
+                <a href="/contest/new" data-toggle="modal" data-target="#createContestModal" data-remote="/contests/new" title="Create a new contest">Create a contest</a>
+                <p class="smallCaption">Invite your friends, compete, and track bragging rights on the leaderboard</p>
+              </h3>
+            </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-xs-12 group-thumb">
-    <div class="thumbnail" style="min-height:25px;">
-      <h4 class="text-center" style="color:#77BC1F;font-family:Krona One">Your Contests</h4>
+  <div class="row">
+    <div class="col-xs-12 group-thumb">
+      <div class="thumbnail" style="min-height:25px;">
+        <h4 class="text-center" style="color:#77BC1F;font-family:Krona One">Your Contests</h4>
+      </div>
     </div>
   </div>
-</div>
-<% current_user.contests.each do |f| %>
-<div class="row">
-  <div class="col-xs-12 group-thumb">
-    <div class="thumbnail" style="min-height:150px;">
-      <div class="row text-center">
-      <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle text-center"  style="width:80px;height:80px;margin:10px;"  />
-      </div>
-      <div class="row text-center">
+  <% current_user.contests.each do |f| %>
+  <div class="row">
+    <div class="col-xs-12 group-thumb">
+      <div class="thumbnail" style="min-height:150px;">
+        <div class="row text-center">
+          <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle text-center"  style="width:80px;height:80px;margin:10px;"  />
+        </div>
+        <div class="row text-center">
           <a href="/contests/<%=f.id%>/edit"><%= f.name %></a>
+        </div>
+        <div class="row text-center">
+          <h5 class="text-center" style="color:gray;";><%= f.description %></h5>
+        </div>
       </div>
-      <div class="row text-center">
-        <h5 class="text-center" style="color:gray;";><%= f.description %></h5>
-      </div>
-    </div>
     </div>
   </div>
 </div>
 <% end %>
 </div>
-  <div class="modal fade" id="createContestModal" tabindex="-1" role="dialog" aria-hidden="true">
-  </div>
+<div class="modal fade" id="createContestModal" tabindex="-1" role="dialog" aria-hidden="true">
+</div>

@@ -175,7 +175,7 @@ class PredictionsController < AuthenticatedController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prediction_params
-      params.require(:prediction).permit(:body, :expires_at, :resolution_date, :tags, :group_id, :contest_id)
+      params.require(:prediction).permit(:body, :expires_at, :resolution_date, :tags, :group_id, :contest_id, :contest_stage_id)
     end
 
     def prediction_close_params

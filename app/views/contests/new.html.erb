@@ -6,37 +6,23 @@
       <div class="modal-title">CREATE A CONTEST</div>
     </div>
     <div class="modal-body">
-        <div class="alert alert-danger" style="display:none">
-            <p>Hold on, your group isn't ready yet.  You'll need to</p>
-            <ul style="padding-left:30px">
-            </ul>
-        </div>
-        <div class="col-xs-6">
-        <div class="form-group">
-          <%= text_field_tag :name, nil, placeholder: 'Enter name...'  %>
-        </div>
-        <div class="form-group">
-          <%= text_field_tag :description, nil, placeholder: 'Enter description...'  %>
-        </div>
-        <div class="form-group">
-          <%= text_field_tag :detail_url, nil, placeholder: "Details url..." %>
-        </div>
-        <div class="form-group">
-          <%= text_field_tag :rules_url, nil, placeholder: "Rules url..." %>
-        </div>
+      <div class="form-group">
+        <%= text_field_tag :name, nil, placeholder: 'Enter name...'  %>
       </div>
-      <div class="col-xs-6 text-center">
-        <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle text-center"  style="width:80px;height:80px;margin:10px;"  />
-        <div class="form-group">
-        <button class="btn btn-default" style="length:35px;">Choose an avatar</button>
+      <div class="form-group">
+        <%= text_field_tag :description, nil, placeholder: 'Enter description...'  %>
       </div>
+      <div class="form-group">
+        <%= text_field_tag :detail_url, nil, placeholder: "Details url..." %>
+      </div>
+      <div class="form-group">
+        <%= text_field_tag :rules_url, nil, placeholder: "Rules url..." %>
       </div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       <%= button_tag( :Submit , :class => 'btn btn-success') %>
     </div>
-
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 <% end %>

@@ -25,7 +25,7 @@
                     <a href="/predictions/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createPredictionModal_contest<%=@contest.id%>" data-remote="/predictions/new?contestid=<%=@contest.id%>" title="Create a new prediction">Create a prediction</a>
                   </div>
                   <div class="col-xs-6">
-                    <a href="/contest/<%=@contest.id%>/new_stage" data-toggle="modal" data-target="#createStageModal" data-remote="/contests/<%=@contest.id%>/new_stage" title="Create a new stage">Create a contest stage</a>
+                    <a href="/contest_stages/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createStageModal" data-remote="/contest_stages/new?contestid=<%=@contest.id%>" title="Create a new stage">Create a contest stage</a>
                   </div>
                 </div>
               </div>
@@ -33,15 +33,15 @@
           </div>
         </div>
       </div>
-      <div class="row col-xs-6">
-        <h3 class="text-center">Predictions</h3>
-
-        <%= render 'contests/prediction' %>
-
-      </div>
-      <div class="row col-xs-6">
-        <h3 class="text-center">Stages</h3>
-
+      <div class="row">
+        <div class="col-xs-6">
+          <h3 class="text-center">Predictions <a href="/predictions/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createPredictionModal_contest<%=@contest.id%>" data-remote="/predictions/new?contestid=<%=@contest.id%>" title="Create a new prediction">+</a></h3>
+          <%= render 'contests/prediction' %>
+        </div>
+        <div class="col-xs-6">
+          <h3 class="text-center">Stages <a href="/contest_stages/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createStageModal" data-remote="/contest_stages/new?contestid=<%=@contest.id%>" title="Create a new stage">+</a></h3>
+          <%= render 'contests/stage' %>
+        </div>
       </div>
 
     </div>

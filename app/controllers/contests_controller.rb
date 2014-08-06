@@ -12,12 +12,6 @@ class ContestsController < ApplicationController
     #render "contests/edit"
   end
 
-  def new_stage
-    x = stage_params
-    @contest_stage = Contest.find(params[:id]).contest_stages.create(x)
-    render layout: false
-  end
-
   def new
     @contest = Contest.new
     render layout: false
