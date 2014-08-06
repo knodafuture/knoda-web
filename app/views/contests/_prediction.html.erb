@@ -16,7 +16,7 @@
     <div class="row">
       <div style="text-align:center; padding:4px; background-color:white;" >
         <select name="standings-select" class="form-control input-sm standings-select<%=prediction.id%>">
-          <option value="0">No Stage</option>
+          <option>Choose a Stage...</option>
           <% @contest.contest_stages.each do |s| %>
           <option value="<%= s.id %>"><%= s.name %></option>
           <% end %>
@@ -44,7 +44,9 @@ $(function() {
       url: u,
       type: "PUT",
       dataType: "json",
-      data: body,
+      data: {
+        'prediction[contest_stage_id]':$(e.currentTarget).val()
+      },
       success: (function(data) {
         $('.standings-container').html(data)
       })
