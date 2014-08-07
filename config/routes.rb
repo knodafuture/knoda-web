@@ -91,11 +91,14 @@ KnodaWeb::Application.routes.draw do
       get 'embed'
       get 'edit'
       get 'embed_standings'
+      get 'avatar'
+      get 'crop'
+      post 'avatar_upload'
     end
   end
 
   resources :contest_stages
-  
+
 
   namespace :admin do
     get '/' => "home#index"

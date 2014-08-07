@@ -1,7 +1,7 @@
-class ContestsController < ApplicationController
+class ContestsController < AuthenticatedController
   #before_filter :admin_required
   skip_before_action :authenticate_user!, only: [:embed]
-  before_action :set_contest, only: [:embed, :edit, :new_stage, :embed_standings, :show]
+  before_action :set_contest, only: [:embed, :edit, :new_stage, :embed_standings, :show, :avatar, :crop, :avatar_upload, :update]
 
   def admin
     render "admin", layout: true
@@ -22,10 +22,8 @@ class ContestsController < ApplicationController
 
   def create
       p = contest_params
-
       @contest = Contest.new
       @contest = current_user.contests.create(p)
-      #current_user.memberships.where(:contest_id => @contest.id).first.update(role: 'OWNER')
       render "admin"
   end
 
@@ -51,15 +49,35 @@ class ContestsController < ApplicationController
         :upload_url => "/contests/#{@contest.id}/avatar_upload",
         :crop_url => "/contests/#{@contest.id}/crop",
         :current_avatar_url => avatar_big(@contest),
-        :final_destination => "/groups/#{@contest.id}",
-        :noun => 'group'
+        :final_destination => "/contests/#{@contest.id}",
+        :noun => 'contest'
       }
   end
 
   def avatar_upload
     @contest.avatar = params[:file]
     @contest.save
-    #render :json => {success: false}, :status => :ok
+    render :json => {success: false}, :status => :ok
+  end
+
+  def update
+    respond_to do |format|
+      authorize_action_for(@contest)
+      if @contest.update_attributes(contest_params)
+        if params[:contest][:avatar].blank? and @contest.cropping?
+          @contest.reprocess_avatar
+        end
+        format.html {
+          redirect_to "/contests/#{@contest.id}/edit"
+        }
+        format.json { render json: @contest }
+      else
+        format.json { render json: @contest.errors, status: :unprocessable_entity }
+        format.html {
+          redirect_to "/contests/#{@contest.id}/edit"
+        }
+      end
+    end
   end
 
   def crop
@@ -67,7 +85,7 @@ class ContestsController < ApplicationController
         :locals => {
           :resource => @contest,
           :avatar_start_url => "/contests/#{@contest.id}/avatar",
-          :update_url => "/contests/#{@contests.id}"
+          :update_url => "/contests/#{@contest.id}"
         }
   end
 
