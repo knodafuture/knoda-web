@@ -3,52 +3,64 @@
   <h1 class="text-center">KNODA Administration Tools</h1>
   <div class="panel-group" id="accordian">
     <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseUsers">
-          Users
-        </a>
-      </h4>
-    </div>
-    <div id="collapseUsers" class="panel-collapse collapse <% if not @u == nil %>in<% end%>">
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-xs-12">
-            <%=  form_tag(controller: "users", action: "search", method: "post",) do %>
-            <%= label_tag(:searchinput, "Search for user:") %>
-            <%= text_field_tag(:searchinput) %>
-            <%= submit_tag("Search") %>
-            <% end %>
-          </div>
-        </div>
-        <div class="row"><div class="col-xs-12">
-          <% if not @u == nil %>
-          <table style="width:100%;">
-            <thead>
-              <tr>
-                <th>username</th>
-                <th>email</th>
-                <th>admin?</th>
-              </tr>
-            </thead>
-            <% @u.each do |f| %>
-            <tr>
-              <td>
-                <%= f.username %>
-              </td>
-              <td>
-                <%= f.email %>
-              </td>
-              <td>
-                <%= check_box_tag(:roles, "Admin") %>
-              </td>
-            </tr>
-            <% end %>
-          <% end %>
-        </table>
-        </div></div>
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseUsers">
+            Users
+          </a>
+        </h4>
       </div>
-    </div>
+      <div id="collapseUsers" class="panel-collapse collapse <% if not @u == nil %>in<% end%>">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-12">
+              <%=  form_tag(controller: "users", action: "search", method: "post",) do %>
+              <%= label_tag(:searchinput, "Search for user:") %>
+              <%= text_field_tag(:searchinput) %>
+              <%= submit_tag("Search") %>
+              <% end %>
+            </div>
+          </div>
+          <div class="row"><div class="col-xs-12">
+            <% if not @u == nil %>
+            <table style="width:100%;">
+              <thead>
+                <tr>
+                  <th>username</th>
+                  <th>email</th>
+                  <th>admin?</th>
+                  <th>verified user?</th>
+                </tr>
+              </thead>
+              <% @u.each do |f| %>
+              <tr>
+                <td>
+                  <%= f.username %>
+                </td>
+                <td>
+                  <%= f.email %>
+                </td>
+                <td>
+                  <% if f.roles.include? "ADMIN" %>
+                    <input type="checkbox" class="adminCheck" checked="checked" value="<%= f.id %>"/>
+                  <% else %>
+                    <input type="checkbox" class="adminCheck" value="<%= f.id %>"/>
+                  <% end %>
+                </td>
+                <td>
+                  <% if f.verified_account %>
+                    <input type="checkbox" class="verifiedCheck" checked="checked" value="<%= f.id %>"/>
+                  <% else %>
+                    <input type="checkbox" class="verifiedCheck" value="<%= f.id %>"/>
+                  <% end %>
+                </td>
+              </tr>
+              <% end %>
+              <% end %>
+            </table>
+          </div></div>
+        </div>
+      </div>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -98,13 +110,31 @@
           <div class="row text-center">
             <% if not @arr == nil %>
             <h4 class="text-center">The Id's from you're create:</h4>
-              <% @arr.each do |f| %>
-              <%= f.to_s %>
-              <% end %>
+            <% @arr.each do |f| %>
+            <%= f.to_s %>
+            <% end %>
             <% end %>
           </div>
         </div>
       </div>
-  </div>
-</body>
-</html>
+    </div>
+    <script>
+    $(function() {
+      $('.verifiedCheck').change(function(e) {
+        $.ajax({
+          url: "/admin/users/"+e.currentTarget.value+".json",
+          type: "PUT",
+          data: {verified_account: e.currentTarget.checked}
+        });
+      });
+      $('.adminCheck').change(function(e) {
+        $.ajax({
+          url: "/admin/users/"+e.currentTarget.value+".json",
+          type: "PUT",
+          data: {admin: e.currentTarget.checked}
+        });
+      });
+    });
+    </script>
+  </body>
+  </html>

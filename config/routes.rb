@@ -103,6 +103,7 @@ KnodaWeb::Application.routes.draw do
     post '/test_data/vote' => "test_data#create_votes"
     post '/test_data/comment' => "test_data#create_comments"
     post '/users/search' => "users#search"
+    put '/users/:id' => "users#update"
   end
 
   #namespace :contests do
