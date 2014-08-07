@@ -10,13 +10,10 @@
         <%= text_field_tag :name, nil, placeholder: 'Enter name...'  %>
       </div>
       <div class="form-group">
-        <%= text_field_tag :description, nil, placeholder: 'Enter description...'  %>
-      </div>
-      <div class="form-group">
         <%= text_field_tag :detail_url, nil, placeholder: "Details url..." %>
       </div>
       <div class="form-group">
-        <%= text_field_tag :rules_url, nil, placeholder: "Rules url..." %>
+        <%= text_area_tag :description, nil, placeholder: 'Enter description...', size:'50x4'  %>
       </div>
     </div>
     <div class="modal-footer">
