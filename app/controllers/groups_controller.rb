@@ -9,6 +9,7 @@ class GroupsController < AuthenticatedController
   def index
     @groups = current_user.groups
     @contests = Contest.entered_by_user(current_user.id)
+    @contests_explore = Contest.not_entered_by_user(current_user.id).order('created_at desc')
     render 'index'
   end
 

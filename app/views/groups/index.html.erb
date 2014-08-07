@@ -5,11 +5,17 @@
   <div class="row" style="background-color:#fff;border-bottom: 1px solid #dddddd;">
     <div class="col-xs-12 navigation">
       <a class="btn-contests active">My Contests</a>
+      <a class="btn-contests-explore">Explore Contests</a>
       <a class="btn-groups">My Groups</a>
     </div>
   </div>
   <div class="row"><div class="col-xs-12 contests-tab-content">
     <% @contests.each do |i| %>
+      <%= render partial: "contests/contest", locals: {contest: i, collapseState: ''} %>
+    <% end %>
+  </div></div>
+  <div class="row"><div class="col-xs-12 contests-explore-tab-content" style="display:none;">
+    <% @contests_explore.each do |i| %>
       <%= render partial: "contests/contest", locals: {contest: i, collapseState: ''} %>
     <% end %>
   </div></div>
@@ -92,15 +98,28 @@
     $('.btn-contests').click(function() {
       $('.btn-groups').removeClass('active')
       $('.btn-contests').addClass('active')
+      $('.btn-contests-explore').removeClass('active')
       $('.groups-tab-content').hide()
       $('.contests-tab-content').show()
+      $('.contests-explore-tab-content').hide()
     });
     $('.btn-groups').click(function() {
       $('.btn-groups').addClass('active')
       $('.btn-contests').removeClass('active')
+      $('.btn-contests-explore').removeClass('active')
       $('.groups-tab-content').show()
       $('.contests-tab-content').hide()
+      $('.contests-explore-tab-content').hide()
     });
+    $('.btn-contests-explore').click(function() {
+      $('.btn-groups').removeClass('active')
+      $('.btn-contests').removeClass('active')
+      $('.btn-contests-explore').addClass('active')
+      $('.groups-tab-content').hide()
+      $('.contests-tab-content').hide()
+      $('.contests-explore-tab-content').show()
+    });
+
     $('.contest-item').click(function(e) {
       window.location = "/contests/" + $(e.currentTarget).attr('data-contest-id')
     })
