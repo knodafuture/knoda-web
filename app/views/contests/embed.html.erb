@@ -38,9 +38,7 @@
       <div class="row">
         <div class="col-xs-12" style="text-align:center;">
           <% if @contest.avatar_image %>
-            <p>avatar>
-          <% else %>
-            <img src="http://aengland.s3.amazonaws.com/users/avatars/000/000/001/small/avatar_5_2x.png?1406318499" class="avatar_small img-circle avatar-circle" style="height:36px;width:36px;">
+            <img src="<%= avatar_small(@contest) %>" class="avatar_small img-circle avatar-circle"/>
           <% end %>
         </div>
       </div>
