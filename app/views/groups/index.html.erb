@@ -10,9 +10,7 @@
   </div>
   <div class="row"><div class="col-xs-12 contests-tab-content">
     <% @contests.each do |i| %>
-      <a href="/contests/<%= i.id %>">
-        <%= render partial: "contests/contest", locals: {contest: i, collapseState: ''} %>
-      </a>
+      <%= render partial: "contests/contest", locals: {contest: i, collapseState: ''} %>
     <% end %>
   </div></div>
   <div class="groups-tab-content" style="display:none;">
@@ -103,5 +101,8 @@
       $('.groups-tab-content').show()
       $('.contests-tab-content').hide()
     });
+    $('.contest-item').click(function(e) {
+      window.location = "/contests/" + $(e.currentTarget).attr('data-contest-id')
+    })
   });
 </script>
