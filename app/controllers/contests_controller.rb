@@ -3,6 +3,10 @@ class ContestsController < AuthenticatedController
   skip_before_action :authenticate_user!, only: [:embed]
   before_action :set_contest, only: [:embed, :edit, :new_stage, :embed_standings, :show, :avatar, :crop, :avatar_upload, :update]
 
+  def index
+    redirect_to "/groups"
+  end
+
   def admin
     render "admin", layout: true
   end
