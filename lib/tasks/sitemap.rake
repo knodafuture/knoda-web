@@ -7,12 +7,12 @@ namespace :sitemap do
     SitemapGenerator::Sitemap.public_path = 'tmp/'
     SitemapGenerator::Sitemap.create do
       Prediction.where('group_id is null').each do |p|
-        add "/predictions/#{p.id}", :changefreq => 'daily'
+        add "/predictions/#{p.id}/share", :changefreq => 'daily'
       end
     end
     if ENV['S3_BUCKET_NAME']
       AWS.config(
-        :access_key_id => ENV['AWS_ACCESS_KEY_ID'], 
+        :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
         :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
       )
       bucket_name = ENV['S3_BUCKET_NAME']
