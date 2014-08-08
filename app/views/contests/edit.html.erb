@@ -9,9 +9,24 @@
         <% end %>
         <a href="/contests/<%= @contest.id%>/avatar" class="change-avatar">Change Avatar</a>
       </div>
-      <div class="row text-center">
-        <h5 class="text-center" style="color:gray;";><%= @contest.description %></h5>
-        <a href="http://<%= @contest.detail_url %>" class="text-center";>Details</a>
+      <div class="row" style="padding-bottom: 10px;">
+        <div class="col-xs-12">
+        <%= simple_form_for @contest, :html=> { class: 'form', :style => 'padding: 0px 50px;' } do |f| %>
+         <div class="form-group">
+           <label for="name">Contest Name</label>
+           <%= text_field_tag :name, @contest.name, :class => 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label for="description">Contest Description</label>
+          <%= text_area_tag :description, @contest.description, :class => 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label for="detail_url">Contest Details url</label>
+          <%= url_field_tag :detail_url, @contest.detail_url, :class => 'form-control' %>
+        </div>
+        <%= f.button :submit, "Save", :class => 'btn btn-success' %>
+        <% end %>
+        </div>
       </div>
       <div class="row text-center">
         <div class="panel-group" id="accordian">
@@ -19,7 +34,7 @@
             <div class="panel-heading">
               <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse" style="color:#77BC1F; min-height:40px;">
-                  <%= @contest.name %>
+
                 </a>
               </h4>
             </div>

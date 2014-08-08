@@ -69,7 +69,7 @@ class ContestsController < AuthenticatedController
     respond_to do |format|
       authorize_action_for(@contest)
       if @contest.update_attributes(contest_params)
-        if params[:contest][:avatar].blank? and @contest.cropping?
+        if params[:avatar].blank? and @contest.cropping?
           @contest.reprocess_avatar
         end
         format.html {

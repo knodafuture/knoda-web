@@ -11,7 +11,7 @@
           <%= text_field_tag :name, nil, placeholder: 'Enter name...'  %>
         </div>
         <div class="form-group">
-          <%= text_field_tag :sort_order, nil, placeholder: 'Enter an order number...'  %>
+          <%= number_field_tag :sort_order, 0, :min => 0  %>
         </div>
       </div>
     </div>
