@@ -352,9 +352,31 @@ input[type="date"], input[type="time"] {
 	}
 }
 
+#groups-index, #contests-show-containr {
+	.contest-item {
+		border-bottom: 1px solid #dddddd;background-color: #fff;
+		p {
+			padding: 0px;
+			margin: 0px;
+			color: @green-dark;
+			&.stat-value {
+				font-size: 16px;
+			}
+			&.stat-label {
+				font-size: 12px;
+			}
+		}
+	}
+}
+
 #groups-index {
 	.contest-item {
 		padding-top:10px;padding-bottom:5px;
+	}
+	.contests-tab-content, .contests-explore-tab-content {
+		background-color: #fff;
+		border: 1px solid #cccccc;
+		border-top: 0px;
 	}
 }
 
@@ -362,17 +384,6 @@ input[type="date"], input[type="time"] {
 .contest-item {
 	margin: 0px;
 	padding: 10px 0px;
-	p {
-		padding: 0px;
-		margin: 0px;
-		color: @green-dark;
-		&.stat-value {
-			font-size: 16px;
-		}
-		&.stat-label {
-			font-size: 12px;
-		}
-	}
 }
 
 .contest-tabs {

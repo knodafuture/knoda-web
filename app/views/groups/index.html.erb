@@ -10,8 +10,18 @@
     </div>
   </div>
   <div class="row"><div class="col-xs-12 contests-tab-content">
-    <% @contests.each do |i| %>
-      <%= render partial: "contests/contest", locals: {contest: i, collapseState: ''} %>
+    <% if @contests.size == 0 %>
+      <div class="row empty-state">
+        <div class="col-xs-12">
+          <p>You're not participating in any contests, let's change that.<br/>
+             Get things started and <a class="btn-contests-explore">find new contests awaiting your vote</a>.
+          </p>
+        </div>
+      </div>
+    <% else %>
+      <% @contests.each do |i| %>
+        <%= render partial: "contests/contest", locals: {contest: i, collapseState: ''} %>
+      <% end %>
     <% end %>
   </div></div>
   <div class="row"><div class="col-xs-12 contests-explore-tab-content" style="display:none;">
