@@ -13,8 +13,8 @@ class ContestsController < AuthenticatedController
   end
 
   def edit
+    authorize_action_for(@contest)
     @user = current_user
-    #render "contests/edit"
   end
 
   def show

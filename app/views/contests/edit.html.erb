@@ -28,31 +28,6 @@
         <% end %>
         </div>
       </div>
-      <div class="row text-center">
-        <div class="panel-group" id="accordian">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse" style="color:#77BC1F; min-height:40px;">
-
-                </a>
-              </h4>
-            </div>
-            <div id="collapse" class="panel-collapse collapse in">
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <a href="/predictions/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createPredictionModal_contest<%=@contest.id%>" data-remote="/predictions/new?contestid=<%=@contest.id%>" title="Create a new prediction">Create a prediction</a>
-                  </div>
-                  <div class="col-xs-6">
-                    <a href="/contest_stages/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createStageModal" data-remote="/contest_stages/new?contestid=<%=@contest.id%>" title="Create a new stage">Create a contest stage</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="row">
         <div class="col-xs-6">
           <h3 class="text-center">Predictions <a href="/predictions/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createPredictionModal_contest<%=@contest.id%>" data-remote="/predictions/new?contestid=<%=@contest.id%>" title="Create a new prediction">+</a></h3>
