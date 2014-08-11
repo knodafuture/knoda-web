@@ -33,6 +33,24 @@ class Admin::UsersController < Admin::AdminController
         end
       end
     end
+    if x.has_key?(:contest_editor)
+      if @u.is_editor?
+        if x[:contest_editor] == "false"
+          @u.roles_will_change!
+          @u.roles.delete("CONTEST_EDITOR")
+          @u.save
+        end
+      else
+        if x[:contest_editor] == "true"
+          if !@u.roles
+            @u.roles=[]
+          end
+          @u.roles_will_change!
+          @u.roles << "CONTEST_EDITOR"
+          @u.save
+        end
+      end
+    end
     render nothing:true,status:200
   end
 
@@ -43,7 +61,7 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def user_params
-    params.permit(:id, :verified_account, :admin)
+    params.permit(:id, :verified_account, :admin, :contest_editor)
   end
 
 end

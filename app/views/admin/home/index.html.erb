@@ -30,6 +30,7 @@
                   <th>email</th>
                   <th>admin?</th>
                   <th>verified user?</th>
+                  <th>contest editor</th>
                 </tr>
               </thead>
               <% @u.each do |f| %>
@@ -52,6 +53,13 @@
                     <input type="checkbox" class="verifiedCheck" checked="checked" value="<%= f.id %>"/>
                   <% else %>
                     <input type="checkbox" class="verifiedCheck" value="<%= f.id %>"/>
+                  <% end %>
+                </td>
+                <td>
+                  <% if f.roles.include? "CONTEST_EDITOR" %>
+                    <input type="checkbox" class="contestCheck" checked="checked" value="<%= f.id %>"/>
+                  <% else %>
+                    <input type="checkbox" class="contestCheck" value="<%= f.id %>"/>
                   <% end %>
                 </td>
               </tr>
@@ -132,6 +140,13 @@
           url: "/admin/users/"+e.currentTarget.value+".json",
           type: "PUT",
           data: {admin: e.currentTarget.checked}
+        });
+      });
+      $('.contestCheck').change(function(e) {
+        $.ajax({
+          url: "/admin/users/"+e.currentTarget.value+".json",
+          type: "PUT",
+          data: {contest_editor: e.currentTarget.checked}
         });
       });
     });
