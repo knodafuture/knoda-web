@@ -90,7 +90,7 @@ KnodaWeb::Application.routes.draw do
     member do
       get 'embed'
       get 'edit'
-      get 'embed_standings'
+      get 'standings'
       get 'avatar'
       get 'crop'
       post 'avatar_upload'

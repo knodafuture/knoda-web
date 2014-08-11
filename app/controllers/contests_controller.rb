@@ -1,8 +1,8 @@
 class ContestsController < AuthenticatedController
   #before_filter :admin_required
-  skip_before_action :authenticate_user!, only: [:embed, :embed_standings]
-  skip_before_action :unseen_activities, only: [:embed, :embed_standings]
-  before_action :set_contest, only: [:embed, :edit, :new_stage, :embed_standings, :show, :avatar, :crop, :avatar_upload, :update]
+  skip_before_action :authenticate_user!, only: [:embed, :standings]
+  skip_before_action :unseen_activities, only: [:embed, :standings]
+  before_action :set_contest, only: [:embed, :edit, :new_stage, :standings, :show, :avatar, :crop, :avatar_upload, :update]
 
   def index
     redirect_to "/groups"
@@ -94,13 +94,13 @@ class ContestsController < AuthenticatedController
         }
   end
 
-  def embed_standings
+  def standings
     if params[:stage]
       @leaders = Contest.stage_leaderboard(ContestStage.find(params[:stage]))
     else
       @leaders = Contest.leaderboard(@contest)
     end
-    render :partial => "embed_standings",
+    render :partial => "standings",
       :locals => {:leaders => @leaders}
   end
 

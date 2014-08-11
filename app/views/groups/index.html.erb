@@ -20,13 +20,13 @@
       </div>
     <% else %>
       <% @contests.each do |i| %>
-        <%= render partial: "contests/contest", locals: {contest: i, collapseState: ''} %>
+        <%= render partial: "contests/contest", locals: {contest: i, explore: false} %>
       <% end %>
     <% end %>
   </div></div>
   <div class="row"><div class="col-xs-12 contests-explore-tab-content" style="display:none;">
     <% @contests_explore.each do |i| %>
-      <%= render partial: "contests/contest", locals: {contest: i, collapseState: ''} %>
+      <%= render partial: "contests/contest", locals: {contest: i, explore: true} %>
     <% end %>
   </div></div>
   <div class="groups-tab-content" style="display:none;">

@@ -39,10 +39,10 @@
     </div>
     <div class="row standings-item-header">
       <div class="col-xs-10"><span style="width:75px;display:inline-block;">RANK</span>USERNAME</div>
-      <div class="col-xs-2 pull-right right">WINS</div>
+      <div class="col-xs-2 pull-right" style="text-align:right;">WINS</div>
     </div>
     <div class="standings-container">
-      <%= render partial: "embed_standings.html.erb", locals: {:leaders => Contest.leaderboard(@contest)} %>
+      <%= render partial: "standings.html.erb", locals: {:leaders => Contest.leaderboard(@contest)} %>
     </div>
   </div>
 </div>
@@ -74,9 +74,9 @@
     });
     $('.standings-select').change(function(e) {
       if ($(e.currentTarget).val() > 0) {
-        u = "/contests/<%= @contest.id %>/embed_standings.html?stage=" + $(e.currentTarget).val()
+        u = "/contests/<%= @contest.id %>/standings.html?stage=" + $(e.currentTarget).val()
       } else {
-        u = "/contests/<%= @contest.id %>/embed_standings.html?"
+        u = "/contests/<%= @contest.id %>/standings.html?"
       }
       $.ajax({
         url: u,

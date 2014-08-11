@@ -68,6 +68,18 @@ body {
 	border-color: @green-dark;
 }
 
+.btn-style-join {
+	width: 100%;
+	color: @green-dark;
+	background-color: #DEE7E1;
+	border-color: @green-dark;
+	&:hover {
+		background-color: @green-dark;
+		color: #DEE7E1;
+		border-color: @green-dark;
+	}
+}
+
 a {
 	text-decoration: none;
 	cursor: pointer
@@ -335,10 +347,9 @@ input[type="date"], input[type="time"] {
 #activities-index-container, #groups-index {
 	.navigation {
 		margin: 0px;
-		border-left:1px solid #dddddd;
-		border-right:1px solid #dddddd;
-		padding-top: 10px;
-		padding-bottom: 10px;
+		border-left:1px solid @gray-lightest;
+		border-right:1px solid @gray-lightest;
+		padding: 10px 5px;
 		a {
 			text-decoration: none;
 			.sansRegular;
@@ -361,13 +372,15 @@ input[type="date"], input[type="time"] {
 #groups-index, #contests-show-container {
 	.contest-item {
 		color: @green-dark;
-		border-bottom: 1px solid #dddddd;
+		border-bottom: 1px solid @gray-lightest;
 		background-color: #fff;
 		.description {
 				padding: 5px;
 		}
 		h2 {
 			margin: 0px 5px;
+			font-size: 18px;
+			color: @green-light;
 		}
 		p {
 			color: @green-dark;
@@ -375,9 +388,9 @@ input[type="date"], input[type="time"] {
 		.stats {
 			margin: 10px 0px 0px 0px;
 			text-align: left;
-			border-top: 1px solid #dddddd;
+			border-top: 1px solid @gray-lightest;
 			.stats-left {
-				border-right:1px solid #dddddd;
+				border-right:1px solid @gray-lightest;
 				padding: 10px 0px;
 			}
 			.stats-right {
@@ -409,13 +422,17 @@ input[type="date"], input[type="time"] {
 				z-index: 1;
 				background-color: #fff;
 		}
+		.btn-join-contest {
+			.btn-style-join;
+			width: 100%;
+		}
 	}
 }
 
 #groups-index {
 	.contest-item {
 		padding-top:10px;
-		border-bottom: 4px solid #dddddd;
+		border-bottom: 5px solid @gray-lightest;
 	}
 	.contests-tab-content, .contests-explore-tab-content {
 		background-color: #fff;
@@ -428,13 +445,13 @@ input[type="date"], input[type="time"] {
 .contest-item {
 	margin: 0px;
 	padding: 10px 0px 0px 0px;
-	border: 1px solid #dddddd;
+	border: 1px solid @gray-lightest;
 	border-bottom: 0px;
 }
 
 .contest-tabs {
 	.sansLight;
-	font-size: 16px;
+	font-size: 14px;
 	background-color: #77BC1F;
 	margin:0px;
 	padding: 10px 0px 10px 0px;
@@ -450,8 +467,8 @@ input[type="date"], input[type="time"] {
 	margin: 0px;
 	border: 1px solid #cccccc;
 	.standings-item-header {
-		background-color: @green-dark;
-		color: @white;
+		background-color: @gray-lightest;
+		line-height: 36px;
 		font-size: 11px;
 		padding: 5px 10px;
 		margin: 0px;
@@ -466,11 +483,19 @@ input[type="date"], input[type="time"] {
 	.standings-container {
 		padding-top: 5px;
 		.standings-item {
-			margin-right: 15px;
+			margin-left: 0px;
+			margin-right: 0px;
 			.sansRegular;
 			font-size: 16px;
 			padding: 2px 0px 5px 0px;
+			&:nth-child(even) {
+				background-color: @gray-lightest;
+			}
+			.rank {
+				color: @green-light;
+			}
 		}
+
 	}
 }
 }
