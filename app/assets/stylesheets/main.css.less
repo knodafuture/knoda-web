@@ -352,26 +352,70 @@ input[type="date"], input[type="time"] {
 	}
 }
 
-#groups-index, #contests-show-containr {
+#groups-index {
 	.contest-item {
-		border-bottom: 1px solid #dddddd;background-color: #fff;
+		cursor: pointer;
+	}
+}
+
+#groups-index, #contests-show-container {
+	.contest-item {
+		color: @green-dark;
+		border-bottom: 1px solid #dddddd;
+		background-color: #fff;
+		.description {
+				padding: 5px;
+		}
+		h2 {
+			margin: 0px 5px;
+		}
+		p {
+			color: @green-dark;
+		}
+		.stats {
+			margin: 10px 0px 0px 0px;
+			text-align: left;
+			border-top: 1px solid #dddddd;
+			.stats-left {
+				border-right:1px solid #dddddd;
+				padding: 10px 0px;
+			}
+			.stats-right {
+				padding: 10px 0px;
+			}
+		}
 		p {
 			padding: 0px;
 			margin: 0px;
 			color: @green-dark;
 			&.stat-value {
-				font-size: 16px;
+				.sansLight;
+				font-size: 18px;
 			}
 			&.stat-label {
-				font-size: 12px;
+				.sansRegular;
+				font-size: 10px;
 			}
+		}
+		.contest-rank-icon {
+				.img-retina("icons/ContestRankIcon.png", "icons/ContestRankIcon@2x.png", 20px, 16px);
+				background-repeat: no-repeat;
+				background-position: center center;
+				height: 32px;
+				width: 40px;
+				position:absolute;
+				right: -21px;
+				bottom: 15px;
+				z-index: 1;
+				background-color: #fff;
 		}
 	}
 }
 
 #groups-index {
 	.contest-item {
-		padding-top:10px;padding-bottom:5px;
+		padding-top:10px;
+		border-bottom: 4px solid #dddddd;
 	}
 	.contests-tab-content, .contests-explore-tab-content {
 		background-color: #fff;
@@ -383,7 +427,9 @@ input[type="date"], input[type="time"] {
 #contests-show-container {
 .contest-item {
 	margin: 0px;
-	padding: 10px 0px;
+	padding: 10px 0px 0px 0px;
+	border: 1px solid #dddddd;
+	border-bottom: 0px;
 }
 
 .contest-tabs {

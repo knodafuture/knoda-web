@@ -131,6 +131,7 @@
     });
 
     $('.contest-item').click(function(e) {
+      startLoading()
       window.location = "/contests/" + $(e.currentTarget).attr('data-contest-id')
     })
   });
