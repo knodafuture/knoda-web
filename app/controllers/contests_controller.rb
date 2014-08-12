@@ -18,6 +18,8 @@ class ContestsController < AuthenticatedController
   end
 
   def show
+    @expired_predictions = @contest.predictions.where("predictions.expires_at < now()")
+    @live_predictions = @contest.predictions.recent.latest
   end
 
   def new

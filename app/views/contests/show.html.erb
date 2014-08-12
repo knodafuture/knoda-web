@@ -15,16 +15,35 @@
 </div>
 <div class="row live-predictions">
   <div class="panel-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <% @contest.predictions.recent.latest.each do |i| %>
-        <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
+      <% if @live_predictions.size == 0 %>
+        <div class="row empty-state" style="background-color: #fff;margin: 0px;">
+          <div class="col-xs-12">
+            <p>Sorry, this contest doesn't have any predictions for you to vote on yet. Check back later to enter this contest.
+            </p>
+          </div>
+        </div>
+      <% else %>
+        <% @live_predictions.each do |i| %>
+          <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
+        <% end %>
       <% end %>
   </div>
 </div>
 <div class="row expired-predictions" style="display:none;">
   <div class="panel-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <% @contest.predictions.where("predictions.expires_at < now()").each do |i| %>
+    <% if @expired_predictions.size == 0 %>
+      <div class="row empty-state" style="background-color: #fff;margin: 0px;">
+        <div class="col-xs-12">
+          <p>All of this contests predictions are still open for voting. <br />
+            <a class="btn-live-predictions">Click here to vote and enter the contest.</a>
+          </p>
+        </div>
+      </div>
+    <% else %>
+      <% @expired_predictions.each do |i| %>
         <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
       <% end %>
+    <% end %>
   </div>
 </div>
 <div class="row standings" style="display:none;">
