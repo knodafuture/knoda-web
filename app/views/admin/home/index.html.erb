@@ -96,7 +96,7 @@
               <%=  form_tag(controller: "test_data", action: "create_votes", method: "post",) do %>
               <%= label_tag(:amount, "Amount of Votes:") %>
               <%= text_field_tag(:amount) %>
-              <%= label_tag(:yesno, "Enter random, yes, or false") %>
+              <%= label_tag(:yesno, "Enter agree, or disagree. (Leave blank for random vote):") %>
               <%= text_field_tag(:yesno) %>
               <%= label_tag(:prediction_id, "Enter prediction id:") %>
               <%= text_field_tag(:prediction_id) %>

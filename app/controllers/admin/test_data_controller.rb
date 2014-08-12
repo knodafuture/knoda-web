@@ -69,17 +69,23 @@ class Admin::TestDataController < Admin::AdminController
     amount = v[:amount].to_i
     yesno = v[:yesno].to_s
 
-    if yesno == "random"
-      random_bool = [true, false].sample
-      t[:agree] = random_bool
-    elsif yesno == "yes"
-      t[:agree] = true
-    else
-      t[:agree] = false
-    end
     amount.times do |f|
+      if yesno == ""
+        random_bool = [true, false].sample
+        t[:agree] = random_bool
+      elsif yesno == "agree"
+        t[:agree] = true
+      elsif yesno == "disagree"
+        t[:agree] = falsed
+      else
+        t[:agree] = false
+      end
       #USER
+      prediction = Prediction.find(t['prediction_id'])
       u = User.order('random() desc').first
+      while u.challenges.where(prediction: prediction).first == true
+        u = User.order('random() desc').first
+      end
       t[:user] = u
       #CREATECHALLENGE
       f = Challenge.create(t)
@@ -121,13 +127,7 @@ class Admin::TestDataController < Admin::AdminController
     redirect_to "/admin"
   end
 
-  def user_search
-    x = search_param
-    name = x[:searchinput]
-    name = name.downcase
-    @u = User.where("LOWER(username) like ?", "%#{name}%")
-    render "admin/home/index"
-  end
+
 
 
   private
