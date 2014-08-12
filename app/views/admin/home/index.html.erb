@@ -88,7 +88,8 @@
               <%= label_tag(:mins, "Minutes Until Expire:") %>
               <%= text_field_tag(:mins) %>
               <%= label_tag(:username, "Specify User (if left blank, random user picked):") %>
-              <%= text_field_tag(:username) %>
+              <%= select_tag(:username, options_for_select(User.connection.select_values(User.select("username").to_sql)), :include_blank =>"Random") %>
+
               <%= submit_tag 'Create Predictions' %>
               <% end %>
             </div>
