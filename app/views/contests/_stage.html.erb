@@ -1,9 +1,12 @@
-<% @contest.contest_stages.each do |stage| %>
+<% @contest.contest_stages.order('sort_order asc').each do |stage| %>
 <div class="panel panel-default predictionContainer">
-    <div class="panel-heading" style="padding:0px 0px; background-color: #EFEFEF">
+  <div class="panel-heading" style="padding:0px 0px; background-color: #EFEFEF">
     <div class="row">
-          <h3 class="text-center username"><%= stage.name %></h3>
+      <h3 class="text-center username"><%= stage.name %></h3>
     </div>
   </div>
+  <div class="row">
+    <p class="text-center"><%= stage.predictions.length %> Prediction(s) this Stage.</p>
+  </div>
 </div>
-<% end %>
+  <% end %>
