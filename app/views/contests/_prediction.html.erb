@@ -4,11 +4,22 @@
     <div class="row userInfo">
         <a href="/users/<%= prediction.user.username%>">
           <img src="<%= avatar_small(prediction.user) %>" style="display:inline-block; height: 47px; width:47px;" />
-          <span class="username"><%= prediction.user.username %></span>
+          <span class="username"><%= prediction.user.username %>
           <% if prediction.user.verified_account %>
             <%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
           <% end %>
+        </span>
         </a>
+        <div class="col-md-3 myChallenge pull-right">
+            <% if (current_user.id == prediction.user_id && prediction.is_ready_for_resolution? && !prediction.is_closed?) %>
+              <a data-toggle="collapse" href="#collapse<%= prediction.id %>">
+              <%= image_tag('icons/sd/prediction_alert.png', :class => 'pull-right', :style => "margin-top: 12px") %>
+              </a>
+            <% else %>
+            <%= display_challenge_icon(prediction) %>
+            <%= display_won_lost(prediction) %>
+            <% end %>
+        </div>
     </div>
     <div class="row predictionInfo" style="background-color:white; padding: 8px 20px;">
       <p style="width:100%;display:inline-block;"><%= prediction.body %></p>
