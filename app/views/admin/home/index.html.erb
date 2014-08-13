@@ -88,7 +88,7 @@
               <%= label_tag(:mins, "Minutes Until Expire:") %>
               <%= text_field_tag(:mins) %>
               <%= label_tag(:username, "Specify User (if left blank, random user picked):") %>
-              <%= select_tag(:username, options_for_select(User.connection.select_values(User.select("username").to_sql)), :include_blank =>"Random") %>
+              <%= select_tag(:username, options_for_select(User.connection.select_values(User.select("username").to_sql)), :include_blank =>"Random", :class => "form-control input-sm", :style => "margin-bottom:5px;") %>
 
               <%= submit_tag 'Create Predictions' %>
               <% end %>
@@ -100,7 +100,7 @@
               <%= label_tag(:yesno, "Enter agree, or disagree. (Leave blank for random vote):") %>
               <%= text_field_tag(:yesno) %>
               <%= label_tag(:prediction_id, "Enter prediction id:") %>
-              <%= text_field_tag(:prediction_id) %>
+              <%= text_field_tag(:prediction_id, nil ,:style => "margin-bottom:5px;") %>
               <%= submit_tag 'Create Votes' %>
               <% end %>
             </div>
@@ -110,7 +110,7 @@
               <%= label_tag(:amount, "Amount of Comments:") %>
               <%= text_field_tag(:amount) %>
               <%= label_tag(:prediction_id, "Enter prediction id:") %>
-              <%= text_field_tag(:prediction_id) %>
+              <%= text_field_tag(:prediction_id, nil, :style => "margin-bottom:5px;") %>
               <%= submit_tag 'Create Comments' %>
               <% end %>
             </div>
