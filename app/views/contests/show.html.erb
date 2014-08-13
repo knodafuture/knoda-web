@@ -1,0 +1,109 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'prediction_actions' %>
+<% end %>
+<%= render partial: "contests/contest", locals: {contest: @contest, collapseState: ''} %>
+<div class="row contest-tabs">
+  <div class="col-xs-4 center">
+    <a class="btn-live-predictions active">Live Predictions</a>
+  </div>
+  <div class="col-xs-4 center">
+    <a class="btn-expired-predictions">Expired Predictions</a>
+  </div>
+  <div class="col-xs-4 center">
+    <a class="btn-standings">Standings</a>
+  </div>
+</div>
+<div class="row live-predictions">
+  <div class="panel-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <% if @live_predictions.size == 0 %>
+        <div class="row empty-state" style="background-color: #fff;margin: 0px;">
+          <div class="col-xs-12">
+            <p>Sorry, this contest doesn't have any predictions for you to vote on yet. Check back later to enter this contest.
+            </p>
+          </div>
+        </div>
+      <% else %>
+        <% @live_predictions.each do |i| %>
+          <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
+        <% end %>
+      <% end %>
+  </div>
+</div>
+<div class="row expired-predictions" style="display:none;">
+  <div class="panel-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <% if @expired_predictions.size == 0 %>
+      <div class="row empty-state" style="background-color: #fff;margin: 0px;">
+        <div class="col-xs-12">
+          <p>All of this contests predictions are still open for voting. <br />
+            <a class="btn-live-predictions">Click here to vote and enter the contest.</a>
+          </p>
+        </div>
+      </div>
+    <% else %>
+      <% @expired_predictions.each do |i| %>
+        <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="row standings" style="display:none;">
+  <div class="col-xs-12" style="padding:0px;">
+    <div style="text-align:center;margin: 0px 40px 10px 40px;" >
+      <select name="standings-select" class="form-control input-sm standings-select">
+        <option value="0">Overall Leaders</option>
+        <% @contest.contest_stages.each do |s| %>
+        <option value="<%= s.id %>"><%= s.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="row standings-item-header">
+      <div class="col-xs-10"><span style="width:75px;display:inline-block;">RANK</span>USERNAME</div>
+      <div class="col-xs-2 pull-right" style="text-align:right;">WINS</div>
+    </div>
+    <div class="standings-container">
+      <%= render partial: "standings.html.erb", locals: {:leaders => Contest.leaderboard(@contest)} %>
+    </div>
+  </div>
+</div>
+<script>
+  $(function() {
+    $('.btn-live-predictions').click(function() {
+      $('.btn-expired-predictions').removeClass('active')
+      $('.btn-live-predictions').addClass('active')
+      $('.btn-standings').removeClass('active')
+      $('.live-predictions').show()
+      $('.expired-predictions').hide()
+      $('.standings').hide()
+    });
+    $('.btn-expired-predictions').click(function() {
+      $('.btn-expired-predictions').addClass('active')
+      $('.btn-live-predictions').removeClass('active')
+      $('.btn-standings').removeClass('active')
+      $('.expired-predictions').show()
+      $('.live-predictions').hide()
+      $('.standings').hide()
+    });
+    $('.btn-standings').click(function() {
+      $('.btn-expired-predictions').removeClass('active')
+      $('.btn-live-predictions').removeClass('active')
+      $('.btn-standings').addClass('active')
+      $('.expired-predictions').hide()
+      $('.live-predictions').hide()
+      $('.standings').show()
+    });
+    $('.standings-select').change(function(e) {
+      if ($(e.currentTarget).val() > 0) {
+        u = "/contests/<%= @contest.id %>/standings.html?stage=" + $(e.currentTarget).val()
+      } else {
+        u = "/contests/<%= @contest.id %>/standings.html?"
+      }
+      $.ajax({
+        url: u,
+        type: "GET",
+        success: (function(data) {
+          $('.standings-container').html(data)
+        })
+      });
+    });
+  });
+</script>

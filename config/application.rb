@@ -23,6 +23,7 @@ module KnodaWeb
     config.assets.precompile += %w(application-home.css)
     config.assets.precompile += %w(application-prelogin.css)
     config.assets.precompile += %w(application-embed.css)
+    config.assets.precompile += %w(application-contest-embed.css)
     config.assets.precompile += %w(edge.3.0.0.min.js)
     config.twitter_key = "14fSb3CT7EEQkoryO8RNx7BrG"
     config.twitter_secret = "6Z5OGzxLL9NqVEpAbLs9FFd2PyLm6pd7j5r98IZr5e0HRr73bo"

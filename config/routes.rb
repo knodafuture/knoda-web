@@ -82,4 +82,36 @@ KnodaWeb::Application.routes.draw do
       patch 'update_password'
     end
   end
+
+  resources :contests do
+    collection do
+      get 'admin'
+    end
+    member do
+      get 'embed'
+      get 'edit'
+      get 'standings'
+      get 'avatar'
+      get 'crop'
+      post 'avatar_upload'
+    end
+  end
+
+  resources :contest_stages
+
+
+  namespace :admin do
+    get '/' => "home#index"
+    post '/test_data/prediction' => "test_data#create_prediction"
+    post '/test_data/vote' => "test_data#create_votes"
+    post '/test_data/comment' => "test_data#create_comments"
+    post '/users/search' => "users#search"
+    put '/users/:id' => "users#update"
+  end
+
+  #namespace :contests do
+  #  get '/' => "home#index"
+  #  post '/contests/create' => "contests#create_contest"
+  #  get '/:id/embed' => 'contests#embed'
+  #end
 end

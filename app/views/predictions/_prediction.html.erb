@@ -24,10 +24,15 @@
     </div>
     <div class="row predictionInfoLine2" data-toggle="collapse" href="#collapse<%= prediction.id %>">
       <a data-toggle="collapse" href="#collapse<%= prediction.id %>" style="width:100%;display:inline-block;"><%= display_close_status(prediction) %> | predicted <%= distance_of_time_in_words_to_now(prediction.created_at) %> ago | <span class="agree-percentage"><%= prediction.agree_percentage %></span>% agree | <%= image_tag("icons/CommentIcon@2x.png") %> <%= prediction.comments.size %></a>
-    </div>  
+    </div>
     <% if prediction.group %>
     <div class="row predictionInfoLine3">
       <a href="/groups/<%= prediction.group_id %>"><%= prediction.group.name %></a>
+    </div>
+    <% end %>
+    <% if prediction.contest %>
+    <div class="row predictionInfoLine3 contest">
+      <a href="/contests/<%= prediction.contest_id %>"><%= prediction.contest_name %></a>
     </div>
     <% end %>
   </div>
@@ -51,13 +56,13 @@
             <a href="/groups/<%= prediction.group_id%>"><p>GROUP</p></a>
           <% else %>
             <a href="/predictions?tag=<%=prediction.tags[0]%>" class="similar"></a>
-            <a href="/predictions?tag=<%=prediction.tags[0]%>"><p>SIMILAR</p></a>          
+            <a href="/predictions?tag=<%=prediction.tags[0]%>"><p>SIMILAR</p></a>
           <% end %>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-2">
           <a class="share share-prediction <% if prediction.group_id %>inactive<% end %>"></a>
           <a class="share-prediction <% if prediction.group_id %>inactive<% end %>"><p>SHARE</p></a>
-        </div>                        
+        </div>
       </div>
       <div class="row">
         <div class="comments-content">
@@ -65,7 +70,7 @@
         </div>
         <div class="tally-content" style="display:none">
         </div>
-      </div>        
+      </div>
     </div>
   </div>
 </div>

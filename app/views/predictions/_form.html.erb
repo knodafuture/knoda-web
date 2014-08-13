@@ -48,6 +48,7 @@
       <a class="share-facebook pull-left" href="<%= user_omniauth_authorize_path(:facebook, display:'popup', popup: true)%>"></a>
       <a class="share-twitter pull-left" href="<%= user_omniauth_authorize_path(:twitter, popup: true)%>"></a>
       </span>
+      <%= hidden_field_tag 'prediction[contest_id]', params[:contestid] %>
       <%= f.button :submit , :class => 'btn btn-success' %>
     </div>
   </div>

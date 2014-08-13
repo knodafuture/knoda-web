@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-xs-12 group-thumb">
+    <div class="thumbnail" style="min-height:200px;">
+      <div class="row text-center">
+        <% if not @contest.avatar == nil %>
+        <img src="<%= avatar_small(@contest) %>" class="avatar_small img-circle text-center"  style="width:80px;height:80px;margin:10px;"  />
+        <% else %>
+        <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle text-center"  style="width:80px;height:80px;margin:10px;"  />
+        <% end %>
+        <a href="/contests/<%= @contest.id%>/avatar" class="change-avatar">Change Avatar</a>
+      </div>
+      <div class="row" style="padding-bottom: 10px;">
+        <div class="col-xs-12">
+        <%= simple_form_for @contest, :html=> { class: 'form', :style => 'padding: 0px 50px;' } do |f| %>
+         <div class="form-group">
+           <label for="name">Contest Name</label>
+           <%= text_field_tag :name, @contest.name, :class => 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label for="description">Contest Description</label>
+          <%= text_area_tag :description, @contest.description, :class => 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label for="detail_url">Contest Details url</label>
+          <%= url_field_tag :detail_url, @contest.detail_url, :class => 'form-control' %>
+        </div>
+        <%= f.button :submit, "Save", :class => 'btn btn-success' %>
+        <% end %>
+
+        </div>
+      </div>
+      <div class="row text-center">
+        <button type="button" class="btn btn-danger text-center" data-toggle="collapse" data-target="#demo">
+          Embed
+        </button>
+        <div id="demo" class="collapse">
+          <textarea class="form-control" style="padding: 0px 50px; margin:15px;"><iframe src="http://www.knoda.com/contests/<%=@contest.id%>/embed" width="300" height="500" frameborder="0"></iframe></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <h3 class="text-center">Predictions <a href="/predictions/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createPredictionModal_contest<%=@contest.id%>" data-remote="/predictions/new?contestid=<%=@contest.id%>" title="Create a new prediction">+</a></h3>
+          <%= render 'contests/prediction' %>
+        </div>
+        <div class="col-xs-6">
+          <h3 class="text-center">Stages <a href="/contest_stages/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createStageModal" data-remote="/contest_stages/new?contestid=<%=@contest.id%>" title="Create a new stage">+</a></h3>
+          <%= render 'contests/stage' %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="createPredictionModal_contest<%= @contest.id %>" tabindex="-1" role="dialog" aria-hidden="true"></div>
+</div>
+<div class="modal fade" id="createStageModal" tabindex="-1" role="dialog" aria-hidden="true"></div>
