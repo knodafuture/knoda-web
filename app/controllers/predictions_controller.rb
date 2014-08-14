@@ -5,6 +5,9 @@ class PredictionsController < AuthenticatedController
   before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments, :bs, :facebook_share, :twitter_share, :embed]
   after_action :after_close, only: [:close]
 
+    authority_actions :share => 'read'
+
+
   def share
     if user_signed_in?
       show()
