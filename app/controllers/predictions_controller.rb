@@ -5,9 +5,12 @@ class PredictionsController < AuthenticatedController
   before_action :set_prediction, only: [:show, :edit, :update, :destroy, :close, :tally, :share, :share_dialog, :comments, :bs, :facebook_share, :twitter_share, :embed]
   after_action :after_close, only: [:close]
 
+    authority_actions :share => 'read'
+
+
   def share
     if user_signed_in?
-      redirect_to  action: 'show', id: @prediction.id
+      show()
     else
         @prediction = Prediction.find(params[:id])
         if (@prediction.group)
@@ -41,7 +44,7 @@ class PredictionsController < AuthenticatedController
   # GET /predictions/1.json
   def show
     if not user_signed_in?
-      redirect_to action: 'share', id: @prediction.id
+      share()
     else
       authorize_action_for(@prediction)
       authenticate_user!
