@@ -1,5 +1,5 @@
 class ContestsController < AuthenticatedController
-  #before_filter :admin_required
+  before_filter :contest_editor_required, only: [:admin, :edit, :create, :new, :add_prediction, :avatar, :avatar_upload, :update, :crop]
   skip_before_action :authenticate_user!, only: [:embed, :standings]
   skip_before_action :unseen_activities, only: [:embed, :standings]
   before_action :set_contest, only: [:embed, :edit, :new_stage, :standings, :show, :avatar, :crop, :avatar_upload, :update]
@@ -107,8 +107,8 @@ class ContestsController < AuthenticatedController
   end
 
   protected
-    def admin_required
-      if not current_user.is_admin?
+    def contest_editor_required
+      if not current_user.is_editor?
         redirect_to '/'
       end
     end
