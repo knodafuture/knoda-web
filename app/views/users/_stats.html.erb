@@ -11,6 +11,13 @@
     </div>
     <div class="row">
       <div class="col-xs-12 center" style="height:160px;">
+        <% if current_user != user %>
+          <% if user.followed_by?(current_user) %>
+            <a class="btn btn-danger btn-following pull-right" style="position:absolute;right: 5px; top: 5px;" data-id="<%= user.following(current_user).id %>">Following</a>
+          <% else %>
+            <a class="btn btn-danger btn-follow pull-right" style="position:absolute;right: 5px; top: 5px;">Follow</a>
+          <% end %>
+        <% end %>
         <h1><%= user.username %></h1>
         <% if current_user == user %>
           <div class="stats-social">

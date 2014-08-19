@@ -30,6 +30,8 @@ class PredictionsController < AuthenticatedController
   def index
     if params[:tag]
       @predictions = Prediction.recent.latest.visible_to_user(current_user.id).where("'#{params[:tag]}' = ANY (tags)").offset(param_offset).limit(param_limit)
+    elsif params[:feed] == 'social'
+      @predictions = Prediction.includes(:challenges, :comments).recent.latest.visible_to_user(current_user.id).by_leaders(current_user.id).offset(param_offset).limit(param_limit)
     else
       @predictions = Prediction.includes(:user,:comments).visible_to_user(current_user.id).recent.latest.offset(param_offset).limit(param_limit)
     end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729194552) do
+ActiveRecord::Schema.define(version: 20140818185652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,12 @@ ActiveRecord::Schema.define(version: 20140729194552) do
   add_index "comments", ["prediction_id"], name: "index_comments_on_prediction_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "contest_stage", force: true do |t|
+    t.string  "name",       null: false
+    t.integer "contest_id"
+    t.integer "sort_order"
+  end
+
   create_table "contest_stages", force: true do |t|
     t.string  "name",       null: false
     t.integer "contest_id"
@@ -112,6 +118,13 @@ ActiveRecord::Schema.define(version: 20140729194552) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
   end
+
+  create_table "followings", force: true do |t|
+    t.integer "user_id",   null: false
+    t.integer "leader_id", null: false
+  end
+
+  add_index "followings", ["user_id", "leader_id"], name: "index_followers_on_user_id_and_leader_id", unique: true, using: :btree
 
   create_table "groups", force: true do |t|
     t.string   "name",                default: "", null: false
@@ -220,6 +233,8 @@ ActiveRecord::Schema.define(version: 20140729194552) do
     t.datetime "updated_at"
   end
 
+  add_index "social_accounts", ["provider_name", "provider_id"], name: "index_social_accounts_on_provider_name_and_provider_id", using: :btree
+
   create_table "topics", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -264,6 +279,7 @@ ActiveRecord::Schema.define(version: 20140729194552) do
     t.boolean  "verified_account",       default: false
     t.boolean  "guest_mode",             default: false
     t.string   "roles",                  default: [],                 array: true
+    t.text     "phone"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

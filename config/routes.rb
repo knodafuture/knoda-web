@@ -98,6 +98,7 @@ KnodaWeb::Application.routes.draw do
   end
 
   resources :contest_stages
+  resources :followings
 
 
   namespace :admin do
@@ -108,10 +109,4 @@ KnodaWeb::Application.routes.draw do
     post '/users/search' => "users#search"
     put '/users/:id' => "users#update"
   end
-
-  #namespace :contests do
-  #  get '/' => "home#index"
-  #  post '/contests/create' => "contests#create_contest"
-  #  get '/:id/embed' => 'contests#embed'
-  #end
 end
