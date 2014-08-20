@@ -16,8 +16,20 @@ class InvitationsController < AuthenticatedController
     end
   end
 
+
+  def accept
+    invitation = Invitation.where(:code => params[:invitation_code]).first
+    puts invitation.id
+    if invitation
+      begin
+        invitation.user.followings.create!(:leader_id => current_user.id)
+      rescue ActiveRecord::RecordNotUnique => e
+      end
+    end
+    redirect_to '/'
+  end
   private
     def invitation_params
       params.permit([:_json, :group_id, :recipient_email, :recipient_user_id])
-    end    
-end  
+    end
+end

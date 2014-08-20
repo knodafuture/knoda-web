@@ -8,7 +8,6 @@ KnodaWeb::Application.routes.draw do
   get 'embed-login' => 'home#embed_login'
   get 'sitemap.xml.gz' => 'home#sitemap'
 
-
  devise_for :users, :controllers => {:sessions => 'sessions', :omniauth_callbacks => "omniauth_callbacks"}, :skip => [:sessions] do
     get '/'   => "home#index",       :as => :new_user_session
     post '/signin'  => 'sessions#create',    :as => :user_session
@@ -61,7 +60,11 @@ KnodaWeb::Application.routes.draw do
       get 'join'
     end
   end
-  resources :invitations
+  resources :invitations do
+    collection do
+      get 'accept'
+    end
+  end
   resources :memberships
 
   resources :twitter
