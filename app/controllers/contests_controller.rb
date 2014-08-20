@@ -70,8 +70,10 @@ class ContestsController < AuthenticatedController
   def update
     respond_to do |format|
       authorize_action_for(@contest)
-      if @contest.update_attributes(contest_params)
-        if params[:avatar].blank? and @contest.cropping?
+      if @contest.update_attributes(contest_update_params)
+        puts "UPDATING"
+        puts "CROPPING? " + @contest.cropping?.to_s
+        if @contest.cropping?
           @contest.reprocess_avatar
         end
         format.html {
@@ -119,7 +121,11 @@ class ContestsController < AuthenticatedController
     end
 
     def contest_params
-      params.permit(:name, :description, :avatar, :detail_url, :rules_url, :crop_x, :crop_y, :crop_w, :crop_h)
+      params.permit(:name, :description, :avatar, :detail_url, :crop_x, :crop_y, :crop_w, :crop_h)
+    end
+
+    def contest_update_params
+      params.require(:contest).permit(:name, :description, :avatar, :detail_url, :crop_x, :crop_y, :crop_w, :crop_h)
     end
 
     def prediciton_params

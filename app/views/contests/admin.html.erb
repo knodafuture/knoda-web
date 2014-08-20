@@ -28,7 +28,7 @@
       </div>
     </div>
   </div>
-  <% current_user.contests.each do |f| %>
+  <% current_user.contests.order('created_at desc').each do |f| %>
   <div class="row">
     <div class="col-xs-12 group-thumb">
       <div class="thumbnail" style="min-height:150px;">
