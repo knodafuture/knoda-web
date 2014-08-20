@@ -42,7 +42,7 @@ class GroupsController < AuthenticatedController
     respond_to do |format|
       authorize_action_for(@group)
       if @group.update_attributes(group_params)
-        if params[:group][:avatar].blank? and @group.cropping?
+        if @group.cropping?
           @group.reprocess_avatar
         end
         format.html {
