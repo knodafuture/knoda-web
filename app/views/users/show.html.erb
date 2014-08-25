@@ -2,6 +2,7 @@
   <%= javascript_include_tag 'prediction_actions' %>
   <%= javascript_include_tag 'users/show' %>
   <%= javascript_include_tag 'users/show_view' %>
+  <%= javascript_include_tag 'follow_button_view' %>
   <script>FlurryAgent.logEvent("PROFILE_SCREEN");</script>
 <% end %>
 <div class="userContainer" data-user-id="<%= @user.id%>">
@@ -39,5 +40,6 @@ $(function() {
     <% end %>
     options.historyContainer = $('#predictionsList')
     view = new UserShowView(options)
+    followButtonView = new FollowButtonView()
 });
 </script>

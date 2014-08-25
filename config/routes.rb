@@ -71,6 +71,11 @@ KnodaWeb::Application.routes.draw do
   resources :facebook
 
   resources :social_accounts
+  resources :friends do
+    collection do
+      get 'find'
+    end
+  end
 
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'

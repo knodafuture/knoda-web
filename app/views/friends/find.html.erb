@@ -1,0 +1,50 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'follow_button_view' %>
+<% end %>
+<div class="row limit-size-small" style="background-color:#fff;">
+  <div class="col-xs-12">
+  <div class="row" style="background-color:#fff;border-bottom: 1px solid #dddddd;">
+    <div class="col-xs-12 navigation">
+      <a class="btn-facebook-friends active">Facebook</a>
+      <a class="btn-twitter-friends">Twitter</a>
+    </div>
+  </div>
+  <% if (params[:source] == 'twitter' and current_user.twitter_account) or (!params[:source] and current_user.facebook_account) %>
+    <div class="row">
+      <div class="col-xs-12">
+        <h1><%= find_header_text(@friends, params[:source] || 'facebook') %></h1>
+      </div>
+    </div>
+    <% @friends.each do |f|
+      user = f[:knoda_info] %>
+      <div class="row" style="position:relative;">
+        <img src="<%= user.avatar_image[:small] %>" class="img-circle" style="height:36px;width:36px;vertical-align:middle;margin-right:10px;"/>
+        <%= f[:contact_id] %>
+        <% if user.followed_by?(current_user) %>
+          <a class="btn btn-danger btn-following pull-right" style="position:absolute;right: 5px; top: 5px;" data-id="<%= user.following(current_user).id %>" data-user-id="<%= user.id %>">Following</a>
+        <% else %>
+          <a class="btn btn-danger btn-follow pull-right" style="position:absolute;right: 5px; top: 5px;"  data-user-id="<%= user.id %>">Follow</a>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="row">
+      <div class="col-xs-12">
+        <% if params[:source] == 'twitter' %>
+          <p> Knoda is more fun with friends.  Connect your twitter account to find friends on Knoda </p>
+          <a href="<%= user_omniauth_authorize_path(:twitter, destination:'/friends/find?source=twitter' )%>"><img src="<%= image_path('icons/social/share/twitter_share.png') %>"></a>
+        <% else %>
+          <p> Knoda is more fun with friends.  Connect your facebook account to find friends on Knoda </p>
+          <a href="<%= user_omniauth_authorize_path(:facebook, destination:'/friends/find' )%>"><img src="<%= image_path('icons/social/share/facebook_share.png') %>"></a>
+        <% end %>
+
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
+<script>
+$(function() {
+  view = new FollowButtonView();
+});
+</script>
