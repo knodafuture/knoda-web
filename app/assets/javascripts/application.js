@@ -24,6 +24,7 @@
 //= require bootstrap-maxlength.min
 //= require async
 //= require predictions/create
+//= require follow_button_view
 // Force recompile
 
 startLoading = function() {
@@ -51,7 +52,8 @@ $(function() {
   $('.full-height-content').height($(window).height() - 50)
 	$('#createPredictionModal').on('show.bs.modal', function(e) {
 		FlurryAgent.logEvent("CREATE_PREDICTION_START");
-	})
+	});
+	followButtonView = new FollowButtonView();
 });
 
 if (!Array.prototype.indexOf) {

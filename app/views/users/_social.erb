@@ -22,10 +22,14 @@ end %>
       </div>
       <% end %>
       <% friends.each do |user| %>
-        <div class="row">
-          <div class="col-xs-12">
-            <p><%= user.username %></p>
-          </div>
+        <div class="row" style="position:relative;text-align:left;">
+          <img src="<%= user.avatar_image[:small] %>" class="img-circle" style="height:36px;width:36px;vertical-align:middle;margin-right:10px;"/>
+          <%= user.username %>
+          <% if user.followed_by?(current_user) %>
+            <a class="btn btn-danger btn-following pull-right" style="position:absolute;right: 5px; top: 5px;" data-id="<%= user.following(current_user).id %>" data-user-id="<%= user.id %>">Following</a>
+          <% else %>
+            <a class="btn btn-danger btn-follow pull-right" style="position:absolute;right: 5px; top: 5px;"  data-user-id="<%= user.id %>">Follow</a>
+          <% end %>
         </div>
       <% end %>
     </div>
@@ -34,4 +38,7 @@ end %>
     </div>
   </div>
 </div>
-<script
+<script>
+  followButtonView.unbindAll();
+  followButtonView.bindAll();
+</script>

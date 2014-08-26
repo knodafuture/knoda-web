@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: 8769575c291df365fc039f7dc7d5edf0a10e22a4
+  revision: ff7505d35eed4b7115c70c4f46df7e19be35c222
   branch: social
   specs:
     knoda_core (0.0.1)
@@ -99,7 +99,7 @@ GEM
     execjs (2.2.1)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
-    hashie (3.2.0)
+    hashie (3.3.0)
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
     hike (1.2.3)

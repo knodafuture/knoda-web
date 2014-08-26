@@ -20,13 +20,13 @@
         <% end %>
         <h1><%= user.username %></h1>
         <div class="stats-followers">
-          <p class="stat-value">12</p>
-          <p class="stat-label">Followers</p>
+          <div class="stat-value"><%= user.follower_count %></div>
+          <div class="stat-label">Followers</div>
         </div>
         <img src="<%= avatar_small(user) %>" class="avatar_small img-circle avatar-circle"/>
         <div class="stats-following">
-          <p class="stat-value">568</p>
-          <p class="stat-label">Following</p>
+          <div class="stat-value"><%= user.following_count %></div>
+          <div class="stat-label">Following</div>
         </div>
       </div>
     </div>

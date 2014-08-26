@@ -32,6 +32,20 @@
   .stats-following, .stats-followers {
     display: inline-block;
     padding: 0px 20px;
+    div {
+      color: @white;
+      margin: 0px;
+      padding: 0px;
+      &.stat-label {
+        .sansRegular;
+        font-size: 10px;
+      }
+      &.stat-value {
+        padding-top: 10px;
+        font-size: 18px;
+        .sansLight;
+      }
+    }
   }
 }
 

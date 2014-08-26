@@ -1,7 +1,12 @@
 window.FollowButtonView = class FollowButtonView
   constructor: (@options) ->
+    @bindAll()
+  bindAll: ->
     $('.btn-follow').click @startFollowing
     $('.btn-following').click @stopFollowing
+  unbindAll: ->
+    $('.btn-follow').unbind()
+    $('.btn-following').unbind()
   startFollowing: (e) =>
     startLoading()
     user_id = $(e.currentTarget).attr('data-user-id')
