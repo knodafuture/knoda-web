@@ -2,7 +2,7 @@ class UsersController < AuthenticatedController
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:create]
   skip_before_action :unseen_activities, only: [:create]
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :crop, :avatar_upload, :settings, :history]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :crop, :avatar_upload, :settings, :history, :social]
   skip_before_action :verify_authenticity_token, only: [:avatar_upload]
 
   # GET /users/1
@@ -153,6 +153,10 @@ class UsersController < AuthenticatedController
       @predictions = @user.predictions.order('created_at desc').offset(param_offset).limit(param_limit).id_lt(param_id_lt)
     end
     render :partial => "predictions/predictions"
+  end
+
+  def social
+    render partial: 'social'
   end
 
   private

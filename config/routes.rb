@@ -37,6 +37,7 @@ KnodaWeb::Application.routes.draw do
       post 'avatar_upload'
       get 'settings'
       get 'history'
+      get 'social'
     end
     collection do
       get 'autocomplete'

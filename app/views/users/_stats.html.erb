@@ -19,25 +19,15 @@
           <% end %>
         <% end %>
         <h1><%= user.username %></h1>
-        <% if current_user == user %>
-          <div class="stats-social">
-          <% if not user.twitter_account %>
-            <a href="<%= user_omniauth_authorize_path(:twitter)%>"><img src="<%= image_path('icons/social/profile_twitter@2x.png') %>" style="height:34px;width:34px;"></a>
-          <% else %>
-            <a class="social-account-destroy" data-id="<%=@user.twitter_account.id%>"><img src="<%= image_path('icons/social/profile_twitter_active@2x.png') %>" style="height:34px;width:34px;" /></a>
-          <% end %>
-          </div>
-        <% end %>
+        <div class="stats-followers">
+          <p class="stat-value">12</p>
+          <p class="stat-label">Followers</p>
+        </div>
         <img src="<%= avatar_small(user) %>" class="avatar_small img-circle avatar-circle"/>
-        <% if current_user == user %>
-          <div class="stats-social">
-            <% if not user.facebook_account %>
-              <a href="<%= user_omniauth_authorize_path(:facebook)%>"><img src="<%= image_path('icons/social/profile_facebook@2x.png') %>" style="height:34px;width:34px;"></a>
-            <% else %>
-              <a class="social-account-destroy" data-id="<%=@user.facebook_account.id%>"><img src="<%= image_path('icons/social/profile_facebook_active@2x.png') %>" style="height:34px;width:34px;"/></a>
-            <% end %>
-          </div>
-        <% end %>
+        <div class="stats-following">
+          <p class="stat-value">568</p>
+          <p class="stat-label">Following</p>
+        </div>
       </div>
     </div>
     <div class="row">
