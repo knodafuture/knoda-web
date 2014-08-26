@@ -36,6 +36,15 @@
 							<a class="brag-prediction bragbutton btn btn-default text-center">Brag</a>
 						</div>
 					<% end %>
+			<% elsif activity.activity_type == 'FOLLOWING' %>
+				<p class="line1"><%= raw activity_title(activity) %></p>
+				<div class ="centerbutton">
+					<% if User.find(activity.target_user_id).followed_by?(current_user) %>
+						<a class="btn btn-default btn-view-profile text-center" href="/users/<%=User.find(activity.target_user_id).username%>">Go vote on their predictions.</a>
+					<% else %>
+						<a class="btn btn-default btn-follow text-center" data-user-id="<%= activity.target_user_id %>">Follow them Back!</a>
+					<% end %>
+				</div>
 			<% else %>
 				<p class="line1"><%= raw activity_title(activity) %></p>
 				<p>"<%= activity.prediction_body %>"</p>
