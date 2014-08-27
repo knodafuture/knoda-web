@@ -12,11 +12,7 @@
     <div class="row">
       <div class="col-xs-12 center" style="height:160px;">
         <% if current_user != user %>
-          <% if user.followed_by?(current_user) %>
-            <a class="btn btn-danger btn-following pull-right" style="position:absolute;right: 5px; top: 5px;" data-id="<%= user.following(current_user).id %>" data-user-id="<%= user.id %>">Following</a>
-          <% else %>
-            <a class="btn btn-danger btn-follow pull-right" style="position:absolute;right: 5px; top: 5px;" data-user-id="<%= user.id %>">Follow</a>
-          <% end %>
+          <%= render :partial => 'shared/follow_button', :locals => {user: user} %>
         <% end %>
         <h1><%= user.username %></h1>
         <div class="stats-followers">

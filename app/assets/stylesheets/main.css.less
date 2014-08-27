@@ -343,6 +343,23 @@ input[type="date"], input[type="time"] {
 	}
 }
 
+.btn-follow, .btn-following {
+	&.graphic {
+		height: 30px;
+		width: 40px;
+		position:absolute;right: 5px; top: 5px;
+	}
+}
+.btn-following {
+	&.graphic {
+		.img-retina("icons/FollowBtnActive.png", "icons/FollowBtnActive@2x.png", 40px, 30px);
+	}
+}
+.btn-follow {
+	&.graphic {
+		.img-retina("icons/FollowBtn.png", "icons/FollowBtn@2x.png", 40px, 30px);
+	}
+}
 
 #activities-index-container, #groups-index {
 	.navigation {

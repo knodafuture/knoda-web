@@ -15,7 +15,9 @@ window.FollowButtonView = class FollowButtonView
       type: "POST"
       data: {leader_id: user_id}
       success: (json) =>
-        $(e.currentTarget).text('Following').removeClass('btn-follow').addClass('btn-following').attr('data-id', json.id)
+        $(e.currentTarget).removeClass('btn-follow').addClass('btn-following').attr('data-id', json.id)
+        if $(e.currentTarget).text() != ''
+          $(e.currentTarget).text('Following')
         $(e.currentTarget).unbind().click @stopFollowing
         stopLoading()
   stopFollowing: (e) =>
@@ -24,6 +26,8 @@ window.FollowButtonView = class FollowButtonView
       url: "/followings/#{$(e.currentTarget).attr('data-id')}.json"
       type: "DELETE"
       success: (json) =>
-        $(e.currentTarget).text('Follow').removeClass('btn-following').addClass('btn-follow').removeAttr('data-id')
+        $(e.currentTarget).removeClass('btn-following').addClass('btn-follow').removeAttr('data-id')
+        if $(e.currentTarget).text() != ''
+          $(e.currentTarget).text('Follow')
         $(e.currentTarget).unbind().click @startFollowing
         stopLoading()
