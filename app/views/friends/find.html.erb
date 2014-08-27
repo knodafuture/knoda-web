@@ -11,7 +11,25 @@
   <% if (@source == 'twitter' and current_user.twitter_account) or (@source == 'facebook' and current_user.facebook_account) %>
     <div class="row">
       <div class="col-xs-12">
-        <h1><%= find_header_text(@friends, params[:source] || 'facebook') %></h1>
+        <% if @source == 'twitter' %>
+          <div class="row empty-state twitter-background">
+            <div class="col-xs-12">
+              <p>Wow.<br/>
+                 Looks like none of your Twitter friends are on Knoda yet. Tell them about Knoda.
+              </p>
+              <a href="<%= @twitterShareLink %>" class="invite-twitter-share" target="_blank"></a>
+            </div>
+          </div>
+        <% else %>
+          <div class="row empty-state facebook-background">
+            <div class="col-xs-12">
+              <p>Wow.<br/>
+                 Looks like none of your Facebook friends are on Knoda yet. Tell them about Knoda.
+              </p>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.knoda.com" class="invite-facebook-share" target="_blank"></a>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
     <% @friends.each do |f|
@@ -35,7 +53,7 @@
             </div>
           </div>
         <% else %>
-          <div class="row empty-state twitter-background">
+          <div class="row empty-state facebook-background">
             <div class="col-xs-12">
               <p>Let's Party.<br/>
                  Find more friends by connecting to Facebook.

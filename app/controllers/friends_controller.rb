@@ -5,6 +5,8 @@ class FriendsController < AuthenticatedController
       @source = 'twitter'
       if current_user.twitter_account
         @friends = current_user.twitter_friends_on_knoda(true)
+        h = { :url => 'http://www.knoda.com', :via => 'KNODAfuture', :text => "I'm on Knoda.  Start following me to see all of my predictions."}
+        @twitterShareLink = "https://twitter.com/intent/tweet?#{h.to_param}"
       end
     else
       @source = 'facebook'
