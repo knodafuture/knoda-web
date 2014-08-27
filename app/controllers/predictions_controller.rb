@@ -35,6 +35,7 @@ class PredictionsController < AuthenticatedController
     else
       @predictions = Prediction.includes(:user,:comments).visible_to_user(current_user.id).recent.latest.offset(param_offset).limit(param_limit)
     end
+    @feed = params[:feed] || 'main'
     if param_offset.to_i > 0
       render :partial => "predictions"
     else

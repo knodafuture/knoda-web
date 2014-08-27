@@ -1,12 +1,14 @@
 <div class="row limit-size-small" style="background-color:#fff;">
   <div class="col-xs-12">
-  <div class="row" style="background-color:#fff;border-bottom: 1px solid #dddddd;">
-    <div class="col-xs-12 navigation">
-      <a class="btn-facebook-friends active">Facebook</a>
-      <a class="btn-twitter-friends">Twitter</a>
+  <div class="row green-nav-tabs">
+    <div class="col-xs-6 col-sm-4 col-sm-offset-2 center">
+      <a class="btn-facebook-friends<% if @source == 'facebook'%> active<%end%>" href="/friends/find">Facebook</a>
+    </div>
+    <div class="col-xs-6 col-sm-4 center">
+      <a class="btn-twitter-friends<% if @source == 'twitter'%> active<%end%>" href="/friends/find?source=twitter">Twitter</a>
     </div>
   </div>
-  <% if (params[:source] == 'twitter' and current_user.twitter_account) or (!params[:source] and current_user.facebook_account) %>
+  <% if (@source == 'twitter' and current_user.twitter_account) or (@source == 'facebook' and current_user.facebook_account) %>
     <div class="row">
       <div class="col-xs-12">
         <h1><%= find_header_text(@friends, params[:source] || 'facebook') %></h1>
@@ -22,13 +24,25 @@
     <% end %>
   <% else %>
     <div class="row">
-      <div class="col-xs-12">
-        <% if params[:source] == 'twitter' %>
-          <p> Knoda is more fun with friends.  Connect your twitter account to find friends on Knoda </p>
-          <a href="<%= user_omniauth_authorize_path(:twitter, destination:'/friends/find?source=twitter' )%>"><img src="<%= image_path('icons/social/share/twitter_share.png') %>"></a>
+      <div class="col-xs-12" style="text-align: center;padding: 10px;">
+        <% if @source == 'twitter' %>
+          <div class="row empty-state twitter-background">
+            <div class="col-xs-12">
+              <p>Let's Party.<br/>
+                 Find more friends by connecting to Twitter.
+              </p>
+              <a href="<%= user_omniauth_authorize_path(:twitter, destination:'/friends/find?source=twitter' )%>" class="invite-twitter-connect"></a>
+            </div>
+          </div>
         <% else %>
-          <p> Knoda is more fun with friends.  Connect your facebook account to find friends on Knoda </p>
-          <a href="<%= user_omniauth_authorize_path(:facebook, destination:'/friends/find' )%>"><img src="<%= image_path('icons/social/share/facebook_share.png') %>"></a>
+          <div class="row empty-state twitter-background">
+            <div class="col-xs-12">
+              <p>Let's Party.<br/>
+                 Find more friends by connecting to Facebook.
+              </p>
+              <a href="<%= user_omniauth_authorize_path(:facebook, destination:'/friends/find' )%>" class="invite-facebook-connect"></a>
+            </div>
+          </div>
         <% end %>
 
       </div>

@@ -4,11 +4,14 @@
   <script>FlurryAgent.logEvent("HOME_FEED");</script>
 <% end %>
 <div class="row prediction-tabs green-nav-tabs" >
-  <div class="col-xs-6 col-sm-4 col-sm-offset-2 center">
-    <a class="discover active" href="/predictions">Discover</a>
+  <div class="col-xs-2">
+    <a class="k-icon k-icon-find-friends" href="/friends/find" ></a>
   </div>
-  <div class="col-xs-6 col-sm-4 center">
-    <a class="home" href="/predictions?feed=social">Home</a>
+  <div class="col-xs-4 center">
+    <a class="discover <% if @feed == 'main' %>active<%end%>" href="/predictions">VIEW ALL</a>
+  </div>
+  <div class="col-xs-4 center">
+    <a class="home <% if @feed == 'social' %>active<%end%>" href="/predictions?feed=social">FOLLOWING</a>
   </div>
 </div>
 <div class="row">

@@ -102,6 +102,20 @@ h3 {
 	margin-top: 5px;
 }
 
+.green-nav-tabs {
+	.sansLight;
+	font-size: 16px;
+	background-color: #77BC1F;
+	padding: 5px 0px;
+	a {
+		text-decoration: none;
+		color: @profile-light-green;
+		&.active, &:hover, &:active {
+			color: @white;
+		}
+	}
+}
+
 #new_prediction {
 	.body {
 		height: 100px;
@@ -119,6 +133,15 @@ h3 {
 @import "predictions";
 #predictionsList {
 	padding: 0px;
+}
+
+.k-icon {
+	display: inline-block;
+	&.k-icon-find-friends {
+		width: 28px;
+		height: 24px;
+		.img-retina("icons/find_friends.png", "icons/find_friends@2x.png", 28px, 24px);
+	}
 }
 
 .stat-values {
@@ -230,6 +253,14 @@ input[type="date"], input[type="time"] {
 		text-decoration: none;
 		cursor: pointer;
 		color: @green-light;
+	}
+	&.twitter-background {
+		padding-top: 145px;
+		.img-retina("backgrounds/InviteTwitterPlaceholder.png", "backgrounds/InviteTwitterPlaceholder@2x.png", 82px, 82px);
+	}
+	&.facebook-background {
+		padding-top: 145px;
+		.img-retina("backgrounds/InviteFacebookPlaceholder.png", "backgrounds/InviteFacebookPlaceholder@2x.png", 82px, 82px);
 	}
 }
 
@@ -360,7 +391,40 @@ input[type="date"], input[type="time"] {
 		.img-retina("icons/FollowBtn.png", "icons/FollowBtn@2x.png", 40px, 30px);
 	}
 }
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 500px) {
+	.btn-follow, .btn-following {
+		&.graphic {
+			height: 30px;
+			width: 89px;
+			position:absolute;right: 5px; top: 5px;
+		}
+	}
+	.btn-following {
+		&.graphic {
+			.img-retina("icons/follow_textbtn_active.png", "icons/follow_textbtn_active@2x.png", 89px, 30px);
+		}
+	}
+	.btn-follow {
+		&.graphic {
+			.img-retina("icons/follow_textbtn.png", "icons/follow_textbtn@2x.png", 89px, 30px);
+		}
+	}
+}
 
+#friends-find-container {
+	.invite-twitter-connect, .invite-facebook-connect {
+		width: 270px;
+		height: 40px;
+		display: inline-block;
+	}
+	.invite-twitter-connect {
+		.img-retina("icons/social/InviteTwitterConnectBtn.png", "icons/social/InviteTwitterConnectBtn@2x.png", 270px, 40px);
+	}
+	.invite-facebook-connect {
+		.img-retina("icons/social/InviteFacebookConnectBtn.png", "icons/social/InviteFacebookConnectBtn@2x.png", 270px, 40px);
+	}
+}
 #activities-index-container, #groups-index {
 	.navigation {
 		margin: 0px;
