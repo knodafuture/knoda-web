@@ -15,9 +15,18 @@
   </div>
 </div>
 <div class="row">
+  <% if @feed == 'social' and @predictions.size == 0 %>
+    <div class="row empty-state twitter-background">
+      <div class="col-xs-12">
+          <h2>Aw Shucks.</h2>
+           <p>Predicting is more fun with friends, <a href="/friends/find">click here</a> to follow your friends & invite others to join.</p>
+      </div>
+    </div>
+  <% else %>
 	<div class="panel-group col-lg-12 col-md-12 col-sm-12 col-xs-12" id="predictionsList">
 	    <% @predictions.each do |i| %>
 	      <%= render partial: "predictions/prediction", locals: {prediction: i, collapseState: ''} %>
 	    <% end %>
 	</div>
+  <% end %>
 </div>

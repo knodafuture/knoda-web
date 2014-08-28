@@ -16,7 +16,7 @@
 <div class="row live-predictions">
   <div class="panel-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <% if @live_predictions.size == 0 %>
-        <div class="row empty-state" style="background-color: #fff;margin: 0px;">
+        <div class="row empty-state">
           <div class="col-xs-12">
             <p>Sorry, this contest doesn't have any predictions for you to vote on yet. Check back later to enter this contest.
             </p>
@@ -32,7 +32,7 @@
 <div class="row expired-predictions" style="display:none;">
   <div class="panel-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <% if @expired_predictions.size == 0 %>
-      <div class="row empty-state" style="background-color: #fff;margin: 0px;">
+      <div class="row empty-state">
         <div class="col-xs-12">
           <p>All of this contests predictions are still open for voting. <br />
             <a class="btn-live-predictions">Click here to vote and enter the contest.</a>

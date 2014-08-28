@@ -242,6 +242,8 @@ input[type="date"], input[type="time"] {
 
 
 .empty-state {
+	background-color: #ffffff;
+	margin: 0px;
 	.img-retina("no_content_image.png", "no_content_image@2x.png", 150px, 150px);
 	text-align:center;
 	height:300px;
@@ -254,13 +256,27 @@ input[type="date"], input[type="time"] {
 		cursor: pointer;
 		color: @green-light;
 	}
-	&.twitter-background {
+	h2 {
+
+	}
+	p {
+		font-size: 16px;
+		padding: 0px 20px;
+	}
+	&.short {
 		padding-top: 145px;
+	}
+	&.twitter-background {
+		.short;
 		.img-retina("backgrounds/InviteTwitterPlaceholder.png", "backgrounds/InviteTwitterPlaceholder@2x.png", 82px, 82px);
 	}
 	&.facebook-background {
-		padding-top: 145px;
+		.short;
 		.img-retina("backgrounds/InviteFacebookPlaceholder.png", "backgrounds/InviteFacebookPlaceholder@2x.png", 82px, 82px);
+	}
+	&.friend-background {
+		.short;
+		.img-retina("backgrounds/FollowFeedPlaceholder.png", "backgrounds/FollowFeedPlaceholder@2x.png", 82px, 82px);
 	}
 }
 
