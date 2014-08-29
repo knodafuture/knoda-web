@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: 6080a2adf7ca4a822e0984bf22062746af578f1e
+  revision: f8f45c514776f4d3e1f8a822cb86bd450eea838c
   branch: develop
   specs:
     knoda_core (0.0.1)
@@ -76,7 +76,7 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.7.1)
+    coffee-script-source (1.8.0)
     commonjs (0.2.7)
     connection_pool (2.0.0)
     dalli (2.7.2)
@@ -147,7 +147,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     mime-types (1.25.1)
     mini_portile (0.6.0)
-    minitest (5.4.0)
+    minitest (5.4.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
