@@ -13,6 +13,12 @@ class FriendsController < AuthenticatedController
       if current_user.facebook_account
         @friends = current_user.facebook_friends_on_knoda(true)
       end
+      # For Faking it
+      #@friends = []
+      #users = User.all.limit(3)
+      #users.each do |u|
+      #  @friends << { :contact_id => "Jerk Face", :knoda_info => u}
+      #end
     end
   end
 end

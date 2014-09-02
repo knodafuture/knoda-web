@@ -5,13 +5,11 @@
 <% end %>
 <div class="row prediction-tabs green-nav-tabs" >
   <div class="col-xs-2">
-    <a class="k-icon k-icon-find-friends" href="/friends/find" ></a>
+    <a class="k-icon k-icon-find-friends pull-left" href="/friends/find"></a>
   </div>
-  <div class="col-xs-4 center">
+  <div class="col-xs-10 col-sm-8" style="text-align:center;">
     <a class="discover <% if @feed == 'main' %>active<%end%>" href="/predictions">VIEW ALL</a>
-  </div>
-  <div class="col-xs-4 center">
-    <a class="home <% if @feed == 'social' %>active<%end%>" href="/predictions?feed=social">FOLLOWING</a>
+    <a class="home <% if @feed == 'social' %>active<%end%> " href="/predictions?feed=social">FOLLOWING</a>
   </div>
 </div>
 <div class="row">

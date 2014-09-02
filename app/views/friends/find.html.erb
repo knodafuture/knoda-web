@@ -1,10 +1,8 @@
 <div class="row limit-size-small" style="background-color:#fff;">
   <div class="col-xs-12">
-  <div class="row green-nav-tabs">
-    <div class="col-xs-6 col-sm-4 col-sm-offset-2 center">
+  <div class="row green-nav-tabs find-friends-tabs">
+    <div class="col-xs-12 center">
       <a class="btn-facebook-friends<% if @source == 'facebook'%> active<%end%>" href="/friends/find">Facebook</a>
-    </div>
-    <div class="col-xs-6 col-sm-4 center">
       <a class="btn-twitter-friends<% if @source == 'twitter'%> active<%end%>" href="/friends/find?source=twitter">Twitter</a>
     </div>
   </div>
@@ -12,7 +10,6 @@
     <% if @friends.size == 0 %>
       <div class="row">
         <div class="col-xs-12">
-
           <% if @source == 'twitter' %>
             <div class="row empty-state friends-background">
               <div class="col-xs-12">
@@ -34,13 +31,34 @@
           <% end %>
         </div>
       </div>
-    <% end %>
-    <% @friends.each do |f|
-      user = f[:knoda_info] %>
-      <div class="row" style="position:relative;">
-        <img src="<%= user.avatar_image[:small] %>" class="img-circle" style="height:36px;width:36px;vertical-align:middle;margin-right:10px;"/>
-        <%= f[:contact_id] %>
-        <%= render :partial => 'shared/follow_button', :locals => {user: user} %>
+    <% else %>
+      <% @friends.each do |f|
+        user = f[:knoda_info] %>
+        <div class="row" style="position:relative;padding-top: 5px;">
+          <div class="col-xs-2">
+            <img src="<%= user.avatar_image[:small] %>" class="img-circle" style="height:36px;width:36px;vertical-align:middle;margin-right:10px;"/>
+          </div>
+          <div class="col-xs-8">
+            <div class="row"><div class="col-xs-12 real-name">
+              <%= f[:contact_id] %>
+            </div></div>
+            <div class="row"><div class="col-xs-12 username">
+              <%= user.username %>
+            </div></div>
+          </div>
+          <div class="col-xs-2">
+            <%= render :partial => 'shared/follow_button', :locals => {user: user} %>
+          </div>
+        </div>
+      <% end %>
+      <div class="row" style="margin:10px 0px;text-align:center;">
+        <div class="col-xs-12">
+          <% if @source == 'twitter' %>
+            <a href="<%= @twitterShareLink %>" class="invite-twitter-share" target="_blank"></a>
+          <% else %>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.knoda.com" class="invite-facebook-share" target="_blank"></a>
+          <% end %>
+        </div>
       </div>
     <% end %>
   <% else %>
