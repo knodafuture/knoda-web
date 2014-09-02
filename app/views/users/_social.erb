@@ -14,19 +14,21 @@ end %>
       </div>
     </div>
     <div class="modal-body" style="text-align:center">
-      <% if current_user == @user %>
-      <div class="row">
+      <% if friends.size == 0 %>
+      <div class="row empty-state friend-background">
         <div class="col-xs-12">
-          <a href="/friends/find">Knoda is more fun with friends.  Connect to your friends on facebook & twitter</a>
+            <h2>Aw Shucks.</h2>
+             <p>Predicting is more fun with friends, <a href="/friends/find">click here</a> to follow your friends & invite others to join.</p>
         </div>
       </div>
-      <% end %>
+      <% else %>
       <% friends.each do |user| %>
-        <div class="row" style="position:relative;text-align:left;">
+        <div class="row" style="position:relative;text-align:left;padding:0px 10px;">
           <img src="<%= user.avatar_image[:small] %>" class="img-circle" style="height:36px;width:36px;vertical-align:middle;margin-right:10px;"/>
           <%= user.username %>
           <%= render :partial => 'shared/follow_button', :locals => {user: user} %>
         </div>
+      <% end %>
       <% end %>
     </div>
     <div class="modal-footer">
