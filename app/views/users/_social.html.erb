@@ -23,7 +23,7 @@ end %>
       </div>
       <% else %>
       <% friends.each do |user| %>
-        <div class="row" style="position:relative;text-align:left;padding:0px 10px;">
+        <div class="row" style="position:relative;text-align:left;padding:2px 10px;">
           <img src="<%= user.avatar_image[:small] %>" class="img-circle" style="height:36px;width:36px;vertical-align:middle;margin-right:10px;"/>
           <%= user.username %>
           <%= render :partial => 'shared/follow_button', :locals => {user: user} %>

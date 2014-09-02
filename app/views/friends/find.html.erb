@@ -9,29 +9,32 @@
     </div>
   </div>
   <% if (@source == 'twitter' and current_user.twitter_account) or (@source == 'facebook' and current_user.facebook_account) %>
-    <div class="row">
-      <div class="col-xs-12">
-        <% if @source == 'twitter' %>
-          <div class="row empty-state friends-background">
-            <div class="col-xs-12">
-              <p>Wow.<br/>
-                 Looks like none of your Twitter friends are on Knoda yet. Tell them about Knoda.
-              </p>
-              <a href="<%= @twitterShareLink %>" class="invite-twitter-share" target="_blank"></a>
+    <% if @friends.size == 0 %>
+      <div class="row">
+        <div class="col-xs-12">
+
+          <% if @source == 'twitter' %>
+            <div class="row empty-state friends-background">
+              <div class="col-xs-12">
+                <p>Wow.<br/>
+                   Looks like none of your Twitter friends are on Knoda yet. Tell them about Knoda.
+                </p>
+                <a href="<%= @twitterShareLink %>" class="invite-twitter-share" target="_blank"></a>
+              </div>
             </div>
-          </div>
-        <% else %>
-          <div class="row empty-state friends-background">
-            <div class="col-xs-12">
-              <p>Wow.<br/>
-                 Looks like none of your Facebook friends are on Knoda yet. Tell them about Knoda.
-              </p>
-              <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.knoda.com" class="invite-facebook-share" target="_blank"></a>
+          <% else %>
+            <div class="row empty-state friends-background">
+              <div class="col-xs-12">
+                <p>Wow.<br/>
+                   Looks like none of your Facebook friends are on Knoda yet. Tell them about Knoda.
+                </p>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.knoda.com" class="invite-facebook-share" target="_blank"></a>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
     <% @friends.each do |f|
       user = f[:knoda_info] %>
       <div class="row" style="position:relative;">
