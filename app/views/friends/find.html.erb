@@ -34,7 +34,7 @@
     <% else %>
       <% @friends.each do |f|
         user = f[:knoda_info] %>
-        <div class="row" style="position:relative;padding-top: 5px;">
+        <div class="row found-friend">
           <div class="col-xs-2">
             <img src="<%= user.avatar_image[:small] %>" class="img-circle" style="height:36px;width:36px;vertical-align:middle;margin-right:10px;"/>
           </div>
