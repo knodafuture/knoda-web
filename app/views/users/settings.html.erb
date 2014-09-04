@@ -66,7 +66,14 @@
                   <%= f.input_field :username, :class => 'form-control username', :maxlength => '20'  %>
                   <label for="email">Email Address</label>
                   <%= f.input_field :email, :class => 'form-control email', :maxlength => '255'  %>
-                  <label for="phone">Phone Number</label>
+                  <label for="phone">Phone Number <span class="help-text"
+                    data-html="true"
+                    data-title="Adding a Phone Number"
+                    data-content="<p>Make it easier for friends to find you on Knoda by allowing us to have your number. We promise not to call after midnight (or ever).</p>"
+                    data-trigger="click hover"
+                    data-placement="top">
+                    Why?
+                    </span></label>
                   <%= f.input_field :phone, :class => 'form-control phone', :maxlength => '12'  %>
               </div>
                 <%= f.button :submit , :class => 'btn btn-success btn-lg', :value => 'Save' %>
