@@ -160,24 +160,34 @@ class UsersController < AuthenticatedController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_user
-      if params[:id] == 'me'
-        @user = current_user
+      if numeric?(params[:id])
+        @user = User.find(params[:id])
+        if not @user
+          @user = User.where(["lower(username) = :username", {:username => params[:id].downcase }]).first
+        end
       else
-        @user = User.where(["lower(username) = :username", {:username => params[:id].downcase }]).first
+        if params[:id] == 'me'
+          @user = current_user
+        else
+          @user = User.where(["lower(username) = :username", {:username => params[:id].downcase }]).first
+        end
       end
+
       if not @user
         raise ActionController::RoutingError.new('Not Found')
       end
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.required(:user).permit(:email, :username, :password, :password_confirmation, :avatar,:crop_x, :crop_y, :crop_w, :crop_h, :phone)
     end
 
     def extra_create_params
       params.permit(:signup_source)
+    end
+
+    def numeric?(object)
+      true if Float(object) rescue false
     end
 end

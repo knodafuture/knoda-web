@@ -11,7 +11,11 @@
 			<% end %>
 	</div>
 	<div class="col-xs-10 col-sm-11 col-md-11 actfeed">
+		<% if activity.activity_type == 'FOLLOWING' %>
+		<div class="activity-item" data-user-id="<%= activity.target_user_id %>" style="padding-left:10px;">
+		<% else %>
 		<div class="activity-item" data-prediction-id="<%= activity.prediction_id %>" style="padding-left:10px;">
+		<% end %>
 			<% if activity.activity_type == 'INVITATION' %>
 				<p class="line1">Hey-O! <%= activity.invitation_sender %> has invited you to join a group.</p>
 				<div class ="centerbutton">

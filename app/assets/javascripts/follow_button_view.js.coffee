@@ -8,6 +8,7 @@ window.FollowButtonView = class FollowButtonView
     $('.btn-follow').unbind()
     $('.btn-following').unbind()
   startFollowing: (e) =>
+    e.stopPropagation()
     startLoading()
     user_id = $(e.currentTarget).attr('data-user-id')
     $.ajax
@@ -21,6 +22,7 @@ window.FollowButtonView = class FollowButtonView
         $(e.currentTarget).unbind().click @stopFollowing
         stopLoading()
   stopFollowing: (e) =>
+    e.stopPropagation()
     startLoading()
     $.ajax
       url: "/followings/#{$(e.currentTarget).attr('data-id')}.json"
