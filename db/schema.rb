@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818185652) do
+ActiveRecord::Schema.define(version: 20140904163106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140818185652) do
     t.text     "comment_body"
     t.string   "image_url"
     t.boolean  "shareable",             default: true
+    t.integer  "target_user_id"
   end
 
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
@@ -279,7 +280,7 @@ ActiveRecord::Schema.define(version: 20140818185652) do
     t.boolean  "verified_account",       default: false
     t.boolean  "guest_mode",             default: false
     t.string   "roles",                  default: [],                 array: true
-    t.text     "phone"
+    t.string   "phone"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
