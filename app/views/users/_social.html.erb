@@ -24,7 +24,7 @@ end %>
       <% else %>
       <% friends.each do |user| %>
         <div class="row" style="position:relative;text-align:left;padding:2px 10px;">
-          <a class="friend-link" href="/users/<%= user.username %>"><img src="<%= user.avatar_image[:small] %>" class="img-circle" style="height:36px;width:36px;vertical-align:middle;margin-right:10px;"/>
+          <a class="friend-link" href="/users/<%= user.username %>"><img src="<%= avatar_small(user) %>" class="img-circle" style="height:36px;width:36px;vertical-align:middle;margin-right:10px;"/>
           <span><%= user.username %></span></a>
           <% if current_user != user %>
           <%= render :partial => 'shared/follow_button', :locals => {user: user} %>
