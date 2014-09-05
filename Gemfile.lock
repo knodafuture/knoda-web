@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: b0adba1c26bd584bd4fdc88fc34fa4d3b1381194
+  revision: ff8f105b16d570248b6b25b249754c2dafeedd6a
   branch: develop
   specs:
     knoda_core (0.0.1)
@@ -64,8 +64,8 @@ GEM
     browser_detect (0.0.5)
     buftok (0.2.0)
     builder (3.2.2)
-    celluloid (0.15.2)
-      timers (~> 1.1.0)
+    celluloid (0.16.0)
+      timers (~> 4.0.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -103,6 +103,7 @@ GEM
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
     hike (1.2.3)
+    hitimes (1.2.2)
     http (0.6.2)
       http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
@@ -138,7 +139,7 @@ GEM
     mandrill-api (1.0.52)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
-    mandrill_mailer (0.4.7)
+    mandrill_mailer (0.4.8)
       actionpack
       activesupport
       mandrill-api (~> 1.0.9)
@@ -253,7 +254,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
-    timers (1.1.0)
+    timers (4.0.0)
+      hitimes
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
