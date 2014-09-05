@@ -40,13 +40,25 @@ window.UserShowView = class UserShowView
     $('.stats-following').on 'click', @showLeaders
     $('.stats-followers').on 'click', @showFollowers
     $('#showFollowings').on 'hidden.bs.modal', ->
+      $('#showFollowings').empty();
       $(this).removeData();
   showLeaders: =>
-    $('#showFollowings').modal(
-      remote: "/users/#{@options.user.username}/social.html?following=true"
-    )
-    $('#showFollowings').show()
+    startLoading()
+    $.ajax
+      url: "/users/#{@options.user.username}/social.html?following=true"
+      type: "GET"
+      success: (x) =>
+        $('#showFollowings').html(x)
+        $('#showFollowings').modal()
+      complete: =>
+        stopLoading()
   showFollowers: =>
-    $('#showFollowings').modal(
-      remote: "/users/#{@options.user.username}/social.html"
-    )
+    startLoading()
+    $.ajax
+      url: "/users/#{@options.user.username}/social.html"
+      type: "GET"
+      success: (x) =>
+        $('#showFollowings').html(x)
+        $('#showFollowings').modal()
+      complete: =>
+        stopLoading()
