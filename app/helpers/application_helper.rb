@@ -179,9 +179,14 @@ module ApplicationHelper
   end
 
   def my_contest_rank(contest)
-    me = Contest.leaderboard(contest).select { |u| u[:user_id] == current_user.id}
-    if me.length > 0
-      return me[0][:rank].to_i.ordinalize
+    l = Contest.leaderboard(contest)
+    if l.size > 0 and l[0][:won] > 0
+      me = l.select { |u| u[:user_id] == current_user.id}
+      if me.length > 0
+        return me[0][:rank].to_i.ordinalize
+      else
+        return nil;
+      end
     else
       return nil;
     end

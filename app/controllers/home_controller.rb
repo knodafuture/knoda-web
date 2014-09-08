@@ -10,6 +10,9 @@ class HomeController < ApplicationController
         redirect_to "/users/me/avatar"
       end
     else
+      if params[:invitation_code]
+        @destination = "/invitations/accpt?invitation_code=#{params[:invitation_code]}"
+      end
       if Rails.cache.exist?("scoredPredictions_home")
         @scoredPredictions = Rails.cache.read("scoredPredictions_home")
       else

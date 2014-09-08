@@ -14,11 +14,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 				@provider_name = auth.provider
 				render "popup", layout: false
 			else
+				destination = request.env['omniauth.params']['destination'] || "/users/me"
 				if @social_account.errors
 					h = { :error => @social_account.errors['user_facing'][0]}
-					redirect_to "/users/me?#{h.to_param}"
+					redirect_to "#{destination}?#{h.to_param}"
 				else
-					redirect_to "/users/me"
+					redirect_to destination
 				end
 			end
 		else
@@ -40,11 +41,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 				@provider_name = auth.provider
 				render "popup", layout: false
 			else
+				destination = request.env['omniauth.params']['destination'] || "/users/me"
 				if @social_account.errors
 					h = { :error => @social_account.errors['user_facing'][0]}
-					redirect_to "/users/me?#{h.to_param}"
+					redirect_to "#{destination}?#{h.to_param}"
 				else
-					redirect_to "/users/me"
+					redirect_to destination
 				end
 			end
 		else

@@ -102,6 +102,20 @@ h3 {
 	margin-top: 5px;
 }
 
+.green-nav-tabs {
+	.sansLight;
+	font-size: 16px;
+	background-color: #77BC1F;
+	padding: 5px 0px;
+	a {
+		text-decoration: none;
+		color: @profile-light-green;
+		&.active, &:hover, &:active {
+			color: @white;
+		}
+	}
+}
+
 #new_prediction {
 	.body {
 		height: 100px;
@@ -120,10 +134,86 @@ h3 {
 #predictionsList {
 	padding: 0px;
 }
+#predictions-index-container {
+	.prediction-tabs {
+		a {
+			display: inline-block;
+			height: 29px;
+			line-height: 29px;
+			margin: 0px;
+			padding: 0px;
+		}
+		.discover, .home {
+			.sansRegular;
+			padding: 0px 10px;
+			text-transform: uppercase;
+		}
+	}
+}
+
+#friends-find-container {
+	padding: 0px;
+	.find-friends-tabs {
+		a {
+			height: 29px;
+			line-height: 29px;
+			margin: 0px;
+			padding: 0px;
+		}
+		.btn-facebook-friends, .btn-twitter-friends {
+			.sansRegular;
+			padding: 0px 10px;
+			text-transform: uppercase;
+		}
+	}
+	.found-friend {
+		position:relative;padding-top: 5px;
+		border-bottom: 1px solid @gray-lightest;
+	}
+	.real-name {
+		.sansLight;
+		font-size: 16px;
+		color: @gray;
+	}
+	.username {
+		.sansRegular;
+		font-size: 13px;
+		color: @gray;
+	}
+}
+
+.k-icon {
+	display: inline-block;
+	&.k-icon-find-friends {
+		width: 28px;
+		height: 29px;
+		.img-retina("icons/find_friends.png", "icons/find_friends@2x.png", 28px, 24px);
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+}
 
 .stat-values {
 	font-size:2em;
 	margin-top: 15px;
+}
+
+.btn-follow, .btn-following {
+	&.graphic {
+		height: 30px;
+		width: 40px;
+		position:absolute;right: 5px; top: 5px;
+	}
+}
+.btn-following {
+	&.graphic {
+		.img-retina("icons/FollowBtnActive.png", "icons/FollowBtnActive@2x.png", 40px, 30px);
+	}
+}
+.btn-follow {
+	&.graphic {
+		.img-retina("icons/FollowBtn.png", "icons/FollowBtn@2x.png", 40px, 30px);
+	}
 }
 
 @import "users";
@@ -219,6 +309,8 @@ input[type="date"], input[type="time"] {
 
 
 .empty-state {
+	background-color: #ffffff;
+	margin: 0px;
 	.img-retina("no_content_image.png", "no_content_image@2x.png", 150px, 150px);
 	text-align:center;
 	height:300px;
@@ -230,6 +322,29 @@ input[type="date"], input[type="time"] {
 		text-decoration: none;
 		cursor: pointer;
 		color: @green-light;
+	}
+	h2 {
+
+	}
+	p {
+		font-size: 16px;
+		padding: 0px 20px;
+	}
+	&.short {
+		padding-top: 110px;
+	}
+	&.twitter-background {
+		.short;
+		.img-retina("backgrounds/InviteTwitterPlaceholder.png", "backgrounds/InviteTwitterPlaceholder@2x.png", 82px, 65px);
+	}
+	&.facebook-background {
+		padding-top: 120px;
+
+		.img-retina("backgrounds/InviteFacebookPlaceholder.png", "backgrounds/InviteFacebookPlaceholder@2x.png", 82px, 82px);
+	}
+	&.friend-background {
+		.short;
+		.img-retina("backgrounds/FollowFeedPlaceholder.png", "backgrounds/FollowFeedPlaceholder@2x.png", 83px, 73px);
 	}
 }
 
@@ -343,7 +458,25 @@ input[type="date"], input[type="time"] {
 	}
 }
 
-
+#friends-find-container {
+	.invite-twitter-connect, .invite-facebook-connect, .invite-twitter-share, .invite-facebook-share {
+		width: 270px;
+		height: 44px;
+		display: inline-block;
+	}
+	.invite-twitter-connect {
+		.img-retina("icons/social/InviteTwitterConnectBtn.png", "icons/social/InviteTwitterConnectBtn@2x.png", 270px, 44px);
+	}
+	.invite-facebook-connect {
+		.img-retina("icons/social/InviteFacebookConnectBtn.png", "icons/social/InviteFacebookConnectBtn@2x.png", 270px, 44px);
+	}
+	.invite-twitter-share {
+		.img-retina("icons/social/InviteTwitterShareBtn.png", "icons/social/InviteTwitterShareBtn@2x.png", 270px, 44px);
+	}
+	.invite-facebook-share {
+		.img-retina("icons/social/InviteFacebookShareBtn.png", "icons/social/InviteFacebookShareBtn@2x.png", 270px, 44px);
+	}
+}
 #activities-index-container, #groups-index {
 	.navigation {
 		margin: 0px;

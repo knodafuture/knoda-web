@@ -11,7 +11,11 @@
 			<% end %>
 	</div>
 	<div class="col-xs-10 col-sm-11 col-md-11 actfeed">
+		<% if activity.activity_type == 'FOLLOWING' %>
+		<div class="activity-item" data-user-id="<%= activity.target_user_id %>" style="padding-left:10px;">
+		<% else %>
 		<div class="activity-item" data-prediction-id="<%= activity.prediction_id %>" style="padding-left:10px;">
+		<% end %>
 			<% if activity.activity_type == 'INVITATION' %>
 				<p class="line1">Hey-O! <%= activity.invitation_sender %> has invited you to join a group.</p>
 				<div class ="centerbutton">
@@ -36,6 +40,10 @@
 							<a class="brag-prediction bragbutton btn btn-default text-center">Brag</a>
 						</div>
 					<% end %>
+			<% elsif activity.activity_type == 'FOLLOWING' %>
+				<p class="line1" style="margin-right: 40px;"><%= raw activity_title(activity) %></p>
+				<%= render :partial => 'shared/follow_button', :locals => {user: User.find(activity.target_user_id)} %>
+				<p><%= activity.comment_body %></p>
 			<% else %>
 				<p class="line1"><%= raw activity_title(activity) %></p>
 				<p>"<%= activity.prediction_body %>"</p>

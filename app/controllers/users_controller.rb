@@ -2,7 +2,7 @@ class UsersController < AuthenticatedController
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:create]
   skip_before_action :unseen_activities, only: [:create]
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :crop, :avatar_upload, :settings, :history]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :crop, :avatar_upload, :settings, :history, :social]
   skip_before_action :verify_authenticity_token, only: [:avatar_upload]
 
   # GET /users/1
@@ -155,25 +155,39 @@ class UsersController < AuthenticatedController
     render :partial => "predictions/predictions"
   end
 
+  def social
+    render partial: 'social'
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_user
-      if params[:id] == 'me'
-        @user = current_user
+      if numeric?(params[:id])
+        @user = User.find(params[:id])
+        if not @user
+          @user = User.where(["lower(username) = :username", {:username => params[:id].downcase }]).first
+        end
       else
-        @user = User.where(["lower(username) = :username", {:username => params[:id].downcase }]).first
+        if params[:id] == 'me'
+          @user = current_user
+        else
+          @user = User.where(["lower(username) = :username", {:username => params[:id].downcase }]).first
+        end
       end
+
       if not @user
         raise ActionController::RoutingError.new('Not Found')
       end
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.required(:user).permit(:email, :username, :password, :password_confirmation, :avatar,:crop_x, :crop_y, :crop_w, :crop_h)
+      params.required(:user).permit(:email, :username, :password, :password_confirmation, :avatar,:crop_x, :crop_y, :crop_w, :crop_h, :phone)
     end
 
     def extra_create_params
       params.permit(:signup_source)
+    end
+
+    def numeric?(object)
+      true if Float(object) rescue false
     end
 end

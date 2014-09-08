@@ -8,7 +8,6 @@ KnodaWeb::Application.routes.draw do
   get 'embed-login' => 'home#embed_login'
   get 'sitemap.xml.gz' => 'home#sitemap'
 
-
  devise_for :users, :controllers => {:sessions => 'sessions', :omniauth_callbacks => "omniauth_callbacks"}, :skip => [:sessions] do
     get '/'   => "home#index",       :as => :new_user_session
     post '/signin'  => 'sessions#create',    :as => :user_session
@@ -38,6 +37,7 @@ KnodaWeb::Application.routes.draw do
       post 'avatar_upload'
       get 'settings'
       get 'history'
+      get 'social'
     end
     collection do
       get 'autocomplete'
@@ -61,13 +61,23 @@ KnodaWeb::Application.routes.draw do
       get 'join'
     end
   end
-  resources :invitations
+  resources :invitations do
+    collection do
+      get 'accept'
+    end
+  end
   resources :memberships
 
   resources :twitter
   resources :facebook
 
   resources :social_accounts
+  resources :friends do
+    collection do
+      get 'find'
+      get 'find/:source' => 'friends#find'
+    end
+  end
 
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'
@@ -98,6 +108,7 @@ KnodaWeb::Application.routes.draw do
   end
 
   resources :contest_stages
+  resources :followings
 
 
   namespace :admin do
@@ -108,10 +119,4 @@ KnodaWeb::Application.routes.draw do
     post '/users/search' => "users#search"
     put '/users/:id' => "users#update"
   end
-
-  #namespace :contests do
-  #  get '/' => "home#index"
-  #  post '/contests/create' => "contests#create_contest"
-  #  get '/:id/embed' => 'contests#embed'
-  #end
 end

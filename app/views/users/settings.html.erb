@@ -28,7 +28,7 @@
               <% if not @user.facebook_account %>
                 <a href="<%= user_omniauth_authorize_path(:facebook)%>"><img src="<%= image_path('icons/social/share/facebook_share.png') %>"></a>
               <% else %>
-                <img src="<%= image_path('icons/social/share/facebook_share_active.png') %>" /><%= @user.facebook_account.provider_account_name %>
+                <img src="<%= image_path('icons/social/share/facebook_share_active.png') %>" /><span style="padding-left:5px"><%= @user.facebook_account.provider_account_name %></span>
                 <a class="btn btn-danger btn-xs social-account-destroy" data-id="<%=@user.facebook_account.id%>">Disconnect</a>
               <% end %>
             </div>
@@ -36,7 +36,7 @@
               <% if not @user.twitter_account %>
                 <a href="<%= user_omniauth_authorize_path(:twitter)%>"><img src="<%= image_path('icons/social/share/twitter_share.png') %>"></a>
               <% else %>
-                <img src="<%= image_path('icons/social/share/twitter_share_active.png') %>" /><%= @user.twitter_account.provider_account_name %>
+                <img src="<%= image_path('icons/social/share/twitter_share_active.png') %>" /><span style="padding-left:5px"><%= @user.twitter_account.provider_account_name %></span>
                 <a class="btn btn-danger btn-xs social-account-destroy" data-id="<%=@user.twitter_account.id%>">Disconnect</a>
               <% end %>
             </div>
@@ -48,7 +48,7 @@
       <div class="panel-heading">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapseUsername">
-            Username & Email
+            Username, Email & Phone
           </a>
         </h4>
       </div>
@@ -61,11 +61,20 @@
                   <ul style="padding-left:30px">
                   </ul>
               </div>
-              <div class="form-group">
+              <div class="form-group" style="padding: 0px 20px;">
                   <label for="username">Username</label>
                   <%= f.input_field :username, :class => 'form-control username', :maxlength => '20'  %>
                   <label for="email">Email Address</label>
                   <%= f.input_field :email, :class => 'form-control email', :maxlength => '255'  %>
+                  <label for="phone">Phone Number <span class="help-text"
+                    data-html="true"
+                    data-title="Adding a Phone Number"
+                    data-content="<p>Make it easier for friends to find you on Knoda by allowing us to have your number. We promise not to call after midnight (or ever).</p>"
+                    data-trigger="click hover"
+                    data-placement="top">
+                    Why?
+                    </span></label>
+                  <%= f.input_field :phone, :class => 'form-control phone', :maxlength => '12'  %>
               </div>
                 <%= f.button :submit , :class => 'btn btn-success btn-lg', :value => 'Save' %>
             <% end %>

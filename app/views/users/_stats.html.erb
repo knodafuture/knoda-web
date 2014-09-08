@@ -11,26 +11,25 @@
     </div>
     <div class="row">
       <div class="col-xs-12 center" style="height:160px;">
+        <% if current_user != user %>
+          <%= render :partial => 'shared/follow_button', :locals => {user: user} %>
+        <% end %>
         <h1><%= user.username %></h1>
-        <% if current_user == user %>
-          <div class="stats-social">
-          <% if not user.twitter_account %>
-            <a href="<%= user_omniauth_authorize_path(:twitter)%>"><img src="<%= image_path('icons/social/profile_twitter@2x.png') %>" style="height:34px;width:34px;"></a>
-          <% else %>
-            <a class="social-account-destroy" data-id="<%=@user.twitter_account.id%>"><img src="<%= image_path('icons/social/profile_twitter_active@2x.png') %>" style="height:34px;width:34px;" /></a>
-          <% end %>
+        <div class="row">
+          <div class="col-xs-6 col-sm-4 col-sm-offset-2" style="padding-top: 25px;">
+            <div class="stats-followers">
+              <div class="stat-value"><%= user.follower_count %></div>
+              <div class="stat-label">Followers</div>
+            </div>
+            <div class="user-profile-image"><img src="<%= avatar_small(user) %>" class="avatar_small img-circle avatar-circle"/></div>
           </div>
-        <% end %>
-        <img src="<%= avatar_small(user) %>" class="avatar_small img-circle avatar-circle"/>
-        <% if current_user == user %>
-          <div class="stats-social">
-            <% if not user.facebook_account %>
-              <a href="<%= user_omniauth_authorize_path(:facebook)%>"><img src="<%= image_path('icons/social/profile_facebook@2x.png') %>" style="height:34px;width:34px;"></a>
-            <% else %>
-              <a class="social-account-destroy" data-id="<%=@user.facebook_account.id%>"><img src="<%= image_path('icons/social/profile_facebook_active@2x.png') %>" style="height:34px;width:34px;"/></a>
-            <% end %>
+          <div class="col-xs-6 col-sm-4" style="padding-top: 25px;">
+            <div class="stats-following">
+              <div class="stat-value"><%= user.following_count %></div>
+              <div class="stat-label">Following</div>
+            </div>
           </div>
-        <% end %>
+        </div>
       </div>
     </div>
     <div class="row">

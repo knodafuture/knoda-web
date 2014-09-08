@@ -37,3 +37,30 @@ window.UserShowView = class UserShowView
               bindAll()
             complete: (xhr, status) ->
               stopLoading()
+    $('.stats-following').on 'click', @showLeaders
+    $('.stats-followers').on 'click', @showFollowers
+    $('#showFollowings').on 'hidden.bs.modal', ->
+      $('#showFollowings').empty();
+      $(this).removeData();
+    $('#showFollowings').on 'shown.bs.modal', ->
+      $('#showFollowings .modal-content .modal-body').css('max-height', "#{($(window).height()-70) * .9}px").css('overflow', 'auto')
+  showLeaders: =>
+    startLoading()
+    $.ajax
+      url: "/users/#{@options.user.username}/social.html?following=true"
+      type: "GET"
+      success: (x) =>
+        $('#showFollowings').html(x)
+        $('#showFollowings').modal()
+      complete: =>
+        stopLoading()
+  showFollowers: =>
+    startLoading()
+    $.ajax
+      url: "/users/#{@options.user.username}/social.html"
+      type: "GET"
+      success: (x) =>
+        $('#showFollowings').html(x)
+        $('#showFollowings').modal()
+      complete: =>
+        stopLoading()
