@@ -42,6 +42,8 @@ window.UserShowView = class UserShowView
     $('#showFollowings').on 'hidden.bs.modal', ->
       $('#showFollowings').empty();
       $(this).removeData();
+    $('#showFollowings').on 'shown.bs.modal', ->
+      $('#showFollowings .modal-content .modal-body').css('max-height', "#{($(window).height()-70) * .9}px").css('overflow', 'auto')
   showLeaders: =>
     startLoading()
     $.ajax
