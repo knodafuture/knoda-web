@@ -3,7 +3,7 @@
   <div class="row green-nav-tabs find-friends-tabs">
     <div class="col-xs-12 center">
       <a class="btn-facebook-friends<% if @source == 'facebook'%> active<%end%>" href="/friends/find">Facebook</a>
-      <a class="btn-twitter-friends<% if @source == 'twitter'%> active<%end%>" href="/friends/find?source=twitter">Twitter</a>
+      <a class="btn-twitter-friends<% if @source == 'twitter'%> active<%end%>" href="/friends/find/twitter">Twitter</a>
     </div>
   </div>
   <div class="row">
@@ -75,7 +75,7 @@
               <p>Let's Party.<br/>
                  Find more friends by connecting to Twitter.
               </p>
-              <a href="<%= user_omniauth_authorize_path(:twitter, destination:'/friends/find?source=twitter' )%>" class="invite-twitter-connect"></a>
+              <a href="<%= user_omniauth_authorize_path(:twitter, destination:'/friends/find/twitter' )%>" class="invite-twitter-connect"></a>
             </div>
           </div>
         <% else %>

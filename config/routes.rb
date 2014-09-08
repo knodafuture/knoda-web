@@ -75,6 +75,7 @@ KnodaWeb::Application.routes.draw do
   resources :friends do
     collection do
       get 'find'
+      get 'find/:source' => 'friends#find'
     end
   end
 
