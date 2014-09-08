@@ -6,6 +6,11 @@
       <a class="btn-twitter-friends<% if @source == 'twitter'%> active<%end%>" href="/friends/find?source=twitter">Twitter</a>
     </div>
   </div>
+  <div class="row">
+    <% if params[:error] %>
+    <div style="text-align: center;color: red;"><%= params[:error] %></div>
+    <% end %>
+  </div>
   <% if (@source == 'twitter' and current_user.twitter_account) or (@source == 'facebook' and current_user.facebook_account) %>
     <% if @friends.size == 0 %>
       <div class="row">
