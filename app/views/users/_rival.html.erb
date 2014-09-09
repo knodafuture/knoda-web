@@ -1,0 +1,65 @@
+<%
+  single = single || false
+%>
+<div class="rivalry-item <% if single %> rivalry-item-single <% end %>">
+  <div class="row rivalry-header" style="padding:10px 35px;height: 75px;" data-toggle-id="<%= rival.id%>">
+    <div class="col-xs-6" style="position:relative">
+      <img src="<%= avatar_small(current_user) %>" class="avatar_thumb img-circle avatar-circle" style="position:absolute;right: 0px;z-index:2;margin-right:10px;"/>
+      <div class="h2h-bar-left <% if vs_my_win_percentage(vs) == 0 %> zero <% end %>" style="width:<%= vs_my_win_percentage(vs) %>%"><%= vs[:user_won] %></div>
+    </div>
+    <div class="col-xs-6">
+      <div style="position:relative">
+        <span class="vs-label">vs</span>
+        <img src="<%= avatar_small(rival) %>" class="avatar_thumb img-circle avatar-circle" style="position:absolute;left: 0px;z-index:2;margin-left:10px;"/>
+        <div class="h2h-bar-right <% if vs_opponent_win_percentage(vs) == 0 %> zero <% end %>" style="width:<%= vs_opponent_win_percentage(vs)%>%"><%= vs[:opponent_won] %></div>
+        <div style="position:relative;left: 70px;top:35px;"><%= rival.username %></div>
+      </div>
+    </div>
+  </div>
+  <div class="row rivalry-body" style="display:none;text-align:center;" id="rival_<%= rival.id %>">
+    <div class="col-xs-12">
+      <div class="row rivalry-stat-header">
+        <div class="col-xs-4 ">
+        </div>
+        <div class="col-xs-4">
+          Overall Stats
+        </div>
+        <div class="col-xs-4">
+        </div>
+      </div>
+      <div class="row rivalry-stat"  style="background-color:#efefef;">
+        <div class="col-xs-4 value left">
+          <%= current_user.won %> - <%= current_user.lost %>
+        </div>
+        <div class="col-xs-4 rivalry-label center">
+          W-L
+        </div>
+        <div class="col-xs-4 value right">
+          <%= rival.won %> - <%= rival.lost %>
+        </div>
+      </div>
+      <div class="row rivalry-stat">
+        <div class="col-xs-4 value left">
+          <%= win_percentage(current_user) %>
+        </div>
+        <div class="col-xs-4 rivalry-label center">
+          Win %
+        </div>
+        <div class="col-xs-4 value right">
+          <%= win_percentage(rival) %>
+        </div>
+      </div>
+      <div class="row rivalry-stat"  style="background-color:#efefef;">
+        <div class="col-xs-4 value left">
+          <%= current_user.streak_as_text %>
+        </div>
+        <div class="col-xs-4 rivalry-label center">
+          Streak
+        </div>
+        <div class="col-xs-4 value right">
+          <%= rival.streak_as_text %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

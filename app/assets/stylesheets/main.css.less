@@ -247,6 +247,11 @@ h3 {
 	}
 }
 
+.avatar_thumb {
+	height: 50px;
+	width: 50px;
+}
+
 
 .avatar_small {
 	height: 100px;
@@ -631,4 +636,66 @@ input[type="date"], input[type="time"] {
 
 	}
 }
+}
+
+.h2h-bar-right, .h2h-bar-left {
+	height:40px;background-color:@green-dark;position:absolute;
+	color:@white;font-size:24px;line-height:40px;
+	z-index:1;margin:5px 0px;
+	&.zero {
+		background-color: transparent;
+	}
+}
+.h2h-bar-left {
+	right:25px;
+	text-align:right;padding-right:50px;
+}
+.h2h-bar-right {
+	left:25px;
+	text-align:left;padding-left:50px;
+}
+.h2hWins {
+	text-align:center;
+	color: @green-dark;
+	.sansRegular;
+}
+
+#users-rivals-container {
+	.h2h-bar-right, .h2h-bar-left {
+		color: @green-light;
+	}
+}
+
+
+.rivalry-item {
+	border-bottom: 1px solid @gray-lightest;
+	&.rivalry-item-single {
+		border-bottom: 0px;
+	}
+	.vs-label {
+		position:absolute;left:-14px;top:15px;
+		.sansRegular;
+		color: @green-dark;
+	}
+	.avatar-circle {
+		border: 0px;
+	}
+}
+.rivalry-stat {
+	height: 40px;
+	font-size: 14px;
+	line-height: 40px;
+	.rivalry-label {
+		text-align: center;
+		color: @green-dark;
+	}
+	.value {
+		color: @green-light;
+		&.left {
+			text-align: right;
+		}
+		&.right {
+			text-align: left;
+		}
+	}
 }

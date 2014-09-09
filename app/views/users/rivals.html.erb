@@ -1,0 +1,18 @@
+<div class="row limit-size-small" style="background-color:#fff;">
+  <div class="col-xs-12">
+    <% @user.rivals.each do |rival| %>
+      <%
+      vs = current_user.vs(rival)
+      %>
+      <%= render partial: "users/rival", locals: {vs: vs, rival: rival} %>
+    <% end %>
+  </div>
+</div>
+<script>
+$(function() {
+  $('.rivalry-header').click(function(e) {
+    expandTarget = $(e.currentTarget).attr('data-toggle-id')
+    $('#rival_' + expandTarget).toggle()
+  })
+});
+</script>
