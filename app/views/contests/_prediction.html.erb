@@ -1,4 +1,4 @@
-<% @contest.predictions.order('created_at desc').each do |prediction| %>
+<% @contest.predictions.order('id asc').each do |prediction| %>
 <div class="panel panel-default predictionContainer" data-prediction-id="<%= prediction.id%>" data-group-id="<%= prediction.group_id%>">
     <div class="panel-heading" style="padding:0px 15px; background-color: #EFEFEF">
     <div class="row userInfo">
@@ -28,7 +28,7 @@
       <div style="text-align:center; padding:4px; background-color:white;" >
         <select name="standings-select" class="form-control input-sm standings-select<%=prediction.id%>">
           <option>Choose a Stage...</option>
-          <% @contest.contest_stages.each do |s| %>
+          <% @contest.contest_stages.order('id asc').each do |s| %>
           <option value="<%= s.id %>" <% if s.id == prediction.contest_stage_id %> selected="selected" <% end %>><%= s.name %></option>
           <% end %>
         </select>

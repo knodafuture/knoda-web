@@ -24,26 +24,23 @@
           <label for="detail_url">Contest Details url</label>
           <%= url_field_tag "contest[detail_url]", @contest.detail_url, :class => 'form-control' %>
         </div>
-        <%= f.button :submit, "Save", :class => 'btn btn-success' %>
+        <%= f.button :submit, "Save", :class => 'btn btn-success pull-right' %>
         <% end %>
-
         </div>
       </div>
       <div class="row text-center">
-        <button type="button" class="btn btn-danger text-center" data-toggle="collapse" data-target="#demo">
-          Embed
-        </button>
-        <div id="demo" class="collapse">
-          <textarea class="form-control" style="padding: 0px 50px; margin:15px;"><iframe src="http://www.knoda.com/contests/<%=@contest.id%>/embed" width="300" height="500" frameborder="0"></iframe></textarea>
+        <div class="col-xs-12">
+          <p>Want to embed this contest on your website or blog?  Paste the following code into your page</p>
+          <textarea class="form-control"><iframe src="<%= Rails.application.config.knoda_web_url %>/contests/<%=@contest.id%>/embed" width="300" height="500" frameborder="0"></iframe></textarea>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-6">
-          <h3 class="text-center">Predictions <a href="/predictions/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createPredictionModal_contest<%=@contest.id%>" data-remote="/predictions/new?contestid=<%=@contest.id%>" title="Create a new prediction">+</a></h3>
+          <h3 class="text-center">Predictions <a href="/predictions/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createPredictionModal_contest<%=@contest.id%>" data-remote="/predictions/new?contestid=<%=@contest.id%>" title="Create a new prediction" style="text-decoration:none">+</a></h3>
           <%= render 'contests/prediction' %>
         </div>
         <div class="col-xs-6">
-          <h3 class="text-center">Stages <a href="/contest_stages/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createStageModal" data-remote="/contest_stages/new?contestid=<%=@contest.id%>" title="Create a new stage">+</a></h3>
+          <h3 class="text-center">Stages <a href="/contest_stages/new?contestid=<%=@contest.id%>" data-toggle="modal" data-target="#createStageModal" data-remote="/contest_stages/new?contestid=<%=@contest.id%>" title="Create a new stage" style="text-decoration:none">+</a></h3>
           <%= render 'contests/stage' %>
         </div>
       </div>

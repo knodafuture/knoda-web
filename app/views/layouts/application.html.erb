@@ -114,6 +114,11 @@
       if (unseenCount > 0) {
         $('header .activities').addClass('hasUnseen')
       }
+      if (controller == 'contests' && (action == 'edit' || action == 'admin')) {
+        console.log('hide predict button');
+        $('.navbar .predict-right').hide()
+        $('.navbar .predict').hide()
+      }
     </script>
   </body>
 </html>

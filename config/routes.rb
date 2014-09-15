@@ -38,6 +38,7 @@ KnodaWeb::Application.routes.draw do
       get 'settings'
       get 'history'
       get 'social'
+      post 'contest_agreement'
     end
     collection do
       get 'autocomplete'

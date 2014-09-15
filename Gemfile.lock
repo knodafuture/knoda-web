@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: f9d1318e1cb244d6bd5f31e4a5b3d38f948c1e6a
+  revision: 88c16d7bbe1ee5232eb9ce63cd76fab5be3901b3
   branch: master
   specs:
     knoda_core (0.0.1)
@@ -129,7 +129,7 @@ GEM
     less-rails (2.5.0)
       actionpack (>= 3.1)
       less (~> 2.5.0)
-    libv8 (3.16.14.3)
+    libv8 (3.16.14.7)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -239,7 +239,7 @@ GEM
     simple_oauth (0.2.0)
     sitemap_generator (5.0.5)
       builder
-    sprockets (2.12.1)
+    sprockets (2.12.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -254,7 +254,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
-    timers (4.0.0)
+    timers (4.0.1)
       hitimes
     treetop (1.4.15)
       polyglot

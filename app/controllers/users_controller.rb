@@ -159,6 +159,11 @@ class UsersController < AuthenticatedController
     render partial: 'social'
   end
 
+  def contest_agreement
+    current_user.user_agreements.create(:agreement_type => 'CONTEST_ADMIN')
+    head :no_content
+  end
+
   private
     def set_user
       if numeric?(params[:id])

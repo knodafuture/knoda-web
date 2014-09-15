@@ -1,3 +1,6 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'contests/admin_view' %>
+<% end %>
 <div id="groups-index" class="limit-size-small" style="background-color:#fff;">
   <div class="row">
     <div class="col-xs-12 group-thumb">
@@ -49,6 +52,36 @@
     </div>
   </div>
 <% end %>
-
 <div class="modal fade" id="createContestModal" tabindex="-1" role="dialog" aria-hidden="true">
 </div>
+<div class="modal fade open" id="agreeToTermsModal" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="agreeToTermsModalLabel">TERMS OF SERVICE</div>
+      </div>
+      <div class="modal-body">
+        <form>
+        <div class="form-group">
+          <textarea class="form-control">Terms here.</textarea>
+        <div class="form-group agreeToTermsGroup">
+          <label class="checkbox">
+            <input type="checkbox" id="agreeToTermsCheckbox"/>&nbsp;<strong>Accept:</strong> I have read and accept these terms of service.
+          </label>
+        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default agreeToTerms">Agree</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(function() {
+  view = new ContestsAdminView()
+  <% if not current_user.signed_contest_admin_agreement? %>
+  view.require_agreement()
+  <% end %>
+});
+</script>
