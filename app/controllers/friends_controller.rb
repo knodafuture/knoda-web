@@ -11,7 +11,11 @@ class FriendsController < AuthenticatedController
     else
       @source = 'facebook'
       if current_user.facebook_account
-        @friends = current_user.facebook_friends_on_knoda(true)
+        begin
+          @friends = current_user.facebook_friends_on_knoda(true)
+        rescue Koala::Facebook::AuthenticationError
+          redirect_to user_omniauth_authorize_path(:facebook, destination:'/friends/find' )
+        end
       end
       # For Faking it
       #@friends = []
