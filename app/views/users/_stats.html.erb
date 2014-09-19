@@ -10,20 +10,20 @@
       <% end %>
     </div>
     <div class="row">
-      <div class="col-xs-12 center" style="height:160px;">
+      <div class="col-xs-12 center" style="height:155px;">
         <% if current_user != user %>
           <%= render :partial => 'shared/follow_button', :locals => {user: user} %>
         <% end %>
         <h1><%= user.username %></h1>
         <div class="row">
-          <div class="col-xs-6 col-sm-4 col-sm-offset-2" style="padding-top: 25px;">
+          <div class="col-xs-6 col-sm-4 col-sm-offset-2" style="padding-top: 15px;">
             <div class="stats-followers">
               <div class="stat-value"><%= user.follower_count %></div>
               <div class="stat-label">Followers</div>
             </div>
-            <div class="user-profile-image"><img src="<%= avatar_small(user) %>" class="avatar_small img-circle avatar-circle"/></div>
+            <div class="user-profile-image"><img src="<%= avatar_small(user) %>" class="avatar_small img-circle avatar-circle" style="height:75px;width:75px;"/></div>
           </div>
-          <div class="col-xs-6 col-sm-4" style="padding-top: 25px;">
+          <div class="col-xs-6 col-sm-4" style="padding-top: 15px;">
             <div class="stats-following">
               <div class="stat-value"><%= user.following_count %></div>
               <div class="stat-label">Following</div>
@@ -64,36 +64,23 @@
             </div>
           </div>
         </div>
-        <div class="item" style="padding-top:10px;min-height:150px;">
+        <div class="item h2hitem" style="padding-top:10px;min-height:150px;">
         <%
         if current_user != user
           vs = current_user.vs(user)
         %>
-          <div class="row">
+          <div class="row" style="padding-top:25px;">
             <div class="col-xs-12">
               <div class="h2hWins">Head-to-Head Wins</div>
             </div>
           </div>
-          <div class="row" style="padding-top:10px;">
-            <div class="col-xs-6">
-              <div style="position:relative">
-                <img src="<%= avatar_small(current_user) %>" class="avatar_thumb img-circle avatar-circle" style="position:absolute;right: 0px;z-index:2"/>
-                <div class="h2h-bar-left <% if vs_my_win_percentage(vs) == 0 %> zero <% end %>" style="width:<%= vs_my_win_percentage(vs) %>%"><%= vs[:user_won] %></div>
-              </div>
-            </div>
-            <div class="col-xs-6">
-              <div style="position:relative">
-                <img src="<%= avatar_small(user) %>" class="avatar_thumb img-circle avatar-circle" style="position:absolute;left: 0px;z-index:2"/>
-                <div class="h2h-bar-right <% if vs_opponent_win_percentage(vs) == 0 %> zero <% end %>" style="width:<%= vs_opponent_win_percentage(vs)%>%"><%= vs[:opponent_won] %></div>
-              </div>
-            </div>
-          </div>
+          <%= render partial: "users/rival", locals: {vs: vs, rival: user, single: true} %>
         <% else
           rival = current_user.rivals[0]
         %>
           <div class="row">
             <div class="col-xs-12">
-              <div class="h2hWins">My Rivals</div>
+              <div class="h2hWins">Head-to-Head Wins</div>
             </div>
           </div>
           <% if rival
@@ -102,7 +89,7 @@
           <%= render partial: "users/rival", locals: {vs: vs, rival: rival, single: true} %>
           <div class="row">
             <div class="col-xs-12 center">
-              <a href="/users/me/rivals" class="btn btn-success">View all my Rivalries</a>
+              <a href="/users/me/rivals" class="view-more-h2h"></a>
             </div>
           </div>
           <% else %>

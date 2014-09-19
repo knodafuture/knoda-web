@@ -1,5 +1,10 @@
 <div class="row limit-size-small" style="background-color:#fff;">
   <div class="col-xs-12">
+    <div class="h2hWins">Head-to-Head Wins</div>
+  </div>
+</div>
+<div class="row limit-size-small" style="background-color:#fff;">
+  <div class="col-xs-12">
     <% @user.rivals.each do |rival| %>
       <%
       vs = current_user.vs(rival)
@@ -12,7 +17,7 @@
 $(function() {
   $('.rivalry-header').click(function(e) {
     expandTarget = $(e.currentTarget).attr('data-toggle-id')
-    $('#rival_' + expandTarget).toggle()
+    $('#rival_' + expandTarget).slideToggle()
   })
 });
 </script>
