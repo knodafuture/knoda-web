@@ -1,4 +1,4 @@
-<div class="item h2hitem <%= active %>" style="padding-top:10px;min-height:150px;">
+<div class="item h2hitem <%= active %>" style="padding-top:0px;min-height:155px;">
 <%
 if current_user != user
   vs = current_user.vs(user)
@@ -22,7 +22,7 @@ if current_user != user
   %>
   <%= render partial: "users/rival", locals: {vs: vs, rival: rival, single: true} %>
   <div class="row">
-    <div class="col-xs-12 center">
+    <div class="col-xs-12 center" style="padding:6px 0px;">
       <a href="/users/me/rivals" class="view-more-h2h"></a>
     </div>
   </div>
