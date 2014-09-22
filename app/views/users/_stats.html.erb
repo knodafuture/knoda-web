@@ -1,107 +1,25 @@
-
-<div class="row" style="background-color: #77BC1F;margin:0px;padding-bottom: 20px;">
-  <div class="col-xs-12" >
-    <div class="row">
-      <% user.errors.each do |e| %>
-        <%= e %>
-      <% end %>
-      <% if params[:error] %>
-      <div style="text-align: center;color: red;"><%= params[:error] %></div>
-      <% end %>
+<div class="item <%= active %>" style="padding-top:10px;height:150px;">
+  <div class="row">
+    <div class="col-xs-6 col-sm-4 col-sm-offset-2 profileStat topLeft center">
+        <div class="stat-value"><%= user.points %></div>
+        <div class="stat-label">POINTS</div>
+        <div class="stats-trophy"></div>
     </div>
-    <div class="row">
-      <div class="col-xs-12 center" style="height:155px;">
-        <% if current_user != user %>
-          <%= render :partial => 'shared/follow_button', :locals => {user: user} %>
-        <% end %>
-        <h1><%= user.username %></h1>
-        <div class="row">
-          <div class="col-xs-6 col-sm-4 col-sm-offset-2" style="padding-top: 15px;">
-            <div class="stats-followers">
-              <div class="stat-value"><%= user.follower_count %></div>
-              <div class="stat-label">Followers</div>
-            </div>
-            <div class="user-profile-image"><img src="<%= avatar_small(user) %>" class="avatar_small img-circle avatar-circle" style="height:75px;width:75px;"/></div>
-          </div>
-          <div class="col-xs-6 col-sm-4" style="padding-top: 15px;">
-            <div class="stats-following">
-              <div class="stat-value"><%= user.following_count %></div>
-              <div class="stat-label">Following</div>
-            </div>
-          </div>
-        </div>
+    <div class="col-xs-6 col-sm-4 profileStat topRight">
+      <div class="stat-value">
+        <%= win_percentage(user) %>
       </div>
+      <div class="stat-label">WIN %</div>
     </div>
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false" style="padding-bottom:5px;">
-      <!-- Indicators -->
-      <ol class="carousel-indicators" style="bottom:-25px;">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="item active" style="padding-top:10px;height:150px;">
-          <div class="row">
-            <div class="col-xs-6 col-sm-4 col-sm-offset-2 profileStat topLeft center">
-                <div class="stat-value"><%= user.points %></div>
-                <div class="stat-label">POINTS</div>
-                <div class="stats-trophy"></div>
-            </div>
-            <div class="col-xs-6 col-sm-4 profileStat topRight">
-              <div class="stat-value">
-                <%= win_percentage(user) %>
-              </div>
-              <div class="stat-label">WIN %</div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-6 col-sm-4 col-sm-offset-2 profileStat bottomLeft">
-              <div class="stat-value"><%= user.streak_as_text %></div>
-              <div class="stat-label">STREAK</div>
-            </div>
-            <div class="col-xs-6 col-sm-4 profileStat bottomRight">
-              <div class="stat-value"><%= user.won %>-<%= user.lost %></div>
-              <div class="stat-label">W-L</div>
-            </div>
-          </div>
-        </div>
-        <div class="item h2hitem" style="padding-top:10px;min-height:150px;">
-        <%
-        if current_user != user
-          vs = current_user.vs(user)
-        %>
-          <div class="row" style="padding-top:25px;">
-            <div class="col-xs-12">
-              <div class="h2hWins">Head-to-Head Wins</div>
-            </div>
-          </div>
-          <%= render partial: "users/rival", locals: {vs: vs, rival: user, single: true} %>
-        <% else
-          rival = current_user.rivals[0]
-        %>
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="h2hWins">Head-to-Head Wins</div>
-            </div>
-          </div>
-          <% if rival
-            vs = current_user.vs(current_user.rivals[0])
-          %>
-          <%= render partial: "users/rival", locals: {vs: vs, rival: rival, single: true} %>
-          <div class="row">
-            <div class="col-xs-12 center">
-              <a href="/users/me/rivals" class="view-more-h2h"></a>
-            </div>
-          </div>
-          <% else %>
-          <div class="row">
-            <div class="col-xs-12 center">
-              <p>As you use Knoda, we'll match you up with users who don't always agree with you. Keep voting on predictions, and we'll list your rivals here.</p>
-            </div>
-          </div>
-          <% end %>
-        <% end %>
-        </div>
-      </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 col-sm-4 col-sm-offset-2 profileStat bottomLeft">
+      <div class="stat-value"><%= user.streak_as_text %></div>
+      <div class="stat-label">STREAK</div>
+    </div>
+    <div class="col-xs-6 col-sm-4 profileStat bottomRight">
+      <div class="stat-value"><%= user.won %>-<%= user.lost %></div>
+      <div class="stat-label">W-L</div>
     </div>
   </div>
 </div>

@@ -5,7 +5,7 @@
   <script>FlurryAgent.logEvent("PROFILE_SCREEN");</script>
 <% end %>
 <div class="userContainer" data-user-id="<%= @user.id%>">
-  <%= render partial: "users/stats", locals: {user: @user} %>
+  <%= render partial: "users/header", locals: {user: @user} %>
 </div>
 <% if current_user == @user %>
 <div class="row history-tabs" >

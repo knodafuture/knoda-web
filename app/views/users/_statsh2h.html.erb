@@ -1,0 +1,37 @@
+<div class="item h2hitem <%= active %>" style="padding-top:10px;min-height:150px;">
+<%
+if current_user != user
+  vs = current_user.vs(user)
+%>
+  <div class="row" style="padding-top:25px;">
+    <div class="col-xs-12">
+      <div class="h2hWins">Head-to-Head Wins</div>
+    </div>
+  </div>
+  <%= render partial: "users/rival", locals: {vs: vs, rival: user, single: true} %>
+<% else
+  rival = current_user.rivals[0]
+%>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="h2hWins">Head-to-Head Wins</div>
+    </div>
+  </div>
+  <% if rival
+    vs = current_user.vs(current_user.rivals[0])
+  %>
+  <%= render partial: "users/rival", locals: {vs: vs, rival: rival, single: true} %>
+  <div class="row">
+    <div class="col-xs-12 center">
+      <a href="/users/me/rivals" class="view-more-h2h"></a>
+    </div>
+  </div>
+  <% else %>
+  <div class="row">
+    <div class="col-xs-12 center">
+      <p>As you use Knoda, we'll match you up with users who don't always agree with you. Keep voting on predictions, and we'll list your rivals here.</p>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+</div>
