@@ -211,7 +211,7 @@ module ApplicationHelper
   end
 
   def vs_my_bar_width(vs)
-    if vs[:opponent_won] == 0
+    if vs[:user_won] == 0
       myPercentage = 100
     else
       myPercentage = vs[:user_won].fdiv((vs[:user_won] + vs[:opponent_won]))* 100
