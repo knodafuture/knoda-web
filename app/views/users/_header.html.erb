@@ -38,7 +38,12 @@
         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
       </ol>
       <div class="carousel-inner">
-        <% if current_user.rivals.size == 0 || current_user == user %>
+        <%
+        if current_user != user
+          vs = current_user.vs(user)
+        end
+        %>
+        <% if current_user == user || (vs[:user_won] == 0 && vs[:opponent_won] == 0)  %>
         <%= render partial: "users/stats", locals: {user: user, active: 'active'} %>
         <%= render partial: "users/statsh2h", locals: {user: user, active: ''} %>
         <% else %>
