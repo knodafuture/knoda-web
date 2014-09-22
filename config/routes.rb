@@ -39,6 +39,7 @@ KnodaWeb::Application.routes.draw do
       get 'history'
       get 'social'
       post 'contest_agreement'
+      get 'rivals'
     end
     collection do
       get 'autocomplete'

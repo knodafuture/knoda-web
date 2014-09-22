@@ -2,7 +2,7 @@ class UsersController < AuthenticatedController
   before_filter :authenticate_user!
   skip_before_action :authenticate_user!, only: [:create]
   skip_before_action :unseen_activities, only: [:create]
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :crop, :avatar_upload, :settings, :history, :social]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar, :crop, :avatar_upload, :settings, :history, :social, :rivals]
   skip_before_action :verify_authenticity_token, only: [:avatar_upload]
 
   # GET /users/1
@@ -162,6 +162,9 @@ class UsersController < AuthenticatedController
   def contest_agreement
     current_user.user_agreements.create(:agreement_type => 'CONTEST_ADMIN')
     head :no_content
+  end
+
+  def rivals
   end
 
   private

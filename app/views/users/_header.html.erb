@@ -1,0 +1,56 @@
+
+<div class="row" style="background-color: #77BC1F;margin:0px;padding-bottom: 20px;">
+  <div class="col-xs-12" >
+    <div class="row">
+      <% user.errors.each do |e| %>
+        <%= e %>
+      <% end %>
+      <% if params[:error] %>
+      <div style="text-align: center;color: red;"><%= params[:error] %></div>
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 center" style="height:155px;">
+        <% if current_user != user %>
+          <%= render :partial => 'shared/follow_button', :locals => {user: user} %>
+        <% end %>
+        <h1><%= user.username %></h1>
+        <div class="row">
+          <div class="col-xs-6 col-sm-4 col-sm-offset-2" style="padding-top: 15px;">
+            <div class="stats-followers">
+              <div class="stat-value"><%= user.follower_count %></div>
+              <div class="stat-label">Followers</div>
+            </div>
+            <div class="user-profile-image"><img src="<%= avatar_small(user) %>" class="avatar_small img-circle avatar-circle" style="height:75px;width:75px;"/></div>
+          </div>
+          <div class="col-xs-6 col-sm-4" style="padding-top: 15px;">
+            <div class="stats-following">
+              <div class="stat-value"><%= user.following_count %></div>
+              <div class="stat-label">Following</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false" style="padding-bottom:5px;">
+      <ol class="carousel-indicators" style="bottom:-25px;">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      </ol>
+      <div class="carousel-inner">
+        <%
+        if current_user != user
+          vs = current_user.vs(user)
+        end
+        %>
+        <% if current_user == user || (vs[:user_won] == 0 && vs[:opponent_won] == 0)  %>
+        <%= render partial: "users/stats", locals: {user: user, active: 'active'} %>
+        <%= render partial: "users/statsh2h", locals: {user: user, active: ''} %>
+        <% else %>
+        <%= render partial: "users/statsh2h", locals: {user: user, active: 'active'} %>
+        <%= render partial: "users/stats", locals: {user: user, active: ''} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

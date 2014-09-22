@@ -1,0 +1,38 @@
+<div class="item h2hitem <%= active %>" style="padding-top:0px;min-height:155px;">
+<%
+if current_user != user
+  vs = current_user.vs(user)
+%>
+  <div class="row" style="padding-top:25px;">
+    <div class="col-xs-12">
+      <div class="h2hWins">Head-to-Head Wins</div>
+    </div>
+  </div>
+  <%= render partial: "users/rival", locals: {vs: vs, rival: user, single: true} %>
+<% else
+  rival = current_user.rivals[0]
+%>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="h2hWins">Head-to-Head Wins</div>
+    </div>
+  </div>
+  <% if rival
+    vs = current_user.vs(current_user.rivals[0])
+  %>
+  <%= render partial: "users/rival", locals: {vs: vs, rival: rival, single: true} %>
+  <div class="row">
+    <div class="col-xs-12 center" style="padding:6px 0px;">
+      <a href="/users/me/rivals" class="view-more-h2h"></a>
+    </div>
+  </div>
+  <% else %>
+  <div class="row">
+    <div class="col-xs-12 center">
+      <p class="h2h-empty-header">Agree to Disagree</p>
+      <p class="h2h-empty-body">Keep voting on predictions to see your head-to-head matchups with those who don't always agree with you.</p>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+</div>

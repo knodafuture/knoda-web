@@ -247,6 +247,11 @@ h3 {
 	}
 }
 
+.avatar_thumb {
+	height: 50px;
+	width: 50px;
+}
+
 
 .avatar_small {
 	height: 100px;
@@ -434,7 +439,7 @@ input[type="date"], input[type="time"] {
 @import "postlogin-navigation";
 
 .avatar-circle {
-	border: 1px solid #fff;
+	border: 1px solid @gray-lightest;
 }
 
 .help-text {
@@ -631,4 +636,143 @@ input[type="date"], input[type="time"] {
 
 	}
 }
+}
+
+.h2h-bar-right, .h2h-bar-left {
+	color: @green-light;
+}
+.h2h-bar-right, .h2h-bar-left {
+	height:30px;background-color:@green-dark;position:absolute;
+	color:@white;font-size:24px;line-height:30px;
+	.sansRegular;
+	z-index:1;margin:10px 0px;
+	&.zero {
+		background-color: transparent;
+		width: 100% important!;
+	}
+}
+.h2h-bar-left {
+	right:25px;
+	text-align:right;padding-right:45px;
+}
+.h2h-bar-right {
+	left:25px;
+	text-align:left;padding-left:45px;
+}
+.h2hWins {
+	text-align:center;
+	color: @green-dark;
+	.sansRegular;
+	font-size: 16px;
+}
+
+
+
+
+.rivalry-item {
+	border-bottom: 1px solid @gray-lightest;
+	&.rivalry-item-single {
+		border-bottom: 0px;
+	}
+	.rivalry-header {
+		padding:10px 35px;height: 82px;
+		.vs-label {
+			position:absolute;left:-14px;top:15px;
+			.sansRegular;
+			color: @green-dark;
+			font-size: 14px;
+		}
+		.avatar-circle {
+			border-width: 0px;
+		}
+		.username {
+			.sansRegular;
+			font-size: 14px;
+			color: @green-dark;
+		}
+	}
+	.rivalry-body {
+		display:none;
+		text-align:center;
+		padding: 0px 10px 10px 10px;
+		border-top: 1px solid @gray-lightest;
+		.rivalry-stat {
+			height: 40px;
+			font-size: 14px;
+			line-height: 40px;
+			.rivalry-label {
+				text-align: center;
+				color: @green-dark;
+				text-transform: uppercase;
+				font-size: 14px;
+				.sansRegular;
+			}
+			.value {
+				color: @green-light;
+				font-size: 24px;
+				.sansRegular;
+				&.loser {
+					.sansLight;
+				}
+				&.left {
+					text-align: right;
+				}
+				&.right {
+					text-align: left;
+				}
+			}
+		}
+
+		.rivalry-stat-header {
+			color: @green-dark;
+			.sansRegular;
+			font-size: 16px;
+		}
+
+	}
+}
+
+#users-rivals-container {
+	padding: 0px;
+	.h2hWins {
+		padding: 10px;
+	}
+	.rivalry-item {
+		cursor: pointer;
+		.rivalry-header {
+			height: 90px;
+		}
+	}
+	.h2h-bar-right, .h2h-bar-left {
+		color: @green-light;
+	}
+
+}
+
+.view-more-h2h {
+	display: inline-block;
+	height: 34px;
+	width: 149px;
+	.img-retina("icons/h2h_view_more.png", "icons/h2h_view_more@2x.png", 149px, 34px);
+	&:active, &:hover {
+		.img-retina("icons/h2h_view_more_active.png", "icons/h2h_view_more_active@2x.png", 149px, 34px);
+	}
+}
+
+.h2h-empty-header {
+	color: @green-dark;
+	.sansLight;
+	font-size: 16px;
+	margin: 0px;
+	padding: 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.h2h-empty-body {
+	color: @green-dark;
+	.sansRegular;
+	font-size: 13px;
+	padding: 0px;
+	margin: 0px auto;
+	max-width: 300px;
 }

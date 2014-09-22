@@ -1,6 +1,6 @@
 GIT
   remote: https://knoda-build:Xtra5efeKn0dafuture@github.com/knodafuture/knoda_core.git
-  revision: 88c16d7bbe1ee5232eb9ce63cd76fab5be3901b3
+  revision: 37d798fbfa31303b3a08f82595f1a72ae0dee991
   branch: master
   specs:
     knoda_core (0.0.1)
@@ -95,7 +95,7 @@ GEM
       multi_json
     equalizer (0.0.9)
     erubis (2.7.0)
-    excon (0.39.5)
+    excon (0.39.6)
     execjs (2.2.1)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
