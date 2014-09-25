@@ -1,10 +1,11 @@
 module ActivitiesHelper
   def activity_icon(activity)
-	case (activity.activity_type)
+	   case (activity.activity_type)
       when 'EXPIRED'
         "icons/ActivityExpiredIcon@2x.png"
     end
   end
+
   def activity_title(activity)
     if activity.activity_type == 'WON'
       title = activity.title
