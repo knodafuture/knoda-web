@@ -1,6 +1,6 @@
   <div class="row groups-header">
     <div class="col-xs-12">
-      <div style="padding: 10px 0px 0px 0px;">
+      <div style="padding: 0px;">
         <div class="row">
           <div class="col-xs-12 col-sm-6">
             <span style="position:relative;">
@@ -18,7 +18,7 @@
             <% end %>
           </div>
           <div class="col-xs-12 visible-xs" style="text-align:center;">
-            <div style="height: 60px; padding: 10px; margin-bottom: 10px;">
+            <div style="height: 60px; padding: 10px 0px; margin-bottom: 10px;">
               <a class="btn-predictions <% if params[:action] == 'show' %> active <% end %>" href="/groups/<%= @group.id %>">Predictions</a>
               <a class="btn-rankings <% if params[:action] == 'leaderboard' %> active <% end %>" href="/groups/<%= @group.id %>/leaderboard">Rankings</a>
               <a class="btn-settings <% if params[:action] == 'settings' %> active <% end %>" href="/groups/<%= @group.id %>/settings">Settings</a>

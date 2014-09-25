@@ -49,7 +49,6 @@
 <script>
 $(function() {
   $('.standings-select<%=prediction.id%>').change(function(e) {
-    console.log($(e.currentTarget).val());
       u = "/predictions/<%= prediction.id %>.json"
     $.ajax({
       url: u,
