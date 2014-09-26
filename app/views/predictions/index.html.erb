@@ -3,7 +3,7 @@
 	<%= javascript_include_tag 'prediction_actions' %>
   <script>FlurryAgent.logEvent("HOME_FEED");</script>
 <% end %>
-<div class="row prediction-tabs green-nav-tabs" >
+<div class="row prediction-tabs green-nav-tabs" style="margin:0px;">
   <div class="col-xs-2">
     <a class="k-icon k-icon-find-friends pull-left" href="/friends/find"></a>
   </div>
@@ -12,7 +12,7 @@
     <a class="home <% if @feed == 'social' %>active<%end%> " href="/predictions?feed=social">FOLLOWING</a>
   </div>
 </div>
-<div class="row">
+<div class="row" style="margin:0px;">
   <% if @feed == 'social' and @predictions.size == 0 %>
     <div class="row empty-state friend-background">
       <div class="col-xs-12">

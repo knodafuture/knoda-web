@@ -15,10 +15,6 @@ HTML5 Time polyfill | Jonathan Stipe | https://github.com/jonstipe/time-polyfill
         if millisecondPart.length > 3
           millisecondPart = millisecondPart.substring 0, 3
         millisecondPart = parseInt millisecondPart, 10
-        console.log hourPart
-        console.log minutePart
-        console.log secondPart
-        console.log millisecondPart
         timeObj = new Date()
         timeObj.setHours hourPart
         timeObj.setMinutes minutePart
@@ -172,8 +168,6 @@ HTML5 Time polyfill | Jonathan Stipe | https://github.com/jonstipe/time-polyfill
 
       timeField = document.createElement 'input'
       $timeField = $ timeField
-      console.log value
-      console.log makeTimeDisplayString value
       $timeField.attr
         type: "text"
         name: $this.attr 'name'
@@ -218,7 +212,7 @@ HTML5 Time polyfill | Jonathan Stipe | https://github.com/jonstipe/time-polyfill
             increment hiddenField, timeField
           else if event.keyCode == 40 # down arrow
             decrement hiddenField, timeField
-          else if (event.keyCode not in [35, 36, 37, 39, 46] && 
+          else if (event.keyCode not in [35, 36, 37, 39, 46] &&
                event.which not in [8, 9, 32, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 65, 77, 80, 97, 109, 112])
             event.preventDefault()
           null

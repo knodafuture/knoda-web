@@ -187,10 +187,6 @@ window.bindAll = () ->
       url: "/tweets"
       data:
         prediction_id: predictionId
-      success: (section2) ->
-        console.log "woo!"
-      error: (error) ->
-        console.log error
       complete: ->
         stopLoading();
 

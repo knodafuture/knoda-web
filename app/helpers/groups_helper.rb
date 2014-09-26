@@ -1,8 +1,4 @@
 module GroupsHelper
-  def user_rank(user, leaderboard)
-    match = leaderboard.index{|li|li[:user_id]==user.id}
-    return leaderboard[match][:rankText]
-  end
 
   def winning_percentage(won, lost)
     if won > 0
@@ -14,7 +10,7 @@ module GroupsHelper
         return "-"
       end
     end
-  end  
+  end
 
   def leader_username(group)
     l = Group.weeklyLeaderboard(group)[0]
@@ -28,7 +24,7 @@ module GroupsHelper
     else
       return '?'
     end
-  end  
+  end
 
   def group_size(group)
     return group.users.size

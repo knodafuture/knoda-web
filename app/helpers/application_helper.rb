@@ -158,12 +158,12 @@ module ApplicationHelper
     end
   end
 
-  def local_stylesheet_path(source)
-    p = stylesheet_path(source)
-    tokens = p.split("/")
-    t = tokens[tokens.length-1]
-    return "/assets/#{t}"
-  end
+  #def local_stylesheet_path(source)
+  #  p = stylesheet_path(source)
+  #  tokens = p.split("/")
+  #  t = tokens[tokens.length-1]
+  #  return "/assets/#{t}"
+  #end
 
   def is_challenged_by_me(prediction)
     l = prediction.challenges.select { |c| c.user_id == current_user.id}
@@ -175,7 +175,11 @@ module ApplicationHelper
   end
 
   def voting_ends_on(prediction)
-    return "Voting closes Sunday at 11:59am"
+    if prediction.expires_at > Time.now
+      return "Voting closes #{distance_of_time_in_words_to_now(prediction.expires_at)} from now"
+    else
+      return "Voting closed #{distance_of_time_in_words_to_now(prediction.expires_at)} ago"
+    end
   end
 
   def my_contest_rank(contest)
@@ -189,66 +193,6 @@ module ApplicationHelper
       end
     else
       return nil;
-    end
-  end
-
-  def vs_my_win_percentage(vs)
-    if vs[:user_won] == 0
-      myPercentage = 0
-    else
-      myPercentage = vs[:user_won].fdiv((vs[:user_won] + vs[:opponent_won]))* 100
-    end
-    return myPercentage
-  end
-
-  def vs_opponent_win_percentage(vs)
-    if vs[:opponent_won] == 0
-      opponentPercentage = 0
-    else
-      opponentPercentage = vs[:opponent_won].fdiv((vs[:user_won] + vs[:opponent_won]))* 100
-    end
-    return opponentPercentage
-  end
-
-  def vs_my_bar_width(vs)
-    if vs[:user_won] == 0
-      myPercentage = 100
-    else
-      myPercentage = vs[:user_won].fdiv((vs[:user_won] + vs[:opponent_won]))* 100
-    end
-    return myPercentage
-  end
-
-  def vs_opponent_bar_width(vs)
-    if vs[:opponent_won] == 0
-      opponentPercentage = 100
-    else
-      opponentPercentage = vs[:opponent_won].fdiv((vs[:user_won] + vs[:opponent_won]))* 100
-    end
-    return opponentPercentage
-  end
-
-  def win_percentage(user)
-    if (user.won + user.lost) > 0
-      return "#{(user.won.fdiv(user.won + user.lost) * 100).round(2)}%"
-    else
-      return "0%"
-    end
-  end
-
-  def win_percentage_status(user1, user2)
-    if (user1.winning_percentage > user2.winning_percentage)
-      return "winner"
-    else
-      return "loser"
-    end
-  end
-
-  def streak_status(user1, user2)
-    if (user1.streak > user2.streak)
-      return "winner"
-    else
-      return "loser"
     end
   end
 end
