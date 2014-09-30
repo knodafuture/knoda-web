@@ -74,4 +74,6 @@
     </div>
   </div>
 </div>
+<% if (current_user.id == prediction.user.id) && prediction.is_expired? && !prediction.is_closed? %>
 <div class="modal fade" id="editPrediction_<%= prediction.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<% end %>
