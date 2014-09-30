@@ -126,12 +126,16 @@ class UsersController < AuthenticatedController
   end
 
   def autocomplete
-    @searchResults = User.search(params[:query], fields: [{:username => :text_start}], limit: 10)
+    @searchResults = User.search(params[:q], fields: [{:username => :text_start}], limit: 10, order: {_score: :desc, points: :desc})
     @users = []
     @searchResults.each do |x|
       if current_user.id != x.id
         @users << x
       end
+    end
+    if params[:nameOnly]
+      render :json => @users.collect { |u| u.username }, :root => false
+      return
     end
   end
 

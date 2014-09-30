@@ -23,6 +23,20 @@ window.PredictionCreateView = class PredictionCreateView
         template: '<div class="popover help" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
       })
 
+    $("textarea.mention").mentionsInput onDataRequest: (mode, query, callback, triggerChar) ->
+      if triggerChar == '#'
+        $.getJSON "/hashtags/autocomplete.json?q=#{query}", (data) ->
+          if data.length > 0
+            for i in [0..data.length-1]
+              data[i] = {id: "#{triggerChar}#{data[i]}", name: "#{triggerChar}#{data[i]}", type: 'contact', trigger: triggerChar}
+          callback.call this, data
+      if triggerChar == '@'
+        $.getJSON "/users/autocomplete.json?q=#{query}&nameOnly=true", (data) ->
+          if data.length > 0
+            for i in [0..data.length-1]
+              data[i] = {id: "#{triggerChar}#{data[i]}", name: "#{triggerChar}#{data[i]}", type: 'contact', trigger: triggerChar}
+          callback.call this, data
+
 
   allowShare: =>
     $('#new_prediction .prediction-share').show()

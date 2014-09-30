@@ -45,7 +45,7 @@ window.GroupsView = class GroupsView
       q = $('#query').val()
       if (q.length > 2)
         $.ajax
-          url: '/users/autocomplete?query=' + q
+          url: '/users/autocomplete?q=' + q
           type: "GET"
           success: (x) =>
             $('.matches').empty()
