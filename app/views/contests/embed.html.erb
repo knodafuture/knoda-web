@@ -103,7 +103,7 @@
     </div>
     <script>
     $(function() {
-      view = new EmbedView({container: $('body')})
+      view = new EmbedView({container: $('body'), contestId: '<%= @contest.id %>'})
       <% if current_user %>
       view.userId = <%= current_user.id %>
       <% end %>

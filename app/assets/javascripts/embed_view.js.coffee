@@ -1,10 +1,25 @@
 window.EmbedView = class EmbedView
   constructor: (options) ->
+    @contestId = options.contestId
+    @predictionId = options.predictionId
     $('.call-to-action').on 'click', @gotoKnoda
     $('.btn-agree').on 'click', @agree
     $('.btn-disagree').on 'click', @disagree
     if (($('body').height() - 20) > $(window).height())
       $('.prediction-meta').remove()
+    url = document.referrer;
+    @notifyEmbedPartner(url) if url
+
+  notifyEmbedPartner: (url) =>
+    data = {}
+    data.url = url
+    data.contest_id = @contestId if @contestId
+    data.prediction_id = @predictionId if @predictionId
+    $.ajax
+      url: "/embed_locations.json"
+      type: "POST"
+      dataType: "json"
+      data: data
 
   gotoKnoda: (e) =>
     window.open('http://www.knoda.com', 'windowName')
