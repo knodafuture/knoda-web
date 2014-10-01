@@ -112,7 +112,7 @@ KnodaWeb::Application.routes.draw do
   resources :contest_stages
   resources :followings
 
-
+  resources :embed_locations
   namespace :admin do
     get '/' => "home#index"
     post '/test_data/prediction' => "test_data#create_prediction"

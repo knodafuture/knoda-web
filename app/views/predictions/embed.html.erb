@@ -90,7 +90,7 @@
     </div>
   <script>
   $(function() {
-    view = new EmbedView({container: $('body')})
+    view = new EmbedView({container: $('body'), predictionId: '<%= @prediction.id %>'})
     <% if current_user %>
     view.userId = <%= current_user.id %>
     <% end %>
