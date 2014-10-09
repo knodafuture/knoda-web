@@ -26,7 +26,7 @@
 				<div class ="centerbutton">
 					<a href="/predictions/<%= activity.prediction_id %>" class="settlebutton btn btn-default text-center">Let's Settle It!</a>
 				</div>
-			<% elsif activity.activity_type == 'COMMENT' %>
+			<% elsif activity.activity_type == 'COMMENT' or (activity.activity_type == 'MENTION' && activity.comment_body) %>
 				<p class="line1"><%= activity.title %></p>
 				<div class="popover right in">
 					<div class="arrow" style="top:10px"></div>
