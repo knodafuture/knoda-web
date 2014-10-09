@@ -1686,7 +1686,7 @@ header {
           border-radius: @radius;
 }
 
-.opacity(@opacity: 100) {
+.opacity-mention(@opacity: 100) {
   filter: e(%("alpha(opacity=%d)", @opacity));
     -moz-opacity: @opacity / 100;
          opacity: @opacity / 100;
@@ -1738,7 +1738,7 @@ header {
         background: #d8dfea;
 
         & > span{
-          .opacity(0);
+          .opacity-mention(0);
         }
       }
     }
