@@ -26,7 +26,7 @@
 				<div class ="centerbutton">
 					<a href="/predictions/<%= activity.prediction_id %>" class="settlebutton btn btn-default text-center">Let's Settle It!</a>
 				</div>
-			<% elsif activity.activity_type == 'COMMENT' or (activity.activity_type == 'MENTION' && activity.comment_body) %>
+			<% elsif activity.activity_type == 'COMMENT' or activity.activity_type == 'COMMENT_MENTION' %>
 				<p class="line1"><%= activity.title %></p>
 				<div class="popover right in">
 					<div class="arrow" style="top:10px"></div>
@@ -44,6 +44,11 @@
 				<p class="line1" style="margin-right: 40px;"><%= raw activity_title(activity) %></p>
 				<%= render :partial => 'shared/follow_button', :locals => {user: User.find(activity.target_user_id)} %>
 				<p><%= activity.comment_body %></p>
+			<% elsif activity.activity_type == 'PREDICTION_MENTION' %>
+				<p class="line1"><%= activity.title %></p> <p style="word-wrap: break-word;">"<%= activity.prediction_body %>"</p>
+				<div class ="centerbutton">
+					<a href="/predictions/<%= activity.prediction_id %>" class="btn-view-prediction btn btn-default text-center">View Prediction</a>
+				</div>
 			<% else %>
 				<p class="line1"><%= raw activity_title(activity) %></p>
 				<p>"<%= activity.prediction_body %>"</p>
