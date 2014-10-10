@@ -106,6 +106,7 @@ window.unbindAll = () ->
   $('a.tally').unbind()
   $('a.bs').unbind()
   $('a.share-prediction').unbind()
+  $('.predictionContainer .panel-heading').unbind()
 
 
 window.bindAll = () ->
