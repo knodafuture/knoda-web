@@ -25,7 +25,7 @@ gem "jwt", "0.1.11"
 
 group :production do
   gem 'rails_12factor'
-  gem 'unicorn'
+  gem 'unicorn', '~> 4.8.3'
   gem 'memcachier'
   gem 'dalli'
   gem 'heroku-deflater', '~> 0.5.3'

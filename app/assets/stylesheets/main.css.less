@@ -1528,6 +1528,33 @@ header {
 	}
 }
 
+.header {
+	background-color: @green-light;
+	color: @green-dark;
+	height: 65px;
+	position:relative;
+	img {
+		position:absolute;
+		left:50%;
+		right: 50%;
+		width:45px;
+		margin-left: -22.5px;
+		padding-top: 10px;
+	}
+	.pull-right {
+		font-size: 14px;
+		line-height: 65px;
+		span {
+			.sansLight;
+		}
+		a {
+			color: @green-dark;
+			text-decoration:none;
+		}
+		.sansRegular;
+	}
+}
+
 // Retina Support
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
 	header {

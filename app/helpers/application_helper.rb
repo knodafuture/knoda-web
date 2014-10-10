@@ -1,4 +1,9 @@
 module ApplicationHelper
+  def render_title
+    return "#{@title} - Knoda | Predict • Compete • Conquer" if defined?(@title)
+    return "Knoda | Predict • Compete • Conquer"
+  end
+
   def resource_name
     :user
   end
