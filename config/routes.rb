@@ -113,6 +113,11 @@ KnodaWeb::Application.routes.draw do
   resources :followings
 
   resources :embed_locations
+  resources :hashtags do
+    collection do
+      get 'autocomplete'
+    end
+  end
   namespace :admin do
     get '/' => "home#index"
     post '/test_data/prediction' => "test_data#create_prediction"

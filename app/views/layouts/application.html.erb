@@ -117,6 +117,20 @@
         $('.navbar .predict-right').hide()
         $('.navbar .predict').hide()
       }
+      function linkHashtags(text) {
+        hashtag_regexp = /#([a-zA-Z0-9]+)/g;
+        return text.replace(
+            hashtag_regexp,
+            '<a class="hashtag" href="<%= Rails.application.config.knoda_web_url %>/search?q=$1&hashtag=true">#$1</a>'
+        );
+      }
+      function linkUserMentions(text) {
+        hashtag_regexp = /@([a-zA-Z0-9]+)/g;
+        return text.replace(
+            hashtag_regexp,
+            '<a class="user-mention" href="<%= Rails.application.config.knoda_web_url %>/users/$1">@$1</a>'
+        );
+      }
     </script>
   </body>
 </html>

@@ -4,14 +4,14 @@
 <form class="form-inline" role="form" action="/search" method="GET" style="margin-top:20px">
   <div class="row" style="text-align:center">
   	<div class="col-xs-12 col-sm-9 col-md-6 col-md-offset-2">
-    	<input type="text" class="form-control input-lg" placeholder="Search for users, predictions, #hashtags" name="q" style="width:100%"/>
+    	<input type="text" class="form-control input-lg" placeholder="Search for users, predictions, #hashtags" name="q" style="width:100%" <% if params[:q] %> value="<%= params[:q] %>" <% end %>/>
   	</div>
   	<div class="col-xs-12 col-sm-3 col-md-2">
     	<button type="submit" class="btn btn-success btn-lg">Search</button>
   	</div>
   </div>
 </form>
-<% if params[:q] and @predictions.size == 0 and @users.size == 0 %>
+<% if params[:q] and @predictions.size == 0 and @users && @users.size == 0 %>
 	<div class="row" style="text-align: center; padding-top:20px">
 		<p>No results found</p>
 	</div>

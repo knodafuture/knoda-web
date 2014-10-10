@@ -130,12 +130,14 @@ window.bindAll = () ->
 
   $('.agree').click (e) ->
     e.preventDefault()
+    e.stopPropagation();
     predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
     createChallenge(predictionId, true)
     FlurryAgent.logEvent("AGREE_BUTTON_TAPPED")
 
   $('.disagree').click (e) ->
     e.preventDefault()
+    e.stopPropagation();
     predictionId = $(e.target).parents('.predictionContainer').attr('data-prediction-id')
     createChallenge(predictionId, false)
     FlurryAgent.logEvent("DISAGREE_BUTTON_TAPPED")
@@ -189,6 +191,30 @@ window.bindAll = () ->
         prediction_id: predictionId
       complete: ->
         stopLoading();
+
+  $('.predictionContainer p').each (element) ->
+      $(this).html(linkHashtags($(this).html()));
+      $(this).html(linkUserMentions($(this).html()));
+
+  $('.predictionContainer .panel-heading').click (e) ->
+    if ($(e.target).hasClass('hashtag') or $(e.target).hasClass('user-mention'))
+      startLoading();
+    else
+      $(e.target).parents('.predictionContainer').find('.panel-body').slideToggle(350)
+
+  $(".addCommentForm textarea").mentionsInput onDataRequest: (mode, query, callback, triggerChar) ->
+    if triggerChar == '#'
+      $.getJSON "/hashtags/autocomplete.json?q=#{query}", (data) ->
+        if data.length > 0
+          for i in [0..data.length-1]
+            data[i] = {id: "#{triggerChar}#{data[i]}", name: "#{triggerChar}#{data[i]}", type: 'contact', trigger: triggerChar}
+        callback.call this, data
+    if triggerChar == '@'
+      $.getJSON "/users/autocomplete.json?q=#{query}&nameOnly=true", (data) ->
+        if data.length > 0
+          for i in [0..data.length-1]
+            data[i] = {id: "#{triggerChar}#{data[i]}", name: "#{triggerChar}#{data[i]}", type: 'contact', trigger: triggerChar}
+        callback.call this, data
 
 $ ->
   bindAll()

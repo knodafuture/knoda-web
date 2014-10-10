@@ -8,20 +8,15 @@
 			<a class="<% if !params[:filter] %>active<%end %>" href="/activities">All</a>
 			<a class="<% if params[:filter] == 'COMMENT' %>   active <%end%>" href="/activities?filter=COMMENT">Comments</a>
 			<a class="<% if params[:filter] == 'EXPIRED' %>   active <%end %>" href="/activities?filter=EXPIRED">Expired</a>
-			<a class="<% if params[:filter] == 'INVITATION' %>active <%end %>" href="/activities?filter=INVITATION">Invitations</a>
+			<a class="<% if params[:filter] == 'SOCIAL' %>active <%end %>" href="/activities?filter=SOCIAL">Social</a>
 		</div>
 	</div>
 	<% if @activities.size == 0 %>
 		<div class="row empty-state" style="border: 1px solid #dddddd; border-top:0px;background-color: #fff;">
 			<div class="col-xs-12">
 				<p>
-				<% if params[:filter] == 'INVITATION' %>
-					Sorry, you don't have any invitations to view.<br/>
-					<a href="/groups">Create your own group</a> and start predicting with your friends.
-				<% else %>
 					Sorry, you don't have any activity to view.<br/>
 					Get things started and <a data-toggle="modal" data-target="#createPredictionModal" data-remote="/predictions/new<% if @group %>?group_id=<%=@group.id%><% end %>" title="Make a prediction">make a prediction</a>.
-				<% end %>
 				</p>
 			</div>
 		</div>

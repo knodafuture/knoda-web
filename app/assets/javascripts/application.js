@@ -21,6 +21,7 @@
 //= require plupload.full.min
 //= require moment-with-langs.min
 //= require bootstrap-maxlength.min
+//= require jquery.mentionsinput
 //= require async
 //= require predictions/create
 //= require follow_button_view
@@ -48,6 +49,9 @@ function getUrlVars()
 };
 
 $(function() {
+	$('.predictionContainer a').each(function() {
+			$(this).html(linkHashtags($(this).html()));
+	});
   $('.full-height-content').height($(window).height() - 50)
 	$('#createPredictionModal').on('show.bs.modal', function(e) {
 		FlurryAgent.logEvent("CREATE_PREDICTION_START");

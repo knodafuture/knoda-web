@@ -15,7 +15,11 @@ class ActivitiesController < AuthenticatedController
     end
 
 		if params[:filter]
-			@activities = @activities.where(:activity_type => params[:filter])
+			if params[:filter] == 'SOCIAL'
+				@activities = @activities.where(:activity_type => ['PREDICTION_MENTION', 'COMMENT_MENTION', 'FOLLOWING'])
+			else
+				@activities = @activities.where(:activity_type => params[:filter])
+			end
 		end
     render 'index'
     current_user.activities.update_all(seen: true)
