@@ -8,26 +8,33 @@ class UsersController < AuthenticatedController
   # GET /users/1
   # GET /users/1.json
   def show
-    if params[:history] == 'votes'
-      @predictions = []
-      predictionIds = []
-      challenges = current_user.challenges.picks
-      if param_id_lt
-        challenges = challenges.where('challenges.id < ?', param_id_lt)
-      end
-      challenges = challenges.offset(param_offset).limit(param_limit)
-      challenges.each do |c|
-        predictionIds << c.prediction_id
-      end
-      challengeHash = Hash[predictionIds.map.with_index.to_a]
-      @predictions = Prediction.includes(:challenges, :comments).where(:id => predictionIds).to_a.sort!{|p1,p2| challengeHash[p1.id] <=> challengeHash[p2.id] }
+    if not @user
+      render 'show_empty'
     else
-      @predictions = @user.predictions.visible_to_user(current_user).order('created_at desc').offset(param_offset).limit(param_limit).id_lt(param_id_lt)
+      if params[:history] == 'votes'
+        @predictions = []
+        predictionIds = []
+        challenges = current_user.challenges.picks
+        if param_id_lt
+          challenges = challenges.where('challenges.id < ?', param_id_lt)
+        end
+        challenges = challenges.offset(param_offset).limit(param_limit)
+        challenges.each do |c|
+          predictionIds << c.prediction_id
+        end
+        challengeHash = Hash[predictionIds.map.with_index.to_a]
+        @predictions = Prediction.includes(:challenges, :comments).where(:id => predictionIds).to_a.sort!{|p1,p2| challengeHash[p1.id] <=> challengeHash[p2.id] }
+      else
+        @predictions = @user.predictions.visible_to_user(current_user).order('created_at desc').offset(param_offset).limit(param_limit).id_lt(param_id_lt)
+      end
+      render 'show'
     end
-    render 'show'
   end
 
   def settings
+    if not @user
+      raise ActionController::RoutingError.new('Not Found')
+    end
     if @user != current_user
       render 'show'
     else
@@ -36,7 +43,10 @@ class UsersController < AuthenticatedController
   end
 
   def avatar
-  render "shared/avatar",
+    if not @user
+      raise ActionController::RoutingError.new('Not Found')
+    end
+    render "shared/avatar",
       :locals => {
         :upload_url => "/users/me/avatar_upload",
         :crop_url => "/users/me/crop?destination=#{params[:destination]}",
@@ -47,6 +57,9 @@ class UsersController < AuthenticatedController
   end
 
   def avatar_upload
+    if not @user
+      raise ActionController::RoutingError.new('Not Found')
+    end
     @user.avatar = params[:file]
     @user.save
     render :json => {success: false}, :status => :ok
@@ -74,6 +87,9 @@ class UsersController < AuthenticatedController
   end
 
   def crop
+    if not @user
+      raise ActionController::RoutingError.new('Not Found')
+    end
     render "shared/crop",
         :locals => {
           :resource => @user,
@@ -83,6 +99,9 @@ class UsersController < AuthenticatedController
   end
 
   def update
+    if not @user
+      raise ActionController::RoutingError.new('Not Found')
+    end
     if @user.update_attributes(user_params)
       if params[:user][:avatar].blank?
         if @user.cropping?
@@ -108,6 +127,9 @@ class UsersController < AuthenticatedController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    if not @user
+      raise ActionController::RoutingError.new('Not Found')
+    end
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }
@@ -116,6 +138,9 @@ class UsersController < AuthenticatedController
   end
 
   def update_password
+    if not @user
+      raise ActionController::RoutingError.new('Not Found')
+    end
     @user = User.find(current_user.id)
     if @user.update(user_params)
       sign_in @user, :bypass => true
@@ -184,10 +209,6 @@ class UsersController < AuthenticatedController
         else
           @user = User.where(["lower(username) = :username", {:username => params[:id].downcase }]).first
         end
-      end
-
-      if not @user
-        raise ActionController::RoutingError.new('Not Found')
       end
     end
 
