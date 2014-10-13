@@ -127,6 +127,56 @@
         </div>
       </div>
     </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapsePushNotifications">
+            Push Notifications
+          </a>
+        </h4>
+      </div>
+      <div id="collapsePushNotifications" class="panel-collapse collapse<% if not @arr == nil %>in<% end%>">
+        <div class="panel-body">
+          <%=  form_tag(controller: "push", action: "confirmpush", method: "post",) do %>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= label_tag(:pushtype, "Platform(s):") %>
+              <%= select_tag(:pushtype, options_for_select([ "All", "Android", "iOS"]),:include_blank =>"Random", :class => "form-control input-sm", :style => "margin-bottom:5px;") %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= label_tag(:contestinput, "Contest:") %>
+              <%= select_tag(:contestinput, options_for_select([""]),:include_blank =>"Random", :class => "form-control input-sm", :style => "margin-bottom:5px;") %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= label_tag(:userinput, "Search for user:") %>
+              <%= text_field_tag(:userinput) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= label_tag(:titleinput, "Notification Title:") %>
+              <%= text_field_tag(:titleinput) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= label_tag(:bodyinput, "Notification Body:") %>
+              <%= text_area_tag(:bodyinput) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= submit_tag("Send Push Notification") %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <script>
     $(function() {
       $('.verifiedCheck').change(function(e) {

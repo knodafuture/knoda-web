@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001170900) do
+ActiveRecord::Schema.define(version: 20141007130117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,12 +84,6 @@ ActiveRecord::Schema.define(version: 20141001170900) do
   add_index "comments", ["prediction_id"], name: "index_comments_on_prediction_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "contest_stage", force: true do |t|
-    t.string  "name",       null: false
-    t.integer "contest_id"
-    t.integer "sort_order"
-  end
-
   create_table "contest_stages", force: true do |t|
     t.string  "name",       null: false
     t.integer "contest_id"
@@ -143,6 +137,13 @@ ActiveRecord::Schema.define(version: 20141001170900) do
   end
 
   add_index "groups", ["share_id"], name: "index_groups_on_share_id", using: :btree
+
+  create_table "hashtags", force: true do |t|
+    t.text     "tag"
+    t.integer  "used",       default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "invitations", force: true do |t|
     t.integer  "user_id",           null: false
