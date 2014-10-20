@@ -367,6 +367,11 @@ h3 {
 			background-size: 13px 12px;
 			background-position: 20px 6px;
 		}
+		&.embed {
+			background-image: image-url("icons/EmbedPredictionBadge@2x.png");
+			background-position: 20px 6px;
+			background-size: 10px 10px;
+		}
 	}
 	.commentInfoLine2 {
 		padding-bottom: 0px;
@@ -435,7 +440,7 @@ h3 {
 			width: 70px;
 			margin: 0 auto;
 		}
-		.comments, .similar, .tally, .share, .group {
+		.comments, .similar, .tally, .share, .embed, .group {
 			display: inline-block;
 			height: 27px;
 			width: 70px;
@@ -459,6 +464,13 @@ h3 {
 			&.active, &:active {
 				background-image: image-url("icons/sd/action_similar_active.png");
 			}
+		}
+		.embed {
+			background-image: image-url("icons/ActionEmbedIcon.png");
+			&.active, &:active {
+				background-image: image-url("icons/ActionEmbedIconActive.png");
+			}
+			background-size: 22px 22px;
 		}
 		.group {
 			.img-retina("icons/action_group.png", "icons/action_group@2x.png", 38px, 27px);
@@ -1696,6 +1708,16 @@ header {
 			}
 			span.share_link {
 				background-image: image-url("icons/share_link_icon@2x.png");
+			}
+		}
+	}
+	.predictionContainer {
+		.prediction_tabs {
+			.embed {
+				background-image: image-url("icons/ActionEmbedIcon@2x.png");
+				&.active, &:active {
+					background-image: image-url("icons/ActionEmbedIconActive@2x.png");
+				}
 			}
 		}
 	}

@@ -31,10 +31,13 @@
     <div class="row predictionInfoLine3">
       <a href="/groups/<%= prediction.group_id %>"><%= prediction.group.name %></a>
     </div>
-    <% end %>
-    <% if prediction.contest %>
+    <% elsif prediction.contest %>
     <div class="row predictionInfoLine3 contest">
       <a href="/contests/<%= prediction.contest_id %>"><%= prediction.contest_name %></a>
+    </div>
+    <% elsif prediction.embed_locations.size > 0 %>
+    <div class="row predictionInfoLine3 embed">
+      <a href="<%= prediction.embed_locations.first.url %>">featured on <%= prediction.embed_locations.first.domain %></a>
     </div>
     <% end %>
   </div>
@@ -56,6 +59,9 @@
         <%if user_signed_in? and prediction.group_id and current_user.member_of(prediction.group) %>
           <a href="/groups/<%= prediction.group_id%>" class="group"></a>
           <a href="/groups/<%= prediction.group_id%>"><p>GROUP</p></a>
+        <% elsif prediction.embed_locations.size > 0 %>
+          <a href="<%= prediction.embed_locations.first.url %>" class="embed" target="_blank"></a>
+          <a href="<%= prediction.embed_locations.first.url %>" target="_blank"><p>FEATURED</p></a>
         <% else %>
           <a href="/predictions?tag=<%=prediction.tags[0]%>" class="similar"></a>
           <a href="/predictions?tag=<%=prediction.tags[0]%>"><p>SIMILAR</p></a>
