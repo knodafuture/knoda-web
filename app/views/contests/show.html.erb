@@ -1,5 +1,8 @@
 <% content_for :head do %>
+  <title><%= @contest.name %> - Knoda | Predict • Compete • Conquer</title>
   <%= javascript_include_tag 'prediction_actions' %>
+  <meta property="og:image" content="<%= avatar_small(@contest) %>"/>
+  <meta property="og:description"  content="<%= @contest.description %>"/>
 <% end %>
 <%= render partial: "contests/contest", locals: {contest: @contest, collapseState: ''} %>
 <div class="row contest-tabs">

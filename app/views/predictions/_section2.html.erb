@@ -1,37 +1,39 @@
-<% if (current_user.id != prediction.user_id) && !prediction.is_expired? && !prediction.is_closed? %>
-  <div class="row" style="text-align: center">
-    What do you think?
-  </div>
-  <div class="row challenge-buttons" style="text-align:center">
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2">
-      <a href="/prediction/<%= prediction.id %>/agree" class="btn btn-lg btn-success agree <%= active_challenge(prediction, 'agree') %>">Agree</a>
-      <a href="/prediction/<%= prediction.id %>/disagree" class="btn btn-lg btn-success disagree <%= active_challenge(prediction, 'disagree') %>">Disagree</a>
+<% if user_signed_in? %>
+  <% if (current_user.id != prediction.user_id) && !prediction.is_expired? && !prediction.is_closed? %>
+    <div class="row" style="text-align: center">
+      What do you think?
     </div>
-  </div>
-<% end %>
-<% if (current_user.id == prediction.user.id) && prediction.is_expired? && !prediction.is_closed? %>
-  <div class="row" style="text-align: center">
-    Was your prediction correct?
-  </div>
-  <div class="row" style="text-align:center;margin-bottom:10px">
-    <a class="btn btn-lg btn-success yes" style="width:25%;">Yes</a>
-    <a class="btn btn-lg btn-success no" style="width:25%;">No</a>
-    <a class="btn btn-lg btn-success remind" style="width:25%;" data-toggle="modal" data-target="#editPrediction_<%= prediction.id %>" data-remote="/predictions/<%= prediction.id %>/edit">IDK Yet</a>
-  </div>
-<% end %>
-<% if prediction.is_closed? && is_challenged_by_me(prediction)%>
-  <div class="row prediction_closed">
-    <div class="col-xs-3 border-right">
-      <div style="padding-top:5px;"><%= display_result_outcome_icon(prediction) %></div>
-      <div style="padding-top:5px;font-weight:700"><%= display_result_outcome_text(prediction) %></div>
+    <div class="row challenge-buttons" style="text-align:center">
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2">
+        <a href="/prediction/<%= prediction.id %>/agree" class="btn btn-lg btn-success agree <%= active_challenge(prediction, 'agree') %>">Agree</a>
+        <a href="/prediction/<%= prediction.id %>/disagree" class="btn btn-lg btn-success disagree <%= active_challenge(prediction, 'disagree') %>">Disagree</a>
+      </div>
     </div>
-    <div class="col-xs-3 border-right">
-      <div style="padding-top:5px;font-weight:700;font-size:2.0em"><%= total_points(prediction) %></div>
-      <div style="padding-top:0px;margin-top:-5px">points</div>
+  <% end %>
+  <% if (current_user.id == prediction.user.id) && prediction.is_expired? && !prediction.is_closed? %>
+    <div class="row" style="text-align: center">
+      Was your prediction correct?
     </div>
-    <div class="col-xs-6">
-      <div style="padding-top:5px;">Is this right?</div>
-      <div style="padding-top:5px;"><a class="btn btn-lg btn-success bs">Call BS</a></div>
+    <div class="row" style="text-align:center;margin-bottom:10px">
+      <a class="btn btn-lg btn-success yes" style="width:25%;">Yes</a>
+      <a class="btn btn-lg btn-success no" style="width:25%;">No</a>
+      <a class="btn btn-lg btn-success remind" style="width:25%;" data-toggle="modal" data-target="#editPrediction_<%= prediction.id %>" data-remote="/predictions/<%= prediction.id %>/edit">IDK Yet</a>
     </div>
-  </div>
+  <% end %>
+  <% if prediction.is_closed? && is_challenged_by_me(prediction)%>
+    <div class="row prediction_closed">
+      <div class="col-xs-3 border-right">
+        <div style="padding-top:5px;"><%= display_result_outcome_icon(prediction) %></div>
+        <div style="padding-top:5px;font-weight:700"><%= display_result_outcome_text(prediction) %></div>
+      </div>
+      <div class="col-xs-3 border-right">
+        <div style="padding-top:5px;font-weight:700;font-size:2.0em"><%= total_points(prediction) %></div>
+        <div style="padding-top:0px;margin-top:-5px">points</div>
+      </div>
+      <div class="col-xs-6">
+        <div style="padding-top:5px;">Is this right?</div>
+        <div style="padding-top:5px;"><a class="btn btn-lg btn-success bs">Call BS</a></div>
+      </div>
+    </div>
+  <% end %>
 <% end %>

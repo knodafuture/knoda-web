@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# knodafacebook: http://ogp.me/ns/fb/knodafacebook#">
-    <title>Knoda | Predict • Compete • Conquer</title>
+    <title><%= render_title() %></title>
+    <meta property="og:site_name" content="Knoda" />
+    <meta property="fb:app_id" content="455514421245892" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/png" href="<%= image_path('favicon.png') %>" />
@@ -41,7 +43,7 @@
     <% end %>
   </head>
 
-  <body>
+  <body <% if not user_signed_in? %> style="margin-top: 0px;" <% end %>>
     <div class="loading-overlay" style="display:none">
       <div style="margin: 100px auto;width:128px">
         <div id="circularG">
@@ -56,6 +58,7 @@
         </div>
       </div>
     </div>
+    <% if user_signed_in? %>
     <header class="navbar navbar-default navbar-fixed-top" id="topNav" role="navigation" style="height:48px;">
         <div class="row header-row-1">
           <div class="col-xs-3">
@@ -85,6 +88,9 @@
           </div>
         </div>
     </header>
+    <% else %>
+      <%= render "home/prelogin/header"%>
+    <% end %>
 
       <div class="content container" id="<%= controller_name%>-<%= action_name %>-container">
         <div  class="limit-size-med">

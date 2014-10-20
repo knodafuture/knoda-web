@@ -8,6 +8,7 @@
             <%= image_tag('icons/VerifiedCheckmark.png', {:class => 'verified-account'}) %>
           <% end %>
         </a>
+        <% if user_signed_in? %>
         <div class="col-md-3 myChallenge pull-right">
             <% if (current_user.id == prediction.user_id && prediction.is_ready_for_resolution? && !prediction.is_closed?) %>
               <a>
@@ -18,6 +19,7 @@
             <%= display_won_lost(prediction) %>
             <% end %>
         </div>
+        <% end %>
     </div>
     <div class="row predictionInfo" style="background-color:white; padding: 8px 20px 0px 20px">
       <p style="display:inline-block;cursor:text"><%= prediction.body %></p>
@@ -29,13 +31,17 @@
     <div class="row predictionInfoLine3">
       <a href="/groups/<%= prediction.group_id %>"><%= prediction.group.name %></a>
     </div>
-    <% end %>
-    <% if prediction.contest %>
+    <% elsif prediction.contest %>
     <div class="row predictionInfoLine3 contest">
       <a href="/contests/<%= prediction.contest_id %>"><%= prediction.contest_name %></a>
     </div>
+    <% elsif prediction.embed_locations.size > 0 %>
+    <div class="row predictionInfoLine3 embed">
+      <a href="<%= prediction.embed_locations.first.url %>" target="_blank">Featured on <%= prediction.embed_locations.first.domain %></a>
+    </div>
     <% end %>
   </div>
+  <% if user_signed_in? %>
   <div class="panel-body" <% if collapseState != 'in' %> style="display:none"<% end %>>
     <div class="section-2">
       <%= render partial: "predictions/section2", locals: { prediction: prediction} %>
@@ -50,9 +56,12 @@
         <a class="tallyText"><p>THE TALLY</p></a>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-2">
-        <%if prediction.group_id and current_user.member_of(prediction.group) %>
+        <%if user_signed_in? and prediction.group_id and current_user.member_of(prediction.group) %>
           <a href="/groups/<%= prediction.group_id%>" class="group"></a>
           <a href="/groups/<%= prediction.group_id%>"><p>GROUP</p></a>
+        <% elsif prediction.embed_locations.size > 0 %>
+          <a href="<%= prediction.embed_locations.first.url %>" class="embed" target="_blank"></a>
+          <a href="<%= prediction.embed_locations.first.url %>" target="_blank"><p>FEATURED</p></a>
         <% else %>
           <a href="/predictions?tag=<%=prediction.tags[0]%>" class="similar"></a>
           <a href="/predictions?tag=<%=prediction.tags[0]%>"><p>SIMILAR</p></a>
@@ -71,7 +80,8 @@
       </div>
     </div>
   </div>
+  <% end %>
 </div>
-<% if (current_user.id == prediction.user.id) && prediction.is_expired? && !prediction.is_closed? %>
+<% if user_signed_in? && (current_user.id == prediction.user.id) && prediction.is_expired? && !prediction.is_closed? %>
 <div class="modal fade" id="editPrediction_<%= prediction.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 <% end %>

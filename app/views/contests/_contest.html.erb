@@ -12,7 +12,7 @@
       </div></div>
       <div class="row stats">
         <div class="col-xs-4 stats-left" style="text-align: center;  ">
-          <% if my_contest_rank(contest) != nil %>
+          <% if user_signed_in? && my_contest_rank(contest) != nil %>
             <p class="stat-value"><%= my_contest_rank(contest) %></p>
             <p class="stat-label">overall (<%= contest.participants %>)</p>
           <% else %>

@@ -1,7 +1,7 @@
 class ContestsController < AuthenticatedController
   before_filter :contest_editor_required, only: [:admin, :edit, :create, :new, :add_prediction, :avatar, :avatar_upload, :update, :crop]
-  skip_before_action :authenticate_user!, only: [:embed, :standings]
-  skip_before_action :unseen_activities, only: [:embed, :standings]
+  skip_before_action :authenticate_user!, only: [:show, :embed, :standings]
+  skip_before_action :unseen_activities, only: [:show, :embed, :standings]
   before_action :set_contest, only: [:embed, :edit, :new_stage, :standings, :show, :avatar, :crop, :avatar_upload, :update]
 
   def index
@@ -18,6 +18,7 @@ class ContestsController < AuthenticatedController
   end
 
   def show
+    @title = @contest.name
     @expired_predictions = @contest.predictions.where("predictions.expires_at < now()")
     @live_predictions = @contest.predictions.recent.latest
   end
