@@ -73,6 +73,91 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapsePredictions">
+            Predictions
+          </a>
+        </h4>
+      </div>
+      <div id="collapsePredictions" class="panel-collapse collapse <% if not @predictions == nil %>in<% end%>">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-12">
+              <%=  form_tag(controller: "predictions", action: "search", method: "post") do %>
+              <%= label_tag(:searchinput, "Search for prediction:") %>
+              <%= text_field_tag(:searchinput) %>
+              <%= submit_tag("Search") %>
+              <% end %>
+            </div>
+          </div>
+          <% if @predictions %>
+          <div class="row">
+            <div class="col-xs-12">
+              <h4 class="text-center">Matching Predictions</h4>
+                <% @predictions.each do |p| %>
+                  <div class="row" style="padding:2px;border:1px solid #efefef;">
+                    <div class="col-xs-9"><%= p.body%></div>
+                    <div class="col-xs-3"><a class="btn btn-xs btn-danger prediction-delete" data-prediction-id="<%= p.id %>">DELETE</a></div>
+                  </div>
+                <% end %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapsePushNotifications">
+            Push Notifications
+          </a>
+        </h4>
+      </div>
+      <div id="collapsePushNotifications" class="panel-collapse collapse<% if not @arr == nil %>in<% end%>">
+        <div class="panel-body">
+          <%=  form_tag(controller: "push", action: "confirmpush", method: "post",) do %>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= label_tag(:pushtype, "Platform(s):") %>
+              <%= select_tag(:pushtype, options_for_select([ "All", "Android", "iOS"]),:include_blank =>"Random", :class => "form-control input-sm", :style => "margin-bottom:5px;") %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= label_tag(:contestinput, "Contest:") %>
+              <%= select_tag(:contestinput, options_for_select([""]),:include_blank =>"Random", :class => "form-control input-sm", :style => "margin-bottom:5px;") %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= label_tag(:userinput, "Search for user:") %>
+              <%= text_field_tag(:userinput) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= label_tag(:titleinput, "Notification Title:") %>
+              <%= text_field_tag(:titleinput) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= label_tag(:bodyinput, "Notification Body:") %>
+              <%= text_area_tag(:bodyinput) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= submit_tag("Send Push Notification") %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapseTestData">
             Create Test Data (DO NOT USE ON PRODUCTION)
           </a>
@@ -127,80 +212,41 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapsePushNotifications">
-            Push Notifications
-          </a>
-        </h4>
-      </div>
-      <div id="collapsePushNotifications" class="panel-collapse collapse<% if not @arr == nil %>in<% end%>">
-        <div class="panel-body">
-          <%=  form_tag(controller: "push", action: "confirmpush", method: "post",) do %>
-          <div class="row">
-            <div class="col-xs-12">
-              <%= label_tag(:pushtype, "Platform(s):") %>
-              <%= select_tag(:pushtype, options_for_select([ "All", "Android", "iOS"]),:include_blank =>"Random", :class => "form-control input-sm", :style => "margin-bottom:5px;") %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <%= label_tag(:contestinput, "Contest:") %>
-              <%= select_tag(:contestinput, options_for_select([""]),:include_blank =>"Random", :class => "form-control input-sm", :style => "margin-bottom:5px;") %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <%= label_tag(:userinput, "Search for user:") %>
-              <%= text_field_tag(:userinput) %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <%= label_tag(:titleinput, "Notification Title:") %>
-              <%= text_field_tag(:titleinput) %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <%= label_tag(:bodyinput, "Notification Body:") %>
-              <%= text_area_tag(:bodyinput) %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <%= submit_tag("Send Push Notification") %>
-            </div>
-          </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <script>
-    $(function() {
-      $('.verifiedCheck').change(function(e) {
-        $.ajax({
-          url: "/admin/users/"+e.currentTarget.value+".json",
-          type: "PUT",
-          data: {verified_account: e.currentTarget.checked}
-        });
-      });
-      $('.adminCheck').change(function(e) {
-        $.ajax({
-          url: "/admin/users/"+e.currentTarget.value+".json",
-          type: "PUT",
-          data: {admin: e.currentTarget.checked}
-        });
-      });
-      $('.contestCheck').change(function(e) {
-        $.ajax({
-          url: "/admin/users/"+e.currentTarget.value+".json",
-          type: "PUT",
-          data: {contest_editor: e.currentTarget.checked}
-        });
+  </div>
+  <script>
+  $(function() {
+    $('.verifiedCheck').change(function(e) {
+      $.ajax({
+        url: "/admin/users/"+e.currentTarget.value+".json",
+        type: "PUT",
+        data: {verified_account: e.currentTarget.checked}
       });
     });
-    </script>
-  </body>
-  </html>
+    $('.adminCheck').change(function(e) {
+      $.ajax({
+        url: "/admin/users/"+e.currentTarget.value+".json",
+        type: "PUT",
+        data: {admin: e.currentTarget.checked}
+      });
+    });
+    $('.contestCheck').change(function(e) {
+      $.ajax({
+        url: "/admin/users/"+e.currentTarget.value+".json",
+        type: "PUT",
+        data: {contest_editor: e.currentTarget.checked}
+      });
+    });
+    $('.prediction-delete').click(function(e) {
+      console.log('delete');
+      $.ajax({
+        url: "/admin/predictions/"+$(e.currentTarget).attr('data-prediction-id')+".json",
+        type: "DELETE",
+        success: function(json) {
+          $(e.currentTarget).parent().parent().remove()
+        }
+      });
+    });
+  });
+  </script>
+</body>
+</html>
