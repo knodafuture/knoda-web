@@ -3,11 +3,12 @@ class Admin::PushController < Admin::AdminController
 
   def confirmpush
     @user = User.where(["lower(username) = :username", {:username => params[:userinput].downcase }]).first
+    
 
   end
 
   def sendpush
-    
+    MarketingPush.perform_async(params)
   end
 
 
