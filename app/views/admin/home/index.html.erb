@@ -94,10 +94,21 @@
             <div class="col-xs-12">
               <h4 class="text-center">Matching Predictions</h4>
                 <% @predictions.each do |p| %>
-                  <div class="row" style="padding:2px;border:1px solid #efefef;">
-                    <div class="col-xs-9"><%= p.body%></div>
-                    <div class="col-xs-3"><a class="btn btn-xs btn-danger prediction-delete" data-prediction-id="<%= p.id %>">DELETE</a></div>
+                  <div class="row" style="padding:2px;border-bottom:1px solid #efefef;">
+                    <div class="col-xs-8"><%= p.body%></div>
+                    <div class="col-xs-2"><% if p.comments.size > 0 %><a class="btn btn-xs btn-primary prediction-view-comments" data-prediction-id="<%= p.id %>">View Comments</a><% end %></div>
+                    <div class="col-xs-2"><a class="btn btn-xs btn-danger prediction-delete" data-prediction-id="<%= p.id %>">DELETE</a></div>
                   </div>
+                  <div class="row comments-section" data-prediction-id="<%= p.id%>" style="margin: 0px 50px;display:none;">
+                    <div class="col-xs-12">
+                    <% p.comments.each do |c| %>
+                    <div class="row" style="padding:2px;border-bottom:1px solid #efefef;border-top: 0px;">
+                      <div class="col-xs-10"><%= c.text %></div>
+                      <div class="col-xs-2"><a class="btn btn-xs btn-danger comment-delete" data-comment-id="<%= c.id %>">DELETE</a></div>
+                    </div>
+                    <% end %>
+                  </div>
+                </div>
                 <% end %>
             </div>
           </div>
@@ -237,9 +248,20 @@
       });
     });
     $('.prediction-delete').click(function(e) {
-      console.log('delete');
       $.ajax({
         url: "/admin/predictions/"+$(e.currentTarget).attr('data-prediction-id')+".json",
+        type: "DELETE",
+        success: function(json) {
+          $(e.currentTarget).parent().parent().remove()
+        }
+      });
+    });
+    $('.prediction-view-comments').click(function(e) {
+      $('div.comments-section[data-prediction-id='+$(e.currentTarget).attr('data-prediction-id')+']').toggle()
+    });
+    $('.comment-delete').click(function(e) {
+      $.ajax({
+        url: "/admin/comments/"+$(e.currentTarget).attr('data-comment-id')+".json",
         type: "DELETE",
         success: function(json) {
           $(e.currentTarget).parent().parent().remove()

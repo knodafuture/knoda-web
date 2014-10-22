@@ -129,5 +129,6 @@ KnodaWeb::Application.routes.draw do
     post '/push/sendpush'=> "push#sendpush"
     post '/predictions/search' => "predictions#search"
     delete '/predictions/:id' => "predictions#delete"
+    delete '/comments/:id' => "comments#delete"
   end
 end
