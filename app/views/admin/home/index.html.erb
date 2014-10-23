@@ -130,13 +130,13 @@
           <div class="row">
             <div class="col-xs-12">
               <%= label_tag(:pushtype, "Platform(s):") %>
-              <%= select_tag(:pushtype, options_for_select([ "All", "Android", "iOS"]),:include_blank =>"Random", :class => "form-control input-sm", :style => "margin-bottom:5px;") %>
+              <%= select_tag(:pushtype, options_for_select([ "All", "Android", "iOS"]), :class => "form-control input-sm", :style => "margin-bottom:5px;") %>
             </div>
           </div>
           <div class="row">
             <div class="col-xs-12">
               <%= label_tag(:contestinput, "Contest:") %>
-              <%= select_tag(:contestinput, options_for_select([""]),:include_blank =>"Random", :class => "form-control input-sm", :style => "margin-bottom:5px;") %>
+              <%= select_tag(:contestinput, options_for_select(Contest.select("name, id").pluck(:name,:id)), :include_blank => "", :class => "form-control input-sm", :style => "margin-bottom:5px;") %>
             </div>
           </div>
           <div class="row">
@@ -147,13 +147,7 @@
           </div>
           <div class="row">
             <div class="col-xs-12">
-              <%= label_tag(:titleinput, "Notification Title:") %>
-              <%= text_field_tag(:titleinput) %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <%= label_tag(:bodyinput, "Notification Body:") %>
+              <%= label_tag(:bodyinput, "Notification Message:") %>
               <%= text_area_tag(:bodyinput) %>
             </div>
           </div>
