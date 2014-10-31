@@ -1,28 +1,37 @@
 <div class="row">
-  <div class="col-xs-12 group-thumb">
-    <div class="thumbnail" style="min-height:200px;">
-      <div class="row text-center">
-        <% if not @contest.avatar == nil %>
-        <img src="<%= avatar_small(@contest) %>" class="avatar_small img-circle text-center"  style="width:80px;height:80px;margin:10px;"  />
-        <% else %>
-        <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle text-center"  style="width:80px;height:80px;margin:10px;"  />
-        <% end %>
-        <a href="/contests/<%= @contest.id%>/avatar" class="change-avatar">Change Avatar</a>
+  <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-6">
+          <% if not @contest.avatar == nil %>
+          <img src="<%= avatar_small(@contest) %>" class="avatar_small img-circle text-center"  style="width:80px;height:80px;margin:10px;"  />
+          <% else %>
+          <img src="<%= image_path('icons/groups_avatar_default@2x.png') %>" class="avatar_small img-circle text-center"  style="width:80px;height:80px;margin:10px;"  />
+          <% end %>
+          <a href="/contests/<%= @contest.id%>/avatar" class="change-avatar">Change Avatar</a>
+        </div>
+        <div class="col-xs-6">
+        </div>
       </div>
       <div class="row" style="padding-bottom: 10px;">
         <div class="col-xs-12">
-        <%= simple_form_for @contest, :html=> { class: 'form', :style => 'padding: 0px 50px;' } do |f| %>
+        <%= simple_form_for @contest, :html=> { class: 'form-horizontal', :style => 'padding: 0px 10px;' } do |f| %>
          <div class="form-group">
-           <label for="name">Contest Name</label>
-           <%= text_field_tag "contest[name]", @contest.name, :class => 'form-control' %>
+           <label for="name" class="col-xs-3">Contest Name</label>
+           <div class="col-xs-9">
+             <%= text_field_tag "contest[name]", @contest.name, :class => 'form-control', :maxlength => '30' %>
+           </div>
         </div>
         <div class="form-group">
-          <label for="description">Contest Description</label>
-          <%= text_area_tag "contest[description]", @contest.description, :class => 'form-control' %>
+          <label for="description" class="col-xs-3">Contest Description</label>
+          <div class="col-xs-9">
+            <%= text_area_tag "contest[description]", @contest.description, :class => 'form-control', :maxlength => '255' %>
+          </div>
         </div>
         <div class="form-group">
-          <label for="detail_url">Contest Details url</label>
-          <%= url_field_tag "contest[detail_url]", @contest.detail_url, :class => 'form-control' %>
+          <label for="detail_url" class="col-xs-3">Contest Details url</label>
+          <div class="col-xs-9">
+            <%= url_field_tag "contest[detail_url]", @contest.detail_url, :class => 'form-control', :maxlength => '255' %>
+          </div>
         </div>
         <%= f.button :submit, "Save", :class => 'btn btn-success pull-right' %>
         <% end %>
@@ -31,7 +40,7 @@
       <div class="row text-center">
         <div class="col-xs-12">
           <p>Want to embed this contest on your website or blog?  Paste the following code into your page</p>
-          <textarea class="form-control"><iframe src="<%= Rails.application.config.knoda_web_url %>/contests/<%=@contest.id%>/embed" width="300" height="500" frameborder="0"></iframe></textarea>
+          <textarea class="form-control" style="width: 90%;margin:auto;"><iframe src="<%= Rails.application.config.knoda_web_url %>/contests/<%=@contest.id%>/embed" width="300" height="500" frameborder="0"></iframe></textarea>
         </div>
       </div>
       <div class="row">
@@ -44,10 +53,13 @@
           <%= render 'contests/stage' %>
         </div>
       </div>
-
-    </div>
   </div>
 </div>
 <div class="modal fade" id="createPredictionModal_contest<%= @contest.id %>" tabindex="-1" role="dialog" aria-hidden="true"></div>
 </div>
 <div class="modal fade" id="createStageModal" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<script>
+  $('textarea, #contest_name, #contest_detail_url').maxlength({
+     alwaysShow: true
+   });
+</script>

@@ -125,5 +125,10 @@ KnodaWeb::Application.routes.draw do
     post '/test_data/comment' => "test_data#create_comments"
     post '/users/search' => "users#search"
     put '/users/:id' => "users#update"
+    post '/push/confirmpush'=> "push#confirmpush"
+    post '/push/sendpush'=> "push#sendpush"
+    post '/predictions/search' => "predictions#search"
+    delete '/predictions/:id' => "predictions#delete"
+    delete '/comments/:id' => "comments#delete"
   end
 end

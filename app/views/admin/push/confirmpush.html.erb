@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Push Notification Confirmation</h2>
+    <p>This will send the following message:</p>
+    <h4><%= params[:bodyinput] %></h4>
+    <% if params[:userinput] != '' %>
+      To user: <%= params[:userinput] %>
+      <ul>
+        <% if params[:pushtype] == 'Android' or params[:pushtype] == 'All' %>
+        <li>Android Devices that will receive this message: <%= @user.android_device_tokens.size %></li>
+        <% end %>
+        <% if params[:pushtype] == 'iOS' or params[:pushtype] == 'All' %>
+        <li>iOS Devices that will receive this message: <%= @user.apple_device_tokens.size %></li>
+        <% end %>
+      </ul>
+    <% elsif params[:contestinput] != ''%>
+      To participants in: <%= @contest.name %>
+      <ul>
+        <% if params[:pushtype] == 'Android' or params[:pushtype] == 'All' %>
+        <li>Android Devices that will receive this message: <%= @android_devices.size %></li>
+        <% end %>
+        <% if params[:pushtype] == 'iOS' or params[:pushtype] == 'All' %>
+        <li>iOS Devices that will receive this message: <%= @ios_devices.size %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <ul>
+        <% if params[:pushtype] == 'Android' or params[:pushtype] == 'All' %>
+        <li>Android Devices that will receive this message: <%= @android_devices.size %></li>
+        <% end %>
+        <% if params[:pushtype] == 'iOS' or params[:pushtype] == 'All' %>
+        <li>iOS Devices that will receive this message: <%= @ios_devices.size %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>
+<p/>
+<div class="row">
+  <div class="col-xs-12">
+
+  </div>
+</div>
+<p/>
+<div class="row">
+  <div class="col-xs-12">
+    <%=  form_tag(controller: "push", action: "sendpush", method: "post",) do %>
+    <%= hash_as_hidden_fields(params).html_safe %>
+    <a href="#" onClick="history.go(-2)">Cancel</a>
+    <input name="commit" type="submit" value="Send Push Notification(s)">
+    <% end %>
+  </div>
+</div>
